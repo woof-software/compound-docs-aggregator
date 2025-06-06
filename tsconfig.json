@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "rootDir": ".",
+    "outDir": "./dist",
+    "baseUrl": "src",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src", "**/*.mjs"],
+  "exclude": ["node_modules", "dist", "build"]
+}

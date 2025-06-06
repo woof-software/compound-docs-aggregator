@@ -1,0 +1,38 @@
+name: Update market data
+
+on:
+  workflow_dispatch: # manual start Actions → Run workflow
+  schedule:
+    - cron: '0 */3 * * *' # every 3 hours (UTC)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run data generation
+        env:
+          ANKR_KEY: ${{ secrets.ANKR_KEY }}
+          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn cli:generate
+
+      - name: Commit & Push changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git add README.md output.xlsx
+          git diff --cached --quiet || git commit -m "chore: auto-update market data"
+          git push
