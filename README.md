@@ -621,6 +621,32 @@
 ---
 
 <details>
+<summary><strong>ronin/wron/roots.json</strong></summary>
+
+**Contracts**
+  |  #  | Name           | Address                                    | Note                        |
+  | :-: | :------------- | :----------------------------------------- | :-------------------------- |
+  |  1  | Comet          | 0xc0Afdbd1cEB621Ef576BA969ce9D4ceF78Dbc0c0 | Market / comet              |
+  |  2  | Configurator   | 0x966c72F456FC248D458784EF3E0b6d042be115F2 | Configurator implementation |
+  |  3  | Rewards        | 0x31CdEe8609Bc15fD33cc525f101B70a81b2B1E59 | Rewards contract            |
+  |  4  | BridgeReceiver | 0x2c7EfA766338D33B9192dB1fB5D170Bdc03ef3F9 | BridgeReceiver contract     |
+  |  5  | Bulker         | 0x840281FaD56DD88afba052B7F18Be2A65796Ecc6 | Bulker contract             |
+
+**Curve**
+  |  #  | Name       |              Value |
+  | :-: | :--------- | -----------------: |
+  |  1  | supplyKink | 850000000000000000 |
+  |  2  | borrowKink | 850000000000000000 |
+
+**Collaterals**
+  |  #  | Address | Decimals |
+  | :-: | :------ | -------: |
+
+</details>
+
+---
+
+<details>
 <summary><strong>scroll/usdc/roots.json</strong></summary>
 
 **Contracts**
@@ -766,4 +792,4 @@ Below is a placeholder table for reward data. Rows 1–8 are for “Date of reco
 
 ---
 
-*Last updated:* 2025-06-06 14:14:28.337 UTC
+*Last updated:* 2025-06-10 12:45:24.505 UTC
