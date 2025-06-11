@@ -3,10 +3,10 @@ import { GenerateMarkdownCommand } from './generate.command';
 import { GithubModule } from 'github/github.module';
 import { MarkdownService } from './markdown.service';
 import { ContractModule } from 'contract/contract.module';
-import { ExcelModule } from 'excel/excel.module';
+import { JsonModule } from 'json/json.module';
 
 @Module({
-  imports: [GithubModule, ContractModule, ExcelModule],
+  imports: [GithubModule, ContractModule, JsonModule],
   providers: [MarkdownService, GenerateMarkdownCommand],
   exports: [MarkdownService],
 })

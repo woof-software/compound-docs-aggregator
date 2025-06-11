@@ -4,17 +4,17 @@ import axios from 'axios';
 
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
-import { ExcelService } from 'excel/excel.service';
 import { MarkdownService } from './markdown.service';
+import { JsonService } from 'json/json.service';
 
-@Command({ name: 'markdown:generate', description: 'Geenerate markdown' })
+@Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
   private readonly logger = new Logger(GenerateMarkdownCommand.name);
 
   constructor(
     private readonly githubService: GithubService,
     private readonly contractService: ContractService,
-    private readonly excelService: ExcelService,
+    private readonly jsonService: JsonService,
     private readonly markdownService: MarkdownService,
   ) {
     super();
@@ -46,13 +46,12 @@ export class GenerateMarkdownCommand extends CommandRunner {
           continue;
         }
 
-        this.logger.log('rootObj :', rootObj);
         let marketData;
         try {
           marketData = await this.contractService.readMarketData(rootObj, path);
         } catch (err) {
           this.logger.error(
-            `Error reading on-chain from ${path}:`,
+            `Error reading on-chain from ${rootObj}:`,
             err instanceof Error ? err.message : String(err),
           );
           continue;
@@ -61,13 +60,16 @@ export class GenerateMarkdownCommand extends CommandRunner {
         marketsData.push(marketData);
       }
 
-      // Genearate Excel file with all markets data
-      const excelPath = await this.excelService.generate(marketsData);
-      this.logger.log(`Excel generated: ${excelPath}`);
+      // Generate JSON file with all markets data
+      const jsonPath = this.jsonService.write(marketsData);
+      this.logger.log(`JSON generated: ${jsonPath}`);
 
-      // 5) Update README.md
-      this.markdownService.write(marketsData, excelPath);
-      this.logger.log(`README.md updated with market data`);
+      // Read the structured data for markdown generation
+      const nestedMarketsData = this.jsonService.read();
+
+      // Update README.md with hierarchical structure
+      this.markdownService.write(nestedMarketsData, jsonPath);
+      this.logger.log(`README.md updated with hierarchical market data`);
 
       this.logger.log('Generating of markdown completed.');
       return;

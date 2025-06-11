@@ -1,202 +1,321 @@
-// src/markdown/markdown.service.ts
-
 import { Injectable, Logger } from '@nestjs/common';
 import { writeFileSync } from 'fs';
 import { markdownTable } from 'markdown-table';
+import { CurveEntry, NestedMarkets } from 'contract/contract.type';
 
 @Injectable()
 export class MarkdownService {
   private readonly logger = new Logger(MarkdownService.name);
 
-  /**
-   * Generates README.md with:
-   *  1) A link to the full Excel report
-   *  2) For each market, a collapsible section containing exactly three Markdown tables:
-   *     - Contracts (#, Name, Address, Note)
-   *     - Curve     (#, Name, Value)
-   *     - Collaterals (#, Address, Decimals)
-   *  3) A separate, non-collapsible "Rewards" section with its own Markdown table
-   *     (rows 1–8 as placeholders + a total row).
-   *
-   * @param markets  Array of market objects:
-   *   {
-   *     addresses: { networkPath, comet, configurator, rewards?, bridgeReceiver?, bulker? },
-   *     curve: { supplyKink, borrowKink },
-   *     collaterals: Array<{ address: string; decimals: number }>
-   *   }
-   * @param excelPath  Relative path to the Excel file (e.g., "output.xlsx")
-   */
-  write(markets: any[], excelPath: string): void {
+  write(nestedMarkets: NestedMarkets, jsonPath: string): void {
     const lines: string[] = [];
 
     // === Header & Download Link ===
     lines.push('# 📊 Comet Markets Overview');
     lines.push('');
-    lines.push(`**Download full Excel report:** [${excelPath}](${excelPath})`);
+    lines.push(`**Download full JSON:** [${jsonPath}](${jsonPath})`);
     lines.push('');
     lines.push('---');
     lines.push('');
 
-    // === Collapsible Sections for Each Market ===
-    for (const market of markets) {
-      const np = market.addresses.networkPath;
-      lines.push('<details>');
-      lines.push(`<summary><strong>${np}</strong></summary>`);
+    // === Markets by Network ===
+    for (const [networkName, networkMarkets] of Object.entries(
+      nestedMarkets.markets,
+    )) {
+      lines.push(`## 🌐 ${networkName.toUpperCase()}`);
       lines.push('');
 
-      //
-      // 1) Contracts Table
-      //
-      lines.push('**Contracts**');
-      const contractHeader = ['#', 'Name', 'Address', 'Note'];
-      const contractRows: string[][] = [];
-      const addr = market.addresses;
+      for (const [marketName, marketData] of Object.entries(networkMarkets)) {
+        lines.push('<details>');
+        lines.push(
+          `<summary><strong>${networkName}/${marketName}</strong></summary>`,
+        );
+        lines.push('');
 
-      // Row 1: Comet
-      contractRows.push(['1', 'Comet', addr.comet, 'Market / comet']);
-      // Row 2: Configurator
-      contractRows.push([
-        '2',
-        'Configurator',
-        addr.configurator,
-        'Configurator implementation',
-      ]);
-      // Row 3: Rewards (if exists)
-      if (addr.rewards) {
-        contractRows.push(['3', 'Rewards', addr.rewards, 'Rewards contract']);
-      }
-      // Row 4: BridgeReceiver (if exists)
-      if (addr.bridgeReceiver) {
+        // 1) Contracts Table
+        lines.push('**📋 Contracts**');
+        lines.push('');
+        const contractHeader = ['#', 'Name', 'Address', 'Note'];
+        const contractRows: string[][] = [];
+
+        const contracts = marketData.contracts;
+        let rowNum = 1;
+
+        // Основные контракты
         contractRows.push([
-          (contractRows.length + 1).toString(),
-          'BridgeReceiver',
-          addr.bridgeReceiver,
-          'BridgeReceiver contract',
+          rowNum.toString(),
+          'Comet',
+          contracts.comet,
+          'Main market contract',
         ]);
-      }
-      // Row 5: Bulker (if exists)
-      if (addr.bulker) {
+        rowNum++;
         contractRows.push([
-          (contractRows.length + 1).toString(),
-          'Bulker',
-          addr.bulker,
-          'Bulker contract',
+          rowNum.toString(),
+          'Comet Implementation',
+          contracts.cometImplementation,
+          'Implementation contract',
         ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Comet Extension',
+          contracts.cometExtension,
+          'Extension delegate contract',
+        ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Configurator',
+          contracts.configurator,
+          'Market configurator',
+        ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Configurator Implementation',
+          contracts.configuratorImplementation,
+          'Configurator implementation',
+        ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Comet Admin',
+          contracts.cometAdmin,
+          'Admin contract',
+        ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Comet Factory',
+          contracts.cometFactory,
+          'Factory contract',
+        ]);
+        rowNum++;
+
+        // Опциональные контракты
+        if (contracts.rewards) {
+          contractRows.push([
+            rowNum.toString(),
+            'Rewards',
+            contracts.rewards,
+            'Rewards contract',
+          ]);
+          rowNum++;
+        }
+        if (contracts.bulker) {
+          contractRows.push([
+            rowNum.toString(),
+            'Bulker',
+            contracts.bulker,
+            'Bulker contract',
+          ]);
+          rowNum++;
+        }
+
+        contractRows.push([
+          rowNum.toString(),
+          'Governor',
+          contracts.governor,
+          'Governance contract',
+        ]);
+        rowNum++;
+        contractRows.push([
+          rowNum.toString(),
+          'Timelock',
+          contracts.timelock,
+          'Timelock contract',
+        ]);
+
+        const contractTableMd = markdownTable(
+          [contractHeader, ...contractRows],
+          {
+            align: ['c', 'l', 'l', 'l'],
+          },
+        );
+        contractTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
+        lines.push('');
+
+        // 2) Curve Table
+        lines.push('**📈 Interest Rate Curve**');
+        lines.push('');
+        const curveHeader = [
+          '#',
+          'Parameter',
+          'Current Value',
+          'Previous Value',
+          'Date Set',
+        ];
+        const curveRows: string[][] = [];
+        const curve = marketData.curve;
+
+        let curveRowNum = 1;
+        const curveParams: Array<[string, CurveEntry]> = [
+          ['Supply Kink', curve.supplyKink],
+          ['Supply Rate Slope Low', curve.supplyPerSecondInterestRateSlopeLow],
+          [
+            'Supply Rate Slope High',
+            curve.supplyPerSecondInterestRateSlopeHigh,
+          ],
+          ['Supply Rate Base', curve.supplyPerSecondInterestRateBase],
+          ['Borrow Kink', curve.borrowKink],
+          ['Borrow Rate Slope Low', curve.borrowPerSecondInterestRateSlopeLow],
+          [
+            'Borrow Rate Slope High',
+            curve.borrowPerSecondInterestRateSlopeHigh,
+          ],
+          ['Borrow Rate Base', curve.borrowPerSecondInterestRateBase],
+        ];
+
+        for (const [paramName, paramData] of curveParams) {
+          curveRows.push([
+            curveRowNum.toString(),
+            paramName,
+            paramData.value?.toString() || 'N/A',
+            paramData.previousValue?.toString() || 'N/A',
+            paramData.valueSetDate || 'N/A',
+          ]);
+          curveRowNum++;
+        }
+        const curveTableMd = markdownTable([curveHeader, ...curveRows], {
+          align: ['c', 'l', 'r', 'r', 'l'],
+        });
+        curveTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
+        lines.push('');
+
+        // 3) Collaterals Table
+        lines.push('**💰 Collaterals**');
+        lines.push('');
+        const collHeader = [
+          '#',
+          'Name',
+          'Symbol',
+          'Address',
+          'Decimals',
+          'Price Feed',
+          'CF',
+          'LF',
+          'LP',
+          'Max Leverage',
+        ];
+        const collRows: string[][] = [];
+
+        marketData.collaterals.forEach((collateral, index) => {
+          collRows.push([
+            (index + 1).toString(),
+            collateral.name,
+            collateral.symbol,
+            collateral.address,
+            collateral.decimals.toString(),
+            collateral.priceFeedAddress,
+            collateral.CF,
+            collateral.LF,
+            collateral.LP,
+            collateral.maxLeverage,
+          ]);
+        });
+
+        const collTableMd = markdownTable([collHeader, ...collRows], {
+          align: ['c', 'l', 'l', 'l', 'r', 'l', 'r', 'r', 'r', 'r'],
+        });
+        collTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
+        lines.push('');
+
+        lines.push('</details>');
+        lines.push('');
       }
 
-      const contractTableMd = markdownTable([contractHeader, ...contractRows], {
-        align: ['c', 'l', 'l', 'l'],
-      });
-      contractTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
-      lines.push('');
-
-      //
-      // 2) Curve Table
-      //
-      lines.push('**Curve**');
-      const curveHeader = ['#', 'Name', 'Value'];
-      const curveRows: string[][] = [
-        ['1', 'supplyKink', market.curve.supplyKink.toString()],
-        ['2', 'borrowKink', market.curve.borrowKink.toString()],
-      ];
-
-      const curveTableMd = markdownTable([curveHeader, ...curveRows], {
-        align: ['c', 'l', 'r'],
-      });
-      curveTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
-      lines.push('');
-
-      //
-      // 3) Collaterals Table
-      //
-      lines.push('**Collaterals**');
-      const collHeader = ['#', 'Address', 'Decimals'];
-      const assets: any[] = Array.isArray(market.collaterals)
-        ? market.collaterals
-        : [];
-      const collRows: string[][] = [];
-      assets.forEach((a, idx) => {
-        collRows.push([
-          (idx + 1).toString(),
-          a.address || '',
-          a.decimals != null ? a.decimals.toString() : '',
-        ]);
-      });
-
-      const collTableMd = markdownTable([collHeader, ...collRows], {
-        align: ['c', 'l', 'r'],
-      });
-      collTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
-      lines.push('');
-
-      lines.push('</details>');
-      lines.push('');
       lines.push('---');
       lines.push('');
     }
 
-    // === Separate Rewards Section ===
-    lines.push('## 🎁 Rewards');
-    lines.push('');
-    lines.push(
-      'Below is a placeholder table for reward data. Rows 1–8 are for “Date of record” entries, ' +
-        'and the “Total rewards” row will sum up numeric columns.',
-    );
+    // === Rewards Section ===
+    lines.push('## 🎁 Rewards Summary');
     lines.push('');
 
     const rewardsHeader = [
-      '№',
+      '#',
       'Date',
       'Network',
       'Market',
-      'Daily rewards',
-      'Yearly rewards',
-      'Lend daily rewards',
-      'Borrow daily rewards',
-      'Lend APR boost',
-      'Borrow APR boost',
-      'Amount of COMP on Reward contract',
+      'Daily Rewards',
+      'Yearly Rewards',
+      'Lend Daily Rewards',
+      'Borrow Daily Rewards',
+      'COMP on Reward Contract',
     ];
 
-    // 8 placeholder rows
     const rewardsRows: string[][] = [];
-    for (let i = 1; i <= 8; i++) {
+
+    nestedMarkets.rewards.marketRewards.forEach((reward, index) => {
       rewardsRows.push([
-        i.toString(),
-        'Date of record',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
+        (index + 1).toString(),
+        reward.date,
+        reward.network,
+        reward.market,
+        `${reward.dailyRewards} COMP`,
+        `${reward.yearlyRewards} COMP`,
+        `${reward.lendDailyRewards} COMP`,
+        `${reward.borrowDailyRewards} COMP`,
+        `${reward.compAmountOnRewardContract.toFixed(2)} COMP`,
       ]);
-    }
-    // Total rewards row
+    });
+
+    // Total row
     rewardsRows.push([
       '',
-      '**Total rewards**',
+      '**TOTAL**',
       '',
       '',
-      'SUM',
-      'SUM',
-      'SUM',
-      'SUM',
-      'SUM',
-      'SUM',
+      `**${nestedMarkets.rewards.totalDailyRewards} COMP**`,
+      `**${nestedMarkets.rewards.totalYearlyRewards} COMP**`,
+      '',
+      '',
       '',
     ]);
 
     const rewardsTableMd = markdownTable([rewardsHeader, ...rewardsRows], {
-      align: ['c', 'l', 'l', 'l', 'r', 'r', 'r', 'r', 'r', 'r', 'r'],
+      align: ['c', 'l', 'l', 'l', 'r', 'r', 'r', 'r', 'r'],
     });
     lines.push(rewardsTableMd);
     lines.push('');
     lines.push('---');
     lines.push('');
+
+    // === Network COMP Balance Section ===
+    lines.push('## 💎 Network COMP Balances');
+    lines.push('');
+
+    const balanceHeader = ['#', 'Date', 'Network', 'Current COMP Balance'];
+    const balanceRows: string[][] = [];
+
+    nestedMarkets.networkCompBalance.networks.forEach((network) => {
+      balanceRows.push([
+        (network.idx + 1).toString(),
+        network.date,
+        network.network,
+        `${network.currentCompBalance.toFixed(2)} COMP`,
+      ]);
+    });
+
+    // Total row
+    balanceRows.push([
+      '',
+      '**TOTAL**',
+      '',
+      `**${nestedMarkets.networkCompBalance.totalCompBalance.toFixed(
+        2,
+      )} COMP**`,
+    ]);
+
+    const balanceTableMd = markdownTable([balanceHeader, ...balanceRows], {
+      align: ['c', 'l', 'l', 'r'],
+    });
+    lines.push(balanceTableMd);
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+
+    // === Footer ===
     lines.push(
       `*Last updated:* ${new Date()
         .toISOString()
@@ -206,5 +325,6 @@ export class MarkdownService {
     lines.push('');
 
     writeFileSync('README.md', lines.join('\n'), 'utf-8');
+    this.logger.log('README.md successfully generated');
   }
 }

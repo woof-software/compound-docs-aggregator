@@ -5,8 +5,8 @@ import networksConfig from 'config/networks.config';
 import { GithubModule } from 'github/github.module';
 import { NetworkModule } from 'network/network.module';
 import { ContractModule } from 'contract/contract.module';
-import { ExcelModule } from 'excel/excel.module';
 import { MarkdownModule } from 'markdown/markdown.module';
+import { JsonModule } from 'json/json.module';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { MarkdownModule } from 'markdown/markdown.module';
     GithubModule,
     NetworkModule,
     ContractModule,
-    ExcelModule,
+    JsonModule,
     MarkdownModule,
   ],
 })

@@ -1,7 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
-import { writeFileSync, mkdirSync } from 'fs';
-import * as path from 'path';
+import { writeFileSync, readFileSync, existsSync } from 'fs';
+
+interface CacheEntry {
+  timestamp: number;
+  data: string[];
+}
 
 @Injectable()
 export class GithubService {
@@ -12,6 +16,14 @@ export class GithubService {
   private readonly api: AxiosInstance;
   private readonly rootDir = 'deployments';
 
+  // Excluded networks (test networks)
+  private readonly excludedNetworks = ['sepolia', 'fuji', 'hardhat'];
+
+  // Caching configuration
+  private readonly cacheFile = '.github-cache.json';
+  private readonly cacheExpirationMs = 30 * 60 * 1000; // 30 minutes
+  private inMemoryCache: string[] | null = null;
+
   constructor() {
     const token = process.env.GITHUB_TOKEN || '';
     this.api = axios.create({
@@ -21,20 +33,86 @@ export class GithubService {
   }
 
   /**
-   * Reursively finds all 'roots.json' files in the GitHub repository.
-   * and returns their relative paths.
-   *
-   * Example result:
-   * [
-   *   'arbitrum/usdc.e/roots.json',
-   *   'arbitrum/usdc/roots.json',
-   *   'base/aero/roots.json',
-   *   'mainnet/usdc/roots.json',
-   *   'linea/usdc/roots.json',
-   *   …
-   * ]
+   * Gets list of all roots.json files with caching
    */
   async listAllRootsJson(): Promise<string[]> {
+    // Check in-memory cache
+    if (this.inMemoryCache) {
+      this.logger.debug('Using in-memory cache');
+      return this.inMemoryCache;
+    }
+
+    // Check file cache
+    const cachedData = this.loadFromFileCache();
+    if (cachedData) {
+      this.logger.debug('Using file cache');
+      this.inMemoryCache = cachedData;
+      return cachedData;
+    }
+
+    // Fetch data via GitHub Tree API (single request)
+    const results = await this.fetchFromGitHubTree();
+
+    // Save to cache
+    this.saveToFileCache(results);
+    this.inMemoryCache = results;
+
+    return results;
+  }
+
+  /**
+   * Uses GitHub Tree API to get entire structure in a single request
+   */
+  private async fetchFromGitHubTree(): Promise<string[]> {
+    try {
+      // Get entire file tree recursively in one request
+      const url = `/repos/${this.owner}/${this.repo}/git/trees/${this.defaultBranch}?recursive=1`;
+      const response = await this.api.get(url);
+
+      const tree = response.data.tree as Array<{
+        path: string;
+        type: 'blob' | 'tree';
+        mode: string;
+      }>;
+
+      const results: string[] = [];
+
+      for (const item of tree) {
+        // Look only for roots.json files in deployments folder
+        if (
+          item.type === 'blob' &&
+          item.path.startsWith(`${this.rootDir}/`) &&
+          item.path.endsWith('/roots.json')
+        ) {
+          // Check if file is not in an excluded network
+          const relativePath = item.path.replace(/^deployments\//, '');
+          const isExcluded = this.excludedNetworks.some((network) =>
+            relativePath.startsWith(`${network}/`),
+          );
+
+          if (!isExcluded) {
+            results.push(relativePath);
+          } else {
+            this.logger.debug(`Excluded: ${relativePath}`);
+          }
+        }
+      }
+
+      return results;
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Error fetching tree: ${errorMessage}`);
+
+      // Fallback to old method
+      this.logger.warn('Falling back to recursive method');
+      return this.fallbackRecursiveMethod();
+    }
+  }
+
+  /**
+   * Fallback method - old recursive logic
+   */
+  private async fallbackRecursiveMethod(): Promise<string[]> {
     const results: string[] = [];
     await this.recursiveList(this.rootDir, results);
     return results;
@@ -54,66 +132,77 @@ export class GithubService {
 
       for (const item of items) {
         if (item.type === 'dir') {
-          // if the item is a directory, recursively list its contents
+          const isExcludedNetwork = this.excludedNetworks.some(
+            (network) =>
+              item.path.includes(`/${network}/`) ||
+              item.path.endsWith(`/${network}`) ||
+              item.path === `${this.rootDir}/${network}`,
+          );
+
+          if (isExcludedNetwork) {
+            this.logger.debug(
+              `Skipping excluded network directory: ${item.path}`,
+            );
+            continue;
+          }
+
           await this.recursiveList(item.path, results);
         } else if (
           item.type === 'file' &&
           item.name.toLowerCase() === 'roots.json'
         ) {
-          // if the item is a file named 'roots.json', add its relative path to results
           const relative = item.path.replace(/^deployments\//, '');
           results.push(relative);
         }
       }
     } catch (err) {
-      // Log the error but continue processing other paths
       const errorMessage = err instanceof Error ? err.message : String(err);
       this.logger.error(`Error reading ${pathInRepo}: ${errorMessage}`);
     }
   }
 
-  async fetchAndSaveRoots(targetDir: string) {
-    // get all relative paths to 'roots.json' files
-    const rootsPaths = await this.listAllRootsJson();
-    const savedPaths: string[] = [];
-
-    for (const rel of rootsPaths) {
-      // form the full URL to download the JSON file
-      // example: https://raw.githubusercontent.com/compound-finance/comet/main/deployments/arbitrum/usdc.e/roots.json
-      const rawUrl = `https://raw.githubusercontent.com/${this.owner}/${this.repo}/${this.defaultBranch}/${this.rootDir}/${rel}`;
-
-      let jsonData: any;
-      try {
-        const response = await axios.get(rawUrl, { responseType: 'json' });
-        jsonData = response.data;
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : String(err);
-        this.logger.error(`Failed to download ${rawUrl}: ${errorMessage}`);
-        continue; // Пропускаем этот файл и идём дальше
+  /**
+   * Loads data from file cache
+   */
+  private loadFromFileCache(): string[] | null {
+    try {
+      if (!existsSync(this.cacheFile)) {
+        return null;
       }
 
-      const localPath = path.join(targetDir, rel);
+      const cacheContent = readFileSync(this.cacheFile, 'utf-8');
+      const cacheEntry: CacheEntry = JSON.parse(cacheContent);
 
-      // guarantee the directory exists
-      const dir = path.dirname(localPath);
-      try {
-        mkdirSync(dir, { recursive: true });
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : String(err);
-        this.logger.error(`Failed to create directory ${dir}: ${errorMessage}`);
-        continue;
+      const now = Date.now();
+      if (now - cacheEntry.timestamp > this.cacheExpirationMs) {
+        this.logger.debug('Cache expired');
+        return null;
       }
 
-      try {
-        writeFileSync(localPath, JSON.stringify(jsonData, null, 2), 'utf-8');
-        this.logger.log(`Saved: ${localPath}`);
-        savedPaths.push(localPath);
-      } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : String(err);
-        this.logger.error(`Failed to write file ${localPath}: ${errorMessage}`);
-      }
+      return cacheEntry.data;
+    } catch (err) {
+      this.logger.warn('Failed to load cache, will fetch fresh data');
+      return null;
     }
+  }
 
-    return savedPaths;
+  /**
+   * Saves data to file cache
+   */
+  private saveToFileCache(data: string[]) {
+    try {
+      const cacheEntry: CacheEntry = {
+        timestamp: Date.now(),
+        data: data,
+      };
+      writeFileSync(
+        this.cacheFile,
+        JSON.stringify(cacheEntry, null, 2),
+        'utf-8',
+      );
+      this.logger.debug('Data saved to cache');
+    } catch (err) {
+      this.logger.warn('Failed to save cache');
+    }
   }
 }
