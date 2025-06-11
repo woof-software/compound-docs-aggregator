@@ -792,4 +792,4 @@ Below is a placeholder table for reward data. Rows 1–8 are for “Date of reco
 
 ---
 
-*Last updated:* 2025-06-10 12:45:24.505 UTC
+*Last updated:* 2025-06-11 12:44:55.632 UTC
