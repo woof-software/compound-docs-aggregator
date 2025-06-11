@@ -13,7 +13,8 @@ export class MarkdownService {
     // === Header & Download Link ===
     lines.push('# 📊 Comet Markets Overview');
     lines.push('');
-    lines.push(`**Download full JSON:** [${jsonPath}](${jsonPath})`);
+    const fileName = jsonPath.split('/').pop() || 'output.json';
+    lines.push(`**Download full JSON:** [${fileName}](./${fileName})`);
     lines.push('');
     lines.push('---');
     lines.push('');
