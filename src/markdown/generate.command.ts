@@ -51,9 +51,10 @@ export class GenerateMarkdownCommand extends CommandRunner {
           marketData = await this.contractService.readMarketData(rootObj, path);
         } catch (err) {
           this.logger.error(
-            `Error reading on-chain from ${rootObj}:`,
+            `Error reading on-chain data for ${path}:`,
             err instanceof Error ? err.message : String(err),
           );
+          this.logger.error(rootObj);
           continue;
         }
 

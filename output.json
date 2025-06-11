@@ -2513,7 +2513,7 @@
         "yearlyRewards": 5475,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 10,
-        "compAmountOnRewardContract": 8590.414369
+        "compAmountOnRewardContract": 8590.412295
       },
       {
         "date": "2025-06-11",
@@ -2523,7 +2523,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 8590.414369
+        "compAmountOnRewardContract": 8590.412295
       },
       {
         "date": "2025-06-11",
@@ -2533,7 +2533,7 @@
         "yearlyRewards": 7300,
         "lendDailyRewards": 13,
         "borrowDailyRewards": 7,
-        "compAmountOnRewardContract": 8590.414369
+        "compAmountOnRewardContract": 8590.412295
       },
       {
         "date": "2025-06-11",
@@ -2543,7 +2543,7 @@
         "yearlyRewards": 13140,
         "lendDailyRewards": 24,
         "borrowDailyRewards": 12,
-        "compAmountOnRewardContract": 8590.414369
+        "compAmountOnRewardContract": 8590.412295
       },
       {
         "date": "2025-06-11",
@@ -2553,7 +2553,7 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 8590.414369
+        "compAmountOnRewardContract": 8590.412295
       },
       {
         "date": "2025-06-11",
@@ -2583,7 +2583,7 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 3149.644116
+        "compAmountOnRewardContract": 3149.627273
       },
       {
         "date": "2025-06-11",
@@ -2593,7 +2593,7 @@
         "yearlyRewards": 3650,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 3149.644116
+        "compAmountOnRewardContract": 3149.627273
       },
       {
         "date": "2025-06-11",
@@ -2603,7 +2603,7 @@
         "yearlyRewards": 2555,
         "lendDailyRewards": 4,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 3149.644116
+        "compAmountOnRewardContract": 3149.627273
       },
       {
         "date": "2025-06-11",
@@ -2651,7 +2651,7 @@
         "idx": 1,
         "date": "2025-06-11",
         "network": "base",
-        "currentCompBalance": 8590.414369
+        "currentCompBalance": 8590.412295
       },
       {
         "idx": 2,
@@ -2669,7 +2669,7 @@
         "idx": 4,
         "date": "2025-06-11",
         "network": "optimism",
-        "currentCompBalance": 3149.644116
+        "currentCompBalance": 3149.627273
       },
       {
         "idx": 5,
@@ -2684,6 +2684,6 @@
         "currentCompBalance": 3374.523228
       }
     ],
-    "totalCompBalance": 28679.299195
+    "totalCompBalance": 28679.280278
   }
 }

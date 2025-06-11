@@ -1,6 +1,6 @@
 # 📊 Comet Markets Overview
 
-**Download full JSON:** [/Users/stanislavkazikin/Documents/GitHub/Woof/compound-docs-aggregator/output.json](/Users/stanislavkazikin/Documents/GitHub/Woof/compound-docs-aggregator/output.json)
+**Download full JSON:** [output.json](./output.json)
 
 ---
 
@@ -787,9 +787,9 @@
 |  9  | 2025-06-11 | base     | cWETHv3  |        6 COMP |      2190 COMP |             3 COMP |               3 COMP |            8590.41 COMP |
 |  10 | 2025-06-11 | linea    | cUSDCv3  |        7 COMP |      2555 COMP |             4 COMP |               3 COMP |            4490.71 COMP |
 |  11 | 2025-06-11 | mantle   | cUSDev3  |        8 COMP |      2920 COMP |             4 COMP |               4 COMP |            2697.01 COMP |
-|  12 | 2025-06-11 | optimism | cUSDCv3  |        6 COMP |      2190 COMP |             2 COMP |               4 COMP |            3149.64 COMP |
-|  13 | 2025-06-11 | optimism | cUSDTv3  |       10 COMP |      3650 COMP |             5 COMP |               5 COMP |            3149.64 COMP |
-|  14 | 2025-06-11 | optimism | cWETHv3  |        7 COMP |      2555 COMP |             4 COMP |               3 COMP |            3149.64 COMP |
+|  12 | 2025-06-11 | optimism | cUSDCv3  |        6 COMP |      2190 COMP |             2 COMP |               4 COMP |            3149.63 COMP |
+|  13 | 2025-06-11 | optimism | cUSDTv3  |       10 COMP |      3650 COMP |             5 COMP |               5 COMP |            3149.63 COMP |
+|  14 | 2025-06-11 | optimism | cWETHv3  |        7 COMP |      2555 COMP |             4 COMP |               3 COMP |            3149.63 COMP |
 |  15 | 2025-06-11 | scroll   | cUSDCv3  |        0 COMP |         0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
 |  16 | 2025-06-11 | unichain | cUSDCv3  |        2 COMP |       730 COMP |             1 COMP |               1 COMP |            3374.52 COMP |
 |  17 | 2025-06-11 | unichain | cWETHv3  |       20 COMP |      7300 COMP |            12 COMP |               8 COMP |            3374.52 COMP |
@@ -805,11 +805,11 @@
 |  2  | 2025-06-11 | base     |         8590.41 COMP |
 |  3  | 2025-06-11 | linea    |         4490.71 COMP |
 |  4  | 2025-06-11 | mantle   |         2697.01 COMP |
-|  5  | 2025-06-11 | optimism |         3149.64 COMP |
+|  5  | 2025-06-11 | optimism |         3149.63 COMP |
 |  6  | 2025-06-11 | scroll   |            0.00 COMP |
 |  7  | 2025-06-11 | unichain |         3374.52 COMP |
-|     | **TOTAL**  |          |    **28679.30 COMP** |
+|     | **TOTAL**  |          |    **28679.28 COMP** |
 
 ---
 
-*Last updated:* 2025-06-11 16:57:58.934 UTC
+*Last updated:* 2025-06-11 17:13:35.855 UTC
