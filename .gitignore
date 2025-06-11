@@ -60,3 +60,4 @@ firebase-credentials.json
 gcp-credentials.json
 
 .vscode
+.github-cache.json
