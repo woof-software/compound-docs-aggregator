@@ -10,6 +10,52 @@ export class MarkdownService {
   write(nestedMarkets: NestedMarkets, jsonPath: string): void {
     const lines: string[] = [];
 
+    // === Setup & Usage Instructions ===
+    lines.push('## 🚀 Quick Start');
+    lines.push('');
+    lines.push('### Environment Setup');
+    lines.push(
+      'Create a `.env` file in the project root with the following variables:',
+    );
+    lines.push('');
+    lines.push('```env');
+    lines.push('# provider keys for blockchain networks');
+    lines.push('ANKR_KEY=your_ankr_api_key_here');
+    lines.push('UNICHAIN_QUICKNODE_KEY==your_unichain_api_key_here');
+    lines.push('```');
+    lines.push('');
+    lines.push('### Generate Documentation');
+    lines.push('Run the following command to generate this documentation:');
+    lines.push('');
+    lines.push('```bash');
+    lines.push('yarn cli:generate');
+    lines.push('```');
+    lines.push('');
+    lines.push('This command will:');
+    lines.push('1. Build the NestJS application');
+    lines.push('2. Fetch data from all supported networks');
+    lines.push('3. Generate JSON output file');
+    lines.push('4. Create/update this README.md file');
+    lines.push('');
+    lines.push('### Available Scripts');
+    lines.push('');
+    lines.push('```bash');
+    lines.push('# Generate documentation and data files');
+    lines.push('yarn cli:generate');
+    lines.push('');
+    lines.push('# Build the application');
+    lines.push('yarn build');
+    lines.push('');
+    lines.push('# Run linting');
+    lines.push('yarn lint');
+    lines.push('');
+    lines.push('# Format code');
+    lines.push('yarn format');
+    lines.push('```');
+    lines.push('');
+    lines.push('---');
+    lines.push('');
+
     // === Header & Download Link ===
     lines.push('# 📊 Comet Markets Overview');
     lines.push('');
