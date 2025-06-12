@@ -74,9 +74,7 @@ export class MarkdownService {
 
       for (const [marketName, marketData] of Object.entries(networkMarkets)) {
         lines.push('<details>');
-        lines.push(
-          `<summary><strong>${networkName}/${marketName}</strong></summary>`,
-        );
+        lines.push(`<summary><strong>${marketName}</strong></summary>`);
         lines.push('');
 
         // 1) Contracts Table
