@@ -7,7 +7,8 @@ import CometExtensionABI from './abi/CometExtensionABI.json';
 import ConfiguratorABI from './abi/ConfiguratorABI.json';
 import TimelockABI from './abi/TimelockABI.json';
 import ERC20ABI from './abi/ERC20ABI.json';
-import RewardsABI from './abi/MainnetRewardsABI.json';
+import RewardsABI from './abi/RewardsABI.json';
+import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
 import {
   CollateralInfo,
   CurveMap,
@@ -332,9 +333,13 @@ export class ContractService {
       ) as any;
 
       const rewardsAddress = root.rewards;
+      const legacyNetworks = ['mainnet', 'polygon'];
+      const rewardsABI = legacyNetworks.includes(network)
+        ? LegacyRewardsABI
+        : RewardsABI;
       const rewardsContract = new ethers.Contract(
         rewardsAddress,
-        RewardsABI,
+        rewardsABI,
         provider,
       ) as any;
 
