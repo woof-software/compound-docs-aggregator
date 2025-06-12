@@ -4,7 +4,7 @@
 Create a `.env` file in the project root with the following variables:
 
 ```env
-# RPC URLs for blockchain networks
+# provider keys for blockchain networks
 ANKR_KEY=your_ankr_api_key_here
 UNICHAIN_QUICKNODE_KEY==your_unichain_api_key_here
 ```
@@ -49,7 +49,7 @@ yarn format
 ## 🌐 ARBITRUM
 
 <details>
-<summary><strong>arbitrum/cUSDCev3</strong></summary>
+<summary><strong>cUSDCev3</strong></summary>
 
 **📋 Contracts**
 
@@ -92,7 +92,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>arbitrum/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -138,7 +138,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>arbitrum/cUSDTv3</strong></summary>
+<summary><strong>cUSDTv3</strong></summary>
 
 **📋 Contracts**
 
@@ -182,7 +182,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>arbitrum/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -233,7 +233,7 @@ yarn format
 ## 🌐 BASE
 
 <details>
-<summary><strong>base/cAEROv3</strong></summary>
+<summary><strong>cAEROv3</strong></summary>
 
 **📋 Contracts**
 
@@ -276,7 +276,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>base/cUSDbCv3</strong></summary>
+<summary><strong>cUSDbCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -317,7 +317,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>base/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -360,7 +360,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>base/cUSDSv3</strong></summary>
+<summary><strong>cUSDSv3</strong></summary>
 
 **📋 Contracts**
 
@@ -401,7 +401,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>base/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -452,7 +452,7 @@ yarn format
 ## 🌐 LINEA
 
 <details>
-<summary><strong>linea/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -498,7 +498,7 @@ yarn format
 ## 🌐 MAINNET
 
 <details>
-<summary><strong>mainnet/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -546,7 +546,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>mainnet/cUSDSv3</strong></summary>
+<summary><strong>cUSDSv3</strong></summary>
 
 **📋 Contracts**
 
@@ -593,7 +593,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>mainnet/cUSDTv3</strong></summary>
+<summary><strong>cUSDTv3</strong></summary>
 
 **📋 Contracts**
 
@@ -644,7 +644,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>mainnet/cWBTCv3</strong></summary>
+<summary><strong>cWBTCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -685,7 +685,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>mainnet/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -737,7 +737,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>mainnet/cWstETHv3</strong></summary>
+<summary><strong>cWstETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -783,7 +783,7 @@ yarn format
 ## 🌐 MANTLE
 
 <details>
-<summary><strong>mantle/cUSDev3</strong></summary>
+<summary><strong>cUSDev3</strong></summary>
 
 **📋 Contracts**
 
@@ -829,7 +829,7 @@ yarn format
 ## 🌐 OPTIMISM
 
 <details>
-<summary><strong>optimism/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -873,7 +873,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>optimism/cUSDTv3</strong></summary>
+<summary><strong>cUSDTv3</strong></summary>
 
 **📋 Contracts**
 
@@ -917,7 +917,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>optimism/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -968,7 +968,7 @@ yarn format
 ## 🌐 POLYGON
 
 <details>
-<summary><strong>polygon/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1012,7 +1012,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>polygon/cUSDTv3</strong></summary>
+<summary><strong>cUSDTv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1060,7 +1060,7 @@ yarn format
 ## 🌐 RONIN
 
 <details>
-<summary><strong>ronin/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1102,7 +1102,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>ronin/cWRONv3</strong></summary>
+<summary><strong>cWRONv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1148,7 +1148,7 @@ yarn format
 ## 🌐 SCROLL
 
 <details>
-<summary><strong>scroll/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1193,7 +1193,7 @@ yarn format
 ## 🌐 UNICHAIN
 
 <details>
-<summary><strong>unichain/cUSDCv3</strong></summary>
+<summary><strong>cUSDCv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1234,7 +1234,7 @@ yarn format
 </details>
 
 <details>
-<summary><strong>unichain/cWETHv3</strong></summary>
+<summary><strong>cWETHv3</strong></summary>
 
 **📋 Contracts**
 
@@ -1329,4 +1329,4 @@ yarn format
 
 ---
 
-*Last updated:* 2025-06-12 16:11:44.476 UTC
+*Last updated:* 2025-06-12 16:17:53.496 UTC
