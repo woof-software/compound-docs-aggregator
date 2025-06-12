@@ -7,7 +7,7 @@ import CometExtensionABI from './abi/CometExtensionABI.json';
 import ConfiguratorABI from './abi/ConfiguratorABI.json';
 import TimelockABI from './abi/TimelockABI.json';
 import ERC20ABI from './abi/ERC20ABI.json';
-import RewardsABI from './abi/RewardsABI.json';
+import RewardsABI from './abi/MainnetRewardsABI.json';
 import {
   CollateralInfo,
   CurveMap,
@@ -321,54 +321,63 @@ export class ContractService {
     network: string,
     market: string,
   ) {
-    const date = new Date().toISOString().split('T')[0] as string;
+    try {
+      const date = new Date().toISOString().split('T')[0] as string;
 
-    const cometAddress = root.comet;
-    const cometContract = new ethers.Contract(
-      cometAddress,
-      CometABI,
-      provider,
-    ) as any;
+      const cometAddress = root.comet;
+      const cometContract = new ethers.Contract(
+        cometAddress,
+        CometABI,
+        provider,
+      ) as any;
 
-    const rewardsAddress = root.rewards;
-    const rewardsContract = new ethers.Contract(
-      rewardsAddress,
-      RewardsABI,
-      provider,
-    ) as any;
+      const rewardsAddress = root.rewards;
+      const rewardsContract = new ethers.Contract(
+        rewardsAddress,
+        RewardsABI,
+        provider,
+      ) as any;
 
-    const lendRewardsSpeed = await cometContract.baseTrackingSupplySpeed();
-    const borrowRewardsSpeed = await cometContract.baseTrackingBorrowSpeed();
-    const lendDailyRewards = Math.round(
-      Number(ethers.formatUnits(lendRewardsSpeed, 15)) * DAY_IN_SECONDS,
-    );
-    const borrowDailyRewards = Math.round(
-      Number(ethers.formatUnits(borrowRewardsSpeed, 15)) * DAY_IN_SECONDS,
-    );
-    const dailyRewards = lendDailyRewards + borrowDailyRewards;
-    const yearlyRewards = dailyRewards * YEAR_IN_DAYS;
+      const lendRewardsSpeed = await cometContract.baseTrackingSupplySpeed();
+      const borrowRewardsSpeed = await cometContract.baseTrackingBorrowSpeed();
+      const lendDailyRewards = Math.round(
+        Number(ethers.formatUnits(lendRewardsSpeed, 15)) * DAY_IN_SECONDS,
+      );
+      const borrowDailyRewards = Math.round(
+        Number(ethers.formatUnits(borrowRewardsSpeed, 15)) * DAY_IN_SECONDS,
+      );
+      const dailyRewards = lendDailyRewards + borrowDailyRewards;
+      const yearlyRewards = dailyRewards * YEAR_IN_DAYS;
+      const rewardConfig = await rewardsContract.rewardConfig(cometAddress);
+      const tokenAddress = rewardConfig[0];
+      const tokenContract = new ethers.Contract(
+        tokenAddress,
+        ERC20ABI,
+        provider,
+      ) as any;
+      const compBalance = await tokenContract.balanceOf(rewardsAddress);
+      const compAmountOnRewardContract = Number(
+        ethers.formatEther(compBalance),
+      );
 
-    const tokenAddress = (await rewardsContract.rewardConfig(cometAddress))
-      .token;
-    const tokenContract = new ethers.Contract(
-      tokenAddress,
-      ERC20ABI,
-      provider,
-    ) as any;
-    const compBalance = await tokenContract.balanceOf(rewardsAddress);
-    const compAmountOnRewardContract = Number(ethers.formatEther(compBalance));
-
-    return {
-      date,
-      network,
-      market,
-      dailyRewards,
-      yearlyRewards,
-      lendDailyRewards,
-      borrowDailyRewards,
-      compAmountOnRewardContract,
-      // lendAprBoost: null,
-      // borrowAprBoost: null,
-    };
+      return {
+        date,
+        network,
+        market,
+        dailyRewards,
+        yearlyRewards,
+        lendDailyRewards,
+        borrowDailyRewards,
+        compAmountOnRewardContract,
+        // lendAprBoost: null,
+        // borrowAprBoost: null,
+      };
+    } catch (error) {
+      this.logger.error(
+        `Error getting rewards table for network ${network} and market ${market}:`,
+        error instanceof Error ? error.message : String(error),
+      );
+      return null;
+    }
   }
 }

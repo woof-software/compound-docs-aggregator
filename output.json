@@ -17,49 +17,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1236681887",
             "previousValue": "1236681887",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1055936073",
             "previousValue": "1055936073",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "126839167935",
             "previousValue": "126839167935",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -68,7 +68,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Arbitrum",
             "symbol": "ARB",
             "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
@@ -85,7 +85,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "GMX",
             "symbol": "GMX",
             "address": "0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a",
@@ -102,7 +102,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
@@ -119,7 +119,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -152,49 +152,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -203,7 +203,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Arbitrum",
             "symbol": "ARB",
             "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
@@ -220,7 +220,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "GMX",
             "symbol": "GMX",
             "address": "0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a",
@@ -237,7 +237,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
@@ -254,7 +254,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -271,7 +271,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x5979D7b546E38E414F7E9822514be443A4800529",
@@ -288,7 +288,7 @@
           },
           {
             "idx": 5,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Renzo Restaked ETH",
             "symbol": "ezETH",
             "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
@@ -305,7 +305,7 @@
           },
           {
             "idx": 6,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Mountain Protocol USD",
             "symbol": "wUSDM",
             "address": "0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812",
@@ -338,49 +338,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -389,7 +389,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Arbitrum",
             "symbol": "ARB",
             "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
@@ -406,7 +406,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
@@ -423,7 +423,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x5979D7b546E38E414F7E9822514be443A4800529",
@@ -440,7 +440,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -457,7 +457,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "GMX",
             "symbol": "GMX",
             "address": "0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a",
@@ -490,49 +490,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "523211567",
             "previousValue": "523211567",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "38051750380",
             "previousValue": "38051750380",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "459791983",
             "previousValue": "459791983",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "47564687975",
             "previousValue": "47564687975",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "317097919",
             "previousValue": "317097919",
             "valueSetDate": "2025-06-11"
@@ -541,7 +541,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped eETH",
             "symbol": "weETH",
             "address": "0x35751007a407ca6FEFfE80b3cB397736D2cf4dbe",
@@ -558,7 +558,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Rocket Pool ETH",
             "symbol": "rETH",
             "address": "0xEC70Dcb4A1EFa46b8F2D97C310C9c4790ba5ffA8",
@@ -575,7 +575,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x5979D7b546E38E414F7E9822514be443A4800529",
@@ -592,7 +592,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f",
@@ -609,7 +609,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "KelpDao Restaked ETH",
             "symbol": "rsETH",
             "address": "0x4186BFC76E2E237523CBC30FD220FE055156b41F",
@@ -626,7 +626,7 @@
           },
           {
             "idx": 5,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "USD₮0",
             "symbol": "USD₮0",
             "address": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
@@ -643,7 +643,7 @@
           },
           {
             "idx": 6,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "USD Coin",
             "symbol": "USDC",
             "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
@@ -660,7 +660,7 @@
           },
           {
             "idx": 7,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Renzo Restaked ETH",
             "symbol": "ezETH",
             "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
@@ -695,49 +695,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "850000000000000000",
             "previousValue": "850000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1268391679",
             "previousValue": "1268391679",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "87940766108",
             "previousValue": "87940766108",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "850000000000000000",
             "previousValue": "850000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1043252156",
             "previousValue": "1043252156",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "116270294266",
             "previousValue": "116270294266",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "697615423",
             "previousValue": "697615423",
             "valueSetDate": "2025-06-11"
@@ -746,7 +746,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -763,7 +763,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "USD Coin",
             "symbol": "USDC",
             "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -780,7 +780,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452",
@@ -797,7 +797,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped BTC",
             "symbol": "cbBTC",
             "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
@@ -830,49 +830,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "850000000000000000",
             "previousValue": "850000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "634195839",
             "previousValue": "634195839",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "28116026128",
             "previousValue": "28116026128",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "850000000000000000",
             "previousValue": "850000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1119165398",
             "previousValue": "1119165398",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "109927289446",
             "previousValue": "109927289446",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1585489599",
             "previousValue": "1585489599",
             "valueSetDate": "2025-06-11"
@@ -881,7 +881,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped Staked ETH",
             "symbol": "cbETH",
             "address": "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22",
@@ -898,7 +898,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -931,49 +931,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -982,7 +982,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped Staked ETH",
             "symbol": "cbETH",
             "address": "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22",
@@ -999,7 +999,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -1016,7 +1016,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452",
@@ -1033,7 +1033,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped BTC",
             "symbol": "cbBTC",
             "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
@@ -1066,49 +1066,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1712328767",
             "previousValue": "1712328767",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "96207508878",
             "previousValue": "96207508878",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1585489599",
             "previousValue": "1585489599",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "107813292744",
             "previousValue": "107813292744",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -1117,7 +1117,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Savings USDS",
             "symbol": "sUSDS",
             "address": "0x5875eEE11Cf8398102FdAd704C9E96607675467a",
@@ -1134,7 +1134,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped BTC",
             "symbol": "cbBTC",
             "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
@@ -1167,49 +1167,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "684931506",
             "previousValue": "684931506",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "35673515981",
             "previousValue": "35673515981",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "491501775",
             "previousValue": "491501775",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "39954337899",
             "previousValue": "39954337899",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "317097919",
             "previousValue": "317097919",
             "valueSetDate": "2025-06-11"
@@ -1218,7 +1218,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped Staked ETH",
             "symbol": "cbETH",
             "address": "0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22",
@@ -1235,7 +1235,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Renzo Restaked ETH",
             "symbol": "ezETH",
             "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
@@ -1252,7 +1252,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452",
@@ -1269,7 +1269,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "USD Coin",
             "symbol": "USDC",
             "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
@@ -1286,7 +1286,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped eETH",
             "symbol": "weETH",
             "address": "0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A",
@@ -1303,7 +1303,7 @@
           },
           {
             "idx": 5,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "rsETHWrapper",
             "symbol": "wrsETH",
             "address": "0xEDfa23602D0EC14714057867A78d01e94176BEA0",
@@ -1320,7 +1320,7 @@
           },
           {
             "idx": 6,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Coinbase Wrapped BTC",
             "symbol": "cbBTC",
             "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
@@ -1337,7 +1337,7 @@
           },
           {
             "idx": 7,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Super OETH",
             "symbol": "wsuperOETHb",
             "address": "0x7FcD174E80f264448ebeE8c88a7C4476AAF58Ea6",
@@ -1372,49 +1372,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1712328767",
             "previousValue": "1712328767",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "96207508878",
             "previousValue": "96207508878",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1585489599",
             "previousValue": "1585489599",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "107813292744",
             "previousValue": "107813292744",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -1423,7 +1423,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f",
@@ -1440,7 +1440,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F",
@@ -1457,7 +1457,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4",
@@ -1471,6 +1471,1209 @@
             "LF": "85.0%",
             "LP": "10.00%",
             "maxLeverage": "5.00x"
+          }
+        ]
+      }
+    },
+    "mainnet": {
+      "cUSDCv3": {
+        "contracts": {
+          "comet": "0xc3d688B66703497DAA19211EEdff47f25384cdc3",
+          "cometImplementation": "0x40f6C8C12eB5009933449D6b22dE094024061821",
+          "cometExtension": "0xA70a0227028aD005F4Fc9376a82cd1462e3AAedC",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0x1fA408992e74A42D1787E28b880C451452E8C958",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0xa397a8C2086C554B531c02E29f3291c9704B00c7",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "1141552511",
+            "previousValue": "1141552511",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "101344495180",
+            "previousValue": "101344495180",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "880834601",
+            "previousValue": "880834601",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "114155251141",
+            "previousValue": "114155251141",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "475646879",
+            "previousValue": "475646879",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Compound",
+            "symbol": "COMP",
+            "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "decimals": 18,
+            "priceFeedAddress": "0xdbd020CAeF83eFd542f4De03e3cF0C28A4428bd5",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "50.0%",
+            "LF": "70.0%",
+            "LP": "25.00%",
+            "maxLeverage": "2.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Wrapped BTC",
+            "symbol": "WBTC",
+            "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+            "decimals": 8,
+            "priceFeedAddress": "0xF4030086522a5bEEa4988F8cA5B36dbC97BeE88c",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "decimals": 18,
+            "priceFeedAddress": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "82.5%",
+            "LF": "89.5%",
+            "LP": "5.00%",
+            "maxLeverage": "5.71x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "Uniswap",
+            "symbol": "UNI",
+            "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+            "decimals": 18,
+            "priceFeedAddress": "0x553303d460EE0afB37EdFf9bE42922D8FF63220e",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "68.0%",
+            "LF": "74.0%",
+            "LP": "17.00%",
+            "maxLeverage": "3.13x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "ChainLink Token",
+            "symbol": "LINK",
+            "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+            "decimals": 18,
+            "priceFeedAddress": "0x2c1d072e956AFFC0D435Cb7AC38EF18d24d9127c",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "73.0%",
+            "LF": "79.0%",
+            "LP": "17.00%",
+            "maxLeverage": "3.70x"
+          },
+          {
+            "idx": 5,
+            "date": "2025-06-12",
+            "name": "Wrapped liquid staked Ether 2.0",
+            "symbol": "wstETH",
+            "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            "decimals": 18,
+            "priceFeedAddress": "0x023ee795361B28cDbB94e302983578486A0A5f1B",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "82.0%",
+            "LF": "87.0%",
+            "LP": "8.00%",
+            "maxLeverage": "5.56x"
+          },
+          {
+            "idx": 6,
+            "date": "2025-06-12",
+            "name": "Coinbase Wrapped BTC",
+            "symbol": "cbBTC",
+            "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+            "decimals": 8,
+            "priceFeedAddress": "0x0A4F4F9E84Fc4F674F0D209f94d41FaFE5aF887D",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 7,
+            "date": "2025-06-12",
+            "name": "tBTC v2",
+            "symbol": "tBTC",
+            "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+            "decimals": 18,
+            "priceFeedAddress": "0xAA9527bf3183A96fe6e55831c96dE5cd988d3484",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "76.0%",
+            "LF": "81.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.17x"
+          },
+          {
+            "idx": 8,
+            "date": "2025-06-12",
+            "name": "Wrapped eETH",
+            "symbol": "weETH",
+            "address": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+            "decimals": 18,
+            "priceFeedAddress": "0xE26A969Ffd2EF1434c1c6955F8202DCC41e821C0",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "80.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
+          }
+        ]
+      },
+      "cUSDSv3": {
+        "contracts": {
+          "comet": "0x5D409e56D886231aDAf00c8775665AD0f9897b56",
+          "cometImplementation": "0x10707fbC5EC533c11939c236c0B798DADa1Eb78d",
+          "cometExtension": "0xd4eC911B8FD79139736950235a93d3ea9c3f68ed",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0x1fA408992e74A42D1787E28b880C451452E8C958",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0xa397a8C2086C554B531c02E29f3291c9704B00c7",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "1141552511",
+            "previousValue": "1141552511",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "101344495180",
+            "previousValue": "101344495180",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "880834601",
+            "previousValue": "880834601",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "114155251141",
+            "previousValue": "114155251141",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "475646879",
+            "previousValue": "475646879",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "decimals": 18,
+            "priceFeedAddress": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "83.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.88x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "USDe",
+            "symbol": "USDe",
+            "address": "0x4c9EDD5852cd905f086C759E8383e09bff1E68B3",
+            "decimals": 18,
+            "priceFeedAddress": "0xa569d910839Ae8865Da8F8e70FfFb0cBA869F961",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "70.0%",
+            "LF": "75.0%",
+            "LP": "15.00%",
+            "maxLeverage": "3.33x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Coinbase Wrapped BTC",
+            "symbol": "cbBTC",
+            "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+            "decimals": 8,
+            "priceFeedAddress": "0x2665701293fCbEB223D11A08D826563EDcCE423A",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "tBTC v2",
+            "symbol": "tBTC",
+            "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+            "decimals": 18,
+            "priceFeedAddress": "0x8350b7De6a6a2C1368E7D4Bd968190e13E354297",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "76.0%",
+            "LF": "81.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.17x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "Wrapped liquid staked Ether 2.0",
+            "symbol": "wstETH",
+            "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            "decimals": 18,
+            "priceFeedAddress": "0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "87.0%",
+            "LP": "8.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 5,
+            "date": "2025-06-12",
+            "name": "Savings USDS",
+            "symbol": "sUSDS",
+            "address": "0xa3931d71877C0E7a3148CB7Eb4463524FEc27fbD",
+            "decimals": 18,
+            "priceFeedAddress": "0x31B844DBc7CDBAa27D22fD6d54986836D023bF3F",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "92.0%",
+            "LP": "4.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 6,
+            "date": "2025-06-12",
+            "name": "Wrapped eETH",
+            "symbol": "weETH",
+            "address": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+            "decimals": 18,
+            "priceFeedAddress": "0x1A2058b0Dd6A97BEB2796FCd6C3024Fb47CF01Cd",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "70.0%",
+            "LF": "75.0%",
+            "LP": "10.00%",
+            "maxLeverage": "3.33x"
+          },
+          {
+            "idx": 7,
+            "date": "2025-06-12",
+            "name": "SKY Governance Token",
+            "symbol": "SKY",
+            "address": "0x56072C95FAA701256059aa122697B133aDEd9279",
+            "decimals": 18,
+            "priceFeedAddress": "0xEF819FE60af67698567f03095A029AE1a1935007",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "73.0%",
+            "LF": "79.0%",
+            "LP": "15.00%",
+            "maxLeverage": "3.70x"
+          }
+        ]
+      },
+      "cUSDTv3": {
+        "contracts": {
+          "comet": "0x3Afdc9BCA9213A35503b077a6072F3D0d5AB0840",
+          "cometImplementation": "0xb7D6953F89E15CCa123c060364DBfa0163cE2682",
+          "cometExtension": "0xe3458a0BdBd5A413d3731595C5Eb7C4CD6a14DD1",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0x1fA408992e74A42D1787E28b880C451452E8C958",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0xa397a8C2086C554B531c02E29f3291c9704B00c7",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "1141552511",
+            "previousValue": "1141552511",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "101344495180",
+            "previousValue": "101344495180",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "880834601",
+            "previousValue": "880834601",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "114155251141",
+            "previousValue": "114155251141",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "475646879",
+            "previousValue": "475646879",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Compound",
+            "symbol": "COMP",
+            "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "decimals": 18,
+            "priceFeedAddress": "0xdbd020CAeF83eFd542f4De03e3cF0C28A4428bd5",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "50.0%",
+            "LF": "70.0%",
+            "LP": "25.00%",
+            "maxLeverage": "2.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "decimals": 18,
+            "priceFeedAddress": "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "83.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.88x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Wrapped BTC",
+            "symbol": "WBTC",
+            "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+            "decimals": 8,
+            "priceFeedAddress": "0x4E64E54c9f0313852a230782B3ba4B3B0952B499",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "Uniswap",
+            "symbol": "UNI",
+            "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+            "decimals": 18,
+            "priceFeedAddress": "0x553303d460EE0afB37EdFf9bE42922D8FF63220e",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "68.0%",
+            "LF": "74.0%",
+            "LP": "17.00%",
+            "maxLeverage": "3.13x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "ChainLink Token",
+            "symbol": "LINK",
+            "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+            "decimals": 18,
+            "priceFeedAddress": "0x2c1d072e956AFFC0D435Cb7AC38EF18d24d9127c",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "73.0%",
+            "LF": "79.0%",
+            "LP": "17.00%",
+            "maxLeverage": "3.70x"
+          },
+          {
+            "idx": 5,
+            "date": "2025-06-12",
+            "name": "Wrapped liquid staked Ether 2.0",
+            "symbol": "wstETH",
+            "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            "decimals": 18,
+            "priceFeedAddress": "0x023ee795361B28cDbB94e302983578486A0A5f1B",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 6,
+            "date": "2025-06-12",
+            "name": "Coinbase Wrapped BTC",
+            "symbol": "cbBTC",
+            "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+            "decimals": 8,
+            "priceFeedAddress": "0x2D09142Eae60Fd8BD454a276E95AeBdFFD05722d",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 7,
+            "date": "2025-06-12",
+            "name": "tBTC v2",
+            "symbol": "tBTC",
+            "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+            "decimals": 18,
+            "priceFeedAddress": "0x7b03a016dBC36dB8e05C480192faDcdB0a06bC37",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "76.0%",
+            "LF": "81.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.17x"
+          },
+          {
+            "idx": 8,
+            "date": "2025-06-12",
+            "name": "Wrapped Mountain Protocol USD",
+            "symbol": "wUSDM",
+            "address": "0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812",
+            "decimals": 18,
+            "priceFeedAddress": "0xe3a409eD15CD53aFdEFdd191ad945cEC528A2496",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 9,
+            "date": "2025-06-12",
+            "name": "Staked FRAX",
+            "symbol": "sFRAX",
+            "address": "0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32",
+            "decimals": 18,
+            "priceFeedAddress": "0x403F2083B6E220147f8a8832f0B284B4Ed5777d1",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 10,
+            "date": "2025-06-12",
+            "name": "mETH",
+            "symbol": "mETH",
+            "address": "0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa",
+            "decimals": 18,
+            "priceFeedAddress": "0x2f7439252Da796Ab9A93f7E478E70DED43Db5B89",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 11,
+            "date": "2025-06-12",
+            "name": "Wrapped eETH",
+            "symbol": "weETH",
+            "address": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+            "decimals": 18,
+            "priceFeedAddress": "0x9e0e0C58AA8287F9f6E2666a21fbF2adEeAD3fef",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "80.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
+          }
+        ]
+      },
+      "cWBTCv3": {
+        "contracts": {
+          "comet": "0xe85Dc543813B8c2CFEaAc371517b925a166a9293",
+          "cometImplementation": "0xb8430B935998b5AE5F4a0b8B8Ad01eF454EAc16C",
+          "cometExtension": "0x4f4D5A808E2448cB12df7aC12EFb12888FD9BDd5",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0x1fA408992e74A42D1787E28b880C451452E8C958",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0xa397a8C2086C554B531c02E29f3291c9704B00c7",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "380517503",
+            "previousValue": "380517503",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "31709791983",
+            "previousValue": "31709791983",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "443937087",
+            "previousValue": "443937087",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "36466260781",
+            "previousValue": "36466260781",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "317097919",
+            "previousValue": "317097919",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Lombard Staked Bitcoin",
+            "symbol": "LBTC",
+            "address": "0x8236a87084f8B84306f72007F36F2618A5634494",
+            "decimals": 8,
+            "priceFeedAddress": "0x5c29868C58b6e15e2b962943278969Ab6a7D3212",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "73.0%",
+            "LF": "75.0%",
+            "LP": "5.00%",
+            "maxLeverage": "3.70x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "pumpBTC",
+            "symbol": "pumpBTC",
+            "address": "0xF469fBD2abcd6B9de8E169d128226C0Fc90a012e",
+            "decimals": 8,
+            "priceFeedAddress": "0x351a133Fd850ea81ed8a782016e308aCBADDec91",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "78.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
+          }
+        ]
+      },
+      "cWETHv3": {
+        "contracts": {
+          "comet": "0xA17581A9E3356d9A858b789D68B4d866e593aE94",
+          "cometImplementation": "0xeb58C62cAC39b3F7b11fbeAF8494613E2a9Fc943",
+          "cometExtension": "0x16F3532e6AF45A2C51B6C77b1267cEF34A9cf3B3",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0xa397a8C2086C554B531c02E29f3291c9704B00c7",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "684931506",
+            "previousValue": "684931506",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "35673515981",
+            "previousValue": "35673515981",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "491501775",
+            "previousValue": "491501775",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "39954337899",
+            "previousValue": "39954337899",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "317097919",
+            "previousValue": "317097919",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Coinbase Wrapped Staked ETH",
+            "symbol": "cbETH",
+            "address": "0xBe9895146f7AF43049ca1c1AE358B0541Ea49704",
+            "decimals": 18,
+            "priceFeedAddress": "0x23a982b74a3236A5F2297856d4391B2edBBB5549",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "90.0%",
+            "LF": "93.0%",
+            "LP": "2.50%",
+            "maxLeverage": "10.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Wrapped liquid staked Ether 2.0",
+            "symbol": "wstETH",
+            "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            "decimals": 18,
+            "priceFeedAddress": "0x4F67e4d9BD67eFa28236013288737D39AeF48e79",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "90.0%",
+            "LF": "93.0%",
+            "LP": "2.50%",
+            "maxLeverage": "10.00x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Rocket Pool ETH",
+            "symbol": "rETH",
+            "address": "0xae78736Cd615f374D3085123A210448E74Fc6393",
+            "decimals": 18,
+            "priceFeedAddress": "0xA3A7fB5963D1d69B95EEC4957f77678EF073Ba08",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "90.0%",
+            "LF": "93.0%",
+            "LP": "2.50%",
+            "maxLeverage": "10.00x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "rsETH",
+            "symbol": "rsETH",
+            "address": "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+            "decimals": 18,
+            "priceFeedAddress": "0xFa454dE61b317b6535A0C462267208E8FdB89f45",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "4.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "Wrapped eETH",
+            "symbol": "weETH",
+            "address": "0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee",
+            "decimals": 18,
+            "priceFeedAddress": "0x1Ad4CEBa9f8135A557bBe317DB62Aa125C330F26",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "90.0%",
+            "LF": "93.0%",
+            "LP": "4.00%",
+            "maxLeverage": "10.00x"
+          },
+          {
+            "idx": 5,
+            "date": "2025-06-12",
+            "name": "Staked ETH",
+            "symbol": "osETH",
+            "address": "0xf1C9acDc66974dFB6dEcB12aA385b9cD01190E38",
+            "decimals": 18,
+            "priceFeedAddress": "0x66F5AfDaD14b30816b47b707240D1E8E3344D04d",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 6,
+            "date": "2025-06-12",
+            "name": "Wrapped BTC",
+            "symbol": "WBTC",
+            "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+            "decimals": 8,
+            "priceFeedAddress": "0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 7,
+            "date": "2025-06-12",
+            "name": "Renzo Restaked ETH",
+            "symbol": "ezETH",
+            "address": "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+            "decimals": 18,
+            "priceFeedAddress": "0xdE43600De5016B50752cc2615332d8cCBED6EC1b",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "6.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 8,
+            "date": "2025-06-12",
+            "name": "Coinbase Wrapped BTC",
+            "symbol": "cbBTC",
+            "address": "0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf",
+            "decimals": 8,
+            "priceFeedAddress": "0x57A71A9C632b2e6D8b0eB9A157888A3Fc87400D1",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 9,
+            "date": "2025-06-12",
+            "name": "rswETH",
+            "symbol": "rswETH",
+            "address": "0xFAe103DC9cf190eD75350761e95403b7b8aFa6c0",
+            "decimals": 18,
+            "priceFeedAddress": "0xDd18688Bb75Af704f3Fb1183e459C4d4D41132D9",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 10,
+            "date": "2025-06-12",
+            "name": "tBTC v2",
+            "symbol": "tBTC",
+            "address": "0x18084fbA666a33d37592fA2633fD49a74DD93a88",
+            "decimals": 18,
+            "priceFeedAddress": "0x1933F7e5f8B0423fbAb28cE9c8C39C2cC414027B",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "76.0%",
+            "LF": "81.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.17x"
+          },
+          {
+            "idx": 11,
+            "date": "2025-06-12",
+            "name": "ETHx",
+            "symbol": "ETHx",
+            "address": "0xA35b1B31Ce002FBF2058D22F30f95D405200A15b",
+            "decimals": 18,
+            "priceFeedAddress": "0x9F2F60f38BBc275aF8F88a21c0e2BfE751E97C1f",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "85.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "6.67x"
+          },
+          {
+            "idx": 12,
+            "date": "2025-06-12",
+            "name": "Treehouse ETH",
+            "symbol": "tETH",
+            "address": "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
+            "decimals": 18,
+            "priceFeedAddress": "0x7783a5c7656d75ed1144379c25142B7e43Da5F5E",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "4.00%",
+            "maxLeverage": "8.33x"
+          }
+        ]
+      },
+      "cWstETHv3": {
+        "contracts": {
+          "comet": "0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3",
+          "cometImplementation": "0x3781a9f2f2391Ef3a2C808Cfd55aF5AF750F74DA",
+          "cometExtension": "0x055E53F50B84FD91c4Be367220EFD36c3d091E1f",
+          "configurator": "0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3",
+          "configuratorImplementation": "0xcFC1fA6b7ca982176529899D99af6473aD80DF4F",
+          "cometAdmin": "0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779",
+          "cometFactory": "0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867",
+          "rewards": "0x1B0e765F6224C21223AeA2af16c1C46E38885a40",
+          "bulker": "0x2c776041CCFe903071AF44aa147368a9c8EEA518",
+          "governor": "0x309a862bbC1A00e45506cB8A802D1ff10004c8C0",
+          "timelock": "0x6d903f6003cca6255D85CcA4D3B5E5146dC33925"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "380517503",
+            "previousValue": "380517503",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "31709791983",
+            "previousValue": "31709791983",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "443937087",
+            "previousValue": "443937087",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "36466260781",
+            "previousValue": "36466260781",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "317097919",
+            "previousValue": "317097919",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "rsETH",
+            "symbol": "rsETH",
+            "address": "0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7",
+            "decimals": 18,
+            "priceFeedAddress": "0xC49399814452B41dA8a7cd76a159f5515cb3e493",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "4.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Renzo Restaked ETH",
+            "symbol": "ezETH",
+            "address": "0xbf5495Efe5DB9ce00f80364C8B423567e58d2110",
+            "decimals": 18,
+            "priceFeedAddress": "0xc7986B6318C3f3aB5bE12BAF22892961158D3c24",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "6.00%",
+            "maxLeverage": "8.33x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Treehouse ETH",
+            "symbol": "tETH",
+            "address": "0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8",
+            "decimals": 18,
+            "priceFeedAddress": "0x87641f6BC5aD796ea2f30af2A79aB2CF30f74188",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "88.0%",
+            "LF": "91.0%",
+            "LP": "4.00%",
+            "maxLeverage": "8.33x"
           }
         ]
       }
@@ -1492,49 +2695,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1236681887",
             "previousValue": "1236681887",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1055936073",
             "previousValue": "1055936073",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "126839167935",
             "previousValue": "126839167935",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -1543,7 +2746,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "mETH",
             "symbol": "mETH",
             "address": "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
@@ -1560,7 +2763,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Ether",
             "symbol": "WETH",
             "address": "0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111",
@@ -1577,7 +2780,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Fire Bitcoin",
             "symbol": "FBTC",
             "address": "0xC96dE26018A54D51c097160568752c4E3BD6C364",
@@ -1612,49 +2815,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -1663,7 +2866,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Optimism",
             "symbol": "OP",
             "address": "0x4200000000000000000000000000000000000042",
@@ -1680,7 +2883,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -1697,7 +2900,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x68f180fcCe6836688e9084f035309E29Bf0A2095",
@@ -1714,7 +2917,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
@@ -1731,7 +2934,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Mountain Protocol USD",
             "symbol": "wUSDM",
             "address": "0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812",
@@ -1764,49 +2967,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -1815,7 +3018,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Optimism",
             "symbol": "OP",
             "address": "0x4200000000000000000000000000000000000042",
@@ -1832,7 +3035,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -1849,7 +3052,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x68f180fcCe6836688e9084f035309E29Bf0A2095",
@@ -1866,7 +3069,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
@@ -1883,7 +3086,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Mountain Protocol USD",
             "symbol": "wUSDM",
             "address": "0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812",
@@ -1916,49 +3119,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "684931506",
             "previousValue": "684931506",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "35673515981",
             "previousValue": "35673515981",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "491501775",
             "previousValue": "491501775",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "39954337899",
             "previousValue": "39954337899",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "317097919",
             "previousValue": "317097919",
             "valueSetDate": "2025-06-11"
@@ -1967,7 +3170,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb",
@@ -1984,7 +3187,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Rocket Pool ETH",
             "symbol": "rETH",
             "address": "0x9Bcef72be871e61ED4fBbc7630889beE758eb81D",
@@ -2001,7 +3204,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x68f180fcCe6836688e9084f035309E29Bf0A2095",
@@ -2018,7 +3221,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Tether USD",
             "symbol": "USDT",
             "address": "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58",
@@ -2035,7 +3238,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "USD Coin",
             "symbol": "USDC",
             "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
@@ -2052,7 +3255,7 @@
           },
           {
             "idx": 5,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Renzo Restaked ETH",
             "symbol": "ezETH",
             "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
@@ -2069,7 +3272,7 @@
           },
           {
             "idx": 6,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped eETH",
             "symbol": "weETH",
             "address": "0x5A7fACB970D094B6C7FF1df0eA68D99E6e73CBFF",
@@ -2086,7 +3289,7 @@
           },
           {
             "idx": 7,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "rsETHWrapper",
             "symbol": "wrsETH",
             "address": "0x87eEE96D50Fb761AD85B1c982d28A042169d61b1",
@@ -2100,6 +3303,550 @@
             "LF": "91.0%",
             "LP": "4.00%",
             "maxLeverage": "8.33x"
+          }
+        ]
+      }
+    },
+    "polygon": {
+      "cUSDCv3": {
+        "contracts": {
+          "comet": "0xF25212E676D1F7F89Cd72fFEe66158f541246445",
+          "cometImplementation": "0x7ea1dB6C6CfA873aDAAb12608c06b4bF60732048",
+          "cometExtension": "0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d",
+          "configurator": "0x83E0F742cAcBE66349E3701B171eE2487a26e738",
+          "configuratorImplementation": "0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf",
+          "cometAdmin": "0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9",
+          "cometFactory": "0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B",
+          "rewards": "0x45939657d1CA34A8FA39A924B71D28Fe8431e581",
+          "bulker": "0x59e242D352ae13166B4987aE5c990C232f7f7CD6",
+          "governor": "0x18281dfC4d00905DA1aaA6731414EABa843c468A",
+          "timelock": "0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "1141552511",
+            "previousValue": "1141552511",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "101344495180",
+            "previousValue": "101344495180",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "880834601",
+            "previousValue": "880834601",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "114155251141",
+            "previousValue": "114155251141",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "475646879",
+            "previousValue": "475646879",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+            "decimals": 18,
+            "priceFeedAddress": "0xF9680D99D6C9589e2a93a78A04A279e509205945",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "7.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "(PoS) Wrapped BTC",
+            "symbol": "WBTC",
+            "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+            "decimals": 8,
+            "priceFeedAddress": "0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Wrapped Polygon Ecosystem Token",
+            "symbol": "WPOL",
+            "address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+            "decimals": 18,
+            "priceFeedAddress": "0xAB594600376Ec9fD91F8e885dADF0CE036862dE0",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "65.0%",
+            "LF": "80.0%",
+            "LP": "10.00%",
+            "maxLeverage": "2.86x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "Liquid Staking Matic (PoS)",
+            "symbol": "MaticX",
+            "address": "0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6",
+            "decimals": 18,
+            "priceFeedAddress": "0x5d37E4b374E6907de8Fc7fb33EE3b0af403C7403",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "55.0%",
+            "LF": "60.0%",
+            "LP": "20.00%",
+            "maxLeverage": "2.22x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "Staked MATIC (PoS)",
+            "symbol": "stMATIC",
+            "address": "0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4",
+            "decimals": 18,
+            "priceFeedAddress": "0x97371dF4492605486e23Da797fA68e55Fc38a13f",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "60.0%",
+            "LF": "65.0%",
+            "LP": "20.00%",
+            "maxLeverage": "2.50x"
+          }
+        ]
+      },
+      "cUSDTv3": {
+        "contracts": {
+          "comet": "0xaeB318360f27748Acb200CE616E389A6C9409a07",
+          "cometImplementation": "0x822FA132A3D3d496bB5c4cbFe533A5A1180A14Ba",
+          "cometExtension": "0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0",
+          "configurator": "0x83E0F742cAcBE66349E3701B171eE2487a26e738",
+          "configuratorImplementation": "0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf",
+          "cometAdmin": "0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9",
+          "cometFactory": "0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B",
+          "rewards": "0x45939657d1CA34A8FA39A924B71D28Fe8431e581",
+          "bulker": "0x59e242D352ae13166B4987aE5c990C232f7f7CD6",
+          "governor": "0x18281dfC4d00905DA1aaA6731414EABa843c468A",
+          "timelock": "0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "1141552511",
+            "previousValue": "1141552511",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "101344495180",
+            "previousValue": "101344495180",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "880834601",
+            "previousValue": "880834601",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "114155251141",
+            "previousValue": "114155251141",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "475646879",
+            "previousValue": "475646879",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Wrapped Polygon Ecosystem Token",
+            "symbol": "WPOL",
+            "address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+            "decimals": 18,
+            "priceFeedAddress": "0xAB594600376Ec9fD91F8e885dADF0CE036862dE0",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "65.0%",
+            "LF": "80.0%",
+            "LP": "15.00%",
+            "maxLeverage": "2.86x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+            "decimals": 18,
+            "priceFeedAddress": "0xF9680D99D6C9589e2a93a78A04A279e509205945",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "80.0%",
+            "LF": "85.0%",
+            "LP": "7.00%",
+            "maxLeverage": "5.00x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Liquid Staking Matic (PoS)",
+            "symbol": "MaticX",
+            "address": "0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6",
+            "decimals": 18,
+            "priceFeedAddress": "0x5d37E4b374E6907de8Fc7fb33EE3b0af403C7403",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "60.0%",
+            "LF": "70.0%",
+            "LP": "20.00%",
+            "maxLeverage": "2.50x"
+          },
+          {
+            "idx": 3,
+            "date": "2025-06-12",
+            "name": "Staked MATIC (PoS)",
+            "symbol": "stMATIC",
+            "address": "0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4",
+            "decimals": 18,
+            "priceFeedAddress": "0x97371dF4492605486e23Da797fA68e55Fc38a13f",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "60.0%",
+            "LF": "70.0%",
+            "LP": "20.00%",
+            "maxLeverage": "2.50x"
+          },
+          {
+            "idx": 4,
+            "date": "2025-06-12",
+            "name": "(PoS) Wrapped BTC",
+            "symbol": "WBTC",
+            "address": "0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6",
+            "decimals": 8,
+            "priceFeedAddress": "0xDE31F8bFBD8c84b5360CFACCa3539B938dd78ae6",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "85.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
+          }
+        ]
+      }
+    },
+    "ronin": {
+      "cWETHv3": {
+        "contracts": {
+          "comet": "0x4006eD4097Ee51c09A04c3B0951D28CCf19e6DFE",
+          "cometImplementation": "0xA4c9Fa67b1b3e268683AFa51ae90c4e67F9C89a3",
+          "cometExtension": "0x2f0D0C958E4679c6b9225387d97260F7481C6131",
+          "configurator": "0x966c72F456FC248D458784EF3E0b6d042be115F2",
+          "configuratorImplementation": "0xaE0CCa27C15A534BAE106fC9957338549F82e81d",
+          "cometAdmin": "0xfa64A82a3d13D4c05d5133E53b2EbB8A0FA9c3F6",
+          "cometFactory": "0x4DF9E0f8e94a7A8A9aEa6010CD9d341F8Ecfe4c6",
+          "rewards": "0x31CdEe8609Bc15fD33cc525f101B70a81b2B1E59",
+          "bulker": "0x840281FaD56DD88afba052B7F18Be2A65796Ecc6",
+          "governor": "0x2c7EfA766338D33B9192dB1fB5D170Bdc03ef3F9",
+          "timelock": "0xBbb0Ebd903fafbb8fFF58B922fD0CD85E251ac2c"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "684931506",
+            "previousValue": "684931506",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "35673515981",
+            "previousValue": "35673515981",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "900000000000000000",
+            "previousValue": "900000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "491501775",
+            "previousValue": "491501775",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "39954337899",
+            "previousValue": "39954337899",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "317097919",
+            "previousValue": "317097919",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "Wrapped Ronin",
+            "symbol": "WRON",
+            "address": "0xe514d9DEB7966c8BE0ca922de8a064264eA6bcd4",
+            "decimals": 18,
+            "priceFeedAddress": "0x692e4736f891CD940bA559d487845117e2c6b48D",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "80.0%",
+            "LP": "12.00%",
+            "maxLeverage": "4.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "USD Coin",
+            "symbol": "USDC",
+            "address": "0x0B7007c13325C48911F73A2daD5FA5dCBf808aDc",
+            "decimals": 6,
+            "priceFeedAddress": "0xC41CdfAE648A76EF471160F62bf38a03Ad5B67DF",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "83.0%",
+            "LF": "90.0%",
+            "LP": "5.00%",
+            "maxLeverage": "5.88x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Axie Infinity Shard",
+            "symbol": "AXS",
+            "address": "0x97a9107C1793BC407d6F527b77e7fff4D812bece",
+            "decimals": 18,
+            "priceFeedAddress": "0xB2237b8F0690f7F8c7D03FE70da62213714F8B5D",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "70.0%",
+            "LF": "75.0%",
+            "LP": "20.00%",
+            "maxLeverage": "3.33x"
+          }
+        ]
+      },
+      "cWRONv3": {
+        "contracts": {
+          "comet": "0xc0Afdbd1cEB621Ef576BA969ce9D4ceF78Dbc0c0",
+          "cometImplementation": "0x4Bf84F33aFFd74d9857fbc997402313E700d1e99",
+          "cometExtension": "0x690f8eE32ce906c6288DD97Ce4f9aF57103D00D7",
+          "configurator": "0x966c72F456FC248D458784EF3E0b6d042be115F2",
+          "configuratorImplementation": "0xaE0CCa27C15A534BAE106fC9957338549F82e81d",
+          "cometAdmin": "0xfa64A82a3d13D4c05d5133E53b2EbB8A0FA9c3F6",
+          "cometFactory": "0x4DF9E0f8e94a7A8A9aEa6010CD9d341F8Ecfe4c6",
+          "rewards": "0x31CdEe8609Bc15fD33cc525f101B70a81b2B1E59",
+          "bulker": "0x840281FaD56DD88afba052B7F18Be2A65796Ecc6",
+          "governor": "0x2c7EfA766338D33B9192dB1fB5D170Bdc03ef3F9",
+          "timelock": "0xBbb0Ebd903fafbb8fFF58B922fD0CD85E251ac2c"
+        },
+        "curve": {
+          "supplyKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "713470319",
+            "previousValue": "713470319",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "42459411466",
+            "previousValue": "42459411466",
+            "valueSetDate": "2025-06-12"
+          },
+          "supplyPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "0",
+            "previousValue": "0",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowKink": {
+            "date": "2025-06-12",
+            "value": "850000000000000000",
+            "previousValue": "850000000000000000",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeLow": {
+            "date": "2025-06-12",
+            "value": "559582699",
+            "previousValue": "559582699",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateSlopeHigh": {
+            "date": "2025-06-12",
+            "value": "47564687975",
+            "previousValue": "47564687975",
+            "valueSetDate": "2025-06-12"
+          },
+          "borrowPerSecondInterestRateBase": {
+            "date": "2025-06-12",
+            "value": "317097919",
+            "previousValue": "317097919",
+            "valueSetDate": "2025-06-12"
+          }
+        },
+        "collaterals": [
+          {
+            "idx": 0,
+            "date": "2025-06-12",
+            "name": "USD Coin",
+            "symbol": "USDC",
+            "address": "0x0B7007c13325C48911F73A2daD5FA5dCBf808aDc",
+            "decimals": 6,
+            "priceFeedAddress": "0x88f415c12d45d4C6DC018553BBE472A4558ff3f8",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "80.0%",
+            "LP": "12.00%",
+            "maxLeverage": "4.00x"
+          },
+          {
+            "idx": 1,
+            "date": "2025-06-12",
+            "name": "Axie Infinity Shard",
+            "symbol": "AXS",
+            "address": "0x97a9107C1793BC407d6F527b77e7fff4D812bece",
+            "decimals": 18,
+            "priceFeedAddress": "0x81DfC7A054C8F60497e47579c5A5cEB37bc047e8",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "72.0%",
+            "LF": "78.0%",
+            "LP": "15.00%",
+            "maxLeverage": "3.57x"
+          },
+          {
+            "idx": 2,
+            "date": "2025-06-12",
+            "name": "Ronin Wrapped Ether",
+            "symbol": "WETH",
+            "address": "0xc99a6A985eD2Cac1ef41640596C5A5f9F4E19Ef5",
+            "decimals": 18,
+            "priceFeedAddress": "0x662Fdb0E7D95d89CD3458E4A3506296E48BB1F44",
+            "priceFeedProvider": "Chainlink",
+            "oevEnabled": false,
+            "capEnabled": false,
+            "rateType": "Market",
+            "CF": "75.0%",
+            "LF": "80.0%",
+            "LP": "10.00%",
+            "maxLeverage": "4.00x"
           }
         ]
       }
@@ -2121,49 +3868,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1141552511",
             "previousValue": "1141552511",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "101344495180",
             "previousValue": "101344495180",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "880834601",
             "previousValue": "880834601",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "114155251141",
             "previousValue": "114155251141",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -2172,7 +3919,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x5300000000000000000000000000000000000004",
@@ -2189,7 +3936,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xf610A9dfB7C89644979b4A0f27063E9e7d7Cda32",
@@ -2224,49 +3971,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1712328767",
             "previousValue": "1712328767",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "96207508878",
             "previousValue": "96207508878",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "1585489599",
             "previousValue": "1585489599",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "107813292744",
             "previousValue": "107813292744",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "475646879",
             "previousValue": "475646879",
             "valueSetDate": "2025-06-11"
@@ -2275,7 +4022,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Uniswap",
             "symbol": "UNI",
             "address": "0x8f187aA05619a017077f5308904739877ce9eA21",
@@ -2292,7 +4039,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped Ether",
             "symbol": "WETH",
             "address": "0x4200000000000000000000000000000000000006",
@@ -2325,49 +4072,49 @@
         },
         "curve": {
           "supplyKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "684931506",
             "previousValue": "684931506",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "35673515981",
             "previousValue": "35673515981",
             "valueSetDate": "2025-06-11"
           },
           "supplyPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "0",
             "previousValue": "0",
             "valueSetDate": "2025-06-11"
           },
           "borrowKink": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "491501775",
             "previousValue": "491501775",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "39954337899",
             "previousValue": "39954337899",
             "valueSetDate": "2025-06-11"
           },
           "borrowPerSecondInterestRateBase": {
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "value": "317097919",
             "previousValue": "317097919",
             "valueSetDate": "2025-06-11"
@@ -2376,7 +4123,7 @@
         "collaterals": [
           {
             "idx": 0,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped liquid staked Ether 2.0",
             "symbol": "wstETH",
             "address": "0xc02fE7317D4eb8753a02c35fe019786854A92001",
@@ -2393,7 +4140,7 @@
           },
           {
             "idx": 1,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped eETH",
             "symbol": "weETH",
             "address": "0x7DCC39B4d1C53CB31e1aBc0e358b43987FEF80f7",
@@ -2410,7 +4157,7 @@
           },
           {
             "idx": 2,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Renzo Restaked ETH",
             "symbol": "ezETH",
             "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
@@ -2427,7 +4174,7 @@
           },
           {
             "idx": 3,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Uniswap",
             "symbol": "UNI",
             "address": "0x8f187aA05619a017077f5308904739877ce9eA21",
@@ -2444,7 +4191,7 @@
           },
           {
             "idx": 4,
-            "date": "2025-06-11",
+            "date": "2025-06-12",
             "name": "Wrapped BTC",
             "symbol": "WBTC",
             "address": "0x927B51f251480a681271180DA4de28D44EC4AfB8",
@@ -2466,97 +4213,97 @@
   "rewards": {
     "marketRewards": [
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "arbitrum",
         "market": "cUSDCev3",
         "dailyRewards": 0,
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 6376.998974
+        "compAmountOnRewardContract": 6328.786572
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "arbitrum",
         "market": "cUSDCv3",
         "dailyRewards": 35,
         "yearlyRewards": 12775,
         "lendDailyRewards": 20,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 6376.998974
+        "compAmountOnRewardContract": 6328.786572
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "arbitrum",
         "market": "cUSDTv3",
         "dailyRewards": 30,
         "yearlyRewards": 10950,
         "lendDailyRewards": 15,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 6376.998974
+        "compAmountOnRewardContract": 6328.786572
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "arbitrum",
         "market": "cWETHv3",
         "dailyRewards": 11,
         "yearlyRewards": 4015,
         "lendDailyRewards": 6,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 6376.998974
+        "compAmountOnRewardContract": 6328.786572
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
         "market": "cAEROv3",
         "dailyRewards": 15,
         "yearlyRewards": 5475,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 10,
-        "compAmountOnRewardContract": 8590.412295
+        "compAmountOnRewardContract": 8545.646954
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
         "market": "cUSDbCv3",
         "dailyRewards": 0,
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 8590.412295
+        "compAmountOnRewardContract": 8545.646954
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
         "market": "cUSDCv3",
         "dailyRewards": 20,
         "yearlyRewards": 7300,
         "lendDailyRewards": 13,
         "borrowDailyRewards": 7,
-        "compAmountOnRewardContract": 8590.412295
+        "compAmountOnRewardContract": 8545.646954
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
         "market": "cUSDSv3",
         "dailyRewards": 36,
         "yearlyRewards": 13140,
         "lendDailyRewards": 24,
         "borrowDailyRewards": 12,
-        "compAmountOnRewardContract": 8590.412295
+        "compAmountOnRewardContract": 8545.646954
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
         "market": "cWETHv3",
         "dailyRewards": 6,
         "yearlyRewards": 2190,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 8590.412295
+        "compAmountOnRewardContract": 8545.646954
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "linea",
         "market": "cUSDCv3",
         "dailyRewards": 7,
@@ -2566,7 +4313,67 @@
         "compAmountOnRewardContract": 4490.707683
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cUSDCv3",
+        "dailyRewards": 141,
+        "yearlyRewards": 51465,
+        "lendDailyRewards": 70,
+        "borrowDailyRewards": 71,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cUSDSv3",
+        "dailyRewards": 17,
+        "yearlyRewards": 6205,
+        "lendDailyRewards": 12,
+        "borrowDailyRewards": 5,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cUSDTv3",
+        "dailyRewards": 120,
+        "yearlyRewards": 43800,
+        "lendDailyRewards": 70,
+        "borrowDailyRewards": 50,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cWBTCv3",
+        "dailyRewards": 1,
+        "yearlyRewards": 365,
+        "lendDailyRewards": 1,
+        "borrowDailyRewards": 0,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cWETHv3",
+        "dailyRewards": 55,
+        "yearlyRewards": 20075,
+        "lendDailyRewards": 35,
+        "borrowDailyRewards": 20,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "market": "cWstETHv3",
+        "dailyRewards": 10,
+        "yearlyRewards": 3650,
+        "lendDailyRewards": 6,
+        "borrowDailyRewards": 4,
+        "compAmountOnRewardContract": 40635.045986
+      },
+      {
+        "date": "2025-06-12",
         "network": "mantle",
         "market": "cUSDev3",
         "dailyRewards": 8,
@@ -2576,37 +4383,57 @@
         "compAmountOnRewardContract": 2697.010825
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "optimism",
         "market": "cUSDCv3",
         "dailyRewards": 6,
         "yearlyRewards": 2190,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 3149.627273
+        "compAmountOnRewardContract": 3143.66318
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "optimism",
         "market": "cUSDTv3",
         "dailyRewards": 10,
         "yearlyRewards": 3650,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 3149.627273
+        "compAmountOnRewardContract": 3143.66318
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "optimism",
         "market": "cWETHv3",
         "dailyRewards": 7,
         "yearlyRewards": 2555,
         "lendDailyRewards": 4,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 3149.627273
+        "compAmountOnRewardContract": 3143.66318
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
+        "network": "polygon",
+        "market": "cUSDCv3",
+        "dailyRewards": 0,
+        "yearlyRewards": 0,
+        "lendDailyRewards": 0,
+        "borrowDailyRewards": 0,
+        "compAmountOnRewardContract": 2280.1885828826753
+      },
+      {
+        "date": "2025-06-12",
+        "network": "polygon",
+        "market": "cUSDTv3",
+        "dailyRewards": 0,
+        "yearlyRewards": 0,
+        "lendDailyRewards": 0,
+        "borrowDailyRewards": 0,
+        "compAmountOnRewardContract": 2280.1885828826753
+      },
+      {
+        "date": "2025-06-12",
         "network": "scroll",
         "market": "cUSDCv3",
         "dailyRewards": 0,
@@ -2616,74 +4443,86 @@
         "compAmountOnRewardContract": 0
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "unichain",
         "market": "cUSDCv3",
         "dailyRewards": 2,
         "yearlyRewards": 730,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 1,
-        "compAmountOnRewardContract": 3374.523228
+        "compAmountOnRewardContract": 3372.722844
       },
       {
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "unichain",
         "market": "cWETHv3",
         "dailyRewards": 20,
         "yearlyRewards": 7300,
         "lendDailyRewards": 12,
         "borrowDailyRewards": 8,
-        "compAmountOnRewardContract": 3374.523228
+        "compAmountOnRewardContract": 3372.722844
       }
     ],
-    "totalDailyRewards": 213,
-    "totalYearlyRewards": 77745
+    "totalDailyRewards": 557,
+    "totalYearlyRewards": 203305
   },
   "networkCompBalance": {
     "networks": [
       {
         "idx": 0,
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "arbitrum",
-        "currentCompBalance": 6376.998974
+        "currentCompBalance": 6328.786572
       },
       {
         "idx": 1,
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "base",
-        "currentCompBalance": 8590.412295
+        "currentCompBalance": 8545.646954
       },
       {
         "idx": 2,
-        "date": "2025-06-11",
+        "date": "2025-06-12",
         "network": "linea",
         "currentCompBalance": 4490.707683
       },
       {
         "idx": 3,
-        "date": "2025-06-11",
+        "date": "2025-06-12",
+        "network": "mainnet",
+        "currentCompBalance": 40635.045986
+      },
+      {
+        "idx": 4,
+        "date": "2025-06-12",
         "network": "mantle",
         "currentCompBalance": 2697.010825
       },
       {
-        "idx": 4,
-        "date": "2025-06-11",
+        "idx": 5,
+        "date": "2025-06-12",
         "network": "optimism",
-        "currentCompBalance": 3149.627273
+        "currentCompBalance": 3143.66318
       },
       {
-        "idx": 5,
-        "date": "2025-06-11",
+        "idx": 6,
+        "date": "2025-06-12",
+        "network": "polygon",
+        "currentCompBalance": 2280.1885828826753
+      },
+      {
+        "idx": 7,
+        "date": "2025-06-12",
         "network": "scroll",
         "currentCompBalance": 0
       },
       {
-        "idx": 6,
-        "date": "2025-06-11",
+        "idx": 8,
+        "date": "2025-06-12",
         "network": "unichain",
-        "currentCompBalance": 3374.523228
+        "currentCompBalance": 3372.722844
       }
     ],
-    "totalCompBalance": 28679.280278
+    "totalCompBalance": 71493.77262688268
   }
 }

@@ -116,7 +116,7 @@ export interface MarketData {
   contracts: ContractsMap;
   curve: CurveMap;
   collaterals: CollateralInfo[];
-  rewardsTable: RewardRecord;
+  rewardsTable: RewardRecord | null;
 }
 
 export interface RewardsTable {

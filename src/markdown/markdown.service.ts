@@ -93,7 +93,6 @@ export class MarkdownService {
         ]);
         rowNum++;
 
-        // Опциональные контракты
         if (contracts.rewards) {
           contractRows.push([
             rowNum.toString(),
