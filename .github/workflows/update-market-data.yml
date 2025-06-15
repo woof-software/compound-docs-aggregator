@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "github-actions"
-          git add README.md output.xlsx
+          git add README.md output.json
           git diff --cached --quiet || git commit -m "chore: auto-update market data"
           git push
