@@ -15,7 +15,8 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'ronin',
     chainId: 2020,
-    url: 'https://ronin.lgns.net/rpc',
+    url: 'https://ronin.drpc.org',
+    // url: 'https://ronin.lgns.net/rpc',
   },
   {
     network: 'polygon',
@@ -35,7 +36,9 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'unichain',
     chainId: 130,
-    url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${process.env.UNICHAIN_QUICKNODE_KEY}`,
+    url: `https://unichain.drpc.org`,
+    // url: `https://solemn-smart-violet.unichain-mainnet.quiknode.pro/${process.env.UNICHAIN_QUICKNODE_KEY}`,
+    // url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${process.env.UNICHAIN_QUICKNODE_KEY}`,
   },
   {
     network: 'base',

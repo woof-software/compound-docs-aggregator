@@ -103,6 +103,8 @@ export class ContractService {
       cometSymbol,
     );
 
+    await this.sleep(1000);
+
     const collaterals = await this.getCollaterals(cometContract, provider);
 
     const rewardsTable = await this.getRewardsTable(
@@ -313,6 +315,8 @@ export class ContractService {
       collaterals.push(asset);
     }
 
+    await this.sleep(1000);
+
     return collaterals;
   }
 
@@ -383,6 +387,12 @@ export class ContractService {
         error instanceof Error ? error.message : String(error),
       );
       return null;
+    } finally {
+      await this.sleep(1000);
     }
+  }
+
+  private async sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
