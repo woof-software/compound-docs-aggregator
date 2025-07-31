@@ -205,4 +205,208 @@ export class GithubService {
       this.logger.warn('Failed to save cache');
     }
   }
+
+  /**
+   * Gets file content from repository
+   */
+  async getFileContent(
+    owner: string,
+    repo: string,
+    path: string,
+    ref = 'main',
+  ): Promise<{ content: string; sha: string }> {
+    try {
+      const url = `/repos/${owner}/${repo}/contents/${path}?ref=${ref}`;
+      const response = await this.api.get(url);
+
+      if (Array.isArray(response.data)) {
+        throw new Error('Expected file, got directory');
+      }
+
+      return {
+        content: Buffer.from(response.data.content, 'base64').toString('utf8'),
+        sha: response.data.sha,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting file content: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Gets a git reference
+   */
+  async getRef(
+    owner: string,
+    repo: string,
+    ref: string,
+  ): Promise<{ sha: string }> {
+    try {
+      const url = `/repos/${owner}/${repo}/git/refs/${ref}`;
+      const response = await this.api.get(url);
+
+      return {
+        sha: response.data.object.sha,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting reference: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Creates a git reference (branch)
+   */
+  async createRef(
+    owner: string,
+    repo: string,
+    ref: string,
+    sha: string,
+  ): Promise<void> {
+    try {
+      const url = `/repos/${owner}/${repo}/git/refs`;
+      await this.api.post(url, {
+        ref,
+        sha,
+      });
+
+      this.logger.log(`Created reference: ${ref}`);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error creating reference: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Updates or creates a file
+   */
+  async updateFile(
+    owner: string,
+    repo: string,
+    path: string,
+    message: string,
+    content: string,
+    sha: string,
+    branch: string,
+  ): Promise<void> {
+    try {
+      const url = `/repos/${owner}/${repo}/contents/${path}`;
+      await this.api.put(url, {
+        message,
+        content: Buffer.from(content).toString('base64'),
+        sha,
+        branch,
+      });
+
+      this.logger.log(`Updated file: ${path}`);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error updating file: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Creates a pull request
+   */
+  async createPullRequest(
+    owner: string,
+    repo: string,
+    title: string,
+    head: string,
+    base: string,
+    body: string,
+  ): Promise<{ html_url: string; number: number }> {
+    try {
+      const url = `/repos/${owner}/${repo}/pulls`;
+      const response = await this.api.post(url, {
+        title,
+        head,
+        base,
+        body,
+        maintainer_can_modify: true,
+      });
+
+      this.logger.log(`Created pull request: ${response.data.html_url}`);
+
+      return {
+        html_url: response.data.html_url,
+        number: response.data.number,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error creating pull request: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Deletes a git reference (branch)
+   */
+  async deleteRef(owner: string, repo: string, ref: string): Promise<void> {
+    try {
+      const url = `/repos/${owner}/${repo}/git/refs/${ref}`;
+      await this.api.delete(url);
+
+      this.logger.log(`Deleted reference: ${ref}`);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error deleting reference: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Gets repository information
+   */
+  async getRepository(
+    owner: string,
+    repo: string,
+  ): Promise<{ default_branch: string }> {
+    try {
+      const url = `/repos/${owner}/${repo}`;
+      const response = await this.api.get(url);
+
+      return {
+        default_branch: response.data.default_branch,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting repository: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Gets commit information
+   */
+  async getCommit(
+    owner: string,
+    repo: string,
+    ref: string,
+  ): Promise<{ sha: string }> {
+    try {
+      const url = `/repos/${owner}/${repo}/commits/${ref}`;
+      const response = await this.api.get(url);
+
+      return {
+        sha: response.data.sha,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting commit: ${errorMessage}`);
+      throw error;
+    }
+  }
 }
