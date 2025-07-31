@@ -114,6 +114,8 @@ export class ContractService {
       cometSymbol,
     );
 
+    const baseToken = await this.getBaseToken(cometContract, provider);
+
     return {
       network: networkKey,
       market: cometSymbol,
@@ -132,6 +134,8 @@ export class ContractService {
       },
       curve: curveData,
       collaterals,
+      baseToken,
+      COMP: rewardsTable?.compAddress,
       rewardsTable,
     };
   }
@@ -320,6 +324,32 @@ export class ContractService {
     return collaterals;
   }
 
+  private async getBaseToken(
+    cometContract: any,
+    provider: ethers.JsonRpcProvider,
+  ) {
+    const baseTokenAddress = await cometContract.baseToken();
+    const baseTokenContract = new ethers.Contract(
+      baseTokenAddress,
+      ERC20ABI,
+      provider,
+    ) as any;
+    const name = await baseTokenContract.name();
+    const symbol = await baseTokenContract.symbol();
+    const decimals = await baseTokenContract.decimals();
+
+    const baseToken = {
+      name,
+      symbol,
+      address: baseTokenAddress as string,
+      decimals: Number(decimals),
+    };
+
+    await this.sleep(500);
+
+    return baseToken;
+  }
+
   private async getRewardsTable(
     root: RootJson,
     provider: ethers.JsonRpcProvider,
@@ -378,6 +408,7 @@ export class ContractService {
         lendDailyRewards,
         borrowDailyRewards,
         compAmountOnRewardContract,
+        compAddress: tokenAddress,
         // lendAprBoost: null,
         // borrowAprBoost: null,
       };

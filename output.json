@@ -134,7 +134,14 @@
             "LP": "10.00%",
             "maxLeverage": "3.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin (Arb1)",
+          "symbol": "USDC",
+          "address": "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8",
+          "decimals": 6
+        },
+        "COMP": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       "cUSDCv3": {
         "contracts": {
@@ -320,7 +327,14 @@
             "LP": "5.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin",
+          "symbol": "USDC",
+          "address": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+          "decimals": 6
+        },
+        "COMP": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       "cUSDTv3": {
         "contracts": {
@@ -472,7 +486,14 @@
             "LP": "20.00%",
             "maxLeverage": "2.50x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD₮0",
+          "symbol": "USD₮0",
+          "address": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9",
+          "decimals": 6
+        },
+        "COMP": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       "cWETHv3": {
         "contracts": {
@@ -675,7 +696,14 @@
             "LP": "4.00%",
             "maxLeverage": "10.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
+          "decimals": 18
+        },
+        "COMP": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       }
     },
     "base": {
@@ -812,7 +840,14 @@
             "LP": "25.00%",
             "maxLeverage": "2.50x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Aerodrome",
+          "symbol": "AERO",
+          "address": "0x940181a94A35A4569E4529A3CDfB74e38FD98631",
+          "decimals": 18
+        },
+        "COMP": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       "cUSDbCv3": {
         "contracts": {
@@ -913,7 +948,14 @@
             "LP": "15.00%",
             "maxLeverage": "1.82x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Base Coin",
+          "symbol": "USDbC",
+          "address": "0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA",
+          "decimals": 6
+        },
+        "COMP": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       "cUSDCv3": {
         "contracts": {
@@ -1065,7 +1107,14 @@
             "LP": "10.00%",
             "maxLeverage": "5.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin",
+          "symbol": "USDC",
+          "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+          "decimals": 6
+        },
+        "COMP": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       "cUSDSv3": {
         "contracts": {
@@ -1166,7 +1215,14 @@
             "LP": "5.00%",
             "maxLeverage": "5.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USDS Stablecoin",
+          "symbol": "USDS",
+          "address": "0x820C137fa70C8691f0e44Dc420a5e53c168921Dc",
+          "decimals": 18
+        },
+        "COMP": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       "cWETHv3": {
         "contracts": {
@@ -1369,7 +1425,14 @@
             "LP": "5.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0x4200000000000000000000000000000000000006",
+          "decimals": 18
+        },
+        "COMP": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       }
     },
     "linea": {
@@ -1489,7 +1552,14 @@
             "LP": "10.00%",
             "maxLeverage": "5.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USDC",
+          "symbol": "USDC",
+          "address": "0x176211869cA2b568f2A7D4EE941E073a821EE1ff",
+          "decimals": 6
+        },
+        "COMP": "0x0ECE76334Fb560f2b1a49A60e38Cf726B02203f0"
       }
     },
     "mainnet": {
@@ -1745,7 +1815,14 @@
             "LP": "4.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin",
+          "symbol": "USDC",
+          "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+          "decimals": 6
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       "cUSDSv3": {
         "contracts": {
@@ -1965,7 +2042,14 @@
             "LP": "6.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USDS Stablecoin",
+          "symbol": "USDS",
+          "address": "0xdC035D45d973E3EC169d2276DDab16f1e407384F",
+          "decimals": 18
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       "cUSDTv3": {
         "contracts": {
@@ -2270,7 +2354,14 @@
             "LP": "4.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Tether USD",
+          "symbol": "USDT",
+          "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+          "decimals": 6
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       "cWBTCv3": {
         "contracts": {
@@ -2371,7 +2462,14 @@
             "LP": "10.00%",
             "maxLeverage": "4.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped BTC",
+          "symbol": "WBTC",
+          "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+          "decimals": 8
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       "cWETHv3": {
         "contracts": {
@@ -2693,7 +2791,14 @@
             "LP": "5.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+          "decimals": 18
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       "cWstETHv3": {
         "contracts": {
@@ -2811,7 +2916,14 @@
             "LP": "4.00%",
             "maxLeverage": "10.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped liquid staked Ether 2.0",
+          "symbol": "wstETH",
+          "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          "decimals": 18
+        },
+        "COMP": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       }
     },
     "mantle": {
@@ -2931,7 +3043,14 @@
             "LP": "12.00%",
             "maxLeverage": "4.55x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USDe",
+          "symbol": "USDe",
+          "address": "0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34",
+          "decimals": 18
+        },
+        "COMP": "0x52b7D8851d6CcBC6342ba0855Be65f7B82A3F17f"
       }
     },
     "optimism": {
@@ -3085,7 +3204,14 @@
             "LP": "5.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin",
+          "symbol": "USDC",
+          "address": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85",
+          "decimals": 6
+        },
+        "COMP": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       },
       "cUSDTv3": {
         "contracts": {
@@ -3237,7 +3363,14 @@
             "LP": "5.00%",
             "maxLeverage": "8.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Tether USD",
+          "symbol": "USDT",
+          "address": "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58",
+          "decimals": 6
+        },
+        "COMP": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       },
       "cWETHv3": {
         "contracts": {
@@ -3440,7 +3573,14 @@
             "LP": "4.00%",
             "maxLeverage": "10.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0x4200000000000000000000000000000000000006",
+          "decimals": 18
+        },
+        "COMP": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       }
     },
     "polygon": {
@@ -3594,7 +3734,14 @@
             "LP": "20.00%",
             "maxLeverage": "2.50x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin (PoS)",
+          "symbol": "USDC",
+          "address": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+          "decimals": 6
+        },
+        "COMP": "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c"
       },
       "cUSDTv3": {
         "contracts": {
@@ -3746,7 +3893,14 @@
             "LP": "10.00%",
             "maxLeverage": "4.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "(PoS) Tether USD",
+          "symbol": "USDT",
+          "address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+          "decimals": 6
+        },
+        "COMP": "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c"
       }
     },
     "ronin": {
@@ -3769,49 +3923,49 @@
             "date": "2025-07-31",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "supplyPerSecondInterestRateSlopeLow": {
             "date": "2025-07-31",
             "value": "684931506",
             "previousValue": "684931506",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "supplyPerSecondInterestRateSlopeHigh": {
             "date": "2025-07-31",
             "value": "35673515981",
             "previousValue": "35673515981",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "supplyPerSecondInterestRateBase": {
             "date": "2025-07-31",
             "value": "0",
             "previousValue": "0",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "borrowKink": {
             "date": "2025-07-31",
             "value": "900000000000000000",
             "previousValue": "900000000000000000",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "borrowPerSecondInterestRateSlopeLow": {
             "date": "2025-07-31",
             "value": "491501775",
             "previousValue": "491501775",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "borrowPerSecondInterestRateSlopeHigh": {
             "date": "2025-07-31",
             "value": "39954337899",
             "previousValue": "39954337899",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           },
           "borrowPerSecondInterestRateBase": {
             "date": "2025-07-31",
             "value": "317097919",
             "previousValue": "317097919",
-            "valueSetDate": "2025-07-30"
+            "valueSetDate": "2025-07-31"
           }
         },
         "collaterals": [
@@ -3866,7 +4020,13 @@
             "LP": "20.00%",
             "maxLeverage": "3.33x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Ronin Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0xc99a6A985eD2Cac1ef41640596C5A5f9F4E19Ef5",
+          "decimals": 18
+        }
       },
       "cWRONv3": {
         "contracts": {
@@ -3984,7 +4144,13 @@
             "LP": "10.00%",
             "maxLeverage": "4.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ronin",
+          "symbol": "WRON",
+          "address": "0xe514d9DEB7966c8BE0ca922de8a064264eA6bcd4",
+          "decimals": 18
+        }
       }
     },
     "scroll": {
@@ -4087,7 +4253,14 @@
             "LP": "15.00%",
             "maxLeverage": "4.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USD Coin",
+          "symbol": "USDC",
+          "address": "0x06eFdBFf2a14a7c8E15944D1F4A48F9F95F663A4",
+          "decimals": 6
+        },
+        "COMP": "0x643e160a3C3E2B7eae198f0beB1BfD2441450e86"
       }
     },
     "unichain": {
@@ -4190,7 +4363,14 @@
             "LP": "5.00%",
             "maxLeverage": "5.88x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "USDC",
+          "symbol": "USDC",
+          "address": "0x078D782b760474a361dDA0AF3839290b0EF57AD6",
+          "decimals": 6
+        },
+        "COMP": "0xdf78e4F0A8279942ca68046476919A90f2288656"
       },
       "cWETHv3": {
         "contracts": {
@@ -4342,7 +4522,14 @@
             "LP": "10.00%",
             "maxLeverage": "5.00x"
           }
-        ]
+        ],
+        "baseToken": {
+          "name": "Wrapped Ether",
+          "symbol": "WETH",
+          "address": "0x4200000000000000000000000000000000000006",
+          "decimals": 18
+        },
+        "COMP": "0xdf78e4F0A8279942ca68046476919A90f2288656"
       }
     }
   },
@@ -4356,7 +4543,8 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 3320.803835
+        "compAmountOnRewardContract": 3311.995628,
+        "compAddress": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       {
         "date": "2025-07-31",
@@ -4366,7 +4554,8 @@
         "yearlyRewards": 12775,
         "lendDailyRewards": 20,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 3320.803835
+        "compAmountOnRewardContract": 3311.995628,
+        "compAddress": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       {
         "date": "2025-07-31",
@@ -4376,7 +4565,8 @@
         "yearlyRewards": 10950,
         "lendDailyRewards": 15,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 3320.803835
+        "compAmountOnRewardContract": 3311.995628,
+        "compAddress": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       {
         "date": "2025-07-31",
@@ -4386,7 +4576,8 @@
         "yearlyRewards": 2920,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 3320.661005
+        "compAmountOnRewardContract": 3311.995628,
+        "compAddress": "0x354A6dA3fcde098F8389cad84b0182725c6C91dE"
       },
       {
         "date": "2025-07-31",
@@ -4396,7 +4587,8 @@
         "yearlyRewards": 5475,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 10,
-        "compAmountOnRewardContract": 4766.513006
+        "compAmountOnRewardContract": 4583.909031,
+        "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       {
         "date": "2025-07-31",
@@ -4406,6 +4598,8 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
+        "compAmountOnRewardContract": 4583.909031,
+        "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
         "compAmountOnRewardContract": 4766.513006
       },
       {
@@ -4416,6 +4610,8 @@
         "yearlyRewards": 7300,
         "lendDailyRewards": 13,
         "borrowDailyRewards": 7,
+        "compAmountOnRewardContract": 4583.909031,
+        "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
         "compAmountOnRewardContract": 4766.513006
       },
       {
@@ -4426,7 +4622,8 @@
         "yearlyRewards": 13140,
         "lendDailyRewards": 24,
         "borrowDailyRewards": 12,
-        "compAmountOnRewardContract": 4766.513006
+        "compAmountOnRewardContract": 4583.909031,
+        "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       {
         "date": "2025-07-31",
@@ -4436,7 +4633,8 @@
         "yearlyRewards": 1460,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 2,
-        "compAmountOnRewardContract": 4766.513006
+        "compAmountOnRewardContract": 4583.909031,
+        "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
       },
       {
         "date": "2025-07-31",
@@ -4446,7 +4644,8 @@
         "yearlyRewards": 2555,
         "lendDailyRewards": 4,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 4156.398335
+        "compAmountOnRewardContract": 4154.45686,
+        "compAddress": "0x0ECE76334Fb560f2b1a49A60e38Cf726B02203f0"
       },
       {
         "date": "2025-07-31",
@@ -4456,7 +4655,8 @@
         "yearlyRewards": 51465,
         "lendDailyRewards": 70,
         "borrowDailyRewards": 71,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4466,7 +4666,8 @@
         "yearlyRewards": 6205,
         "lendDailyRewards": 12,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4476,7 +4677,8 @@
         "yearlyRewards": 43800,
         "lendDailyRewards": 70,
         "borrowDailyRewards": 50,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4486,7 +4688,8 @@
         "yearlyRewards": 365,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4496,7 +4699,8 @@
         "yearlyRewards": 14600,
         "lendDailyRewards": 20,
         "borrowDailyRewards": 20,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4506,7 +4710,8 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 28692.834082
+        "compAmountOnRewardContract": 28692.613576,
+        "compAddress": "0xc00e94Cb662C3520282E6f5717214004A7f26888"
       },
       {
         "date": "2025-07-31",
@@ -4516,7 +4721,8 @@
         "yearlyRewards": 2920,
         "lendDailyRewards": 4,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 2504.951545
+        "compAmountOnRewardContract": 2504.951545,
+        "compAddress": "0x52b7D8851d6CcBC6342ba0855Be65f7B82A3F17f"
       },
       {
         "date": "2025-07-31",
@@ -4526,7 +4732,8 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 2189.222141
+        "compAmountOnRewardContract": 2186.801229,
+        "compAddress": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       },
       {
         "date": "2025-07-31",
@@ -4536,7 +4743,8 @@
         "yearlyRewards": 3650,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 2189.222141
+        "compAmountOnRewardContract": 2186.801229,
+        "compAddress": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       },
       {
         "date": "2025-07-31",
@@ -4546,7 +4754,8 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 2189.222141
+        "compAmountOnRewardContract": 2186.801229,
+        "compAddress": "0x7e7d4467112689329f7E06571eD0E8CbAd4910eE"
       },
       {
         "date": "2025-07-31",
@@ -4556,7 +4765,8 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 1433.560221882675
+        "compAmountOnRewardContract": 1433.560221882675,
+        "compAddress": "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c"
       },
       {
         "date": "2025-07-31",
@@ -4566,7 +4776,8 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 1433.392330882675
+        "compAmountOnRewardContract": 1433.560221882675,
+        "compAddress": "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c"
       },
       {
         "date": "2025-07-31",
@@ -4576,7 +4787,8 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 0
+        "compAmountOnRewardContract": 0,
+        "compAddress": "0x643e160a3C3E2B7eae198f0beB1BfD2441450e86"
       },
       {
         "date": "2025-07-31",
@@ -4586,7 +4798,8 @@
         "yearlyRewards": 730,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 1,
-        "compAmountOnRewardContract": 2400.081314
+        "compAmountOnRewardContract": 2394.735131,
+        "compAddress": "0xdf78e4F0A8279942ca68046476919A90f2288656"
       },
       {
         "date": "2025-07-31",
@@ -4596,7 +4809,8 @@
         "yearlyRewards": 7300,
         "lendDailyRewards": 12,
         "borrowDailyRewards": 8,
-        "compAmountOnRewardContract": 2400.081314
+        "compAmountOnRewardContract": 2394.735131,
+        "compAddress": "0xdf78e4F0A8279942ca68046476919A90f2288656"
       }
     ],
     "totalDailyRewards": 532,
@@ -4608,25 +4822,25 @@
         "idx": 0,
         "date": "2025-07-31",
         "network": "arbitrum",
-        "currentCompBalance": 3320.803835
+        "currentCompBalance": 3311.995628
       },
       {
         "idx": 1,
         "date": "2025-07-31",
         "network": "base",
-        "currentCompBalance": 4766.513006
+        "currentCompBalance": 4583.909031
       },
       {
         "idx": 2,
         "date": "2025-07-31",
         "network": "linea",
-        "currentCompBalance": 4156.398335
+        "currentCompBalance": 4154.45686
       },
       {
         "idx": 3,
         "date": "2025-07-31",
         "network": "mainnet",
-        "currentCompBalance": 28692.834082
+        "currentCompBalance": 28692.613576
       },
       {
         "idx": 4,
@@ -4638,7 +4852,7 @@
         "idx": 5,
         "date": "2025-07-31",
         "network": "optimism",
-        "currentCompBalance": 2189.222141
+        "currentCompBalance": 2186.801229
       },
       {
         "idx": 6,
@@ -4656,9 +4870,9 @@
         "idx": 8,
         "date": "2025-07-31",
         "network": "unichain",
-        "currentCompBalance": 2400.081314
+        "currentCompBalance": 2394.735131
       }
     ],
-    "totalCompBalance": 49464.36447988268
+    "totalCompBalance": 49263.02322188268
   }
 }

@@ -78,6 +78,12 @@ export interface CollateralInfo {
   LP: string; // 100 - AssetInfo.liquidationFactor
   maxLeverage: string; // e.g. "11x"
 }
+export interface BaseTokenInfo {
+  name: string; // asset name
+  symbol: string; // e.g. "WBTC"
+  address: string; // asset address
+  decimals: number; // token.decimals()
+}
 
 /**
  * One record in the rewards summary (Date of record + computed yields).
@@ -116,6 +122,8 @@ export interface MarketData {
   contracts: ContractsMap;
   curve: CurveMap;
   collaterals: CollateralInfo[];
+  baseToken: BaseTokenInfo;
+  COMP: string | null; // COMP address, if
   rewardsTable: RewardRecord | null;
 }
 
@@ -125,14 +133,17 @@ export interface RewardsTable {
   totalYearlyRewards: number; // e.g. "3 COMP * 365"
 }
 
+export interface NestedMarket {
+  contracts: ContractsMap;
+  curve: CurveMap;
+  collaterals: CollateralInfo[];
+  baseToken: BaseTokenInfo;
+  COMP: string | null; // COMP address, if available
+}
 export interface NestedMarkets {
   markets: {
     [network: string]: {
-      [market: string]: {
-        contracts: ContractsMap;
-        curve: CurveMap;
-        collaterals: CollateralInfo[];
-      };
+      [market: string]: NestedMarket;
     };
   };
   rewards: RewardsTable;

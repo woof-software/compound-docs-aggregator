@@ -20,6 +20,14 @@ export class ProviderFactory {
 
     if (!this.cache.has(config.chainId)) {
       const provider = new ethers.JsonRpcProvider(config.url, config.chainId);
+      const originalGetConnection = provider._getConnection.bind(provider);
+      provider._getConnection = () => {
+        const connection = originalGetConnection();
+        if (connection && typeof connection === 'object') {
+          (connection as any).timeout = 30000; // 30 seconds timeout
+        }
+        return connection;
+      };
       this.cache.set(config.chainId, provider);
     }
 

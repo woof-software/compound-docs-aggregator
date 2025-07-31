@@ -6,6 +6,7 @@ import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
 import { MarkdownService } from './markdown.service';
 import { JsonService } from 'json/json.service';
+import { CompoundDocumentationService } from 'compound-documentation/compound-documentation.service';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -16,6 +17,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
     private readonly contractService: ContractService,
     private readonly jsonService: JsonService,
     private readonly markdownService: MarkdownService,
+    private readonly documentationService: CompoundDocumentationService,
   ) {
     super();
   }
@@ -49,6 +51,8 @@ export class GenerateMarkdownCommand extends CommandRunner {
         let marketData;
         try {
           marketData = await this.contractService.readMarketData(rootObj, path);
+
+          this.logger.debug(path);
         } catch (err) {
           this.logger.error(
             `Error reading on-chain data for ${path}:`,
@@ -68,11 +72,35 @@ export class GenerateMarkdownCommand extends CommandRunner {
       // Read the structured data for markdown generation
       const nestedMarketsData = this.jsonService.read();
 
+      // // Update documentation and create pull request
+      try {
+        // await this.documentationService.writeLocal(nestedMarketsData);
+        const prResult = await this.documentationService.updateDocumentation(
+          nestedMarketsData,
+        );
+
+        if (prResult.created) {
+          this.logger.log(`✅ Pull request created successfully!`);
+          this.logger.log(`🔗 URL: ${prResult.url}`);
+          this.logger.log(`📋 PR Number: ${prResult.number}`);
+        } else if (prResult.error) {
+          this.logger.error(
+            `❌ Failed to create pull request: ${prResult.error}`,
+          );
+        } else {
+          this.logger.log(
+            `ℹ️ No changes detected in deployments. No PR needed.`,
+          );
+        }
+      } catch (error) {
+        this.logger.error('Error in documentation update process:', error);
+      }
+
       // Update README.md with hierarchical structure
       this.markdownService.write(nestedMarketsData, jsonPath);
       this.logger.log(`README.md updated with hierarchical market data`);
 
-      this.logger.log('Generating of markdown completed.');
+      this.logger.log('Generation of markdown completed.');
       return;
     } catch (error) {
       this.logger.error('An error occurred while generating markdown:', error);
