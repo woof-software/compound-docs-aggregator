@@ -4600,6 +4600,7 @@
         "borrowDailyRewards": 0,
         "compAmountOnRewardContract": 4583.909031,
         "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
+        "compAmountOnRewardContract": 4766.513006
       },
       {
         "date": "2025-07-31",
@@ -4611,6 +4612,7 @@
         "borrowDailyRewards": 7,
         "compAmountOnRewardContract": 4583.909031,
         "compAddress": "0x9e1028F5F1D5eDE59748FFceE5532509976840E0"
+        "compAmountOnRewardContract": 4766.513006
       },
       {
         "date": "2025-07-31",
