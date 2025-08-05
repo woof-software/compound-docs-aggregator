@@ -10,13 +10,18 @@ interface DeploymentChanges {
   removed: string[];
 }
 
-interface GitHubConfig {
-  token: string;
+interface GitHubAppConfig {
+  appId: string;
+  privateKey: string;
+  clientId: string;
+  clientSecret: string;
+  installationId: string;
   forkOwner: string;
   originalOwner: string;
   repository: string;
   filePath: string;
   branchName: string;
+  autoMerge: boolean;
 }
 
 interface PullRequestResult {
@@ -31,13 +36,18 @@ export class CompoundDocumentationService {
   private readonly logger = new Logger(CompoundDocumentationService.name);
   private readonly markdownFilePath = './compound-3.md';
 
-  private readonly githubConfig: GitHubConfig = {
-    token: process.env.GITHUB_TOKEN || '',
+  private readonly githubConfig: GitHubAppConfig = {
+    appId: process.env.GITHUB_APP_ID || '',
+    privateKey: process.env.GITHUB_PRIVATE_KEY || '',
+    clientId: process.env.GITHUB_CLIENT_ID || '',
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+    installationId: process.env.GITHUB_INSTALLATION_ID || '',
     forkOwner: 'woof-software',
     originalOwner: 'compound-finance',
     repository: 'compound-finance.github.io',
     filePath: 'docs/pages/v3/compound-3.md',
     branchName: `update-deployments-${Date.now()}`,
+    autoMerge: process.env.AUTO_MERGE === 'true',
   };
 
   private readonly networkNames: Record<string, string> = {
@@ -96,6 +106,13 @@ export class CompoundDocumentationService {
     try {
       this.logger.log('Starting documentation update process...');
 
+      // Authenticate with GitHub App
+      await this.githubService.authenticateAsApp(
+        this.githubConfig.appId,
+        this.githubConfig.privateKey,
+        this.githubConfig.installationId,
+      );
+
       // Fetch current markdown from fork
       const currentContent = await this.fetchMarkdownFromGitHub();
 
@@ -127,6 +144,11 @@ export class CompoundDocumentationService {
         updatedContent,
         currentContent,
       );
+
+      // Auto-merge if enabled and PR was created successfully
+      if (this.githubConfig.autoMerge && prResult.created && prResult.number) {
+        await this.attemptAutoMerge(prResult.number);
+      }
 
       // Log results
       const changes = this.detectChanges(currentDeployments, newDeployments);
@@ -164,7 +186,7 @@ export class CompoundDocumentationService {
   }
 
   /**
-   * Creates a new branch and pull request with updated content using GitHub API
+   * Creates a new branch and pull request with updated content using GitHub App
    */
   private async createPullRequest(
     updatedContent: string,
@@ -228,7 +250,7 @@ export class CompoundDocumentationService {
       // Step 5: Create pull request from fork to original repository
       const pullRequestTitle = 'Update Compound III deployments';
       const pullRequestHead = `${this.githubConfig.forkOwner}:${this.githubConfig.branchName}`;
-      const pullRequestBase = 'master'; // or should this be the default branch?
+      const pullRequestBase = 'master';
       const pullRequestBody = this.generatePullRequestBody(
         originalContent,
         updatedContent,
@@ -269,6 +291,64 @@ export class CompoundDocumentationService {
         created: false,
         error: errorMessage,
       };
+    }
+  }
+
+  /**
+   * Attempts to auto-merge the pull request if conditions are met
+   */
+  private async attemptAutoMerge(pullRequestNumber: number): Promise<void> {
+    try {
+      this.logger.log(`Attempting to auto-merge PR #${pullRequestNumber}`);
+
+      // Wait a bit for any checks to start
+      await new Promise((resolve) => setTimeout(resolve, 5000));
+
+      // Get PR status to check if it's mergeable
+      const pullRequest = await this.githubService.getPullRequest(
+        this.githubConfig.originalOwner,
+        this.githubConfig.repository,
+        pullRequestNumber,
+      );
+
+      if (!pullRequest.mergeable) {
+        this.logger.warn(
+          `PR #${pullRequestNumber} is not mergeable, skipping auto-merge`,
+        );
+        return;
+      }
+
+      // Check for any required status checks
+      const checks = await this.githubService.getCheckRuns(
+        this.githubConfig.originalOwner,
+        this.githubConfig.repository,
+        pullRequest.head.sha,
+      );
+
+      const hasFailedChecks = checks.check_runs.some(
+        (check) =>
+          check.status === 'completed' && check.conclusion === 'failure',
+      );
+
+      if (hasFailedChecks) {
+        this.logger.warn(
+          `PR #${pullRequestNumber} has failed checks, skipping auto-merge`,
+        );
+        return;
+      }
+
+      // Enable auto-merge
+      await this.githubService.enableAutoMerge(
+        this.githubConfig.originalOwner,
+        this.githubConfig.repository,
+        pullRequestNumber,
+        'MERGE', // or 'SQUASH' or 'REBASE'
+      );
+
+      this.logger.log(`Auto-merge enabled for PR #${pullRequestNumber}`);
+    } catch (error) {
+      this.logger.error('Error enabling auto-merge:', error);
+      // Don't throw here as the PR was created successfully
     }
   }
 
@@ -378,20 +458,37 @@ export class CompoundDocumentationService {
     body +=
       'All contract addresses have been verified and are current as of the time of generation.\n\n';
 
+    if (this.githubConfig.autoMerge) {
+      body += '### Auto-merge\n';
+      body +=
+        'This PR has auto-merge enabled and will be automatically merged once all checks pass.\n\n';
+    }
+
     body += '---\n';
-    body += '*Generated by Compound III Documentation Service*';
+    body +=
+      '*Generated by Compound III Documentation Service using GitHub App authentication*';
 
     return body;
   }
 
   /**
-   * Validates GitHub configuration
+   * Validates GitHub App configuration
    */
-  private validateGitHubConfig(): void {
-    if (!this.githubConfig.token) {
-      throw new Error(
-        'GitHub token is required. Set GITHUB_TOKEN environment variable.',
-      );
+  private validateGitHubAppConfig(): void {
+    const requiredFields = [
+      'appId',
+      'privateKey',
+      'clientId',
+      'clientSecret',
+      'installationId',
+    ];
+
+    for (const field of requiredFields) {
+      if (!this.githubConfig[field as keyof GitHubAppConfig]) {
+        throw new Error(
+          `GitHub App ${field} is required. Set GITHUB_${field.toUpperCase()} environment variable.`,
+        );
+      }
     }
 
     if (!this.githubConfig.forkOwner || !this.githubConfig.originalOwner) {
@@ -401,10 +498,17 @@ export class CompoundDocumentationService {
     if (!this.githubConfig.repository || !this.githubConfig.filePath) {
       throw new Error('GitHub repository and file path must be configured');
     }
+
+    // Validate private key format
+    if (!this.githubConfig.privateKey.includes('BEGIN PRIVATE KEY')) {
+      throw new Error(
+        'GitHub App private key must be in PEM format. Make sure to include the full key with headers.',
+      );
+    }
   }
 
   /**
-   * Checks if fork is up to date with original repository using GithubService
+   * Checks if fork is up to date with original repository using GitHub App
    */
   private async ensureForkIsUpToDate(): Promise<void> {
     try {
@@ -429,8 +533,14 @@ export class CompoundDocumentationService {
 
       if (originalCommit.sha !== forkCommit.sha) {
         this.logger.warn('Fork is not up to date with original repository');
-        // Note: it might be needed to automatically sync the fork
-        // For now, it just logs a warning
+
+        // Attempt to sync fork automatically
+        try {
+          await this.syncFork();
+          this.logger.log('Successfully synced fork with upstream');
+        } catch (syncError) {
+          this.logger.warn('Could not automatically sync fork:', syncError);
+        }
       } else {
         this.logger.log('Fork is up to date with original repository');
       }
@@ -442,12 +552,30 @@ export class CompoundDocumentationService {
   }
 
   /**
+   * Syncs fork with upstream repository
+   */
+  private async syncFork(): Promise<void> {
+    try {
+      await this.githubService.syncFork(
+        this.githubConfig.forkOwner,
+        this.githubConfig.repository,
+        'master',
+      );
+      this.logger.log('Fork synced successfully');
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to sync fork: ${errorMessage}`);
+    }
+  }
+
+  /**
    * Public method for external usage - validates config and processes update
    */
   async updateDocumentation(
     marketsData: NestedMarkets,
   ): Promise<PullRequestResult> {
-    this.validateGitHubConfig();
+    this.validateGitHubAppConfig();
     await this.ensureForkIsUpToDate();
     return this.write(marketsData);
   }
@@ -458,6 +586,13 @@ export class CompoundDocumentationService {
   async writeLocal(marketsData: NestedMarkets): Promise<void> {
     try {
       this.logger.log('Starting local markdown file update...');
+
+      // Authenticate with GitHub App for local operations too
+      await this.githubService.authenticateAsApp(
+        this.githubConfig.appId,
+        this.githubConfig.privateKey,
+        this.githubConfig.installationId,
+      );
 
       // Fetch current content from GitHub
       const currentContent = await this.fetchMarkdownFromGitHub();
@@ -522,21 +657,6 @@ export class CompoundDocumentationService {
       throw new Error(`Failed to write markdown file: ${errorMessage}`);
     }
   }
-
-  /**
-   * Creates a backup copy of the markdown file
-   */
-  // private createBackup(): void {
-  //   try {
-  //     const backupPath = `${this.markdownFilePath}.backup.${Date.now()}`;
-  //     copyFileSync(this.markdownFilePath, backupPath);
-  //     this.logger.log(`Backup created: ${backupPath}`);
-  //   } catch (error) {
-  //     const errorMessage =
-  //       error instanceof Error ? error.message : String(error);
-  //     this.logger.warn(`Failed to create backup: ${errorMessage}`);
-  //   }
-  // }
 
   /**
    * Generates deployments YAML structure from markets data

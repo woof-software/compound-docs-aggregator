@@ -1,10 +1,50 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios, { AxiosInstance } from 'axios';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
+import * as jwt from 'jsonwebtoken';
 
 interface CacheEntry {
   timestamp: number;
   data: string[];
+}
+
+export interface GitHubPullRequest {
+  number: number;
+  html_url: string;
+  title: string;
+  body: string;
+  state: string;
+  mergeable: boolean;
+  head: {
+    sha: string;
+    ref: string;
+  };
+  base: {
+    sha: string;
+    ref: string;
+  };
+}
+
+export interface GitHubCheckRun {
+  id: number;
+  name: string;
+  status: 'queued' | 'in_progress' | 'completed';
+  conclusion:
+    | 'success'
+    | 'failure'
+    | 'neutral'
+    | 'cancelled'
+    | 'skipped'
+    | 'timed_out'
+    | 'action_required'
+    | null;
+  started_at: string;
+  completed_at: string | null;
+}
+
+export interface GitHubCheckRuns {
+  total_count: number;
+  check_runs: GitHubCheckRun[];
 }
 
 @Injectable()
@@ -13,7 +53,7 @@ export class GithubService {
   private readonly owner = 'compound-finance';
   private readonly repo = 'comet';
   private readonly defaultBranch = 'main';
-  private readonly api: AxiosInstance;
+  private api: AxiosInstance;
   private readonly rootDir = 'deployments';
 
   // Excluded networks (test networks)
@@ -24,12 +64,245 @@ export class GithubService {
   private readonly cacheExpirationMs = 30 * 60 * 1000; // 30 minutes
   private inMemoryCache: string[] | null = null;
 
+  // GitHub App authentication
+  private installationToken: string | null = null;
+  private tokenExpiresAt = 0;
+
   constructor() {
     const token = process.env.GITHUB_TOKEN || '';
     this.api = axios.create({
       baseURL: 'https://api.github.com',
       headers: token ? { Authorization: `token ${token}` } : undefined,
     });
+  }
+
+  /**
+   * Authenticates as a GitHub App installation
+   */
+  async authenticateAsApp(
+    appId: string,
+    privateKey: string,
+    installationId: string,
+  ): Promise<void> {
+    try {
+      // Check if we have a valid token
+      if (this.installationToken && Date.now() < this.tokenExpiresAt) {
+        return;
+      }
+
+      this.logger.log('Authenticating as GitHub App...');
+
+      // Generate JWT
+      const jwtToken = this.generateJWT(appId, privateKey);
+
+      // Get installation access token
+      const installationToken = await this.getInstallationToken(
+        jwtToken,
+        installationId,
+      );
+
+      // Update API instance with new token
+      this.installationToken = installationToken.token;
+      this.tokenExpiresAt =
+        new Date(installationToken.expires_at).getTime() - 60000; // 1 minute buffer
+
+      this.api = axios.create({
+        baseURL: 'https://api.github.com',
+        headers: {
+          Authorization: `token ${this.installationToken}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      });
+
+      this.logger.log('Successfully authenticated as GitHub App');
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error authenticating as GitHub App: ${errorMessage}`);
+      throw new Error(`GitHub App authentication failed: ${errorMessage}`);
+    }
+  }
+
+  /**
+   * Generates JWT token for GitHub App authentication
+   */
+  private generateJWT(appId: string, privateKey: string): string {
+    const now = Math.floor(Date.now() / 1000);
+    const payload = {
+      iat: now - 60, // issued 60 seconds in the past
+      exp: now + 600, // expires in 10 minutes
+      iss: appId,
+    };
+
+    // Clean up private key format
+    const cleanPrivateKey = privateKey
+      .replace(/\\n/g, '\n')
+      .replace(/"/g, '')
+      .trim();
+
+    return jwt.sign(payload, cleanPrivateKey, { algorithm: 'RS256' });
+  }
+
+  /**
+   * Gets installation access token using JWT
+   */
+  private async getInstallationToken(
+    jwtToken: string,
+    installationId: string,
+  ): Promise<{ token: string; expires_at: string }> {
+    try {
+      const response = await axios.post(
+        `https://api.github.com/app/installations/${installationId}/access_tokens`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${jwtToken}`,
+            Accept: 'application/vnd.github.v3+json',
+          },
+        },
+      );
+
+      return {
+        token: response.data.token,
+        expires_at: response.data.expires_at,
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to get installation token: ${errorMessage}`);
+    }
+  }
+
+  /**
+   * Gets pull request information
+   */
+  async getPullRequest(
+    owner: string,
+    repo: string,
+    pullNumber: number,
+  ): Promise<GitHubPullRequest> {
+    try {
+      const url = `/repos/${owner}/${repo}/pulls/${pullNumber}`;
+      const response = await this.api.get(url);
+
+      return {
+        number: response.data.number,
+        html_url: response.data.html_url,
+        title: response.data.title,
+        body: response.data.body,
+        state: response.data.state,
+        mergeable: response.data.mergeable,
+        head: {
+          sha: response.data.head.sha,
+          ref: response.data.head.ref,
+        },
+        base: {
+          sha: response.data.base.sha,
+          ref: response.data.base.ref,
+        },
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting pull request: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Gets check runs for a commit
+   */
+  async getCheckRuns(
+    owner: string,
+    repo: string,
+    ref: string,
+  ): Promise<GitHubCheckRuns> {
+    try {
+      const url = `/repos/${owner}/${repo}/commits/${ref}/check-runs`;
+      const response = await this.api.get(url);
+
+      return {
+        total_count: response.data.total_count,
+        check_runs: response.data.check_runs.map((run: any) => ({
+          id: run.id,
+          name: run.name,
+          status: run.status,
+          conclusion: run.conclusion,
+          started_at: run.started_at,
+          completed_at: run.completed_at,
+        })),
+      };
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error getting check runs: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Enables auto-merge for a pull request
+   */
+  async enableAutoMerge(
+    owner: string,
+    repo: string,
+    pullNumber: number,
+    mergeMethod: 'MERGE' | 'SQUASH' | 'REBASE' = 'MERGE',
+  ): Promise<void> {
+    try {
+      const url = `/repos/${owner}/${repo}/pulls/${pullNumber}/merge`;
+
+      // Check if PR can be merged immediately
+      const pr = await this.getPullRequest(owner, repo, pullNumber);
+      if (pr.mergeable && pr.state === 'open') {
+        // Check if all required checks are passing
+        const checks = await this.getCheckRuns(owner, repo, pr.head.sha);
+        const hasFailedChecks = checks.check_runs.some(
+          (check) =>
+            check.status === 'completed' && check.conclusion === 'failure',
+        );
+
+        if (!hasFailedChecks) {
+          // Merge immediately if no failing checks
+          await this.api.put(url, {
+            commit_title: `${pr.title} (#${pullNumber})`,
+            merge_method: mergeMethod.toLowerCase(),
+          });
+          this.logger.log(`Successfully merged PR #${pullNumber}`);
+        } else {
+          this.logger.warn(
+            `PR #${pullNumber} has failing checks, cannot auto-merge`,
+          );
+        }
+      }
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      this.logger.error(`Error enabling auto-merge: ${errorMessage}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Syncs a fork with its upstream repository
+   */
+  async syncFork(owner: string, repo: string, branch: string): Promise<void> {
+    try {
+      const url = `/repos/${owner}/${repo}/merge-upstream`;
+      await this.api.post(url, {
+        branch: branch,
+      });
+
+      this.logger.log(
+        `Successfully synced fork ${owner}/${repo} branch ${branch}`,
+      );
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+
+      this.logger.error(`Error syncing fork: ${errorMessage}`);
+      throw error;
+    }
   }
 
   /**
