@@ -4564,175 +4564,6 @@
             "maxLeverage": "5.88x"
           }
         ]
-      },
-      "cWETHv3": {
-        "contracts": {
-          "comet": "0x6C987dDE50dB1dcDd32Cd4175778C2a291978E2a",
-          "cometImplementation": "0x51515144Cff7DC3623C52C5e91768a9955d2BEb1",
-          "cometExtension": "0x443EA0340cb75a160F31A440722dec7b5bc3C2E9",
-          "configurator": "0x8df378453Ff9dEFFa513367CDF9b3B53726303e9",
-          "configuratorImplementation": "0x5404872d8f2e24b230EC9B9eC64E3855F637FB93",
-          "cometAdmin": "0xaeB318360f27748Acb200CE616E389A6C9409a07",
-          "cometFactory": "0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C",
-          "rewards": "0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486",
-          "bulker": "0x58EbB8Db8b4FdF2dCbbB16E04c2F5b952963B514",
-          "governor": "0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118",
-          "timelock": "0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0"
-        },
-        "curve": {
-          "supplyKink": {
-            "date": "2025-12-05",
-            "value": "900000000000000000",
-            "previousValue": "900000000000000000",
-            "valueSetDate": "2025-11-17"
-          },
-          "supplyPerSecondInterestRateSlopeLow": {
-            "date": "2025-12-05",
-            "value": "684931506",
-            "previousValue": "684931506",
-            "valueSetDate": "2025-11-17"
-          },
-          "supplyPerSecondInterestRateSlopeHigh": {
-            "date": "2025-12-05",
-            "value": "35673515981",
-            "previousValue": "35673515981",
-            "valueSetDate": "2025-11-17"
-          },
-          "supplyPerSecondInterestRateBase": {
-            "date": "2025-12-05",
-            "value": "0",
-            "previousValue": "0",
-            "valueSetDate": "2025-11-17"
-          },
-          "borrowKink": {
-            "date": "2025-12-05",
-            "value": "900000000000000000",
-            "previousValue": "900000000000000000",
-            "valueSetDate": "2025-11-17"
-          },
-          "borrowPerSecondInterestRateSlopeLow": {
-            "date": "2025-12-05",
-            "value": "491501775",
-            "previousValue": "491501775",
-            "valueSetDate": "2025-11-17"
-          },
-          "borrowPerSecondInterestRateSlopeHigh": {
-            "date": "2025-12-05",
-            "value": "39954337899",
-            "previousValue": "39954337899",
-            "valueSetDate": "2025-11-17"
-          },
-          "borrowPerSecondInterestRateBase": {
-            "date": "2025-12-05",
-            "value": "317097919",
-            "previousValue": "317097919",
-            "valueSetDate": "2025-11-17"
-          }
-        },
-        "collaterals": [
-          {
-            "idx": 0,
-            "date": "2025-12-05",
-            "name": "Wrapped liquid staked Ether 2.0",
-            "symbol": "wstETH",
-            "address": "0xc02fE7317D4eb8753a02c35fe019786854A92001",
-            "decimals": 18,
-            "priceFeedAddress": "0x3870FAc3De911c12A57E5a2532D15aD8Ca275A60",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "90.0%",
-            "LF": "93.0%",
-            "LP": "3.00%",
-            "maxLeverage": "10.00x"
-          },
-          {
-            "idx": 1,
-            "date": "2025-12-05",
-            "name": "Wrapped eETH",
-            "symbol": "weETH",
-            "address": "0x7DCC39B4d1C53CB31e1aBc0e358b43987FEF80f7",
-            "decimals": 18,
-            "priceFeedAddress": "0x2e44e174f7D53F0212823acC11C01A11d58c5bCB",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "90.0%",
-            "LF": "93.0%",
-            "LP": "4.00%",
-            "maxLeverage": "10.00x"
-          },
-          {
-            "idx": 2,
-            "date": "2025-12-05",
-            "name": "Renzo Restaked ETH",
-            "symbol": "ezETH",
-            "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
-            "decimals": 18,
-            "priceFeedAddress": "0x1Ad4CEBa9f8135A557bBe317DB62Aa125C330F26",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "88.0%",
-            "LF": "91.0%",
-            "LP": "6.00%",
-            "maxLeverage": "8.33x"
-          },
-          {
-            "idx": 3,
-            "date": "2025-12-05",
-            "name": "Uniswap",
-            "symbol": "UNI",
-            "address": "0x8f187aA05619a017077f5308904739877ce9eA21",
-            "decimals": 18,
-            "priceFeedAddress": "0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "70.0%",
-            "LF": "75.0%",
-            "LP": "20.00%",
-            "maxLeverage": "3.33x"
-          },
-          {
-            "idx": 4,
-            "date": "2025-12-05",
-            "name": "Wrapped BTC",
-            "symbol": "WBTC",
-            "address": "0x927B51f251480a681271180DA4de28D44EC4AfB8",
-            "decimals": 8,
-            "priceFeedAddress": "0xFa454dE61b317b6535A0C462267208E8FdB89f45",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "80.0%",
-            "LF": "85.0%",
-            "LP": "10.00%",
-            "maxLeverage": "5.00x"
-          },
-          {
-            "idx": 5,
-            "date": "2025-12-05",
-            "name": "KelpDao Restaked ETH",
-            "symbol": "rsETH",
-            "address": "0xc3eACf0612346366Db554C991D7858716db09f58",
-            "decimals": 18,
-            "priceFeedAddress": "0x85C4F855Bc0609D2584405819EdAEa3aDAbfE97D",
-            "priceFeedProvider": "Chainlink",
-            "oevEnabled": false,
-            "capEnabled": false,
-            "rateType": "Market",
-            "CF": "90.0%",
-            "LF": "93.0%",
-            "LP": "4.00%",
-            "maxLeverage": "10.00x"
-          }
-        ]
       }
     }
   },
@@ -4746,7 +4577,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 1206.017178
+        "compAmountOnRewardContract": 1205.65774
       },
       {
         "date": "2025-12-05",
@@ -4756,7 +4587,7 @@
         "yearlyRewards": 12775,
         "lendDailyRewards": 20,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 1206.017178
+        "compAmountOnRewardContract": 1205.65774
       },
       {
         "date": "2025-12-05",
@@ -4766,7 +4597,7 @@
         "yearlyRewards": 10950,
         "lendDailyRewards": 15,
         "borrowDailyRewards": 15,
-        "compAmountOnRewardContract": 1206.017178
+        "compAmountOnRewardContract": 1205.65774
       },
       {
         "date": "2025-12-05",
@@ -4776,7 +4607,7 @@
         "yearlyRewards": 2920,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 1206.017178
+        "compAmountOnRewardContract": 1205.65774
       },
       {
         "date": "2025-12-05",
@@ -4786,7 +4617,7 @@
         "yearlyRewards": 4015,
         "lendDailyRewards": 3,
         "borrowDailyRewards": 8,
-        "compAmountOnRewardContract": 2851.978584
+        "compAmountOnRewardContract": 2845.027605
       },
       {
         "date": "2025-12-05",
@@ -4796,7 +4627,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 2851.978584
+        "compAmountOnRewardContract": 2845.027605
       },
       {
         "date": "2025-12-05",
@@ -4806,7 +4637,7 @@
         "yearlyRewards": 7300,
         "lendDailyRewards": 13,
         "borrowDailyRewards": 7,
-        "compAmountOnRewardContract": 2851.978584
+        "compAmountOnRewardContract": 2845.027605
       },
       {
         "date": "2025-12-05",
@@ -4816,7 +4647,7 @@
         "yearlyRewards": 13140,
         "lendDailyRewards": 24,
         "borrowDailyRewards": 12,
-        "compAmountOnRewardContract": 2851.978584
+        "compAmountOnRewardContract": 2845.027605
       },
       {
         "date": "2025-12-05",
@@ -4826,7 +4657,7 @@
         "yearlyRewards": 1460,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 2,
-        "compAmountOnRewardContract": 2851.978584
+        "compAmountOnRewardContract": 2845.027605
       },
       {
         "date": "2025-12-05",
@@ -4836,7 +4667,7 @@
         "yearlyRewards": 2555,
         "lendDailyRewards": 4,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 2986.217291
+        "compAmountOnRewardContract": 2986.036076
       },
       {
         "date": "2025-12-05",
@@ -4846,7 +4677,7 @@
         "yearlyRewards": 3650,
         "lendDailyRewards": 6,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 2986.217291
+        "compAmountOnRewardContract": 2986.036076
       },
       {
         "date": "2025-12-05",
@@ -4856,7 +4687,7 @@
         "yearlyRewards": 51465,
         "lendDailyRewards": 70,
         "borrowDailyRewards": 71,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4866,7 +4697,7 @@
         "yearlyRewards": 6205,
         "lendDailyRewards": 12,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4876,7 +4707,7 @@
         "yearlyRewards": 43800,
         "lendDailyRewards": 70,
         "borrowDailyRewards": 50,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4886,7 +4717,7 @@
         "yearlyRewards": 365,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4896,7 +4727,7 @@
         "yearlyRewards": 10950,
         "lendDailyRewards": 10,
         "borrowDailyRewards": 20,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4906,7 +4737,7 @@
         "yearlyRewards": 1095,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 3,
-        "compAmountOnRewardContract": 17527.006375
+        "compAmountOnRewardContract": 17526.915986
       },
       {
         "date": "2025-12-05",
@@ -4926,7 +4757,7 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 1835.403135
+        "compAmountOnRewardContract": 1835.068817
       },
       {
         "date": "2025-12-05",
@@ -4936,7 +4767,7 @@
         "yearlyRewards": 3650,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 1835.403135
+        "compAmountOnRewardContract": 1835.068817
       },
       {
         "date": "2025-12-05",
@@ -4946,7 +4777,7 @@
         "yearlyRewards": 730,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 1,
-        "compAmountOnRewardContract": 1835.403135
+        "compAmountOnRewardContract": 1835.068817
       },
       {
         "date": "2025-12-05",
@@ -4956,7 +4787,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 715.5058808826751
+        "compAmountOnRewardContract": 715.110510882675
       },
       {
         "date": "2025-12-05",
@@ -4966,7 +4797,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 715.5058808826751
+        "compAmountOnRewardContract": 715.110510882675
       },
       {
         "date": "2025-12-05",
@@ -4986,21 +4817,11 @@
         "yearlyRewards": 730,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 1,
-        "compAmountOnRewardContract": 240.076279
-      },
-      {
-        "date": "2025-12-05",
-        "network": "unichain",
-        "market": "cWETHv3",
-        "dailyRewards": 20,
-        "yearlyRewards": 7300,
-        "lendDailyRewards": 12,
-        "borrowDailyRewards": 8,
-        "compAmountOnRewardContract": 240.076279
+        "compAmountOnRewardContract": 239.893199
       }
     ],
-    "totalDailyRewards": 521,
-    "totalYearlyRewards": 190165
+    "totalDailyRewards": 501,
+    "totalYearlyRewards": 182865
   },
   "networkCompBalance": {
     "networks": [
@@ -5008,25 +4829,25 @@
         "idx": 0,
         "date": "2025-12-05",
         "network": "arbitrum",
-        "currentCompBalance": 1206.017178
+        "currentCompBalance": 1205.65774
       },
       {
         "idx": 1,
         "date": "2025-12-05",
         "network": "base",
-        "currentCompBalance": 2851.978584
+        "currentCompBalance": 2845.027605
       },
       {
         "idx": 2,
         "date": "2025-12-05",
         "network": "linea",
-        "currentCompBalance": 2986.217291
+        "currentCompBalance": 2986.036076
       },
       {
         "idx": 3,
         "date": "2025-12-05",
         "network": "mainnet",
-        "currentCompBalance": 17527.006375
+        "currentCompBalance": 17526.915986
       },
       {
         "idx": 4,
@@ -5038,13 +4859,13 @@
         "idx": 5,
         "date": "2025-12-05",
         "network": "optimism",
-        "currentCompBalance": 1835.403135
+        "currentCompBalance": 1835.068817
       },
       {
         "idx": 6,
         "date": "2025-12-05",
         "network": "polygon",
-        "currentCompBalance": 715.5058808826751
+        "currentCompBalance": 715.110510882675
       },
       {
         "idx": 7,
@@ -5056,9 +4877,9 @@
         "idx": 8,
         "date": "2025-12-05",
         "network": "unichain",
-        "currentCompBalance": 240.076279
+        "currentCompBalance": 239.893199
       }
     ],
-    "totalCompBalance": 29464.64107888268
+    "totalCompBalance": 29456.146289882672
   }
 }

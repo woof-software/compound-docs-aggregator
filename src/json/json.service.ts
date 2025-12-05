@@ -8,15 +8,22 @@ import {
   NetworkCompBalanceRecord,
   NetworkCompBalanceTable,
   RewardRecord,
-} from 'contract/contract.type';
+} from 'contract/contract.types';
 
 @Injectable()
 export class JsonService {
   private readonly logger = new Logger(JsonService.name);
-  private readonly rootPath = join(process.cwd(), 'output.json');
+  private readonly rootPathMarkets = join(process.cwd(), 'output.json');
+  private readonly rootPathOwesV3 = join(process.cwd(), 'owes-v3.json');
 
-  write(markets: MarketData[]) {
-    const filePath = this.rootPath;
+  writeOwesV3(owes: Record<string, number>): string {
+    const path = this.rootPathOwesV3;
+    writeFileSync(path, JSON.stringify(owes, null, 2));
+    return path;
+  }
+
+  writeMarkets(markets: MarketData[]) {
+    const filePath = this.rootPathMarkets;
     const nested: Record<string, Record<string, any>> = {};
     const marketRewards: RewardRecord[] = [];
     const networkCompBalances: Map<string, number> = new Map();
@@ -92,8 +99,8 @@ export class JsonService {
     }
   }
 
-  read(): NestedMarkets {
-    const filePath = this.rootPath;
+  readMarkets(): NestedMarkets {
+    const filePath = this.rootPathMarkets;
 
     try {
       if (!existsSync(filePath)) {
@@ -114,7 +121,7 @@ export class JsonService {
 
   getMarketsByNetwork(network: string) {
     try {
-      const data = this.read();
+      const data = this.readMarkets();
       return data.markets[network] || null;
     } catch (err) {
       this.logger.error(
