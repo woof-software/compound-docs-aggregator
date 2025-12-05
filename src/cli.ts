@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { LogLevel } from '@nestjs/common';
 import { CommandFactory } from 'nest-commander';
 
