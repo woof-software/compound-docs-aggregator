@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { NetworkModule } from 'network/network.module';
-import { ContractService } from './contract.service';
 import { JsonModule } from 'json/json.module';
+import { ContractService } from './contract.service';
 
 @Module({
   imports: [NetworkModule, JsonModule],

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { writeFileSync } from 'fs';
 import { markdownTable } from 'markdown-table';
-import { CurveEntry, NestedMarkets } from 'contract/contract.type';
+import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 
 @Injectable()
 export class MarkdownService {

@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
 
 import { ProviderFactory } from 'network/provider.factory';
+import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
+import { JsonService } from 'json/json.service';
 import CometABI from './abi/CometABI.json';
 import CometExtensionABI from './abi/CometExtensionABI.json';
 import ConfiguratorABI from './abi/ConfiguratorABI.json';
@@ -14,9 +16,7 @@ import {
   CurveMap,
   MarketData,
   RootJson,
-} from './contract.type';
-import { JsonService } from 'json/json.service';
-import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
+} from './contract.types';
 
 @Injectable()
 export class ContractService {
