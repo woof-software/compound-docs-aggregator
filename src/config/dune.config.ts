@@ -8,7 +8,13 @@ export default registerAs(
   'dune',
   (): DuneConfig => ({
     apiKey: duneApiKey,
-    queryId: 6300979,
     url: 'https://api.dune.com',
+    queries: {
+      claimsV3: 6318202,
+      periodsV3: 6315504,
+    },
+    pollAttempts: 10,
+    pollDelayMs: 10000,
+    pollForState: 'QUERY_STATE_COMPLETED',
   }),
 );

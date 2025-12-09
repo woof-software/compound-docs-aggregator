@@ -1,3 +1,4 @@
+import { setTimeout } from 'node:timers/promises';
 import { Logger } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
 import axios from 'axios';
@@ -7,7 +8,8 @@ import { ContractService } from 'contract/contract.service';
 import { JsonService } from 'json/json.service';
 import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
-import { RewardRecord } from '../contract/contract.types';
+import { DuneClaimedV3, DuneCometsSpeedPeriodsV3 } from '../dune/dune.types';
+import { ethers } from 'ethers';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -25,6 +27,16 @@ export class GenerateMarkdownCommand extends CommandRunner {
 
   async run() {
     try {
+      ////
+      this.logger.log('Generating total owes V3...');
+      const claimed = await this.dune.fetchRewardsClaimedV3();
+      await setTimeout(2000);
+      const periods = await this.dune.fetchSpeedsPeriodsV3();
+
+      const totalOwesV3 = this.calcTotalOwesV3(claimed, periods);
+      this.jsonService.writeOwesV3(totalOwesV3);
+      this.logger.log('Generating of totalOwesV3 completed.');
+
       this.logger.log('Starting to generate markdown...');
 
       const rootsPaths = await this.githubService.listAllRootsJson();
@@ -72,22 +84,13 @@ export class GenerateMarkdownCommand extends CommandRunner {
       this.logger.log(`JSON generated: ${jsonPath}`);
 
       // Read the structured data for markdown generation
-      const nestedMarketsData = this.jsonService.readMarkets();
+      const nestedMarketsData = this.jsonService.readMarkets(); // market rewards -> rewards table
 
       // Update README.md with hierarchical structure
       this.markdownService.write(nestedMarketsData, jsonPath);
       this.logger.log(`README.md updated with hierarchical market data`);
 
       this.logger.log('Generating of markdown completed.');
-
-      this.logger.log('Generating total owes V3...');
-      const claimed = await this.dune.fetchRewardsClaimedV3();
-      const totalOwesV3 = this.calcTotalOwesV3(
-        claimed,
-        nestedMarketsData.rewards.marketRewards,
-      );
-      this.jsonService.writeOwesV3(totalOwesV3);
-      this.logger.log('Generating of totalOwesV3 completed.');
 
       return;
     } catch (error) {
@@ -98,28 +101,53 @@ export class GenerateMarkdownCommand extends CommandRunner {
 
   /**
    * @param claimed
-   * @param records
+   * @param periods
    * @returns record network -> total owe
    * @private
    */
   private calcTotalOwesV3(
-    claimed: Record<string, number>,
-    records: RewardRecord[],
+    claimed: DuneClaimedV3,
+    periods: DuneCometsSpeedPeriodsV3,
   ): Record<string, number> {
-    return records.reduce((acc, item) => {
-      const network = item.network;
-      const networkClaimed = claimed[network];
-      if (!networkClaimed) {
+    return Object.entries(claimed).reduce((acc, [network, claimed]) => {
+      const networkPeriods = periods[network];
+      if (!networkPeriods) {
         this.logger.warn(`Skip network ${network}: no dune data`);
         return acc;
       }
 
-      if (!acc[network]) {
-        acc[network] = -networkClaimed;
-      }
+      type CometRewards = Record<string, bigint>;
+      const cometsRewards = Object.entries(networkPeriods).reduce(
+        (acc, [comet, periods]) => {
+          if (!acc[comet]) {
+            acc[comet] = 0n;
+          }
 
-      acc[network] += item.yearlyRewards;
+          periods.forEach((p) => {
+            const durationSec =
+              BigInt(p.periodEndTime.getTime() - p.periodStartTime.getTime()) /
+              1000n;
 
+            const supplyRewards = p.currSupplySpeed * durationSec;
+            const borrowRewards = p.currBorrowSpeed * durationSec;
+
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            acc[comet]! += supplyRewards + borrowRewards;
+          });
+
+          return acc;
+        },
+        {} as CometRewards,
+      );
+
+      const totalRewards = Object.values(cometsRewards).reduce(
+        (sum, val) => sum + val,
+        0n,
+      );
+
+      const rewards = Number(ethers.formatUnits(totalRewards, 15));
+
+      acc[network] = rewards - claimed;
       return acc;
     }, {} as Record<string, number>);
   }
