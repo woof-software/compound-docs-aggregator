@@ -8,7 +8,11 @@ import { ContractService } from 'contract/contract.service';
 import { JsonService } from 'json/json.service';
 import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
-import { DuneClaimed, DuneCometSpeedPeriod, DuneCometsSpeedPeriods, } from 'dune/dune.types';
+import {
+  DuneClaimed,
+  DuneCometSpeedPeriod,
+  DuneCometsSpeedPeriods,
+} from 'dune/dune.types';
 import { ethers } from 'ethers';
 import { CompoundVersion } from 'common/types/compound-version';
 
