@@ -1,14 +1,16 @@
 import { setTimeout } from 'node:timers/promises';
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { CompoundVersion } from 'common/types/compound-version';
 import {
-  DuneClaimedRowV3,
-  DuneClaimedV3,
-  DuneSpeedPeriodRowV3,
+  DuneClaimed,
+  DuneClaimedRow,
+  DuneCometSpeedPeriod,
+  DuneCometsSpeedPeriods,
   DuneConfig,
   DuneResult,
-  DuneCometsSpeedPeriodsV3,
-  DuneCometSpeedPeriodV3,
+  DuneSpeedPeriodRowV2,
+  DuneSpeedPeriodRowV3,
 } from './dune.types';
 
 @Injectable()
@@ -108,37 +110,46 @@ export class DuneService {
     return res.json();
   }
 
-  /**
-   * @returns network -> rewards claimed
-   */
-  public async fetchRewardsClaimedV3(): Promise<DuneClaimedV3> {
-    const queryId = this.config.queries.claimsV3;
+  public async fetchRewardsClaimed(
+    version: CompoundVersion,
+  ): Promise<DuneClaimed> {
+    const queryId = this.config.queries[version].claims;
 
     await this.update(queryId);
-    const raw = await this.fetch<DuneClaimedRowV3>(queryId);
+    const raw = await this.fetch<DuneClaimedRow>(queryId);
 
     return raw.result.rows.reduce((acc, item) => {
       acc[item.network] = item.total_comp_claimed;
       return acc;
-    }, {} as DuneClaimedV3);
+    }, {} as DuneClaimed);
   }
 
-  public async fetchSpeedsPeriodsV3(): Promise<DuneCometsSpeedPeriodsV3> {
-    const queryId = this.config.queries.periodsV3;
+  private rowToPeriod(
+    row: DuneSpeedPeriodRowV2 | DuneSpeedPeriodRowV3,
+  ): DuneCometSpeedPeriod {
+    return {
+      currBorrowSpeed: BigInt(row.curr_borrow_speed),
+      currSupplySpeed: BigInt(row.curr_supply_speed),
+      periodEndBlock: row.period_end_block,
+      periodEndTime: new Date(row.period_end_time),
+      periodStartBlock: row.period_start_block,
+      periodStartTime: new Date(row.period_start_time),
+      startingEventType: row.starting_event_type,
+      startingTxHash: row.starting_tx_hash,
+    };
+  }
+
+  public async fetchSpeedsPeriods(
+    version: CompoundVersion,
+  ): Promise<DuneCometsSpeedPeriods> {
+    const queryId = this.config.queries[version].periods;
 
     await this.update(queryId);
-    const raw = await this.fetch<DuneSpeedPeriodRowV3>(queryId);
+    const raw = await this.fetch<DuneSpeedPeriodRowV2 & DuneSpeedPeriodRowV3>(
+      queryId,
+    );
     return raw.result.rows.reduce((acc, item) => {
-      const el: DuneCometSpeedPeriodV3 = {
-        currBorrowSpeed: BigInt(item.curr_borrow_speed),
-        currSupplySpeed: BigInt(item.curr_supply_speed),
-        periodEndBlock: item.period_end_block,
-        periodEndTime: new Date(item.period_end_time),
-        periodStartBlock: item.period_start_block,
-        periodStartTime: new Date(item.period_start_time),
-        startingEventType: item.starting_event_type,
-        startingTxHash: item.starting_tx_hash,
-      };
+      const period = this.rowToPeriod(item);
 
       if (!acc[item.network]) {
         acc[item.network] = {};
@@ -146,14 +157,19 @@ export class DuneService {
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const byNetwork = acc[item.network]!;
-      if (!byNetwork[item.comet_addr]) {
-        byNetwork[item.comet_addr] = [];
+      const address =
+        version === CompoundVersion.V2 ? item.ctoken_addr : item.comet_addr;
+      if (!address)
+        throw new Error(`[${version}] fetchSpeedsPeriods => bad address`);
+
+      if (!byNetwork[address]) {
+        byNetwork[address] = [];
       }
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const byComet = byNetwork[item.comet_addr]!;
-      byComet.push(el);
+      const byComet = byNetwork[address]!;
+      byComet.push(period);
       return acc;
-    }, {} as DuneCometsSpeedPeriodsV3);
+    }, {} as DuneCometsSpeedPeriods);
   }
 }

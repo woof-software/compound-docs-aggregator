@@ -9,15 +9,20 @@ import {
   NetworkCompBalanceTable,
   RewardRecord,
 } from 'contract/contract.types';
+import { CompoundVersion } from 'common/types/compound-version';
 
 @Injectable()
 export class JsonService {
   private readonly logger = new Logger(JsonService.name);
   private readonly rootPathMarkets = join(process.cwd(), 'output.json');
+  private readonly rootPathOwesV2 = join(process.cwd(), 'owes-v2.json');
   private readonly rootPathOwesV3 = join(process.cwd(), 'owes-v3.json');
 
-  writeOwesV3(owes: Record<string, number>): string {
-    const path = this.rootPathOwesV3;
+  writeOwes(owes: Record<string, number>, version: CompoundVersion): string {
+    const path =
+      version === CompoundVersion.V2
+        ? this.rootPathOwesV2
+        : this.rootPathOwesV3;
     writeFileSync(path, JSON.stringify(owes, null, 2));
     return path;
   }

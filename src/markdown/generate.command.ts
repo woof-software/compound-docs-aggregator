@@ -8,8 +8,9 @@ import { ContractService } from 'contract/contract.service';
 import { JsonService } from 'json/json.service';
 import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
-import { DuneClaimedV3, DuneCometsSpeedPeriodsV3 } from '../dune/dune.types';
+import { DuneClaimed, DuneCometSpeedPeriod, DuneCometsSpeedPeriods, } from 'dune/dune.types';
 import { ethers } from 'ethers';
+import { CompoundVersion } from 'common/types/compound-version';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -29,13 +30,31 @@ export class GenerateMarkdownCommand extends CommandRunner {
     try {
       ////
       this.logger.log('Generating total owes V3...');
-      const claimed = await this.dune.fetchRewardsClaimedV3();
+      const claimedV3 = await this.dune.fetchRewardsClaimed(CompoundVersion.V3);
       await setTimeout(2000);
-      const periods = await this.dune.fetchSpeedsPeriodsV3();
+      const periodsV3 = await this.dune.fetchSpeedsPeriods(CompoundVersion.V3);
 
-      const totalOwesV3 = this.calcTotalOwesV3(claimed, periods);
-      this.jsonService.writeOwesV3(totalOwesV3);
+      const totalOwesV3 = this.calcTotalOwes(
+        claimedV3,
+        periodsV3,
+        CompoundVersion.V3,
+      );
+      this.jsonService.writeOwes(totalOwesV3, CompoundVersion.V3);
       this.logger.log('Generating of totalOwesV3 completed.');
+      ////
+      this.logger.log('Generating total owes V2...');
+      const claimedV2 = await this.dune.fetchRewardsClaimed(CompoundVersion.V2);
+      await setTimeout(2000);
+      const periodsV2 = await this.dune.fetchSpeedsPeriods(CompoundVersion.V2);
+
+      const totalOwesV2 = this.calcTotalOwes(
+        claimedV2,
+        periodsV2,
+        CompoundVersion.V2,
+      );
+      this.jsonService.writeOwes(totalOwesV2, CompoundVersion.V2);
+      this.logger.log('Generating of totalOwesV2 completed.');
+      ////
 
       this.logger.log('Starting to generate markdown...');
 
@@ -99,20 +118,48 @@ export class GenerateMarkdownCommand extends CommandRunner {
     }
   }
 
+  private calcRewardsV2(periodsV2: DuneCometSpeedPeriod[]): bigint {
+    return periodsV2.reduce((sum, item) => {
+      const durationBlocks = BigInt(
+        item.periodEndBlock - item.periodStartBlock,
+      );
+
+      const supplyRewards = item.currSupplySpeed * durationBlocks;
+      const borrowRewards = item.currBorrowSpeed * durationBlocks;
+
+      return sum + supplyRewards + borrowRewards;
+    }, 0n);
+  }
+
+  private calcRewardsV3(periodsV3: DuneCometSpeedPeriod[]): bigint {
+    return periodsV3.reduce((sum, item) => {
+      const durationSec =
+        BigInt(item.periodEndTime.getTime() - item.periodStartTime.getTime()) /
+        1000n;
+
+      const supplyRewards = item.currSupplySpeed * durationSec;
+      const borrowRewards = item.currBorrowSpeed * durationSec;
+
+      return sum + supplyRewards + borrowRewards;
+    }, 0n);
+  }
+
   /**
    * @param claimed
    * @param periods
-   * @returns record network -> total owe
+   * @param version - means compound 3 or compound 2
+   * @returns record: network -> total owe
    * @private
    */
-  private calcTotalOwesV3(
-    claimed: DuneClaimedV3,
-    periods: DuneCometsSpeedPeriodsV3,
+  private calcTotalOwes(
+    claimed: DuneClaimed,
+    periods: DuneCometsSpeedPeriods,
+    version: CompoundVersion,
   ): Record<string, number> {
     return Object.entries(claimed).reduce((acc, [network, claimed]) => {
       const networkPeriods = periods[network];
       if (!networkPeriods) {
-        this.logger.warn(`Skip network ${network}: no dune data`);
+        this.logger.warn(`[${version}] Skip network ${network}: no dune data`);
         return acc;
       }
 
@@ -122,18 +169,11 @@ export class GenerateMarkdownCommand extends CommandRunner {
           if (!acc[comet]) {
             acc[comet] = 0n;
           }
-
-          periods.forEach((p) => {
-            const durationSec =
-              BigInt(p.periodEndTime.getTime() - p.periodStartTime.getTime()) /
-              1000n;
-
-            const supplyRewards = p.currSupplySpeed * durationSec;
-            const borrowRewards = p.currBorrowSpeed * durationSec;
-
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            acc[comet]! += supplyRewards + borrowRewards;
-          });
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          acc[comet]! +=
+            version === CompoundVersion.V2
+              ? this.calcRewardsV2(periods)
+              : this.calcRewardsV3(periods);
 
           return acc;
         },
@@ -145,7 +185,8 @@ export class GenerateMarkdownCommand extends CommandRunner {
         0n,
       );
 
-      const rewards = Number(ethers.formatUnits(totalRewards, 15));
+      const decimals = version === CompoundVersion.V2 ? 18 : 15;
+      const rewards = Number(ethers.formatUnits(totalRewards, decimals));
 
       acc[network] = rewards - claimed;
       return acc;

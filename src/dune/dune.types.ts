@@ -1,10 +1,15 @@
+import { CompoundVersion } from 'common/types/compound-version';
+
 export interface DuneConfig {
   apiKey: string;
   url: string;
-  queries: {
-    claimsV3: number;
-    periodsV3: number;
-  };
+  queries: Record<
+    CompoundVersion,
+    {
+      claims: number;
+      periods: number;
+    }
+  >;
   pollAttempts: number;
   pollDelayMs: number;
   pollForState: string;
@@ -35,12 +40,27 @@ export interface DuneResult<TRow> {
   };
 }
 
-export interface DuneClaimedRowV3 {
+export interface DuneClaimedRow {
   network: string;
   total_comp_claimed: number;
 }
-export type DuneClaimedV3 = Record<string, number>;
+/**
+ * network -> rewards claimed
+ */
+export type DuneClaimed = Record<string, number>;
 
+export interface DuneSpeedPeriodRowV2 {
+  ctoken_addr: string; // "0x6f7d514b..."
+  curr_borrow_speed: string; // "46296296296"
+  curr_supply_speed: string; // "69444444444"
+  network: string; // "arbitrum"
+  period_end_block: number; // 224809660
+  period_end_time: string; // "2024-06-23 07:56:32.000 UTC"
+  period_start_block: number; // 224809660
+  period_start_time: string; // "2024-06-23 07:56:32.000 UTC"
+  starting_event_type: string; // "config_update"
+  starting_tx_hash: string; // "0x2883..."
+}
 export interface DuneSpeedPeriodRowV3 {
   comet_addr: string; // "0x6f7d514b..."
   curr_borrow_speed: string; // "46296296296"
@@ -53,7 +73,7 @@ export interface DuneSpeedPeriodRowV3 {
   starting_event_type: string; // "config_update"
   starting_tx_hash: string; // "0x2883..."
 }
-export interface DuneCometSpeedPeriodV3 {
+export interface DuneCometSpeedPeriod {
   currBorrowSpeed: bigint;
   currSupplySpeed: bigint;
   periodEndBlock: number;
@@ -66,7 +86,7 @@ export interface DuneCometSpeedPeriodV3 {
 /**
  * network -> comet -> periods
  */
-export type DuneCometsSpeedPeriodsV3 = Record<
+export type DuneCometsSpeedPeriods = Record<
   string,
-  Record<string, DuneCometSpeedPeriodV3[]>
+  Record<string, DuneCometSpeedPeriod[]>
 >;

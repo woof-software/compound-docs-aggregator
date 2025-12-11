@@ -372,7 +372,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract        |
-  |  2  | Comet Implementation        | 0x3dC67C8FF5E7DDE907C76b625F5bbd5a404479D5 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x5f2154E37c6B7F8b19c22628958609bd2Dfa6bcC | Implementation contract     |
   |  3  | Comet Extension             | 0xbd4CfC08d64a848A9116A92Cd06D2f2bDC0a2505 | Extension delegate contract |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
@@ -401,11 +401,11 @@
   |  #  | Name                            | Symbol      | Address                                    | Decimals | Price Feed                                 |    CF |    LF |    LP | Max Leverage |
   | :-: | :------------------------------ | :---------- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | ----: | -----------: |
   |  1  | Coinbase Wrapped Staked ETH     | cbETH       | 0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22 |       18 | 0x59e242D352ae13166B4987aE5c990C232f7f7CD6 | 90.0% | 93.0% | 2.50% |       10.00x |
-  |  2  | Renzo Restaked ETH              | ezETH       | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x72874CfE957bb47795548e5a9fd740D135ba5E45 | 90.0% | 93.0% | 4.00% |       10.00x |
-  |  3  | Wrapped liquid staked Ether 2.0 | wstETH      | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452 |       18 | 0x1F71901daf98d70B4BAF40DE080321e5C2676856 | 90.0% | 93.0% | 2.50% |       10.00x |
+  |  2  | Renzo Restaked ETH              | ezETH       | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x41E345A046A73Ef15316191b41f3ABEA4cEF1168 | 90.0% | 93.0% | 4.00% |       10.00x |
+  |  3  | Wrapped liquid staked Ether 2.0 | wstETH      | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452 |       18 | 0x0090A563C4832E4E519F5f054483519b1A83c8C3 | 90.0% | 93.0% | 2.50% |       10.00x |
   |  4  | USD Coin                        | USDC        | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 |        6 | 0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0 | 80.0% | 85.0% | 5.00% |        5.00x |
-  |  5  | Wrapped eETH                    | weETH       | 0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A |       18 | 0x841e380e3a98E4EE8912046d69731F4E21eFb1D7 | 90.0% | 93.0% | 4.00% |       10.00x |
-  |  6  | rsETHWrapper                    | wrsETH      | 0xEDfa23602D0EC14714057867A78d01e94176BEA0 |       18 | 0xaeB318360f27748Acb200CE616E389A6C9409a07 | 90.0% | 93.0% | 4.00% |       10.00x |
+  |  5  | Wrapped eETH                    | weETH       | 0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A |       18 | 0x5D173813B4505701e79E654b36A95E6c1FAD4448 | 90.0% | 93.0% | 4.00% |       10.00x |
+  |  6  | rsETHWrapper                    | wrsETH      | 0xEDfa23602D0EC14714057867A78d01e94176BEA0 |       18 | 0xB88e4078AAc88F10C0Ca71086ddCF512Ec54498a | 90.0% | 93.0% | 4.00% |       10.00x |
   |  7  | Coinbase Wrapped BTC            | cbBTC       | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x4cfCE7795bF75dC3795369A953d9A9b8C2679AE4 | 80.0% | 85.0% | 5.00% |        5.00x |
   |  8  | Wrapped Super OETH              | wsuperOETHb | 0x7FcD174E80f264448ebeE8c88a7C4476AAF58Ea6 |       18 | 0xAA9527bf3183A96fe6e55831c96dE5cd988d3484 | 88.0% | 90.0% | 5.00% |        8.33x |
 
@@ -666,7 +666,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xe85Dc543813B8c2CFEaAc371517b925a166a9293 | Main market contract        |
-  |  2  | Comet Implementation        | 0xb8430B935998b5AE5F4a0b8B8Ad01eF454EAc16C | Implementation contract     |
+  |  2  | Comet Implementation        | 0x1C0C89c1Fa07E1dBfCB99ddb80c57252498c82B2 | Implementation contract     |
   |  3  | Comet Extension             | 0x4f4D5A808E2448cB12df7aC12EFb12888FD9BDd5 | Extension delegate contract |
   |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
   |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
@@ -696,6 +696,8 @@
   | :-: | :--------------------- | :------ | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
   |  1  | Lombard Staked Bitcoin | LBTC    | 0x8236a87084f8B84306f72007F36F2618A5634494 |        8 | 0x5c29868C58b6e15e2b962943278969Ab6a7D3212 | 73.0% | 75.0% |  5.00% |        3.70x |
   |  2  | pumpBTC                | pumpBTC | 0xF469fBD2abcd6B9de8E169d128226C0Fc90a012e |        8 | 0x351a133Fd850ea81ed8a782016e308aCBADDec91 | 75.0% | 78.0% | 10.00% |        4.00x |
+  |  3  | USD Coin               | USDC    | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 |        6 | 0x40fCEe8Cdda01522846D197df9d9C1199B1CB1D3 | 80.0% | 85.0% | 10.00% |        5.00x |
+  |  4  | Tether USD             | USDT    | 0xdAC17F958D2ee523a2206206994597C13D831ec7 |        6 | 0x8a5C2E36E02fB1BA95C9a3e96E6E16BbBDae9AAA | 80.0% | 85.0% | 10.00% |        5.00x |
 
 </details>
 
@@ -1307,32 +1309,32 @@
 
 |  #  | Date       | Network  | Market    | Daily Rewards |  Yearly Rewards | Lend Daily Rewards | Borrow Daily Rewards | COMP on Reward Contract |
 | :-: | :--------- | :------- | :-------- | ------------: | --------------: | -----------------: | -------------------: | ----------------------: |
-|  1  | 2025-12-09 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |            1083.19 COMP |
-|  2  | 2025-12-09 | arbitrum | cUSDCv3   |       35 COMP |      12775 COMP |            20 COMP |              15 COMP |            1083.19 COMP |
-|  3  | 2025-12-09 | arbitrum | cUSDTv3   |       30 COMP |      10950 COMP |            15 COMP |              15 COMP |            1083.19 COMP |
-|  4  | 2025-12-09 | arbitrum | cWETHv3   |        8 COMP |       2920 COMP |             3 COMP |               5 COMP |            1083.19 COMP |
-|  5  | 2025-12-09 | base     | cAEROv3   |       11 COMP |       4015 COMP |             3 COMP |               8 COMP |            2732.28 COMP |
-|  6  | 2025-12-09 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |            2732.28 COMP |
-|  7  | 2025-12-09 | base     | cUSDCv3   |       20 COMP |       7300 COMP |            13 COMP |               7 COMP |            2732.28 COMP |
-|  8  | 2025-12-09 | base     | cUSDSv3   |       36 COMP |      13140 COMP |            24 COMP |              12 COMP |            2732.28 COMP |
-|  9  | 2025-12-09 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |            2732.28 COMP |
-|  10 | 2025-12-09 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            2952.17 COMP |
-|  11 | 2025-12-09 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            2952.17 COMP |
-|  12 | 2025-12-09 | mainnet  | cUSDCv3   |      141 COMP |      51465 COMP |            70 COMP |              71 COMP |           16823.91 COMP |
-|  13 | 2025-12-09 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |           16823.91 COMP |
-|  14 | 2025-12-09 | mainnet  | cUSDTv3   |      120 COMP |      43800 COMP |            70 COMP |              50 COMP |           16823.91 COMP |
-|  15 | 2025-12-09 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |           16823.91 COMP |
-|  16 | 2025-12-09 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |           16823.91 COMP |
-|  17 | 2025-12-09 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |           16823.91 COMP |
-|  18 | 2025-12-09 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            2101.55 COMP |
-|  19 | 2025-12-09 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |            1813.54 COMP |
-|  20 | 2025-12-09 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |            1813.54 COMP |
-|  21 | 2025-12-09 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |            1813.54 COMP |
-|  22 | 2025-12-09 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             713.54 COMP |
-|  23 | 2025-12-09 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             713.54 COMP |
-|  24 | 2025-12-09 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  25 | 2025-12-09 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             181.30 COMP |
-|  26 | 2025-12-09 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             181.30 COMP |
+|  1  | 2025-12-11 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             978.99 COMP |
+|  2  | 2025-12-11 | arbitrum | cUSDCv3   |       35 COMP |      12775 COMP |            20 COMP |              15 COMP |             978.99 COMP |
+|  3  | 2025-12-11 | arbitrum | cUSDTv3   |       30 COMP |      10950 COMP |            15 COMP |              15 COMP |             978.99 COMP |
+|  4  | 2025-12-11 | arbitrum | cWETHv3   |        8 COMP |       2920 COMP |             3 COMP |               5 COMP |             978.99 COMP |
+|  5  | 2025-12-11 | base     | cAEROv3   |       11 COMP |       4015 COMP |             3 COMP |               8 COMP |            2514.25 COMP |
+|  6  | 2025-12-11 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |            2514.25 COMP |
+|  7  | 2025-12-11 | base     | cUSDCv3   |       20 COMP |       7300 COMP |            13 COMP |               7 COMP |            2514.25 COMP |
+|  8  | 2025-12-11 | base     | cUSDSv3   |       36 COMP |      13140 COMP |            24 COMP |              12 COMP |            2514.25 COMP |
+|  9  | 2025-12-11 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |            2514.25 COMP |
+|  10 | 2025-12-11 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            2885.67 COMP |
+|  11 | 2025-12-11 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            2885.67 COMP |
+|  12 | 2025-12-11 | mainnet  | cUSDCv3   |      141 COMP |      51465 COMP |            70 COMP |              71 COMP |           16651.70 COMP |
+|  13 | 2025-12-11 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |           16651.70 COMP |
+|  14 | 2025-12-11 | mainnet  | cUSDTv3   |      120 COMP |      43800 COMP |            70 COMP |              50 COMP |           16651.70 COMP |
+|  15 | 2025-12-11 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |           16651.70 COMP |
+|  16 | 2025-12-11 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |           16651.70 COMP |
+|  17 | 2025-12-11 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |           16651.70 COMP |
+|  18 | 2025-12-11 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            2095.83 COMP |
+|  19 | 2025-12-11 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |            1794.71 COMP |
+|  20 | 2025-12-11 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |            1794.71 COMP |
+|  21 | 2025-12-11 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |            1794.71 COMP |
+|  22 | 2025-12-11 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             713.53 COMP |
+|  23 | 2025-12-11 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             713.53 COMP |
+|  24 | 2025-12-11 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  25 | 2025-12-11 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             151.33 COMP |
+|  26 | 2025-12-11 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             151.33 COMP |
 |     | **TOTAL**  |          |           |  **521 COMP** | **190165 COMP** |                    |                      |                         |
 
 ---
@@ -1341,17 +1343,17 @@
 
 |  #  | Date       | Network  | Current COMP Balance |
 | :-: | :--------- | :------- | -------------------: |
-|  1  | 2025-12-09 | arbitrum |         1083.19 COMP |
-|  2  | 2025-12-09 | base     |         2732.28 COMP |
-|  3  | 2025-12-09 | linea    |         2952.17 COMP |
-|  4  | 2025-12-09 | mainnet  |        16823.91 COMP |
-|  5  | 2025-12-09 | mantle   |         2101.55 COMP |
-|  6  | 2025-12-09 | optimism |         1813.54 COMP |
-|  7  | 2025-12-09 | polygon  |          713.54 COMP |
-|  8  | 2025-12-09 | scroll   |            0.00 COMP |
-|  9  | 2025-12-09 | unichain |          181.30 COMP |
-|     | **TOTAL**  |          |    **28401.49 COMP** |
+|  1  | 2025-12-11 | arbitrum |          978.99 COMP |
+|  2  | 2025-12-11 | base     |         2514.25 COMP |
+|  3  | 2025-12-11 | linea    |         2885.67 COMP |
+|  4  | 2025-12-11 | mainnet  |        16651.70 COMP |
+|  5  | 2025-12-11 | mantle   |         2095.83 COMP |
+|  6  | 2025-12-11 | optimism |         1794.71 COMP |
+|  7  | 2025-12-11 | polygon  |          713.53 COMP |
+|  8  | 2025-12-11 | scroll   |            0.00 COMP |
+|  9  | 2025-12-11 | unichain |          151.33 COMP |
+|     | **TOTAL**  |          |    **27786.01 COMP** |
 
 ---
 
-*Last updated:* 2025-12-09 10:30:41.981 UTC
+*Last updated:* 2025-12-11 13:06:15.875 UTC
