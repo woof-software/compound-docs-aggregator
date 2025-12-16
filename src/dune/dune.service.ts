@@ -11,6 +11,8 @@ import {
   DuneResult,
   DuneSpeedPeriodRowV2,
   DuneSpeedPeriodRowV3,
+  DuneUserRow,
+  DuneUsers,
 } from './dune.types';
 
 @Injectable()
@@ -91,14 +93,18 @@ export class DuneService {
     }
   }
 
-  private async fetch<T>(queryId: number | string): Promise<DuneResult<T>> {
-    const res = await fetch(
-      `${this.config.url}/api/v1/query/${queryId}/results`,
-      {
-        method: 'GET',
-        headers: this.headers,
-      },
-    );
+  private async fetch<T>(
+    queryId: number | string,
+    limit = 0,
+    offset = 0,
+  ): Promise<DuneResult<T>> {
+    let url = `${this.config.url}/api/v1/query/${queryId}/results`;
+    if (limit) url += `?limit=${limit}&offset=${offset}`;
+
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: this.headers,
+    });
 
     if (!res.ok) {
       const text = await res.text();
@@ -110,66 +116,30 @@ export class DuneService {
     return res.json();
   }
 
-  public async fetchRewardsClaimed(
+  public async fetchUsers(
     version: CompoundVersion,
-  ): Promise<DuneClaimed> {
-    const queryId = this.config.queries[version].claims;
+    limit: number,
+    offset: number,
+  ): Promise<DuneUsers> {
+    const queryId = this.config.queries[version].users;
 
-    await this.update(queryId);
-    const raw = await this.fetch<DuneClaimedRow>(queryId);
+    // await this.update(queryId);
+    const raw = await this.fetch<DuneUserRow>(queryId, limit, offset);
 
     return raw.result.rows.reduce((acc, item) => {
-      acc[item.network] = item.total_comp_claimed;
-      return acc;
-    }, {} as DuneClaimed);
-  }
-
-  private rowToPeriod(
-    row: DuneSpeedPeriodRowV2 | DuneSpeedPeriodRowV3,
-  ): DuneCometSpeedPeriod {
-    return {
-      currBorrowSpeed: BigInt(row.curr_borrow_speed),
-      currSupplySpeed: BigInt(row.curr_supply_speed),
-      periodEndBlock: row.period_end_block,
-      periodEndTime: new Date(row.period_end_time),
-      periodStartBlock: row.period_start_block,
-      periodStartTime: new Date(row.period_start_time),
-      startingEventType: row.starting_event_type,
-      startingTxHash: row.starting_tx_hash,
-    };
-  }
-
-  public async fetchSpeedsPeriods(
-    version: CompoundVersion,
-  ): Promise<DuneCometsSpeedPeriods> {
-    const queryId = this.config.queries[version].periods;
-
-    await this.update(queryId);
-    const raw = await this.fetch<DuneSpeedPeriodRowV2 & DuneSpeedPeriodRowV3>(
-      queryId,
-    );
-    return raw.result.rows.reduce((acc, item) => {
-      const period = this.rowToPeriod(item);
+      const el = {
+        rewardsAddress: item.comet_rewards_addr,
+        cometAddress: item.comet_addr,
+        userAddress: item.account,
+      };
 
       if (!acc[item.network]) {
-        acc[item.network] = {};
+        acc[item.network] = [el];
+      } else {
+        acc[item.network]?.push(el);
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const byNetwork = acc[item.network]!;
-      const address =
-        version === CompoundVersion.V2 ? item.ctoken_addr : item.comet_addr;
-      if (!address)
-        throw new Error(`[${version}] fetchSpeedsPeriods => bad address`);
-
-      if (!byNetwork[address]) {
-        byNetwork[address] = [];
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const byComet = byNetwork[address]!;
-      byComet.push(period);
       return acc;
-    }, {} as DuneCometsSpeedPeriods);
+    }, {} as DuneUsers);
   }
 }

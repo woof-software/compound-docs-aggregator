@@ -12,15 +12,13 @@ export default registerAs(
     url: 'https://api.dune.com',
     queries: {
       [CompoundVersion.V3]: {
-        claims: 6318202,
-        periods: 6315504,
+        users: 6345188,
       },
       [CompoundVersion.V2]: {
-        claims: 6339225,
-        periods: 6338647,
+        users: 6318202,
       },
     },
-    pollAttempts: 10,
+    pollAttempts: 15,
     pollDelayMs: 10000,
     pollForState: 'QUERY_STATE_COMPLETED',
   }),

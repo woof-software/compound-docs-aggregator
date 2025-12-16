@@ -6,8 +6,7 @@ export interface DuneConfig {
   queries: Record<
     CompoundVersion,
     {
-      claims: number;
-      periods: number;
+      users: number;
     }
   >;
   pollAttempts: number;
@@ -40,10 +39,30 @@ export interface DuneResult<TRow> {
   };
 }
 
+export interface DuneUserRow {
+  network: string;
+  comet_rewards_addr: string;
+  comet_addr: string;
+  account: string;
+}
+
+/**
+ * network -> (comet, user) []
+ */
+export type DuneUsers = Record<
+  string,
+  {
+    rewardsAddress: string;
+    cometAddress: string;
+    userAddress: string;
+  }[]
+>;
+
 export interface DuneClaimedRow {
   network: string;
   total_comp_claimed: number;
 }
+
 /**
  * network -> rewards claimed
  */
