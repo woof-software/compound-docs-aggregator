@@ -10,6 +10,7 @@ import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
 import { ethers } from 'ethers';
 import { CompoundVersion } from 'common/types/compound-version';
+import { IndexerService } from '../indexer/indexer.service';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -21,6 +22,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
     private readonly jsonService: JsonService,
     private readonly markdownService: MarkdownService,
     private readonly dune: DuneService,
+    private readonly indexer: IndexerService,
     private readonly config: ConfigService,
   ) {
     super();
@@ -56,125 +58,66 @@ export class GenerateMarkdownCommand extends CommandRunner {
   }
 
   private async calcOwesV3(): Promise<Record<string, bigint>> {
+    this.logger.verbose(`[V3][owes] Start addresses indexing...`);
+    await this.indexer.runV3();
+    this.logger.verbose(`[V3][owes] Addresses indexing finished`);
+
     const owes = this.zeroOwes(CompoundVersion.V3);
 
-    const limit = 10_000;
-    let offset = 0;
-    let page = 0;
+    const BATCH = 1000;
+    const networks = Object.keys(owes);
 
-    this.logger.verbose(
-      `[V3][owes] Start calcOwesV3: limit=${limit}, initialOffset=${offset}`,
-    );
+    const results = await Promise.allSettled(
+      networks.map(async (network) => {
+        let offset = 0;
+        let totalSum = 0n;
+        let page = 0;
 
-    while (true) {
-      page += 1;
-      const pageStartedAt = Date.now();
+        while (true) {
+          page += 1;
 
-      this.logger.verbose(
-        `[V3][owes][page=${page}] Fetch users: offset=${offset}, limit=${limit}`,
-      );
-
-      const users = await this.dune.fetchUsers(
-        CompoundVersion.V3,
-        limit,
-        offset,
-      );
-
-      const perNetworkCounts = Object.fromEntries(
-        Object.entries(users).map(([network, arr]) => [network, arr.length]),
-      ) as Record<string, number>;
-
-      const total = Object.values(perNetworkCounts).reduce(
-        (acc, n) => acc + n,
-        0,
-      );
-
-      this.logger.verbose(
-        `[V3][owes][page=${page}] Users fetched: total=${total}, perNetwork=${JSON.stringify(
-          perNetworkCounts,
-        )}`,
-      );
-
-      if (total === 0) {
-        this.logger.verbose(
-          `[V3][owes][page=${page}] No users returned. Stop.`,
-        );
-        break;
-      }
-
-      const entries = Object.entries(users).filter(([, arr]) => arr.length > 0);
-
-      this.logger.verbose(
-        `[V3][owes][page=${page}] Start processing networks: ${entries
-          .map(([n, arr]) => `${n}(${arr.length})`)
-          .join(', ')}`,
-      );
-
-      const networkSums = await Promise.all(
-        entries.map(async ([network, userData]) => {
-          const startedAt = Date.now();
-          this.logger.verbose(
-            `[V3][owes][page=${page}][${network}] Start sumOwedForUsersV3: users=${userData.length}, chunkSize=1000`,
+          const batch = await this.indexer.fetchUsersForNetwork(
+            CompoundVersion.V3,
+            network,
+            BATCH,
+            offset,
           );
+
+          if (batch.length === 0) break;
 
           try {
             const sum = await this.contractService.sumOwedForUsersV3({
               network,
-              users: userData,
-              chunkSize: 1000,
+              users: batch,
+              chunkSize: BATCH, // => один multicall-батч
             });
 
-            const ms = Date.now() - startedAt;
-            this.logger.verbose(
-              `[V3][owes][page=${page}][${network}] Done sumOwedForUsersV3: sum=${sum.toString()} (raw), ms=${ms}`,
-            );
-
-            return [network, sum] as const;
+            totalSum += sum;
           } catch (err) {
-            const ms = Date.now() - startedAt;
             this.logger.error(
-              `[V3][owes][page=${page}][${network}] sumOwedForUsersV3 failed after ms=${ms}`,
+              `[V3][owes][${network}][page=${page}] sumOwedForUsersV3 failed`,
               err as any,
             );
-            // Do not fail entire page; treat as 0 for this network on this page
-            return [network, 0n] as const;
+            // Skip this page and continue (or break — как хочешь)
           }
-        }),
-      );
 
-      for (const [network, sum] of networkSums) {
-        const prev = owes[network] ?? 0n;
-        const next = prev + sum;
-        owes[network] = next;
+          offset += BATCH;
+          if (batch.length < BATCH) break;
+        }
 
-        this.logger.verbose(
-          `[V3][owes][page=${page}][${network}] Accumulate: prev=${prev.toString()} + add=${sum.toString()} => total=${next.toString()}`,
-        );
-      }
+        return [network, totalSum] as const;
+      }),
+    );
 
-      const pageMs = Date.now() - pageStartedAt;
-      this.logger.verbose(
-        `[V3][owes][page=${page}] Page done: ms=${pageMs}, nextOffset=${
-          offset + limit
-        }, stopIfTotalLessThanLimit=${total < limit}`,
-      );
-
-      offset += limit;
-      if (total < limit) {
-        this.logger.verbose(
-          `[V3][owes][page=${page}] total(${total}) < limit(${limit}). Stop.`,
-        );
-        break;
+    for (const r of results) {
+      if (r.status === 'fulfilled') {
+        const [network, sum] = r.value;
+        owes[network] = (owes[network] ?? 0n) + sum;
+      } else {
+        this.logger.error(`[V3][owes] Network task failed`, r.reason as any);
+        // keep owes[network] as 0n
       }
     }
-
-    this.logger.verbose(
-      `[V3][owes] Finished calcOwesV3. Result per network: ${JSON.stringify(
-        Object.fromEntries(
-          Object.entries(owes).map(([n, v]) => [n, v.toString()]),
-        ),
-      )}`,
-    );
 
     return owes;
   }

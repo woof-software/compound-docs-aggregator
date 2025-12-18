@@ -5,6 +5,7 @@ import { ContractModule } from 'contract/contract.module';
 import { JsonModule } from 'json/json.module';
 import { DuneModule } from 'dune/dune.module';
 import { NetworkModule } from 'network/network.module';
+import { IndexerModule } from 'indexer/indexer.module';
 import { MarkdownService } from './markdown.service';
 
 @Module({
@@ -14,6 +15,7 @@ import { MarkdownService } from './markdown.service';
     JsonModule,
     DuneModule,
     NetworkModule,
+    IndexerModule,
   ],
   providers: [MarkdownService, GenerateMarkdownCommand],
   exports: [MarkdownService],
