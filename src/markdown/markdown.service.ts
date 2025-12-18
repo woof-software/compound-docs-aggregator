@@ -180,6 +180,36 @@ export class MarkdownService {
         curveTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
         lines.push('');
 
+        // 2.5) Base Token Table
+        lines.push('**🪙 Base Token**');
+        lines.push('');
+        const baseTokenHeader = [
+          '#',
+          'Name',
+          'Symbol',
+          'Address',
+          'Decimals',
+          'Price Feed',
+        ];
+        const baseTokenRows: string[][] = [];
+        const baseToken = marketData.baseToken;
+        baseTokenRows.push([
+          '1',
+          baseToken.name,
+          baseToken.symbol,
+          baseToken.address,
+          baseToken.decimals.toString(),
+          baseToken.priceFeed,
+        ]);
+        const baseTokenTableMd = markdownTable(
+          [baseTokenHeader, ...baseTokenRows],
+          {
+            align: ['c', 'l', 'l', 'l', 'r', 'l'],
+          },
+        );
+        baseTokenTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
+        lines.push('');
+
         // 3) Collaterals Table
         lines.push('**💰 Collaterals**');
         lines.push('');

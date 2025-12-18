@@ -69,6 +69,17 @@ export class ContractService {
 
     const cometSymbol = await extensionDelegateContract.symbol();
 
+    const baseTokenAddress = await cometContract.baseToken();
+    const baseTokenPriceFeedAddress = await cometContract.baseTokenPriceFeed();
+    const baseTokenContract = new ethers.Contract(
+      baseTokenAddress,
+      ERC20ABI,
+      provider,
+    ) as any;
+    const baseTokenName = await baseTokenContract.name();
+    const baseTokenSymbol = await baseTokenContract.symbol();
+    const baseTokenDecimals = await baseTokenContract.decimals();
+
     const configuratorAddress = root.configurator;
     const configuratorContract = new ethers.Contract(
       configuratorAddress,
@@ -131,6 +142,13 @@ export class ContractService {
         timelock: timelockAddress,
       },
       curve: curveData,
+      baseToken: {
+        name: baseTokenName,
+        symbol: baseTokenSymbol,
+        address: baseTokenAddress,
+        decimals: Number(baseTokenDecimals),
+        priceFeed: baseTokenPriceFeedAddress,
+      },
       collaterals,
       rewardsTable,
     };
