@@ -3,6 +3,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CompoundVersion } from 'common/types/compound-version';
 import {
+  DuneActivities,
+  DuneActivity,
+  DuneActivityRowV3,
   DuneClaimed,
   DuneClaimedRow,
   DuneCometSpeedPeriod,
@@ -49,6 +52,8 @@ export class DuneService {
   }
 
   private async update(queryId: number | string): Promise<void> {
+    return; // FIXME
+
     const res = await fetch(
       `${this.config.url}/api/v1/query/${queryId}/execute`,
       {
@@ -171,5 +176,44 @@ export class DuneService {
       byComet.push(period);
       return acc;
     }, {} as DuneCometsSpeedPeriods);
+  }
+
+  public async fetchActivityPeriods(
+    version: CompoundVersion,
+  ): Promise<DuneActivities> {
+    if (version === CompoundVersion.V2) {
+      throw new Error('Not implemented for v2');
+    }
+    const queryId = this.config.queries[version].periods;
+
+    await this.update(queryId);
+    const raw = await this.fetch<DuneActivityRowV3>(queryId);
+    return raw.result.rows.reduce((acc, item) => {
+      const activity: DuneActivity = {
+        startTime: new Date(item.period_start_time),
+        endTime: new Date(item.period_end_time),
+        supplyActive: item.supply_active,
+        borrowActive: item.borrow_active,
+      };
+
+      if (!acc[item.network]) {
+        acc[item.network] = {};
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const byNetwork = acc[item.network]!;
+      const address = item.comet_addr;
+      if (!address)
+        throw new Error(`[${version}] fetchActivityPeriods => bad address`);
+
+      if (!byNetwork[address]) {
+        byNetwork[address] = [];
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const byComet = byNetwork[address]!;
+      byComet.push(activity);
+      return acc;
+    }, {} as DuneActivities);
   }
 }

@@ -9,12 +9,24 @@ import { JsonService } from 'json/json.service';
 import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
 import {
+  DuneActivities,
+  DuneActivity,
   DuneClaimed,
   DuneCometSpeedPeriod,
   DuneCometsSpeedPeriods,
 } from 'dune/dune.types';
 import { ethers } from 'ethers';
 import { CompoundVersion } from 'common/types/compound-version';
+
+interface ActivityPeriod {
+  startTime: Date;
+  endTime: Date;
+}
+
+interface AccrualPeriods {
+  supply: ActivityPeriod[];
+  borrow: ActivityPeriod[];
+}
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -37,16 +49,21 @@ export class GenerateMarkdownCommand extends CommandRunner {
       const claimedV3 = await this.dune.fetchRewardsClaimed(CompoundVersion.V3);
       await setTimeout(2000);
       const periodsV3 = await this.dune.fetchSpeedsPeriods(CompoundVersion.V3);
+      await setTimeout(2000);
+      const activitiesV3 = await this.dune.fetchActivityPeriods(
+        CompoundVersion.V3,
+      );
 
       const totalOwesV3 = this.calcTotalOwes(
         claimedV3,
         periodsV3,
+        activitiesV3,
         CompoundVersion.V3,
       );
       this.jsonService.writeOwes(totalOwesV3, CompoundVersion.V3);
       this.logger.log('Generating of totalOwesV3 completed.');
       ////
-      this.logger.log('Generating total owes V2...');
+      /*this.logger.log('Generating total owes V2...');
       const claimedV2 = await this.dune.fetchRewardsClaimed(CompoundVersion.V2);
       await setTimeout(2000);
       const periodsV2 = await this.dune.fetchSpeedsPeriods(CompoundVersion.V2);
@@ -57,7 +74,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
         CompoundVersion.V2,
       );
       this.jsonService.writeOwes(totalOwesV2, CompoundVersion.V2);
-      this.logger.log('Generating of totalOwesV2 completed.');
+      this.logger.log('Generating of totalOwesV2 completed.');*/
       ////
 
       this.logger.log('Starting to generate markdown...');
@@ -135,14 +152,34 @@ export class GenerateMarkdownCommand extends CommandRunner {
     }, 0n);
   }
 
-  private calcRewardsV3(periodsV3: DuneCometSpeedPeriod[]): bigint {
+  private calcRewardsV3(
+    periodsV3: DuneCometSpeedPeriod[],
+    activities: DuneActivity[],
+  ): bigint {
+    const durationSec = (from: Date, to: Date): bigint =>
+      BigInt(from.getTime() - to.getTime()) / 1000n;
     return periodsV3.reduce((sum, item) => {
-      const durationSec =
-        BigInt(item.periodEndTime.getTime() - item.periodStartTime.getTime()) /
-        1000n;
+      const innerActivities = this.getAccrualPeriodsInRange(
+        activities,
+        item.periodStartTime,
+        item.periodEndTime,
+      );
 
-      const supplyRewards = item.currSupplySpeed * durationSec;
-      const borrowRewards = item.currBorrowSpeed * durationSec;
+      const supplyRewards = innerActivities.supply.reduce(
+        (supply, activity) => {
+          const duration = durationSec(activity.startTime, activity.endTime);
+          return supply + item.currSupplySpeed * duration;
+        },
+        0n,
+      );
+
+      const borrowRewards = innerActivities.supply.reduce(
+        (borrow, activity) => {
+          const duration = durationSec(activity.startTime, activity.endTime);
+          return borrow + item.currBorrowSpeed * duration;
+        },
+        0n,
+      );
 
       return sum + supplyRewards + borrowRewards;
     }, 0n);
@@ -151,6 +188,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
   /**
    * @param claimed
    * @param periods
+   * @param activities
    * @param version - means compound 3 or compound 2
    * @returns record: network -> total owe
    * @private
@@ -158,18 +196,37 @@ export class GenerateMarkdownCommand extends CommandRunner {
   private calcTotalOwes(
     claimed: DuneClaimed,
     periods: DuneCometsSpeedPeriods,
+    activities: DuneActivities,
     version: CompoundVersion,
   ): Record<string, number> {
     return Object.entries(claimed).reduce((acc, [network, claimed]) => {
       const networkPeriods = periods[network];
       if (!networkPeriods) {
-        this.logger.warn(`[${version}] Skip network ${network}: no dune data`);
+        this.logger.warn(
+          `[${version}] Skip network ${network}: no dune data -> networkPeriods`,
+        );
+        return acc;
+      }
+
+      const networkActivities = activities[network];
+      if (!networkActivities) {
+        this.logger.warn(
+          `[${version}] Skip network ${network}: no dune data -> networkActivities`,
+        );
         return acc;
       }
 
       type CometRewards = Record<string, bigint>;
       const cometsRewards = Object.entries(networkPeriods).reduce(
         (acc, [comet, periods]) => {
+          const cometActivities = networkActivities[comet];
+          if (!cometActivities) {
+            this.logger.warn(
+              `[${version}] Skip comet ${comet}: no dune data -> cometActivities`,
+            );
+            return acc;
+          }
+
           if (!acc[comet]) {
             acc[comet] = 0n;
           }
@@ -177,7 +234,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
           acc[comet]! +=
             version === CompoundVersion.V2
               ? this.calcRewardsV2(periods)
-              : this.calcRewardsV3(periods);
+              : this.calcRewardsV3(periods, cometActivities);
 
           return acc;
         },
@@ -195,5 +252,71 @@ export class GenerateMarkdownCommand extends CommandRunner {
       acc[network] = rewards - claimed;
       return acc;
     }, {} as Record<string, number>);
+  }
+
+  private getAccrualPeriodsInRange(
+    activities: readonly DuneActivity[],
+    startDate: Date,
+    endDate: Date,
+  ): AccrualPeriods {
+    const rangeStart = startDate.getTime();
+    const rangeEnd = endDate.getTime();
+
+    if (Number.isNaN(rangeStart) || Number.isNaN(rangeEnd)) {
+      throw new Error(`getAccrualPeriodsInRange: invalid startDate/endDate`);
+    }
+    if (rangeStart >= rangeEnd) {
+      return { supply: [], borrow: [] };
+    }
+
+    const supplyRaw: Array<[number, number]> = [];
+    const borrowRaw: Array<[number, number]> = [];
+
+    for (const a of activities) {
+      const s = a.startTime.getTime();
+      const e = a.endTime.getTime();
+      if (Number.isNaN(s) || Number.isNaN(e) || s >= e) continue;
+
+      // intersection with [rangeStart, rangeEnd)
+      const is = Math.max(s, rangeStart);
+      const ie = Math.min(e, rangeEnd);
+      if (is >= ie) continue;
+
+      if (a.supplyActive) supplyRaw.push([is, ie]);
+      if (a.borrowActive) borrowRaw.push([is, ie]);
+    }
+
+    return {
+      supply: this.mergePeriods(supplyRaw),
+      borrow: this.mergePeriods(borrowRaw),
+    };
+  }
+
+  private mergePeriods(raw: Array<[number, number]>): ActivityPeriod[] {
+    if (raw.length === 0) return [];
+
+    raw.sort((a, b) => a[0] - b[0]);
+
+    const merged: Array<[number, number]> = [];
+    let [cs, ce] = raw[0]!;
+
+    for (let i = 1; i < raw.length; i++) {
+      const [ns, ne] = raw[i]!;
+
+      // merge if overlap OR touch: ns <= ce
+      if (ns <= ce) {
+        if (ne > ce) ce = ne;
+      } else {
+        merged.push([cs, ce]);
+        cs = ns;
+        ce = ne;
+      }
+    }
+    merged.push([cs, ce]);
+
+    return merged.map(([s, e]) => ({
+      startTime: new Date(s),
+      endTime: new Date(e),
+    }));
   }
 }

@@ -14,10 +14,12 @@ export default registerAs(
       [CompoundVersion.V3]: {
         claims: 6318202,
         periods: 6315504,
+        activity: 6369859,
       },
       [CompoundVersion.V2]: {
         claims: 6339225,
         periods: 6338647,
+        activity: 6369859,
       },
     },
     pollAttempts: 10,

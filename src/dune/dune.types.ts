@@ -8,6 +8,7 @@ export interface DuneConfig {
     {
       claims: number;
       periods: number;
+      activity: number;
     }
   >;
   pollAttempts: number;
@@ -90,3 +91,22 @@ export type DuneCometsSpeedPeriods = Record<
   string,
   Record<string, DuneCometSpeedPeriod[]>
 >;
+
+export interface DuneActivityRowV3 {
+  network: string;
+  comet_addr: string;
+  period_start_time: string;
+  period_end_time: string;
+  supply_active: boolean;
+  borrow_active: boolean;
+}
+export interface DuneActivity {
+  startTime: Date;
+  endTime: Date;
+  supplyActive: boolean;
+  borrowActive: boolean;
+}
+/**
+ * network -> comet -> activities
+ */
+export type DuneActivities = Record<string, Record<string, DuneActivity[]>>;
