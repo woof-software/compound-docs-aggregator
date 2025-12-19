@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import { join } from 'path';
 
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
@@ -11,6 +12,7 @@ import { MarkdownService } from './markdown.service';
 import { ethers } from 'ethers';
 import { CompoundVersion } from 'common/types/compound-version';
 import { IndexerService } from '../indexer/indexer.service';
+import { CompoundFinanceConfig } from 'config/compound-finance.config';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -55,6 +57,26 @@ export class GenerateMarkdownCommand extends CommandRunner {
 
       return acc;
     }, {} as Record<string, number>);
+  }
+
+  private async compoundV3PR(): Promise<void> {
+    try {
+      const pr = await this.githubService.createCompoundV3PR();
+      if (pr) {
+        this.logger.log(
+          `PR created successfully: #${pr.prNumber} - ${pr.prUrl}`,
+        );
+      } else {
+        this.logger.log('No changes detected, PR not created');
+      }
+
+      return;
+    } catch (error) {
+      this.logger.error(
+        'Failed to create PR in docs repository:',
+        error instanceof Error ? error.message : String(error),
+      );
+    }
   }
 
   private async calcOwesV3(): Promise<Record<string, bigint>> {
@@ -190,7 +212,8 @@ export class GenerateMarkdownCommand extends CommandRunner {
       this.markdownService.updateCompound3Deployments(nestedMarketsData);
       this.logger.log(`compound-3.md deployments section updated`);
 
-      this.logger.log('Generating of markdown completed.');
+      await this.compoundV3PR();
+      this.logger.log('All operations completed successfully.');
 
       return;
     } catch (error) {

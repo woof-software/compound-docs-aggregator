@@ -348,7 +348,7 @@ export class MarkdownService {
    */
   updateCompound3Deployments(nestedMarkets: NestedMarkets): void {
     const { directory, filename, sectionStartMarker, sectionEndMarker } =
-      this.compoundFinance.compoundV3;
+      this.compoundFinance.markdown;
     const compound3Path = join(process.cwd(), directory, filename);
 
     if (!existsSync(compound3Path)) {

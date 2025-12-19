@@ -27,6 +27,7 @@ jobs:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
           UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN_PAT: ${{ secrets.GITHUB_TOKEN_PAT }}
         run: yarn cli:generate
 
       - name: Commit & Push changes

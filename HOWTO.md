@@ -16,7 +16,23 @@ Create a `.env` file in the project root with the following variables:
 # provider keys for blockchain networks
 ANKR_KEY=your_ankr_api_key_here
 UNICHAIN_QUICKNODE_KEY=your_unichain_api_key_here
+
+# GitHub Tokens
+# GITHUB_TOKEN - automatically available in GitHub Actions (for commits to this repo)
+# GITHUB_TOKEN_PAT - Personal Access Token with 'repo' scope (for PRs in compound-finance.github.io)
+GITHUB_TOKEN_PAT=your_personal_access_token_here
 ```
+
+### GitHub Tokens Setup
+
+**GITHUB_TOKEN** - automatically provided, no setup needed (used for commits to this repository).
+
+**GITHUB_TOKEN_PAT** - required for creating PRs in `compound-finance.github.io`:
+1. Create PAT: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Select scope: `repo`
+3. Add as secret: Repository → Settings → Secrets → Actions → `GITHUB_TOKEN_PAT`
+
+If `GITHUB_TOKEN_PAT` is not set, PR creation will be skipped (local commits still work).
 
 ## Generate Documentation
 
