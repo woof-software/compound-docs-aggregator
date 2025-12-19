@@ -58,10 +58,6 @@ export class GenerateMarkdownCommand extends CommandRunner {
   }
 
   private async calcOwesV3(): Promise<Record<string, bigint>> {
-    this.logger.verbose(`[V3][owes] Start addresses indexing...`);
-    await this.indexer.runV3();
-    this.logger.verbose(`[V3][owes] Addresses indexing finished`);
-
     const owes = this.zeroOwes(CompoundVersion.V3);
 
     const BATCH = 1000;
@@ -124,6 +120,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
 
   async run() {
     try {
+      await this.indexer.run();
       ////
       this.logger.log('Generating total owes V3...');
 

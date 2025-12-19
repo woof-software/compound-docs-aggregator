@@ -22,8 +22,9 @@ function buildRegexList(): RegExp[] {
   if (raw) return [new RegExp(raw, 'i')];
 
   return [
-    /skipping network=mainnet chainId=1/i,
-    /*/\bERROR\b/i,
+    /skipping network/i,
+    /*/skipping network=mainnet chainId=1/i,
+    /\bERROR\b/i,
     /\[Nest\].*\bERROR\b/i,
     /UnhandledPromiseRejection/i,
     /FATAL/i,
@@ -135,7 +136,7 @@ async function main(): Promise<void> {
   const pm =
     (process.env.FULL_SYNC_PM as 'pnpm' | 'yarn' | 'npm' | undefined) ??
     pickPackageManager();
-  const maxRestarts = Number(process.env.FULL_SYNC_MAX_RESTARTS ?? 50);
+  const maxRestarts = Number(process.env.FULL_SYNC_MAX_RESTARTS ?? 5000);
   const delayMs = Number(process.env.FULL_SYNC_RESTART_DELAY_MS ?? 2000);
 
   let restarts = 0;
