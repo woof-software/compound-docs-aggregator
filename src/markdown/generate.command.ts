@@ -187,7 +187,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
       this.logger.log(`README.md updated with hierarchical market data`);
 
       // Update compound-3.md deployments section
-      this.markdownService.updateCompound3Deployments();
+      this.markdownService.updateCompound3Deployments(nestedMarketsData);
       this.logger.log(`compound-3.md deployments section updated`);
 
       this.logger.log('Generating of markdown completed.');

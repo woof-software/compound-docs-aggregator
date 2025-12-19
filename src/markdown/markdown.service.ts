@@ -1,12 +1,26 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
+import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import {
+  getNetworkSortOrder,
+  getBlockscanOrigin,
+  getNetworkShortName,
+  getNetworkDisplayName,
+} from './helpers';
 
 @Injectable()
 export class MarkdownService {
   private readonly logger = new Logger(MarkdownService.name);
+
+  constructor(private readonly config: ConfigService) {}
+
+  private get compoundFinance(): CompoundFinanceConfig {
+    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  }
 
   write(nestedMarkets: NestedMarkets, jsonPath: string): void {
     const lines: string[] = [];
@@ -328,62 +342,56 @@ export class MarkdownService {
   }
 
   /**
-   * Updates the deployments section in compound-3.md file using data from output.json
-   * This method replaces lines 16-567 with newly generated deployment data
+   * Updates the deployments section in compound-3.md file using data from nestedMarkets
+   * This method replaces the deployments section with newly generated deployment data
    */
-  updateCompound3Deployments(): void {
-    const compound3Path = join(
-      process.cwd(),
-      'compound-finance',
-      'compound-3.md',
-    );
-    const outputJsonPath = join(process.cwd(), 'output.json');
+  updateCompound3Deployments(nestedMarkets: NestedMarkets): void {
+    const { directory, filename, sectionStartMarker, sectionEndMarker } =
+      this.compoundFinance.compoundV3;
+    const compound3Path = join(process.cwd(), directory, filename);
 
-    // Check if files exist
     if (!existsSync(compound3Path)) {
       this.logger.error(`File not found: ${compound3Path}`);
       throw new Error(`File not found: ${compound3Path}`);
     }
 
-    if (!existsSync(outputJsonPath)) {
-      this.logger.error(`File not found: ${outputJsonPath}`);
-      throw new Error(`File not found: ${outputJsonPath}`);
-    }
-
-    // Read existing compound-3.md file
     const fileContent = readFileSync(compound3Path, 'utf-8');
     const lines = fileContent.split('\n');
-
-    // Read output.json
-    const outputJsonContent = readFileSync(outputJsonPath, 'utf-8');
-    const nestedMarkets: NestedMarkets = JSON.parse(outputJsonContent);
-
-    // Generate deployments section
     const deploymentsSection = this.generateDeploymentsSection(nestedMarkets);
 
-    // Find the start of deployments section (should be line 15, index 14)
-    const deploymentsStartIndex = 14; // Line 15 (0-indexed: 14)
+    let deploymentsStartIndex = -1;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line && line.trim().startsWith(sectionStartMarker)) {
+        deploymentsStartIndex = i;
+        break;
+      }
+    }
 
-    // Find the end of deployments section by looking for the next '---' marker
+    if (deploymentsStartIndex === -1) {
+      this.logger.error(
+        `Could not find "${sectionStartMarker}" line in ${filename}`,
+      );
+      throw new Error(
+        `Could not find "${sectionStartMarker}" line in ${filename}`,
+      );
+    }
+
     let deploymentsEndIndex = lines.length;
     for (let i = deploymentsStartIndex + 1; i < lines.length; i++) {
       const line = lines[i];
-      if (line && line.trim() === '---') {
+      if (line && line.trim() === sectionEndMarker) {
         deploymentsEndIndex = i;
         break;
       }
     }
 
-    // Replace deployments section (lines 16 to end of deployments)
-    const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n'); // Lines 1-15 (including 'deployments:')
-    const afterSection = lines.slice(deploymentsEndIndex).join('\n'); // Everything after '---'
-
-    // Combine all parts
+    const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n');
+    const afterSection = lines.slice(deploymentsEndIndex).join('\n');
     const updatedContent = `${beforeSection}\n${deploymentsSection}\n${afterSection}`;
 
-    // Write back to file
     writeFileSync(compound3Path, updatedContent, 'utf-8');
-    this.logger.log('compound-3.md deployments section successfully updated');
+    this.logger.log(`${filename} deployments section successfully updated`);
   }
 
   /**
@@ -391,12 +399,11 @@ export class MarkdownService {
    */
   private generateDeploymentsSection(nestedMarkets: NestedMarkets): string {
     const deployments: string[] = [];
-    // Note: 'deployments:' header is already in the file (line 15), so we don't add it here
+    // Note: 'deployments:' header is already in the file, so we don't add it here
 
-    // Sort networks and markets for consistent output
     const networkEntries = Object.entries(nestedMarkets.markets).sort(
       ([a], [b]) =>
-        this.getNetworkSortOrder(a).localeCompare(this.getNetworkSortOrder(b)),
+        getNetworkSortOrder(a).localeCompare(getNetworkSortOrder(b)),
     );
 
     for (const [networkName, networkMarkets] of networkEntries) {
@@ -404,30 +411,26 @@ export class MarkdownService {
         a.localeCompare(b),
       );
 
-      // Check if network has both USDC.e and USDC markets (for determining native suffix)
+      // Check if network has USDC.e market (for determining native suffix)
       const hasUSDCE = marketEntries.some(
         ([name]) => name.toLowerCase() === 'cusdcev3',
       );
-      const hasUSDC = marketEntries.some(
-        ([name]) => name.toLowerCase() === 'cusdcv3',
-      );
 
       for (const [marketName, marketData] of marketEntries) {
-        const suffix = this.getMarketSuffix(marketName, hasUSDCE, hasUSDC);
+        const suffix = this.getMarketSuffix(marketName, hasUSDCE);
         const deploymentKey = this.getDeploymentKey(
           networkName,
           marketName,
           suffix,
         );
         const tabText = this.getTabText(networkName, marketName);
-        const blockscanOrigin = this.getBlockscanOrigin(networkName);
+        const blockscanOrigin = getBlockscanOrigin(networkName);
 
-        deployments.push(`  ${deploymentKey}: ## this becomes the header text`);
+        deployments.push(`  ${deploymentKey}:`);
         deployments.push(`    tab_text: ${tabText}`);
         deployments.push(`    blockscan_origin: '${blockscanOrigin}'`);
         deployments.push(`    contracts:`);
 
-        // Add contracts
         const contracts = this.formatContracts(
           marketData.contracts,
           marketData.collaterals,
@@ -453,11 +456,8 @@ export class MarkdownService {
     marketName: string,
   ): Record<string, string> {
     const formatted: Record<string, string> = {};
-
-    // Get comet contract name from market name
     const cometContractName = this.getCometContractName(marketName);
 
-    // Map main contracts
     const contractMappings: Record<string, string> = {
       comet: cometContractName,
       cometImplementation: `${cometContractName} Implementation`,
@@ -472,7 +472,6 @@ export class MarkdownService {
       timelock: 'Timelock',
     };
 
-    // Add optional contracts
     const optionalContracts: Record<string, string> = {
       bridgeReceiver: 'Bridge Receiver',
       faucet: 'Faucet',
@@ -481,14 +480,12 @@ export class MarkdownService {
       marketAdminUpdateProposer: 'Market Admin Update Proposer',
     };
 
-    // Add main contracts
     for (const [key, displayName] of Object.entries(contractMappings)) {
       if (contracts[key]) {
         formatted[displayName] = contracts[key];
       }
     }
 
-    // Add optional contracts
     for (const [key, displayName] of Object.entries(optionalContracts)) {
       if (contracts[key]) {
         formatted[displayName] = contracts[key];
@@ -507,8 +504,6 @@ export class MarkdownService {
    * Gets the comet contract name based on the market name
    */
   private getCometContractName(marketName: string): string {
-    // Market names are like: cUSDCv3, cWETHv3, cUSDCev3, cUSDbCv3, cAEROv3, cUSDev3, cwstETHv3
-    // Return as-is, but handle special cases
     const normalized = marketName.trim();
     const lowerNormalized = normalized.toLowerCase();
 
@@ -517,8 +512,6 @@ export class MarkdownService {
       return 'cUSDCv3';
     }
 
-    // All other market names are used as-is (preserving case)
-    // Examples: cWETHv3, cUSDTv3, cUSDSv3, cUSDbCv3, cAEROv3, cUSDev3, cwstETHv3
     return normalized;
   }
 
@@ -530,31 +523,9 @@ export class MarkdownService {
     marketName: string,
     suffix: string,
   ): string {
-    const networkDisplay = this.getNetworkDisplayName(networkName);
+    const networkDisplay = getNetworkDisplayName(networkName);
     const marketDisplay = this.getMarketDisplayName(marketName);
     return `${networkDisplay} - ${marketDisplay} Base${suffix}`;
-  }
-
-  /**
-   * Gets network display name for deployment key
-   */
-  private getNetworkDisplayName(networkName: string): string {
-    const networkMap: Record<string, string> = {
-      mainnet: 'Ethereum Mainnet',
-      sepolia: 'Ethereum Sepolia Testnet',
-      polygon: 'Polygon Mainnet',
-      arbitrum: 'Arbitrum',
-      base: 'Base',
-      optimism: 'Optimism',
-      scroll: 'Scroll',
-      mantle: 'Mantle',
-      mumbai: 'Polygon Mumbai Testnet',
-      'base-sepolia': 'Base Sepolia',
-    };
-
-    return (
-      networkMap[networkName.toLowerCase()] || this.capitalizeFirst(networkName)
-    );
   }
 
   /**
@@ -563,7 +534,6 @@ export class MarkdownService {
   private getMarketDisplayName(marketName: string): string {
     const lowerMarket = marketName.toLowerCase();
 
-    // Handle special cases first
     if (lowerMarket === 'cusdcev3' || lowerMarket === 'cusdc.ev3') {
       return 'USDC.e';
     }
@@ -585,36 +555,19 @@ export class MarkdownService {
     }
 
     // For standard markets: remove 'c' prefix and 'v3' suffix, then uppercase
-    const display = marketName
-      .replace(/^c/i, '')
-      .replace(/v3$/i, '')
-      .toUpperCase();
-
-    // Handle standard cases
-    if (display === 'USDC') return 'USDC';
-    if (display === 'USDT') return 'USDT';
-    if (display === 'WETH') return 'WETH';
-    if (display === 'USDS') return 'USDS';
-
-    return display;
+    return marketName.replace(/^c/i, '').replace(/v3$/i, '').toUpperCase();
   }
 
   /**
    * Gets market suffix (e.g., " (Bridged)", " (Native)")
    */
-  private getMarketSuffix(
-    marketName: string,
-    hasUSDCE: boolean,
-    hasUSDC: boolean,
-  ): string {
+  private getMarketSuffix(marketName: string, hasUSDCE: boolean): string {
     const lowerMarket = marketName.toLowerCase();
 
-    // USDC.e markets are bridged
     if (lowerMarket === 'cusdcev3' || lowerMarket.includes('usdce')) {
       return ' (Bridged)';
     }
 
-    // USDbC markets are bridged
     if (lowerMarket.includes('usdbc') || lowerMarket === 'cusdbcbcv3') {
       return ' (Bridged)';
     }
@@ -631,85 +584,8 @@ export class MarkdownService {
    * Generates tab text from network and market names
    */
   private getTabText(networkName: string, marketName: string): string {
-    const networkShort = this.getNetworkShortName(networkName);
-    const marketShort = this.getMarketShortName(marketName);
+    const networkShort = getNetworkShortName(networkName);
+    const marketShort = this.getMarketDisplayName(marketName);
     return `${networkShort} ${marketShort}`;
-  }
-
-  /**
-   * Gets short network name for tab text
-   */
-  private getNetworkShortName(networkName: string): string {
-    const shortMap: Record<string, string> = {
-      mainnet: 'Mainnet',
-      sepolia: 'Sepolia',
-      polygon: 'Polygon',
-      arbitrum: 'Arbitrum',
-      base: 'Base',
-      optimism: 'Optimism',
-      scroll: 'Scroll',
-      mantle: 'Mantle',
-      mumbai: 'Mumbai',
-      'base-sepolia': 'Base Sepolia',
-    };
-
-    return (
-      shortMap[networkName.toLowerCase()] || this.capitalizeFirst(networkName)
-    );
-  }
-
-  /**
-   * Gets short market name for tab text (same as display name)
-   */
-  private getMarketShortName(marketName: string): string {
-    // Tab text uses the same format as display name
-    return this.getMarketDisplayName(marketName);
-  }
-
-  /**
-   * Gets blockscan origin URL for a network
-   */
-  private getBlockscanOrigin(networkName: string): string {
-    const blockscanMap: Record<string, string> = {
-      mainnet: 'https://etherscan.io/',
-      sepolia: 'https://sepolia.etherscan.io/',
-      polygon: 'https://polygonscan.com/',
-      mumbai: 'https://mumbai.polygonscan.com/',
-      arbitrum: 'https://arbiscan.io/',
-      base: 'https://basescan.org/',
-      'base-sepolia': 'https://sepolia.basescan.org/',
-      optimism: 'https://optimistic.etherscan.io/',
-      scroll: 'https://scrollscan.com/',
-      mantle: 'https://mantlescan.xyz/',
-    };
-
-    return blockscanMap[networkName.toLowerCase()] || 'https://etherscan.io/';
-  }
-
-  /**
-   * Gets network sort order for consistent ordering
-   */
-  private getNetworkSortOrder(networkName: string): string {
-    const orderMap: Record<string, string> = {
-      mainnet: '01',
-      sepolia: '02',
-      polygon: '03',
-      mumbai: '04',
-      arbitrum: '05',
-      base: '06',
-      'base-sepolia': '07',
-      optimism: '08',
-      scroll: '09',
-      mantle: '10',
-    };
-
-    return orderMap[networkName.toLowerCase()] || '99' + networkName;
-  }
-
-  /**
-   * Capitalizes first letter of a string
-   */
-  private capitalizeFirst(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 }
