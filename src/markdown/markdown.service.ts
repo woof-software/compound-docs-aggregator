@@ -11,6 +11,7 @@ import {
   getNetworkShortName,
   getNetworkDisplayName,
 } from './helpers';
+import { STATIC_DEPLOYMENTS } from './constants';
 
 @Injectable()
 export class MarkdownService {
@@ -441,6 +442,21 @@ export class MarkdownService {
         )) {
           deployments.push(`      ${contractName}: '${contractAddress}'`);
         }
+      }
+    }
+
+    // Add static deployments for unsupported networks
+    for (const staticDeployment of STATIC_DEPLOYMENTS) {
+      deployments.push(`  ${staticDeployment.deploymentKey}:`);
+      deployments.push(`    tab_text: ${staticDeployment.tabText}`);
+      deployments.push(
+        `    blockscan_origin: '${staticDeployment.blockscanOrigin}'`,
+      );
+      deployments.push(`    contracts:`);
+      for (const [contractName, contractAddress] of Object.entries(
+        staticDeployment.contracts,
+      )) {
+        deployments.push(`      ${contractName}: '${contractAddress}'`);
       }
     }
 

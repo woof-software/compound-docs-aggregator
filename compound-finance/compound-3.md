@@ -13,7 +13,7 @@ sidebar_nav_data:
   security: Security
 
 deployments:
-  Ethereum Mainnet - USDC Base: ## this becomes the header text
+  Ethereum Mainnet - USDC Base:
     tab_text: Mainnet USDC
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -40,7 +40,7 @@ deployments:
       deUSD: '0x15700B564Ca08D9439C58cA5053166E8317aa138'
       sdeUSD: '0x5C5b196aBE0d54485975D1Ec29617D42D9198326'
       rsETH: '0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7'
-  Ethereum Mainnet - USDS Base: ## this becomes the header text
+  Ethereum Mainnet - USDS Base:
     tab_text: Mainnet USDS
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -65,7 +65,7 @@ deployments:
       SKY: '0x56072C95FAA701256059aa122697B133aDEd9279'
       deUSD: '0x15700B564Ca08D9439C58cA5053166E8317aa138'
       sdeUSD: '0x5C5b196aBE0d54485975D1Ec29617D42D9198326'
-  Ethereum Mainnet - USDT Base: ## this becomes the header text
+  Ethereum Mainnet - USDT Base:
     tab_text: Mainnet USDT
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -94,7 +94,7 @@ deployments:
       weETH: '0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee'
       sdeUSD: '0x5C5b196aBE0d54485975D1Ec29617D42D9198326'
       deUSD: '0x15700B564Ca08D9439C58cA5053166E8317aa138'
-  Ethereum Mainnet - WBTC Base: ## this becomes the header text
+  Ethereum Mainnet - WBTC Base:
     tab_text: Mainnet WBTC
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -113,7 +113,7 @@ deployments:
       pumpBTC: '0xF469fBD2abcd6B9de8E169d128226C0Fc90a012e'
       USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
       USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-  Ethereum Mainnet - WETH Base: ## this becomes the header text
+  Ethereum Mainnet - WETH Base:
     tab_text: Mainnet WETH
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -145,7 +145,7 @@ deployments:
       wOETH: '0xDcEe70654261AF21C44c093C300eD3Bb97b78192'
       USDC: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
       USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-  Ethereum Mainnet - wstETH Base: ## this becomes the header text
+  Ethereum Mainnet - wstETH Base:
     tab_text: Mainnet wstETH
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -167,7 +167,7 @@ deployments:
       USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
       WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
       weETH: '0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee'
-  Polygon Mainnet - USDC Base: ## this becomes the header text
+  Polygon Mainnet - USDC Base:
     tab_text: Polygon USDC
     blockscan_origin: 'https://polygonscan.com/'
     contracts:
@@ -187,7 +187,7 @@ deployments:
       WPOL: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
       MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
       stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
-  Polygon Mainnet - USDT Base: ## this becomes the header text
+  Polygon Mainnet - USDT Base:
     tab_text: Polygon USDT
     blockscan_origin: 'https://polygonscan.com/'
     contracts:
@@ -207,7 +207,7 @@ deployments:
       MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
       stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
       WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6'
-  Arbitrum - USDC.e Base (Bridged): ## this becomes the header text
+  Arbitrum - USDC.e Base (Bridged):
     tab_text: Arbitrum USDC.e
     blockscan_origin: 'https://arbiscan.io/'
     contracts:
@@ -226,7 +226,7 @@ deployments:
       GMX: '0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a'
       WETH: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1'
       WBTC: '0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f'
-  Arbitrum - USDC Base (Native): ## this becomes the header text
+  Arbitrum - USDC Base (Native):
     tab_text: Arbitrum USDC
     blockscan_origin: 'https://arbiscan.io/'
     contracts:
@@ -250,7 +250,7 @@ deployments:
       wUSDM: '0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812'
       tETH: '0xd09ACb80C1E8f2291862c4978A008791c9167003'
       tBTC: '0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40'
-  Arbitrum - USDT Base: ## this becomes the header text
+  Arbitrum - USDT Base:
     tab_text: Arbitrum USDT
     blockscan_origin: 'https://arbiscan.io/'
     contracts:
@@ -272,7 +272,7 @@ deployments:
       GMX: '0xfc5A1A6EB076a2C7aD06eD22C90d7E710E35ad0a'
       tBTC: '0x6c84a8f1c29108F47a79964b5Fe888D4f4D0dE40'
       tETH: '0xd09ACb80C1E8f2291862c4978A008791c9167003'
-  Arbitrum - WETH Base: ## this becomes the header text
+  Arbitrum - WETH Base:
     tab_text: Arbitrum WETH
     blockscan_origin: 'https://arbiscan.io/'
     contracts:
@@ -296,7 +296,7 @@ deployments:
       USDC: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831'
       ezETH: '0x2416092f143378750bb29b79eD961ab195CcEea5'
       tETH: '0xd09ACb80C1E8f2291862c4978A008791c9167003'
-  Base - AERO Base: ## this becomes the header text
+  Base - AERO Base:
     tab_text: Base AERO
     blockscan_origin: 'https://basescan.org/'
     contracts:
@@ -315,7 +315,7 @@ deployments:
       USDC: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
       wstETH: '0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452'
       cbBTC: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf'
-  Base - USDbC Base (Bridged): ## this becomes the header text
+  Base - USDbC Base (Bridged):
     tab_text: Base USDbC
     blockscan_origin: 'https://basescan.org/'
     contracts:
@@ -332,7 +332,7 @@ deployments:
       Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
       cbETH: '0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22'
       WETH: '0x4200000000000000000000000000000000000006'
-  Base - USDC Base: ## this becomes the header text
+  Base - USDC Base:
     tab_text: Base USDC
     blockscan_origin: 'https://basescan.org/'
     contracts:
@@ -352,7 +352,7 @@ deployments:
       wstETH: '0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452'
       cbBTC: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf'
       tBTC: '0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b'
-  Base - USDS Base: ## this becomes the header text
+  Base - USDS Base:
     tab_text: Base USDS
     blockscan_origin: 'https://basescan.org/'
     contracts:
@@ -369,7 +369,7 @@ deployments:
       Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
       sUSDS: '0x5875eEE11Cf8398102FdAd704C9E96607675467a'
       cbBTC: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf'
-  Base - WETH Base: ## this becomes the header text
+  Base - WETH Base:
     tab_text: Base WETH
     blockscan_origin: 'https://basescan.org/'
     contracts:
@@ -392,7 +392,7 @@ deployments:
       wrsETH: '0xEDfa23602D0EC14714057867A78d01e94176BEA0'
       cbBTC: '0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf'
       wsuperOETHb: '0x7FcD174E80f264448ebeE8c88a7C4476AAF58Ea6'
-  Optimism - USDC Base: ## this becomes the header text
+  Optimism - USDC Base:
     tab_text: Optimism USDC
     blockscan_origin: 'https://optimistic.etherscan.io/'
     contracts:
@@ -412,7 +412,7 @@ deployments:
       WBTC: '0x68f180fcCe6836688e9084f035309E29Bf0A2095'
       wstETH: '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
       wUSDM: '0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812'
-  Optimism - USDT Base: ## this becomes the header text
+  Optimism - USDT Base:
     tab_text: Optimism USDT
     blockscan_origin: 'https://optimistic.etherscan.io/'
     contracts:
@@ -432,7 +432,7 @@ deployments:
       WBTC: '0x68f180fcCe6836688e9084f035309E29Bf0A2095'
       wstETH: '0x1F32b1c2345538c0c6f582fCB022739c4A194Ebb'
       wUSDM: '0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812'
-  Optimism - WETH Base: ## this becomes the header text
+  Optimism - WETH Base:
     tab_text: Optimism WETH
     blockscan_origin: 'https://optimistic.etherscan.io/'
     contracts:
@@ -455,7 +455,7 @@ deployments:
       ezETH: '0x2416092f143378750bb29b79eD961ab195CcEea5'
       weETH: '0x5A7fACB970D094B6C7FF1df0eA68D99E6e73CBFF'
       wrsETH: '0x87eEE96D50Fb761AD85B1c982d28A042169d61b1'
-  Scroll - USDC Base: ## this becomes the header text
+  Scroll - USDC Base:
     tab_text: Scroll USDC
     blockscan_origin: 'https://scrollscan.com/'
     contracts:
@@ -472,7 +472,7 @@ deployments:
       Timelock: '0xF6013e80E9e6AC211Cc031ad1CE98B3Aa20b73E4'
       WETH: '0x5300000000000000000000000000000000000004'
       wstETH: '0xf610A9dfB7C89644979b4A0f27063E9e7d7Cda32'
-  Mantle - USDe Base: ## this becomes the header text
+  Mantle - USDe Base:
     tab_text: Mantle USDe
     blockscan_origin: 'https://mantlescan.xyz/'
     contracts:
@@ -490,7 +490,7 @@ deployments:
       mETH: '0xcDA86A272531e8640cD7F1a92c01839911B90bb0'
       WETH: '0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111'
       FBTC: '0xC96dE26018A54D51c097160568752c4E3BD6C364'
-  Linea - USDC Base: ## this becomes the header text
+  Linea - USDC Base:
     tab_text: Linea USDC
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -508,7 +508,7 @@ deployments:
       WETH: '0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f'
       wstETH: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
       WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
-  Linea - WETH Base: ## this becomes the header text
+  Linea - WETH Base:
     tab_text: Linea WETH
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -528,7 +528,7 @@ deployments:
       WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
       weETH: '0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6'
       wrsETH: '0xD2671165570f41BBB3B0097893300b6EB6101E6C'
-  Ronin - WETH Base: ## this becomes the header text
+  Ronin - WETH Base:
     tab_text: Ronin WETH
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -546,7 +546,7 @@ deployments:
       WRON: '0xe514d9DEB7966c8BE0ca922de8a064264eA6bcd4'
       USDC: '0x0B7007c13325C48911F73A2daD5FA5dCBf808aDc'
       AXS: '0x97a9107C1793BC407d6F527b77e7fff4D812bece'
-  Ronin - WRON Base: ## this becomes the header text
+  Ronin - WRON Base:
     tab_text: Ronin WRON
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -564,7 +564,7 @@ deployments:
       USDC: '0x0B7007c13325C48911F73A2daD5FA5dCBf808aDc'
       AXS: '0x97a9107C1793BC407d6F527b77e7fff4D812bece'
       WETH: '0xc99a6A985eD2Cac1ef41640596C5A5f9F4E19Ef5'
-  Unichain - USDC Base: ## this becomes the header text
+  Unichain - USDC Base:
     tab_text: Unichain USDC
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -581,7 +581,7 @@ deployments:
       Timelock: '0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0'
       UNI: '0x8f187aA05619a017077f5308904739877ce9eA21'
       WETH: '0x4200000000000000000000000000000000000006'
-  Unichain - WETH Base: ## this becomes the header text
+  Unichain - WETH Base:
     tab_text: Unichain WETH
     blockscan_origin: 'https://etherscan.io/'
     contracts:
@@ -602,6 +602,103 @@ deployments:
       UNI: '0x8f187aA05619a017077f5308904739877ce9eA21'
       WBTC: '0x927B51f251480a681271180DA4de28D44EC4AfB8'
       rsETH: '0xc3eACf0612346366Db554C991D7858716db09f58'
+  Ethereum Sepolia Testnet - USDC Base:
+    tab_text: Sepolia USDC
+    blockscan_origin: 'https://sepolia.etherscan.io/'
+    contracts:
+      cUSDCv3: '0xAec1F48e02Cfb822Be958B68C7957156EB3F0b6e'
+      cUSDCv3 Implementation: '0xE3E0106227181958aBfbA960C13d0Fe52c733265'
+      cUSDCv3 Ext: '0xdCbDb7306c6Ff46f77B349188dC18cEd9DF30299'
+      Configurator: '0xc28aD44975C614EaBe0Ed090207314549e1c6624'
+      Configurator Implementation: '0x2b03014AeEe8DD46de4464da41e7dF9BD154cd66'
+      Proxy Admin: '0x9e9fA093aa60db36c4E8a01EBf4718095b6e37f0'
+      Comet Factory: '0x91663d91795049C3D4afC85A7d0AdB15238750aa'
+      Rewards: '0x8bF5b658bdF0388E8b482ED51B14aef58f90abfD'
+      Bulker: '0x157c001bb1F8b33743B14483Be111C961d8e11dE'
+      Faucet: '0x68793eA49297eB75DFB4610B68e076D2A5c7646C'
+      USDC: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'
+      COMP: '0xA6c8D1c55951e8AC44a0EaA959Be5Fd21cc07531'
+      WBTC: '0xa035b9e130F2B1AedC733eEFb1C67Ba4c503491F'
+      WETH: '0x2D5ee574e710219a521449679A4A7f2B43f046ad'
+  Ethereum Sepolia Testnet - WETH Base:
+    tab_text: Sepolia WETH
+    blockscan_origin: 'https://sepolia.etherscan.io/'
+    contracts:
+      cWETHv3: '0x2943ac1216979aD8dB76D9147F64E61adc126e96'
+      cWETHv3 Implementation: '0x149F2D15f3822C0C935a9c99ddfb804611586cAc'
+      cWETHv3 Ext: '0xD0b7551E480c101fa9cf3fe0887cCBe59f16216B'
+      Configurator: '0xc28aD44975C614EaBe0Ed090207314549e1c6624'
+      Configurator Implementation: '0x2b03014AeEe8DD46de4464da41e7dF9BD154cd66'
+      Proxy Admin: '0x9e9fA093aa60db36c4E8a01EBf4718095b6e37f0'
+      Comet Factory: '0x91663d91795049C3D4afC85A7d0AdB15238750aa'
+      Rewards: '0x8bF5b658bdF0388E8b482ED51B14aef58f90abfD'
+      Bulker: '0xaD0C044425D81a2E223f4CE699156900fead2Aaa'
+      Faucet: '0x68793eA49297eB75DFB4610B68e076D2A5c7646C'
+      cbETH: '0xb9fa8F5eC3Da13B508F462243Ad0555B46E028df'
+      COMP: '0xA6c8D1c55951e8AC44a0EaA959Be5Fd21cc07531'
+      stETH: '0x3e3FE7dBc6B4C189E7128855dD526361c49b40Af'
+      wstETH: '0xB82381A3fBD3FaFA77B3a7bE693342618240067b'
+      WETH: '0x2D5ee574e710219a521449679A4A7f2B43f046ad'
+  Polygon Mumbai Testnet - USDC Base:
+    tab_text: Mumbai USDC
+    blockscan_origin: 'https://mumbai.polygonscan.com/'
+    contracts:
+      cUSDCv3: '0xF09F0369aB0a875254fB565E52226c88f10Bc839'
+      cUSDCv3 Implementation: '0x6Cd33556D458aC78Cc17b55Eb75B17d23E4deE57'
+      cUSDCv3 Ext: '0x1c3080d7fd5c97A58E0F2EA19e9Eec4745dC4BDe'
+      Configurator: '0x64550801B8bf3BF4D8792d46D8903F82e2EC95A9'
+      Configurator Implementation: '0xA5615c22c3Ab520A77b29F3d32C2831156dFbE7B'
+      Proxy Admin: '0xfE14E3BdCADDe7ccD3c8EeE3CcC11e3FC8184E47'
+      Comet Factory: '0x9F7Ac7A36902414Dd4D280E79C5B10162882F0Ba'
+      Timelock: '0x90b1f90Ed6477d5Ee1Ff14Bef670266DaE9eEb92'
+      Bridge Receiver: '0xe195d2cBf7f20E40Cf701a9fA3F01fE89bA5a1da'
+      Rewards: '0x0785f2AC0dCBEDEE4b8D62c25A34098E9A0dF4bB'
+      Bulker: '0x990D086E52B132f5b4f769829612F756a4a20bb8'
+      Faucet: '0x1Cea3a83BA17692cEa8DB37D72446f014480F3bE'
+      DAI: '0x4DAFE12E1293D889221B1980672FE260Ac9dDd28'
+      USDC: '0xDB3cB4f2688daAB3BFf59C24cC42D4B6285828e9'
+      WETH: '0xE1e67212B1A4BF629Bdf828e08A3745307537ccE'
+      WBTC: '0x4B5A0F4E00bC0d6F16A593Cae27338972614E713'
+      WMATIC: '0xfec23a9E1DBA805ADCF55E0338Bf5E03488FC7Fb'
+  Base Sepolia - USDC Base:
+    tab_text: Base Sepolia USDC
+    blockscan_origin: 'https://sepolia.basescan.org/'
+    contracts:
+      cUSDCv3: '0x571621Ce60Cebb0c1D442B5afb38B1663C6Bf017'
+      cUSDCv3 Implementation: '0xe85D00f657F78c799ec4E9CAFd951ce5891bAde8'
+      cUSDCv3 Ext: '0x7F8dB47259a6b4461C53eBD230C9161B01B7160E'
+      Configurator: '0x090a2b1fc84d0b5141d5D5608b12Db19201aE5a6'
+      Configurator Implementation: '0x62a8ddF40c1fd8B76Cb643fB967912783deBfd79'
+      Proxy Admin: '0x45f6ceDa8ba0e6c9E998ee932e39da40B4e3D438'
+      Comet Factory: '0xBA7Ef8536998e22503530E59416717c7D3fEbCA9'
+      Timelock: '0xb2A7676bA3A258E710c7092B5E763d6f037c1d02'
+      Bridge Receiver: '0x80c116493DB619560e3380D0fF195e749D8857D7'
+      Rewards: '0x3394fa1baCC0b47dd0fF28C8573a476a161aF7BC'
+      Bulker: '0x7D25b2AecF07B5CB87B05e17Aa5cecbA8BCfDBD1'
+      Faucet: '0xD76cB57d8B097B80a6eE4D1b4d5ef872bfBa6051'
+      USDC: '0x036CbD53842c5426634e7929541eC2318f3dCF7e'
+      cbETH: '0x774eD9EDB0C5202dF9A86183804b5D9E99dC6CA3'
+      COMP: '0x2f535da74048c0874400f0371Fba20DF983A56e2'
+      WETH: '0x4200000000000000000000000000000000000006'
+  Base Sepolia - WETH Base:
+    tab_text: Base Sepolia WETH
+    blockscan_origin: 'https://sepolia.basescan.org/'
+    contracts:
+      cWETHv3: '0x61490650AbaA31393464C3f34E8B29cd1C44118E'
+      cWETHv3 Implementation: '0xa78f909c0F0dA420e15A1cFa3Be578dB5AE5799E'
+      cWETHv3 Ext: '0xe28860fBB866751b0c0CB07ce1BA54F467b19B03'
+      Configurator: '0x090a2b1fc84d0b5141d5D5608b12Db19201aE5a6'
+      Configurator Implementation: '0x62a8ddF40c1fd8B76Cb643fB967912783deBfd79'
+      Proxy Admin: '0x45f6ceDa8ba0e6c9E998ee932e39da40B4e3D438'
+      Comet Factory: '0xBA7Ef8536998e22503530E59416717c7D3fEbCA9'
+      Timelock: '0xb2A7676bA3A258E710c7092B5E763d6f037c1d02'
+      Bridge Receiver: '0x80c116493DB619560e3380D0fF195e749D8857D7'
+      Rewards: '0x3394fa1baCC0b47dd0fF28C8573a476a161aF7BC'
+      Bulker: '0x7D25b2AecF07B5CB87B05e17Aa5cecbA8BCfDBD1'
+      Faucet: '0xD76cB57d8B097B80a6eE4D1b4d5ef872bfBa6051'
+      cbETH: '0x774eD9EDB0C5202dF9A86183804b5D9E99dC6CA3'
+      COMP: '0x2f535da74048c0874400f0371Fba20DF983A56e2'
+      WETH: '0x4200000000000000000000000000000000000006'
 ---
 
 # Compound III
