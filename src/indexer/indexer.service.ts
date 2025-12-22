@@ -30,8 +30,8 @@ export class IndexerService {
   private readonly sqlite: SqliteApi;
 
   // Tuning knobs
-  private readonly maxParallelNetworks = 3;
-  private readonly blockStep = 5_000;
+  private readonly maxParallelNetworks = 2;
+  private readonly blockStep = 1_000;
   private readonly addressBatchSize = 30;
 
   private readonly rewardsV3ByNetwork: Map<string, string | null>;
@@ -81,7 +81,9 @@ export class IndexerService {
    */
   public async run(): Promise<void> {
     const targets = this.networks.filter((n) => {
-      const enabled = Boolean(n.comptrollerV2 || n.configuratorV3);
+      const enabled = Boolean(
+        n.indexingEnabled && (n.comptrollerV2 || n.configuratorV3),
+      );
       if (!enabled) {
         this.logger.warn(`Skipping (no V2/V3 addresses): ${n.network}`);
       }

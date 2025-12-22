@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { GenerateMarkdownCommand } from './generate.command';
 import { GithubModule } from 'github/github.module';
 import { ContractModule } from 'contract/contract.module';
 import { JsonModule } from 'json/json.module';
@@ -7,6 +6,8 @@ import { DuneModule } from 'dune/dune.module';
 import { NetworkModule } from 'network/network.module';
 import { IndexerModule } from 'indexer/indexer.module';
 import { MarkdownService } from './markdown.service';
+import { GenerateMarkdownCommand } from './generate-markdown.command';
+import { GenerateOwesCommand } from './generate-owes.command';
 
 @Module({
   imports: [
@@ -17,7 +18,7 @@ import { MarkdownService } from './markdown.service';
     NetworkModule,
     IndexerModule,
   ],
-  providers: [MarkdownService, GenerateMarkdownCommand],
+  providers: [MarkdownService, GenerateMarkdownCommand, GenerateOwesCommand],
   exports: [MarkdownService],
 })
-export class MarkdownModule {}
+export class GenerationModule {}

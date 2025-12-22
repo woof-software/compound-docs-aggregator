@@ -1,14 +1,13 @@
 import { Logger } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
-import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
+import { RewardsService } from 'contract/rewards.service';
 import { JsonService } from 'json/json.service';
 import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
-import { ethers } from 'ethers';
 import { CompoundVersion } from 'common/types/compound-version';
 import { IndexerService } from '../indexer/indexer.service';
 
@@ -23,42 +22,13 @@ export class GenerateMarkdownCommand extends CommandRunner {
     private readonly markdownService: MarkdownService,
     private readonly dune: DuneService,
     private readonly indexer: IndexerService,
-    private readonly config: ConfigService,
+    private readonly owedService: RewardsService,
   ) {
     super();
   }
 
-  private get networksList() {
-    return this.config.getOrThrow<
-      {
-        network: string;
-        url: string;
-      }[]
-    >('networks');
-  }
-
-  private zeroOwes(version: CompoundVersion): Record<string, bigint> {
-    return version === CompoundVersion.V2
-      ? ({ mainnet: 0n } as Record<string, bigint>)
-      : this.networksList.reduce((acc, item) => {
-          if (!acc[item.network]) {
-            acc[item.network] = 0n;
-          }
-
-          return acc;
-        }, {} as Record<string, bigint>);
-  }
-
-  private formatOwes(owes: Record<string, bigint>): Record<string, number> {
-    return Object.entries(owes).reduce((acc, [key, value]) => {
-      acc[key] = Number(ethers.formatUnits(value, 18));
-
-      return acc;
-    }, {} as Record<string, number>);
-  }
-
   private async calcOwesV3(): Promise<Record<string, bigint>> {
-    const owes = this.zeroOwes(CompoundVersion.V3);
+    const owes = this.owedService.zeroOwes(CompoundVersion.V3);
 
     const BATCH = 1000;
     const networks = Object.keys(owes);
@@ -72,6 +42,8 @@ export class GenerateMarkdownCommand extends CommandRunner {
         while (true) {
           page += 1;
 
+          this.logger.verbose(`[${network}] page -> ${page}`);
+
           const batch = await this.indexer.fetchUsersForNetwork(
             CompoundVersion.V3,
             network,
@@ -82,7 +54,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
           if (batch.length === 0) break;
 
           try {
-            const sum = await this.contractService.sumOwedForUsersV3({
+            const sum = await this.owedService.sumOwedForUsersV3({
               network,
               users: batch,
               chunkSize: BATCH, // => один multicall-батч
@@ -127,7 +99,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
       const v3Results = await this.calcOwesV3();
 
       this.jsonService.writeOwes(
-        this.formatOwes(v3Results),
+        this.owedService.formatOwes(v3Results),
         CompoundVersion.V3,
       );
       this.logger.log('Generating of totalOwesV3 completed.');

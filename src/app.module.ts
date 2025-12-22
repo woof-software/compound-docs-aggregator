@@ -6,7 +6,7 @@ import duneConfig from 'config/dune.config';
 import { GithubModule } from 'github/github.module';
 import { NetworkModule } from 'network/network.module';
 import { ContractModule } from 'contract/contract.module';
-import { MarkdownModule } from 'markdown/markdown.module';
+import { GenerationModule } from 'generation/generation.module';
 import { JsonModule } from 'json/json.module';
 
 @Module({
@@ -19,7 +19,7 @@ import { JsonModule } from 'json/json.module';
     NetworkModule,
     ContractModule,
     JsonModule,
-    MarkdownModule,
+    GenerationModule,
   ],
 })
 export class AppModule {}

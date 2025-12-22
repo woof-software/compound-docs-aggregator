@@ -23,7 +23,16 @@ export class JsonService {
       version === CompoundVersion.V2
         ? this.rootPathOwesV2
         : this.rootPathOwesV3;
-    writeFileSync(path, JSON.stringify(owes, null, 2));
+
+    const sorted = Object.fromEntries(
+      Object.entries(owes).sort(([keyA, valA], [keyB, valB]) => {
+        const byValue = valA - valB;
+        if (byValue !== 0) return byValue;
+        return keyA.localeCompare(keyB); // secondary: name/key
+      }),
+    ) as Record<string, number>;
+
+    writeFileSync(path, JSON.stringify(sorted, null, 2));
     return path;
   }
 

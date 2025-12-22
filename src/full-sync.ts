@@ -22,9 +22,10 @@ function buildRegexList(): RegExp[] {
   if (raw) return [new RegExp(raw, 'i')];
 
   return [
-    /skipping network/i,
-    /*/skipping network=mainnet chainId=1/i,
-    /\bERROR\b/i,
+    ///skipping network/i,
+    /skipping network=mainnet chainId=1/i,
+    /Error: read ECONNRESET/i,
+    /*/\bERROR\b/i,
     /\[Nest\].*\bERROR\b/i,
     /UnhandledPromiseRejection/i,
     /FATAL/i,
