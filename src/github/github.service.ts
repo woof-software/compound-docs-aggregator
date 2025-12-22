@@ -2,7 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios, { AxiosInstance } from 'axios';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
-import { join } from 'path';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
 
 interface CacheEntry {
@@ -38,25 +37,16 @@ export class GithubService {
 
     this.docsApi = axios.create({
       baseURL: this.baseURL,
-      headers: this.patTokenCompoundFinance
-        ? { Authorization: `token ${this.patTokenCompoundFinance}` }
+      headers: this.compoundFinance.githubTokenPat
+        ? { Authorization: `token ${this.compoundFinance.githubTokenPat}` }
         : undefined,
     });
   }
 
-  private get repoCompFinance() {
-    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance')
-      .repository;
-  }
-
-  private get patTokenCompoundFinance() {
-    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance')
-      .githubTokenPat;
-  }
-
-  private get compoundFinanceConfig(): CompoundFinanceConfig {
+  private get compoundFinance() {
     return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
   }
+
   /**
    * Gets list of all roots.json files with caching
    */
@@ -233,7 +223,8 @@ export class GithubService {
 
   async readDocsRepoFile(): Promise<string | null> {
     try {
-      const { owner, repo, defaultBranch, filePath } = this.repoCompFinance;
+      const { owner, repo, defaultBranch, filePath } =
+        this.compoundFinance.repository;
       const url = `/repos/${owner}/${repo}/contents/${filePath}?ref=${defaultBranch}`;
       const response = await this.docsApi.get(url);
 
@@ -244,9 +235,8 @@ export class GithubService {
       return null;
     } catch (err: any) {
       if (err.response?.status === 404) {
-        this.logger.warn(
-          `File not found in docs repo: ${this.repoCompFinance.filePath}`,
-        );
+        const filePath = this.compoundFinance.repository.filePath;
+        this.logger.warn(`File not found in docs repo: ${filePath}`);
         return null;
       }
       const errorMessage = err instanceof Error ? err.message : String(err);
@@ -282,7 +272,7 @@ export class GithubService {
 
   async createBranch(branchName: string): Promise<void> {
     try {
-      const { owner, repo, defaultBranch } = this.repoCompFinance;
+      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
 
       const refResponse = await this.docsApi.get(
         `/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`,
@@ -313,7 +303,7 @@ export class GithubService {
     commitMessage: string,
   ): Promise<void> {
     try {
-      const { owner, repo, defaultBranch } = this.repoCompFinance;
+      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
 
       let currentSha: string | null = null;
       try {
@@ -357,7 +347,7 @@ export class GithubService {
     body: string,
   ): Promise<{ prNumber: number; prUrl: string } | null> {
     try {
-      const { owner, repo, defaultBranch } = this.repoCompFinance;
+      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
 
       const existingPRs = await this.docsApi.get(
         `/repos/${owner}/${repo}/pulls?head=${owner}:${branchName}&state=open`,
@@ -402,17 +392,10 @@ export class GithubService {
     }
   }
 
-  async createCompoundV3PR(): Promise<{
+  async createCompoundV3PR(localFilePath: string): Promise<{
     prNumber: number;
     prUrl: string;
   } | null> {
-    const { markdown } = this.compoundFinanceConfig;
-    const localFilePath = join(
-      process.cwd(),
-      markdown.directory,
-      markdown.filename,
-    );
-
     const { hasChanges, localContent } = await this.hasChangesInCompound3Md(
       localFilePath,
     );
@@ -424,7 +407,7 @@ export class GithubService {
       return null;
     }
 
-    const { filePath } = this.repoCompFinance;
+    const { filePath } = this.compoundFinance.repository;
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const branchName = `update-compound-3-${timestamp}`;
 
