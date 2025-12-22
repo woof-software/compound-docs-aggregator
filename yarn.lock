@@ -923,6 +923,13 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
+"@types/better-sqlite3@^7.6.13":
+  version "7.6.13"
+  resolved "https://registry.yarnpkg.com/@types/better-sqlite3/-/better-sqlite3-7.6.13.tgz#a72387f00d2f53cab699e63f2e2c05453cf953f0"
+  integrity sha512-NMv9ASNARoKksWtsq/SHakpYAYnhBrQgGD8zkLYk/jaK8jUGn08CfEdTRgYhMypUQAfzSP8W6gNLe0q19/t4VA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/body-parser@*":
   version "1.19.5"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.19.5.tgz#04ce9a3b677dc8bd681a17da1ab9835dc9d3ede4"
@@ -1568,13 +1575,13 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@^1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.9.0.tgz#25534e3b72b54540077d33046f77e3b8d7081901"
-  integrity sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==
+axios@1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.12.0.tgz#11248459be05a5ee493485628fa0e4323d0abfc3"
+  integrity sha512-oXTDccv8PcfjZmPGlWsPSwtOJCZ/b6W5jAMCNcfwJbCzDckwG0jrYJFaWH1yvivfCXjVzV/SPDEhMB3Q+DSurg==
   dependencies:
     follow-redirects "^1.15.6"
-    form-data "^4.0.0"
+    form-data "^4.0.4"
     proxy-from-env "^1.1.0"
 
 babel-jest@^29.7.0:
@@ -2847,6 +2854,17 @@ form-data@^4.0.0:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
     es-set-tostringtag "^2.1.0"
+    mime-types "^2.1.12"
+
+form-data@^4.0.4:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.5.tgz#b49e48858045ff4cbf6b03e1805cebcad3679053"
+  integrity sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    es-set-tostringtag "^2.1.0"
+    hasown "^2.0.2"
     mime-types "^2.1.12"
 
 formidable@^2.1.2:

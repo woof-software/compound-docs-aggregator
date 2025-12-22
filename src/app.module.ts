@@ -4,23 +4,24 @@ import networksConfig from 'config/networks.config';
 import duneConfig from 'config/dune.config';
 import compoundFinanceConfig from 'config/compound-finance.config';
 
+import indexerConfig from 'config/indexer.config';
 import { GithubModule } from 'github/github.module';
 import { NetworkModule } from 'network/network.module';
 import { ContractModule } from 'contract/contract.module';
-import { MarkdownModule } from 'markdown/markdown.module';
+import { GenerationModule } from 'generation/generation.module';
 import { JsonModule } from 'json/json.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [networksConfig, duneConfig, compoundFinanceConfig],
+      load: [networksConfig, duneConfig, compoundFinanceConfig, indexerConfig],
     }),
     GithubModule,
     NetworkModule,
     ContractModule,
     JsonModule,
-    MarkdownModule,
+    GenerationModule,
   ],
 })
 export class AppModule {}
