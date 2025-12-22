@@ -167,46 +167,6 @@ deployments:
       USDT: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
       WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
       weETH: '0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee'
-  Polygon Mainnet - USDC Base:
-    tab_text: Polygon USDC
-    blockscan_origin: 'https://polygonscan.com/'
-    contracts:
-      cUSDCv3: '0xF25212E676D1F7F89Cd72fFEe66158f541246445'
-      cUSDCv3 Implementation: '0xA265E611Cf0ccB49ca9B58c2e1e8aa9B922504e6'
-      cUSDCv3 Ext: '0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d'
-      Configurator: '0x83E0F742cAcBE66349E3701B171eE2487a26e738'
-      Configurator Implementation: '0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf'
-      Proxy Admin: '0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9'
-      Comet Factory: '0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B'
-      Rewards: '0x45939657d1CA34A8FA39A924B71D28Fe8431e581'
-      Bulker: '0x59e242D352ae13166B4987aE5c990C232f7f7CD6'
-      Governor: '0x18281dfC4d00905DA1aaA6731414EABa843c468A'
-      Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
-      WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
-      WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6'
-      WPOL: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
-      MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
-      stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
-  Polygon Mainnet - USDT Base:
-    tab_text: Polygon USDT
-    blockscan_origin: 'https://polygonscan.com/'
-    contracts:
-      cUSDTv3: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
-      cUSDTv3 Implementation: '0x83aBacAFaF625D84919cA769222579bC75AeA2D1'
-      cUSDTv3 Ext: '0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0'
-      Configurator: '0x83E0F742cAcBE66349E3701B171eE2487a26e738'
-      Configurator Implementation: '0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf'
-      Proxy Admin: '0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9'
-      Comet Factory: '0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B'
-      Rewards: '0x45939657d1CA34A8FA39A924B71D28Fe8431e581'
-      Bulker: '0x59e242D352ae13166B4987aE5c990C232f7f7CD6'
-      Governor: '0x18281dfC4d00905DA1aaA6731414EABa843c468A'
-      Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
-      WPOL: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
-      WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
-      MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
-      stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
-      WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6'
   Arbitrum - USDC.e Base (Bridged):
     tab_text: Arbitrum USDC.e
     blockscan_origin: 'https://arbiscan.io/'
@@ -455,6 +415,46 @@ deployments:
       ezETH: '0x2416092f143378750bb29b79eD961ab195CcEea5'
       weETH: '0x5A7fACB970D094B6C7FF1df0eA68D99E6e73CBFF'
       wrsETH: '0x87eEE96D50Fb761AD85B1c982d28A042169d61b1'
+  Polygon Mainnet - USDC Base:
+    tab_text: Polygon USDC
+    blockscan_origin: 'https://polygonscan.com/'
+    contracts:
+      cUSDCv3: '0xF25212E676D1F7F89Cd72fFEe66158f541246445'
+      cUSDCv3 Implementation: '0xA265E611Cf0ccB49ca9B58c2e1e8aa9B922504e6'
+      cUSDCv3 Ext: '0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d'
+      Configurator: '0x83E0F742cAcBE66349E3701B171eE2487a26e738'
+      Configurator Implementation: '0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf'
+      Proxy Admin: '0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9'
+      Comet Factory: '0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B'
+      Rewards: '0x45939657d1CA34A8FA39A924B71D28Fe8431e581'
+      Bulker: '0x59e242D352ae13166B4987aE5c990C232f7f7CD6'
+      Governor: '0x18281dfC4d00905DA1aaA6731414EABa843c468A'
+      Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
+      WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
+      WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6'
+      WPOL: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
+      MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
+      stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
+  Polygon Mainnet - USDT Base:
+    tab_text: Polygon USDT
+    blockscan_origin: 'https://polygonscan.com/'
+    contracts:
+      cUSDTv3: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
+      cUSDTv3 Implementation: '0x83aBacAFaF625D84919cA769222579bC75AeA2D1'
+      cUSDTv3 Ext: '0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0'
+      Configurator: '0x83E0F742cAcBE66349E3701B171eE2487a26e738'
+      Configurator Implementation: '0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf'
+      Proxy Admin: '0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9'
+      Comet Factory: '0x2F9E3953b2Ef89fA265f2a32ed9F80D00229125B'
+      Rewards: '0x45939657d1CA34A8FA39A924B71D28Fe8431e581'
+      Bulker: '0x59e242D352ae13166B4987aE5c990C232f7f7CD6'
+      Governor: '0x18281dfC4d00905DA1aaA6731414EABa843c468A'
+      Timelock: '0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02'
+      WPOL: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270'
+      WETH: '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619'
+      MaticX: '0xfa68FB4628DFF1028CFEc22b4162FCcd0d45efb6'
+      stMATIC: '0x3A58a54C066FdC0f2D55FC9C89F0415C92eBf3C4'
+      WBTC: '0x1BFD67037B42Cf73acF2047067bd4F2C47D9BfD6'
   Scroll - USDC Base:
     tab_text: Scroll USDC
     blockscan_origin: 'https://scrollscan.com/'
@@ -472,6 +472,44 @@ deployments:
       Timelock: '0xF6013e80E9e6AC211Cc031ad1CE98B3Aa20b73E4'
       WETH: '0x5300000000000000000000000000000000000004'
       wstETH: '0xf610A9dfB7C89644979b4A0f27063E9e7d7Cda32'
+  Linea - USDC Base:
+    tab_text: Linea USDC
+    blockscan_origin: 'https://lineascan.build/'
+    contracts:
+      cUSDCv3: '0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991'
+      cUSDCv3 Implementation: '0x7e0Df525427874522FB5b711d5F347fac187Af4b'
+      cUSDCv3 Ext: '0x841e380e3a98E4EE8912046d69731F4E21eFb1D7'
+      Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
+      Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
+      Proxy Admin: '0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118'
+      Comet Factory: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
+      Rewards: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921'
+      Bulker: '0x023ee795361B28cDbB94e302983578486A0A5f1B'
+      Governor: '0x1F71901daf98d70B4BAF40DE080321e5C2676856'
+      Timelock: '0x4A900f81dEdA753bbBab12453b3775D5f26df6F3'
+      WETH: '0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f'
+      wstETH: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
+      WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
+  Linea - WETH Base:
+    tab_text: Linea WETH
+    blockscan_origin: 'https://lineascan.build/'
+    contracts:
+      cWETHv3: '0x60F2058379716A64a7A5d29219397e79bC552194'
+      cWETHv3 Implementation: '0x972B1B7032aa93bF449A899fbF31bb30735a671A'
+      cWETHv3 Ext: '0xc8E4c3F58d5FC4409522503927Ecea057EbbA1fc'
+      Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
+      Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
+      Proxy Admin: '0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118'
+      Comet Factory: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
+      Rewards: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921'
+      Bulker: '0x023ee795361B28cDbB94e302983578486A0A5f1B'
+      Governor: '0x1F71901daf98d70B4BAF40DE080321e5C2676856'
+      Timelock: '0x4A900f81dEdA753bbBab12453b3775D5f26df6F3'
+      ezETH: '0x2416092f143378750bb29b79eD961ab195CcEea5'
+      wstETH: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
+      WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
+      weETH: '0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6'
+      wrsETH: '0xD2671165570f41BBB3B0097893300b6EB6101E6C'
   Mantle - USDe Base:
     tab_text: Mantle USDe
     blockscan_origin: 'https://mantlescan.xyz/'
@@ -490,47 +528,9 @@ deployments:
       mETH: '0xcDA86A272531e8640cD7F1a92c01839911B90bb0'
       WETH: '0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111'
       FBTC: '0xC96dE26018A54D51c097160568752c4E3BD6C364'
-  Linea - USDC Base:
-    tab_text: Linea USDC
-    blockscan_origin: 'https://etherscan.io/'
-    contracts:
-      cUSDCv3: '0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991'
-      cUSDCv3 Implementation: '0x7e0Df525427874522FB5b711d5F347fac187Af4b'
-      cUSDCv3 Ext: '0x841e380e3a98E4EE8912046d69731F4E21eFb1D7'
-      Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
-      Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
-      Proxy Admin: '0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118'
-      Comet Factory: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
-      Rewards: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921'
-      Bulker: '0x023ee795361B28cDbB94e302983578486A0A5f1B'
-      Governor: '0x1F71901daf98d70B4BAF40DE080321e5C2676856'
-      Timelock: '0x4A900f81dEdA753bbBab12453b3775D5f26df6F3'
-      WETH: '0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f'
-      wstETH: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
-      WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
-  Linea - WETH Base:
-    tab_text: Linea WETH
-    blockscan_origin: 'https://etherscan.io/'
-    contracts:
-      cWETHv3: '0x60F2058379716A64a7A5d29219397e79bC552194'
-      cWETHv3 Implementation: '0x972B1B7032aa93bF449A899fbF31bb30735a671A'
-      cWETHv3 Ext: '0xc8E4c3F58d5FC4409522503927Ecea057EbbA1fc'
-      Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
-      Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
-      Proxy Admin: '0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118'
-      Comet Factory: '0xaeB318360f27748Acb200CE616E389A6C9409a07'
-      Rewards: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921'
-      Bulker: '0x023ee795361B28cDbB94e302983578486A0A5f1B'
-      Governor: '0x1F71901daf98d70B4BAF40DE080321e5C2676856'
-      Timelock: '0x4A900f81dEdA753bbBab12453b3775D5f26df6F3'
-      ezETH: '0x2416092f143378750bb29b79eD961ab195CcEea5'
-      wstETH: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
-      WBTC: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
-      weETH: '0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6'
-      wrsETH: '0xD2671165570f41BBB3B0097893300b6EB6101E6C'
   Ronin - WETH Base:
     tab_text: Ronin WETH
-    blockscan_origin: 'https://etherscan.io/'
+    blockscan_origin: 'https://app.roninchain.com/'
     contracts:
       cWETHv3: '0x4006eD4097Ee51c09A04c3B0951D28CCf19e6DFE'
       cWETHv3 Implementation: '0xA4c9Fa67b1b3e268683AFa51ae90c4e67F9C89a3'
@@ -548,7 +548,7 @@ deployments:
       AXS: '0x97a9107C1793BC407d6F527b77e7fff4D812bece'
   Ronin - WRON Base:
     tab_text: Ronin WRON
-    blockscan_origin: 'https://etherscan.io/'
+    blockscan_origin: 'https://app.roninchain.com/'
     contracts:
       cWRONv3: '0xc0Afdbd1cEB621Ef576BA969ce9D4ceF78Dbc0c0'
       cWRONv3 Implementation: '0x4Bf84F33aFFd74d9857fbc997402313E700d1e99'
@@ -566,7 +566,7 @@ deployments:
       WETH: '0xc99a6A985eD2Cac1ef41640596C5A5f9F4E19Ef5'
   Unichain - USDC Base:
     tab_text: Unichain USDC
-    blockscan_origin: 'https://etherscan.io/'
+    blockscan_origin: 'https://uniscan.io/'
     contracts:
       cUSDCv3: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921'
       cUSDCv3 Implementation: '0x6bAD2334e987106F40c50c7942d794b4E09EdFC5'
@@ -583,7 +583,7 @@ deployments:
       WETH: '0x4200000000000000000000000000000000000006'
   Unichain - WETH Base:
     tab_text: Unichain WETH
-    blockscan_origin: 'https://etherscan.io/'
+    blockscan_origin: 'https://uniscan.io/'
     contracts:
       cWETHv3: '0x6C987dDE50dB1dcDd32Cd4175778C2a291978E2a'
       cWETHv3 Implementation: '0x51515144Cff7DC3623C52C5e91768a9955d2BEb1'

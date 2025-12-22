@@ -7,9 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "cli:generate:owes": "nest build && node dist/src/cli.js owes:generate",
-    "cli:pull-request": "nest build && node dist/src/cli.js github:pull-request",
     "cli:generate:md": "nest build && node dist/src/cli.js markdown:generate",
     "cli:generate": "nest build && node dist/src/cli.js owes:generate && node dist/src/cli.js markdown:generate",
+    "cli:pull-request": "nest build && node dist/src/cli.js github:pull-request",
     "cli:full-sync": "ts-node src/full-sync.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
