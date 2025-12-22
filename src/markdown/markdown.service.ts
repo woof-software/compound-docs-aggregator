@@ -403,8 +403,7 @@ export class MarkdownService {
     // Note: 'deployments:' header is already in the file, so we don't add it here
 
     const networkEntries = Object.entries(nestedMarkets.markets).sort(
-      ([a], [b]) =>
-        getNetworkSortOrder(a).localeCompare(getNetworkSortOrder(b)),
+      ([a], [b]) => getNetworkSortOrder(a) - getNetworkSortOrder(b),
     );
 
     for (const [networkName, networkMarkets] of networkEntries) {

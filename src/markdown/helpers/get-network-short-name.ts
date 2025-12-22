@@ -1,5 +1,3 @@
-import { capitalizeFirst } from './capitalize-first';
-
 /**
  * Gets short network name for tab text
  */
@@ -15,7 +13,16 @@ export function getNetworkShortName(networkName: string): string {
     mantle: 'Mantle',
     mumbai: 'Mumbai',
     'base-sepolia': 'Base Sepolia',
+    ronin: 'Ronin',
+    unichain: 'Unichain',
+    avalanche: 'Avalanche',
+    fuji: 'Fuji',
+    linea: 'Linea',
   };
 
-  return shortMap[networkName.toLowerCase()] || capitalizeFirst(networkName);
+  const shortName = shortMap[networkName.toLowerCase()];
+  if (!shortName) {
+    throw new Error(`Network short name not found for network: ${networkName}`);
+  }
+  return shortName;
 }

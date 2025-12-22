@@ -13,7 +13,16 @@ export function getBlockscanOrigin(networkName: string): string {
     optimism: 'https://optimistic.etherscan.io/',
     scroll: 'https://scrollscan.com/',
     mantle: 'https://mantlescan.xyz/',
+    ronin: 'https://app.roninchain.com/',
+    unichain: 'https://uniscan.io/',
+    avalanche: 'https://snowtrace.io/',
+    fuji: 'https://testnet.snowtrace.io/',
+    linea: 'https://lineascan.build/',
   };
 
-  return blockscanMap[networkName.toLowerCase()] || 'https://etherscan.io/';
+  const origin = blockscanMap[networkName.toLowerCase()];
+  if (!origin) {
+    throw new Error(`Blockscan origin not found for network: ${networkName}`);
+  }
+  return origin;
 }

@@ -1,5 +1,3 @@
-import { capitalizeFirst } from './capitalize-first';
-
 /**
  * Gets network display name for deployment key
  */
@@ -15,7 +13,18 @@ export function getNetworkDisplayName(networkName: string): string {
     mantle: 'Mantle',
     mumbai: 'Polygon Mumbai Testnet',
     'base-sepolia': 'Base Sepolia',
+    ronin: 'Ronin',
+    unichain: 'Unichain',
+    avalanche: 'Avalanche',
+    fuji: 'Avalanche Fuji Testnet',
+    linea: 'Linea',
   };
 
-  return networkMap[networkName.toLowerCase()] || capitalizeFirst(networkName);
+  const displayName = networkMap[networkName.toLowerCase()];
+  if (!displayName) {
+    throw new Error(
+      `Network display name not found for network: ${networkName}`,
+    );
+  }
+  return displayName;
 }
