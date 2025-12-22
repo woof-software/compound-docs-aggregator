@@ -719,6 +719,8 @@ The network deployment artifacts with contract addresses are available in the [C
 
 The v3 proxy is the only address to be used to interact with a Compound III instance. It is the first address listed in each of the tabs below. To generate the proper [Comet Interface ABI](/public/files/comet-interface-abi-98f438b.json){:target="_blank"} (`CometInterface.sol`), compile the Comet project using `yarn compile`.
 
+> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository.
+
 <div id="networks-widget-container"></div>
 
 ### Protocol Contracts
