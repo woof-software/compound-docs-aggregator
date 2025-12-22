@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
+import { setTimeout } from 'node:timers/promises';
 
 import RewardsABI from './abi/RewardsABI.json';
 import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
@@ -19,6 +20,20 @@ interface UserRewardCall {
   cometAddress: string;
   rewardsAddress: string;
 }
+
+const isRetryable = (e: any) => {
+  const msg = String(e?.shortMessage ?? e?.message ?? '');
+  return (
+    // ethers "response body is not valid JSON"
+    (e?.code === 'UNSUPPORTED_OPERATION' && e?.operation === 'bodyJson') ||
+    // transient transport errors
+    /ECONNRESET|ETIMEDOUT|EAI_AGAIN|socket hang up|fetch failed/i.test(msg) ||
+    // RPC throttling / gateway hiccups
+    /429|502|503|504/i.test(msg)
+  );
+};
+
+const RETRY_ATTEMPTS = 3;
 
 @Injectable()
 export class RewardsService {
@@ -178,16 +193,32 @@ export class RewardsService {
         ]),
       }));
 
-      let results: Array<{ success: boolean; returnData: string }>;
-      try {
-        results = await multicall3.aggregate3!.staticCall(calls);
-      } catch (err) {
-        // If Multicall3 isn't deployed on this network/address, you'll land here.
-        this.logger.error(
-          `[V3][owes][${network}] Multicall3.aggregate3 failed (check multicall3 address / RPC)`,
-          err as any,
-        );
-        // Fail this chunk gracefully
+      let results: Array<{ success: boolean; returnData: string }> | null =
+        null;
+
+      for (let a = 0; a < RETRY_ATTEMPTS; a++) {
+        try {
+          results = await multicall3.aggregate3!.staticCall(calls);
+          break;
+        } catch (err) {
+          if (!isRetryable(err) || a === RETRY_ATTEMPTS - 1) {
+            this.logger.error(
+              `[V3][owes][${network}] Multicall3.aggregate3 failed (attempt ${
+                a + 1
+              }/${RETRY_ATTEMPTS})`,
+              err as any,
+            );
+            results = null;
+            break;
+          }
+
+          // backoff
+          await setTimeout(250 * (a + 1) * (a + 1));
+        }
+      }
+
+      if (!results) {
+        // Fail this chunk gracefully (as before)
         continue;
       }
 

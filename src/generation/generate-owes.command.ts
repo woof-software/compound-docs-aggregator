@@ -86,12 +86,12 @@ export class GenerateOwesCommand extends CommandRunner {
       await this.indexer.run();
       this.logger.log('Generating total owes V3...');
 
-      /*const v3Results = await this.calcOwesV3();
+      const v3Results = await this.calcOwesV3();
 
       this.jsonService.writeOwes(
         this.rewardsService.formatOwes(v3Results),
         CompoundVersion.V3,
-      );*/
+      );
       this.logger.log('Generating of totalOwesV3 completed.');
       return;
     } catch (error) {
