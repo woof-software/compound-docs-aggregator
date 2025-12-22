@@ -11,5 +11,5 @@ async function bootstrap() {
 
 bootstrap().catch((err) => {
   console.error('Error starting CLI:', err);
-  process.exit(1);
+  process.exitCode = 1; // instead process.exit(1) -> guarantee app.close()
 });

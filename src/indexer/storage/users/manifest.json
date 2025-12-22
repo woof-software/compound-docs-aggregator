@@ -1,0 +1,164 @@
+{
+  "chunkRows": 200000,
+  "series": [
+    {
+      "network": "arbitrum",
+      "version": 3,
+      "lastCreatedAt": 1766424752,
+      "chunks": [
+        {
+          "file": "v3_arbitrum_0000.sqlite",
+          "rows": 83623,
+          "endCreatedAt": 1766424752
+        }
+      ]
+    },
+    {
+      "network": "base",
+      "version": 3,
+      "lastCreatedAt": 1766428179,
+      "chunks": [
+        {
+          "file": "v3_base_0000.sqlite",
+          "rows": 200000,
+          "endCreatedAt": 1753488253
+        },
+        {
+          "file": "v3_base_0001.sqlite",
+          "rows": 27301,
+          "endCreatedAt": 1766428179
+        }
+      ]
+    },
+    {
+      "network": "linea",
+      "version": 3,
+      "lastCreatedAt": 1766038842,
+      "chunks": [
+        {
+          "file": "v3_linea_0000.sqlite",
+          "rows": 1321,
+          "endCreatedAt": 1766038842
+        }
+      ]
+    },
+    {
+      "network": "mainnet",
+      "version": 2,
+      "lastCreatedAt": 1766422799,
+      "chunks": [
+        {
+          "file": "v2_mainnet_0000.sqlite",
+          "rows": 200000,
+          "endCreatedAt": 1603873087
+        },
+        {
+          "file": "v2_mainnet_0001.sqlite",
+          "rows": 200000,
+          "endCreatedAt": 1607888274
+        },
+        {
+          "file": "v2_mainnet_0002.sqlite",
+          "rows": 168882,
+          "endCreatedAt": 1766422799
+        }
+      ]
+    },
+    {
+      "network": "mainnet",
+      "version": 3,
+      "lastCreatedAt": 1766426075,
+      "chunks": [
+        {
+          "file": "v3_mainnet_0000.sqlite",
+          "rows": 23568,
+          "endCreatedAt": 1766426075
+        }
+      ]
+    },
+    {
+      "network": "mantle",
+      "version": 3,
+      "lastCreatedAt": 1766426960,
+      "chunks": [
+        {
+          "file": "v3_mantle_0000.sqlite",
+          "rows": 360,
+          "endCreatedAt": 1766426960
+        }
+      ]
+    },
+    {
+      "network": "optimism",
+      "version": 3,
+      "lastCreatedAt": 1766307925,
+      "chunks": [
+        {
+          "file": "v3_optimism_0000.sqlite",
+          "rows": 62473,
+          "endCreatedAt": 1766307925
+        }
+      ]
+    },
+    {
+      "network": "polygon",
+      "version": 3,
+      "lastCreatedAt": 1766388845,
+      "chunks": [
+        {
+          "file": "v3_polygon_0000.sqlite",
+          "rows": 38533,
+          "endCreatedAt": 1766388845
+        }
+      ]
+    },
+    {
+      "network": "ronin",
+      "version": 3,
+      "lastCreatedAt": 1766282061,
+      "chunks": [
+        {
+          "file": "v3_ronin_0000.sqlite",
+          "rows": 508,
+          "endCreatedAt": 1766282061
+        }
+      ]
+    },
+    {
+      "network": "scroll",
+      "version": 3,
+      "lastCreatedAt": 1766245448,
+      "chunks": [
+        {
+          "file": "v3_scroll_0000.sqlite",
+          "rows": 77404,
+          "endCreatedAt": 1766245448
+        }
+      ]
+    },
+    {
+      "network": "sepolia",
+      "version": 3,
+      "lastCreatedAt": 1766080272,
+      "chunks": [
+        {
+          "file": "v3_sepolia_0000.sqlite",
+          "rows": 631,
+          "endCreatedAt": 1766080272
+        }
+      ]
+    },
+    {
+      "network": "unichain",
+      "version": 3,
+      "lastCreatedAt": 1766398405,
+      "chunks": [
+        {
+          "file": "v3_unichain_0000.sqlite",
+          "rows": 6895,
+          "endCreatedAt": 1766398405
+        }
+      ]
+    }
+  ]
+}

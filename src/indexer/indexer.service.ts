@@ -1,4 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnApplicationBootstrap,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { JsonRpcProvider, getAddress, ethers } from 'ethers';
@@ -17,6 +21,7 @@ import {
   V3_USER_TOPIC0_OR,
 } from './topics';
 import { IndexerUsers } from './indexer.types';
+import { RuntimeDbService } from './runtime-db.service';
 
 type SqliteApi = ReturnType<typeof createSqliteApi>;
 
@@ -24,10 +29,17 @@ const normAddr = (a: string) => getAddress(a).toLowerCase();
 const topicToAddress = (topic: string) => normAddr('0x' + topic.slice(-40));
 
 @Injectable()
-export class IndexerService {
+export class IndexerService implements OnApplicationBootstrap {
   private readonly logger = new Logger(IndexerService.name);
 
-  private readonly sqlite: SqliteApi;
+  private _sqlite?: SqliteApi;
+  private set sqlite(sqlite: SqliteApi) {
+    this._sqlite = sqlite;
+  }
+  private get sqlite(): SqliteApi {
+    if (!this._sqlite) throw new Error('SqliteApi must be defined');
+    return this._sqlite;
+  }
 
   // Tuning knobs
   private readonly maxParallelNetworks = 2;
@@ -39,15 +51,18 @@ export class IndexerService {
   constructor(
     private readonly config: ConfigService,
     private readonly providerFactory: ProviderFactory,
+    private readonly runtimeDb: RuntimeDbService, // explicit dependency for init order
   ) {
-    this.sqlite = createSqliteApi('./db.sqlite');
-
     this.rewardsV3ByNetwork = new Map(
       this.networks.map((n) => [
         n.network,
         n.rewardsV3 ? normAddr(n.rewardsV3) : null,
       ]),
     );
+  }
+
+  public async onApplicationBootstrap(): Promise<void> {
+    this.sqlite = this.runtimeDb.api;
   }
 
   private get networks(): NetworkConfig[] {

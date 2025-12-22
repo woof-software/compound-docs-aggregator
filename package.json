@@ -6,7 +6,9 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "cli:generate": "nest build && node dist/src/cli.js markdown:generate",
+    "cli:generate:owes": "nest build && node dist/src/cli.js owes:generate",
+    "cli:generate:md": "nest build && node dist/src/cli.js markdown:generate",
+    "cli:generate": "nest build && node dist/src/cli.js owes:generate && node dist/src/cli.js markdown:generate",
     "cli:full-sync": "ts-node src/full-sync.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -31,6 +33,7 @@
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^11.1.2",
+    "@types/better-sqlite3": "^7.6.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",

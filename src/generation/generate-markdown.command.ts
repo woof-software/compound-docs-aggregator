@@ -4,12 +4,8 @@ import axios from 'axios';
 
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
-import { RewardsService } from 'contract/rewards.service';
 import { JsonService } from 'json/json.service';
-import { DuneService } from 'dune/dune.service';
 import { MarkdownService } from './markdown.service';
-import { CompoundVersion } from 'common/types/compound-version';
-import { IndexerService } from '../indexer/indexer.service';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -20,91 +16,12 @@ export class GenerateMarkdownCommand extends CommandRunner {
     private readonly contractService: ContractService,
     private readonly jsonService: JsonService,
     private readonly markdownService: MarkdownService,
-    private readonly dune: DuneService,
-    private readonly indexer: IndexerService,
-    private readonly owedService: RewardsService,
   ) {
     super();
   }
 
-  private async calcOwesV3(): Promise<Record<string, bigint>> {
-    const owes = this.owedService.zeroOwes(CompoundVersion.V3);
-
-    const BATCH = 1000;
-    const networks = Object.keys(owes);
-
-    const results = await Promise.allSettled(
-      networks.map(async (network) => {
-        let offset = 0;
-        let totalSum = 0n;
-        let page = 0;
-
-        while (true) {
-          page += 1;
-
-          this.logger.verbose(`[${network}] page -> ${page}`);
-
-          const batch = await this.indexer.fetchUsersForNetwork(
-            CompoundVersion.V3,
-            network,
-            BATCH,
-            offset,
-          );
-
-          if (batch.length === 0) break;
-
-          try {
-            const sum = await this.owedService.sumOwedForUsersV3({
-              network,
-              users: batch,
-              chunkSize: BATCH, // => один multicall-батч
-            });
-
-            totalSum += sum;
-          } catch (err) {
-            this.logger.error(
-              `[V3][owes][${network}][page=${page}] sumOwedForUsersV3 failed`,
-              err as any,
-            );
-            // Skip this page and continue (or break — как хочешь)
-          }
-
-          offset += BATCH;
-          if (batch.length < BATCH) break;
-        }
-
-        return [network, totalSum] as const;
-      }),
-    );
-
-    for (const r of results) {
-      if (r.status === 'fulfilled') {
-        const [network, sum] = r.value;
-        owes[network] = (owes[network] ?? 0n) + sum;
-      } else {
-        this.logger.error(`[V3][owes] Network task failed`, r.reason as any);
-        // keep owes[network] as 0n
-      }
-    }
-
-    return owes;
-  }
-
   async run() {
     try {
-      await this.indexer.run();
-      ////
-      this.logger.log('Generating total owes V3...');
-
-      const v3Results = await this.calcOwesV3();
-
-      this.jsonService.writeOwes(
-        this.owedService.formatOwes(v3Results),
-        CompoundVersion.V3,
-      );
-      this.logger.log('Generating of totalOwesV3 completed.');
-      ////
-
       this.logger.log('Starting to generate markdown...');
 
       const rootsPaths = await this.githubService.listAllRootsJson();
