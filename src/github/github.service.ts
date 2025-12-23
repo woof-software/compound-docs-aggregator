@@ -305,7 +305,6 @@ export class GithubService {
   async ensureBranchExists(branchName: string): Promise<void> {
     const exists = await this.branchExists(branchName);
     if (exists) {
-      this.logger.debug(`Branch ${branchName} already exists`);
       return;
     }
 
