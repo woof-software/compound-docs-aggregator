@@ -14,7 +14,7 @@ export function getBlockscanOrigin(networkName: string): string {
     scroll: 'https://scrollscan.com/',
     mantle: 'https://mantlescan.xyz/',
     ronin: 'https://app.roninchain.com/',
-    unichain: 'https://uniscan.io/',
+    unichain: 'https://uniscan.xyz/',
     avalanche: 'https://snowtrace.io/',
     fuji: 'https://testnet.snowtrace.io/',
     linea: 'https://lineascan.build/',
