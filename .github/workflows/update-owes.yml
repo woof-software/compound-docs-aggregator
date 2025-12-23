@@ -3,7 +3,7 @@ name: Update owes
 on:
   workflow_dispatch: # manual start Actions → Run workflow
   schedule:
-    - cron: '5 12 * * *' # every day at noon (UTC)
+    - cron: '5 13 * * *' # every day at 13:05 (UTC)
 
 jobs:
   build:
