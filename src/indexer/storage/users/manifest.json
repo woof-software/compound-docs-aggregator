@@ -16,7 +16,7 @@
     {
       "network": "base",
       "version": 3,
-      "lastCreatedAt": 1766428179,
+      "lastCreatedAt": 1766429395,
       "chunks": [
         {
           "file": "v3_base_0000.sqlite",
@@ -25,8 +25,8 @@
         },
         {
           "file": "v3_base_0001.sqlite",
-          "rows": 27301,
-          "endCreatedAt": 1766428179
+          "rows": 27302,
+          "endCreatedAt": 1766429395
         }
       ]
     },
@@ -67,12 +67,12 @@
     {
       "network": "mainnet",
       "version": 3,
-      "lastCreatedAt": 1766426075,
+      "lastCreatedAt": 1766427923,
       "chunks": [
         {
           "file": "v3_mainnet_0000.sqlite",
-          "rows": 23568,
-          "endCreatedAt": 1766426075
+          "rows": 23569,
+          "endCreatedAt": 1766427923
         }
       ]
     },
@@ -151,12 +151,12 @@
     {
       "network": "unichain",
       "version": 3,
-      "lastCreatedAt": 1766398405,
+      "lastCreatedAt": 1766431005,
       "chunks": [
         {
           "file": "v3_unichain_0000.sqlite",
-          "rows": 6895,
-          "endCreatedAt": 1766398405
+          "rows": 6896,
+          "endCreatedAt": 1766431005
         }
       ]
     }

@@ -26,7 +26,7 @@ export class JsonService {
 
     const sorted = Object.fromEntries(
       Object.entries(owes).sort(([keyA, valA], [keyB, valB]) => {
-        const byValue = valA - valB;
+        const byValue = valB - valA;
         if (byValue !== 0) return byValue;
         return keyA.localeCompare(keyB); // secondary: name/key
       }),

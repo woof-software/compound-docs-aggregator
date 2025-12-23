@@ -1,11 +1,17 @@
 import { registerAs } from '@nestjs/config';
-import { NetworkConfig } from '../network/network.types';
+import { NetworkConfig } from 'network/network.types';
+
+const ankrKey = process.env.ANKR_KEY;
+if (!ankrKey) throw new Error('ANKR_KEY was not provided!');
+
+const quickNodeKey = process.env.UNICHAIN_QUICKNODE_KEY;
+if (!quickNodeKey) throw new Error('UNICHAIN_QUICKNODE_KEY was not provided!');
 
 export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'mainnet',
     chainId: 1,
-    url: `https://rpc.ankr.com/eth/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/eth/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 64,
     comptrollerV2: '0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b',
@@ -18,7 +24,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'sepolia',
     chainId: 11155111,
-    url: `https://rpc.ankr.com/eth_sepolia/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/eth_sepolia/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 128,
     configuratorV3: '0xc28ad44975c614eabe0ed090207314549e1c6624',
@@ -41,7 +47,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'polygon',
     chainId: 137,
-    url: `https://rpc.ankr.com/polygon/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/polygon/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 256,
     configuratorV3: '0x83e0f742cacbe66349e3701b171ee2487a26e738',
@@ -52,7 +58,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'optimism',
     chainId: 10,
-    url: `https://rpc.ankr.com/optimism/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/optimism/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0x84e93ec6170ed630f5ebd89a1aae72d4f63f2713',
@@ -63,7 +69,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'mantle',
     chainId: 5000,
-    url: `https://rpc.ankr.com/mantle/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/mantle/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0xb77cd4cd000957283d8baf53cd782ecf029cf7db',
@@ -74,20 +80,20 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'unichain',
     chainId: 130,
-    url: `https://unichain.drpc.org`,
+    // url: `https://unichain.drpc.org`,
     // url: `https://solemn-smart-violet.unichain-mainnet.quiknode.pro/${process.env.UNICHAIN_QUICKNODE_KEY}`,
-    // url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${process.env.UNICHAIN_QUICKNODE_KEY}`,
+    url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${quickNodeKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0x8df378453ff9deffa513367cdf9b3b53726303e9',
     rewardsV3: '0x6f7d514bbd4aff3bcd1140b7344b32f063dee486',
     startBlock: 9170506,
-    rewardsCalcEnabled: false, // FIXME
+    rewardsCalcEnabled: true,
   },
   {
     network: 'base',
     chainId: 8453,
-    url: `https://rpc.ankr.com/base/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/base/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0x45939657d1ca34a8fa39a924b71d28fe8431e581',
@@ -98,7 +104,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'arbitrum',
     chainId: 42161,
-    url: `https://rpc.ankr.com/arbitrum/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/arbitrum/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0xb21b06d71c75973babde35b49ffdac3f82ad3775',
@@ -131,7 +137,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'scroll',
     chainId: 534352,
-    url: `https://rpc.ankr.com/scroll/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/scroll/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0xecab0beea3e5dea0c35d3e69468eac20098032d7',
@@ -142,7 +148,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'linea',
     chainId: 59144,
-    url: `https://rpc.ankr.com/linea/${process.env.ANKR_KEY}`,
+    url: `https://rpc.ankr.com/linea/${ankrKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0x970ffd8e335b8fa4cd5c869c7cac3a90671d5dc3',
