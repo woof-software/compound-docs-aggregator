@@ -38,6 +38,6 @@ jobs:
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "github-actions"
-          git add owes-v3.json owes-v2.json db/meta.sqlite db/users/manifest.json db/users/*.sqlite
+          git add owes-v3.json owes-v2.json src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
           git diff --cached --quiet || git commit -m "chore: auto-update owes"
           git push
