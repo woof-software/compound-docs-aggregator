@@ -13,6 +13,7 @@ export interface CompoundFinanceConfig {
     repo: string;
     defaultBranch: string;
     filePath: string;
+    autoUpdateBranch: string;
   };
   githubTokenPat: string;
 }
@@ -36,6 +37,7 @@ export default registerAs(
       repo: 'compound-finance.github.io',
       defaultBranch: 'master',
       filePath: 'docs/pages/v3/compound-3.md',
+      autoUpdateBranch: 'auto-update-compound-3',
     },
     githubTokenPat,
   }),

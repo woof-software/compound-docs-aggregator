@@ -270,7 +270,45 @@ export class GithubService {
     };
   }
 
-  async createBranch(branchName: string): Promise<void> {
+  /**
+   * Checks if a branch exists in the repository using HEAD request
+   */
+  async branchExists(branchName: string): Promise<boolean> {
+    const { owner, repo } = this.compoundFinance.repository;
+
+    try {
+      const response = await this.docsApi.head(
+        `/repos/${owner}/${repo}/branches/${branchName}`,
+        {
+          validateStatus: (status) => {
+            return status === 200 || status === 301 || status === 404;
+          },
+          maxRedirects: 5,
+        },
+      );
+
+      return response.status === 200;
+    } catch (err: any) {
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      const statusCode = err.response?.status;
+
+      this.logger.error(
+        `Unexpected error checking branch existence (status: ${statusCode}): ${errorMessage}`,
+      );
+      throw err;
+    }
+  }
+
+  /**
+   * Creates a branch if it doesn't exist
+   */
+  async ensureBranchExists(branchName: string): Promise<void> {
+    const exists = await this.branchExists(branchName);
+    if (exists) {
+      this.logger.debug(`Branch ${branchName} already exists`);
+      return;
+    }
+
     try {
       const { owner, repo, defaultBranch } = this.compoundFinance.repository;
 
@@ -286,16 +324,50 @@ export class GithubService {
 
       this.logger.log(`Branch ${branchName} created successfully`);
     } catch (err: any) {
-      if (err.response?.status === 422) {
-        this.logger.warn(`Branch ${branchName} might already exist`);
-        return;
-      }
       const errorMessage = err instanceof Error ? err.message : String(err);
       this.logger.error(`Error creating branch: ${errorMessage}`);
       throw err;
     }
   }
 
+  /**
+   * Gets file SHA from repository, trying target branch first, then default branch
+   * Returns null if file doesn't exist in either branch
+   */
+  private async getFileSha(
+    filePath: string,
+    branchName: string,
+  ): Promise<string | null> {
+    const { owner, repo, defaultBranch } = this.compoundFinance.repository;
+
+    const targetBranchResponse = await this.docsApi.get(
+      `/repos/${owner}/${repo}/contents/${filePath}?ref=${branchName}`,
+      {
+        validateStatus: (status) => status === 200 || status === 404,
+      },
+    );
+
+    if (targetBranchResponse.status === 200) {
+      return targetBranchResponse.data.sha;
+    }
+
+    const defaultBranchResponse = await this.docsApi.get(
+      `/repos/${owner}/${repo}/contents/${filePath}?ref=${defaultBranch}`,
+      {
+        validateStatus: (status) => status === 200 || status === 404,
+      },
+    );
+
+    if (defaultBranchResponse.status === 200) {
+      return defaultBranchResponse.data.sha;
+    }
+
+    return null;
+  }
+
+  /**
+   * Updates or creates a file in the docs repository
+   */
   async updateFileInDocsRepo(
     filePath: string,
     content: string,
@@ -303,19 +375,9 @@ export class GithubService {
     commitMessage: string,
   ): Promise<void> {
     try {
-      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
+      const { owner, repo } = this.compoundFinance.repository;
 
-      let currentSha: string | null = null;
-      try {
-        const fileResponse = await this.docsApi.get(
-          `/repos/${owner}/${repo}/contents/${filePath}?ref=${defaultBranch}`,
-        );
-        currentSha = fileResponse.data.sha;
-      } catch (err: any) {
-        if (err.response?.status !== 404) {
-          throw err;
-        }
-      }
+      const currentSha = await this.getFileSha(filePath, branchName);
 
       const encodedContent = Buffer.from(content, 'utf-8').toString('base64');
 
@@ -327,16 +389,24 @@ export class GithubService {
       });
 
       this.logger.log(
-        `File ${filePath} updated successfully in branch ${branchName}`,
+        `File ${filePath} ${
+          currentSha ? 'updated' : 'created'
+        } successfully in branch ${branchName}`,
       );
     } catch (err: any) {
       const errorMessage = err instanceof Error ? err.message : String(err);
-      this.logger.error(`Error updating file in docs repo: ${errorMessage}`);
+      const statusCode = err.response?.status;
+
+      this.logger.error(
+        `Error updating file in docs repo (status: ${statusCode}): ${errorMessage}`,
+      );
+
       if (err.response?.data) {
         this.logger.error(
           `GitHub API error: ${JSON.stringify(err.response.data)}`,
         );
       }
+
       throw err;
     }
   }
@@ -407,33 +477,45 @@ export class GithubService {
       return null;
     }
 
-    const { filePath } = this.compoundFinance.repository;
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const branchName = `update-compound-3-${timestamp}`;
+    const { filePath, autoUpdateBranch } = this.compoundFinance.repository;
 
     this.logger.log(
-      `Creating PR for compound-3.md updates (file: ${filePath})...`,
+      `Processing compound-3.md updates (file: ${filePath}, branch: ${autoUpdateBranch})...`,
     );
 
-    await this.createBranch(branchName);
+    // Ensure branch exists (create if it doesn't)
+    await this.ensureBranchExists(autoUpdateBranch);
 
-    this.logger.log(`Updating only compound-3.md file: ${filePath}`);
+    // Commit changes to the branch
+    const commitMessage = `chore: auto-update compound-3.md deployments section
+
+Updated at: ${new Date().toISOString()}`;
+
+    this.logger.log(`Committing changes to branch ${autoUpdateBranch}`);
     await this.updateFileInDocsRepo(
       filePath,
       localContent,
-      branchName,
-      'chore: auto-update compound-3.md deployments section',
+      autoUpdateBranch,
+      commitMessage,
     );
 
-    const pr = await this.createPullRequest(
-      branchName,
-      'chore: auto-update compound-3.md deployments section',
-      `This PR automatically updates the deployments section in compound-3.md with the latest market data.
+    // Check if PR already exists, create if it doesn't
+    const prTitle = 'chore: auto-update compound-3.md deployments section';
+    const prBody = `This PR automatically updates the deployments section in compound-3.md with the latest market data.
 
-Generated at: ${new Date().toISOString()}
+**Note:** This is an automated PR. New commits will be added to this PR as updates are available. Please review the changes before merging.`;
 
-**Note:** This is an automated PR. Please review the changes before merging.`,
-    );
+    const pr = await this.createPullRequest(autoUpdateBranch, prTitle, prBody);
+
+    if (pr) {
+      this.logger.log(
+        `Changes committed to branch ${autoUpdateBranch}. PR: #${pr.prNumber} - ${pr.prUrl}`,
+      );
+    } else {
+      this.logger.warn(
+        `Changes committed to branch ${autoUpdateBranch}, but PR creation failed`,
+      );
+    }
 
     return pr;
   }
