@@ -18,6 +18,8 @@ import {
 } from './topics';
 import { IndexerUsers } from './indexer.types';
 import { RuntimeDbService } from './runtime-db.service';
+import { fmtPct } from '../common/utils/fmt-pct';
+import { withRetries } from '../common/helpers/with-retries';
 
 type SqliteApi = ReturnType<typeof createSqliteApi>;
 
@@ -41,8 +43,25 @@ export class IndexerService implements OnApplicationBootstrap {
   private readonly maxParallelNetworks = 2;
   private readonly blockStep = 1_000;
   private readonly addressBatchSize = 30;
+  // Retry knobs
+  private readonly rpcRetryAttempts = 3;
+  private readonly rpcRetryBaseDelayMs = 250;
+
+  private async rpc<T>(label: string, fn: () => Promise<T>): Promise<T> {
+    return withRetries(fn, {
+      attempts: this.rpcRetryAttempts,
+      baseDelayMs: this.rpcRetryBaseDelayMs,
+      onRetry: (attempt, err, delayMs) => {
+        const msg = String(err?.shortMessage ?? err?.message ?? err);
+        this.logger.verbose(
+          `[rpc][retry ${attempt}/${this.rpcRetryAttempts}] ${label} -> ${msg} (sleep ${delayMs}ms)`,
+        );
+      },
+    });
+  }
 
   private readonly rewardsV3ByNetwork: Map<string, string | null>;
+  private readonly progressTagByNetwork = new Map<string, string>();
 
   constructor(
     private readonly config: ConfigService,
@@ -149,32 +168,66 @@ export class IndexerService implements OnApplicationBootstrap {
     }));
   }
 
+  public countUsersForNetwork(
+    version: CompoundVersion,
+    network: string,
+  ): number {
+    const row = this.sqlite.countUsersByNetworkAndVersion.get(
+      network,
+      version === CompoundVersion.V3 ? 3 : 2,
+    ) as { cnt: number } | undefined;
+
+    return Number(row?.cnt ?? 0);
+  }
+
   // ============================
   // Core indexing (ONE cursor)
   // ============================
 
   private async indexNetwork(n: NetworkConfig): Promise<void> {
     const provider = this.providerFactory.get(n.network);
-    const head = await provider.getBlockNumber();
+    const head = await this.rpc(`[${n.network}] getBlockNumber`, () =>
+      provider.getBlockNumber(),
+    );
     const finalizedTo = Math.max(0, head - (n.reorgWindow ?? 64));
 
     const cursorRow = this.sqlite.getCursor.get(n.network) as
       | { last_block: number }
       | undefined;
 
-    const startFrom = cursorRow
-      ? cursorRow.last_block + 1
-      : Math.max(0, n.startBlock ?? 0);
+    const baselineFrom = Math.max(0, n.startBlock ?? 0);
+
+    const startFrom = cursorRow ? cursorRow.last_block + 1 : baselineFrom;
+
+    // Global progress over [baselineFrom..finalizedTo]
+    const totalBlocks = Math.max(0, finalizedTo - baselineFrom + 1);
+
+    const tagFor = (processedToInclusive: number): string => {
+      const doneBlocks = Math.max(0, processedToInclusive - baselineFrom + 1);
+      const pct = fmtPct(doneBlocks, totalBlocks, 10);
+      return `[${n.network} (${pct})]`;
+    };
+
+    const setTag = (processedToInclusive: number): string => {
+      const tag = tagFor(processedToInclusive);
+      this.progressTagByNetwork.set(n.network, tag);
+      return tag;
+    };
 
     if (startFrom > finalizedTo) {
+      // Already synced to finalizedTo in global terms.
+      this.progressTagByNetwork.set(n.network, `[${n.network} (100%)]`);
       this.logger.log(
-        `Up to date: network=${n.network} startFrom=${startFrom} finalizedTo=${finalizedTo}`,
+        `[${n.network} (100%)] Up to date: startFrom=${startFrom} finalizedTo=${finalizedTo}`,
       );
       return;
     }
 
+    // At start we already have cursor up to (startFrom - 1)
+    const startTag = setTag(startFrom - 1);
+
     this.logger.log(
-      `Indexing: network=${n.network} head=${head} finalizedTo=${finalizedTo} startFrom=${startFrom}`,
+      `${startTag} Indexing: head=${head} finalizedTo=${finalizedTo} startFrom=${startFrom}`,
     );
 
     // Load known markets (to detect "new market discovered in the middle of chunk")
@@ -191,7 +244,6 @@ export class IndexerService implements OnApplicationBootstrap {
     while (from <= finalizedTo) {
       const plannedTo = Math.min(finalizedTo, from + this.blockStep - 1);
 
-      // 1) Discovery (V2 markets + V3 comets) for [from..plannedTo]
       const minNewMarketBlock = await this.discoverMarketsInRange({
         network: n.network,
         provider,
@@ -202,13 +254,14 @@ export class IndexerService implements OnApplicationBootstrap {
         tsCache,
       });
 
-      // 2) Rewind boundary if a NEW market appears inside the chunk
       const to =
         minNewMarketBlock && minNewMarketBlock > from
           ? minNewMarketBlock - 1
           : plannedTo;
 
-      // 3) Index users for all markets active up to 'to'
+      // Make sure inner logs (found rows) already have the correct [%] for THIS chunk
+      const chunkTag = setTag(to);
+
       await this.indexUsersInRange({
         network: n.network,
         provider,
@@ -217,22 +270,31 @@ export class IndexerService implements OnApplicationBootstrap {
         tsCache,
       });
 
-      // 4) Commit network cursor immediately per processed chunk
       this.sqlite.setCursor.run(n.network, to, Math.floor(Date.now() / 1000));
+
+      // log on EVERY committed chunk
+      this.logger.log(
+        `${chunkTag} Cursor committed: processedTo=${to} plannedTo=${plannedTo} nextFrom=${
+          to + 1
+        }`,
+      );
 
       if (to < plannedTo) {
         this.logger.verbose(
-          `Rewind boundary applied: network=${
-            n.network
-          } processedTo=${to} plannedTo=${plannedTo} nextFrom=${to + 1}`,
+          `${chunkTag} Rewind boundary applied: processedTo=${to} plannedTo=${plannedTo} nextFrom=${
+            to + 1
+          }`,
         );
       }
 
       from = to + 1;
     }
 
+    // Force final tag to 100%
+    this.progressTagByNetwork.set(n.network, `[${n.network} (100%)]`);
+
     this.logger.log(
-      `Network synced: network=${n.network} toBlock=${finalizedTo}`,
+      `[${n.network} (100%)] Network synced: toBlock=${finalizedTo}`,
     );
   }
 
@@ -431,8 +493,9 @@ export class IndexerService implements OnApplicationBootstrap {
 
       if (rows.length) {
         this.sqlite.txUpsertUsers(rows);
+        const tag = this.progressTagByNetwork.get(network) ?? '?';
         this.logger.verbose(
-          `[${network}][${fromBlock}-${toBlock}] -> found ${rows.length} rows`,
+          `${tag}[${fromBlock}-${toBlock}] -> found ${rows.length} rows`,
         );
       }
     }
@@ -457,12 +520,14 @@ export class IndexerService implements OnApplicationBootstrap {
     while (stack.length) {
       const [a, b] = stack.pop()!;
       try {
-        const logs = await provider.getLogs({
-          address: req.address,
-          fromBlock: a,
-          toBlock: b,
-          topics: req.topics,
-        });
+        const logs = await this.rpc(`getLogs(${a}-${b})`, () =>
+          provider.getLogs({
+            address: req.address,
+            fromBlock: a,
+            toBlock: b,
+            topics: req.topics,
+          }),
+        );
         out.push(...logs);
       } catch (e) {
         if (a >= b) throw e;
@@ -482,7 +547,9 @@ export class IndexerService implements OnApplicationBootstrap {
     const cached = cache.get(blockNumber);
     if (cached != null) return cached;
 
-    const b = await provider.getBlock(blockNumber);
+    const b = await this.rpc(`getBlock(${blockNumber})`, () =>
+      provider.getBlock(blockNumber),
+    );
     if (!b) throw new Error(`Block not found: ${blockNumber}`);
 
     const ts = Number(b.timestamp);

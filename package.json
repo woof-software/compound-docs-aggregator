@@ -6,11 +6,11 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "cli:index": "nest build && node dist/src/cli.js index",
     "cli:generate:owes": "nest build && node dist/src/cli.js owes:generate",
     "cli:generate:md": "nest build && node dist/src/cli.js markdown:generate",
-    "cli:generate": "nest build && node dist/src/cli.js owes:generate && node dist/src/cli.js markdown:generate",
     "cli:pull-request": "nest build && node dist/src/cli.js github:pull-request",
-    "cli:full-sync": "ts-node src/full-sync.ts",
+    "full-index": "RETRY_COMMAND=cli:index ts-node src/retry.ts",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"

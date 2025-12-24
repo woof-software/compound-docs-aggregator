@@ -20,6 +20,8 @@ export type UsersManifest = {
   series: UsersSeries[];
 };
 
+const DEFAULT_CHUNK_ROWS = 10_000;
+
 @Injectable()
 export class ManifestsService {
   private _manifest?: UsersManifest;
@@ -37,14 +39,14 @@ export class ManifestsService {
 
   public load(manifestPath: string): UsersManifest {
     if (!fs.existsSync(manifestPath)) {
-      this.manifest = { chunkRows: 200_000, series: [] };
+      this.manifest = { chunkRows: DEFAULT_CHUNK_ROWS, series: [] };
       return this.manifest;
     }
 
     const raw = fs.readFileSync(manifestPath, 'utf8');
     const parsed = JSON.parse(raw) as UsersManifest;
 
-    parsed.chunkRows ??= 200_000;
+    parsed.chunkRows ??= DEFAULT_CHUNK_ROWS;
     parsed.series ??= [];
     for (const s of parsed.series) {
       s.chunks ??= [];

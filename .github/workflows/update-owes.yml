@@ -27,6 +27,21 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Run indexing
+        env:
+          ANKR_KEY: ${{ secrets.ANKR_KEY }}
+          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn cli:index
+
+      - name: Commit & Push changes (index)
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git add src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
+          git diff --cached --quiet || git commit -m "chore: auto-update index"
+          git push
+
       - name: Run owes generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
@@ -34,10 +49,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes
 
-      - name: Commit & Push changes
+      - name: Commit & Push changes (owes)
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "github-actions"
-          git add owes-v3.json owes-v2.json src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
+          git add owes-v3.json owes-v2.json
           git diff --cached --quiet || git commit -m "chore: auto-update owes"
           git push

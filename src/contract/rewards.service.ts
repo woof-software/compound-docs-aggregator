@@ -1,6 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
-import { setTimeout } from 'node:timers/promises';
 
 import RewardsABI from './abi/RewardsABI.json';
 import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
@@ -8,6 +7,7 @@ import { ProviderFactory } from 'network/provider.factory';
 import { CompoundVersion } from 'common/types/compound-version';
 import { ConfigService } from '@nestjs/config';
 import { NetworkConfig } from 'network/network.types';
+import { withRetries } from '../common/helpers/with-retries';
 
 const MULTICALL3_ABI = [
   'function aggregate3(tuple(address target, bool allowFailure, bytes callData)[] calls) view returns (tuple(bool success, bytes returnData)[] returnData)',
@@ -21,23 +21,26 @@ interface UserRewardCall {
   rewardsAddress: string;
 }
 
-const isRetryable = (e: any) => {
-  const msg = String(e?.shortMessage ?? e?.message ?? '');
-  return (
-    // ethers "response body is not valid JSON"
-    (e?.code === 'UNSUPPORTED_OPERATION' && e?.operation === 'bodyJson') ||
-    // transient transport errors
-    /ECONNRESET|ETIMEDOUT|EAI_AGAIN|socket hang up|fetch failed/i.test(msg) ||
-    // RPC throttling / gateway hiccups
-    /429|502|503|504/i.test(msg)
-  );
-};
-
-const RETRY_ATTEMPTS = 3;
-
 @Injectable()
 export class RewardsService {
   private readonly logger = new Logger(RewardsService.name);
+
+  // Retry knobs
+  private readonly rpcRetryAttempts = 3;
+  private readonly rpcRetryBaseDelayMs = 250;
+
+  private async rpc<T>(label: string, fn: () => Promise<T>): Promise<T> {
+    return withRetries(fn, {
+      attempts: this.rpcRetryAttempts,
+      baseDelayMs: this.rpcRetryBaseDelayMs,
+      onRetry: (attempt, err, delayMs) => {
+        const msg = String(err?.shortMessage ?? err?.message ?? err);
+        this.logger.verbose(
+          `[rpc][retry ${attempt}/${this.rpcRetryAttempts}] ${label} -> ${msg} (sleep ${delayMs}ms)`,
+        );
+      },
+    });
+  }
 
   constructor(
     private readonly providerFactory: ProviderFactory,
@@ -144,10 +147,6 @@ export class RewardsService {
     }
   }
 
-  private getMulticall3Address(network: string): string {
-    return DEFAULT_MULTICALL3_ADDRESS;
-  }
-
   /**
    * Fetch owed rewards for a list of (rewardsAddress, cometAddress, userAddress).
    * Uses Multicall3.aggregate3 to tolerate per-call failures.
@@ -170,9 +169,8 @@ export class RewardsService {
     // IMPORTANT: use a plain provider (not your multicall runner).
     const provider = this.providerFactory.get(network);
 
-    const multicall3Address = this.getMulticall3Address(network);
     const multicall3 = new ethers.Contract(
-      multicall3Address,
+      DEFAULT_MULTICALL3_ADDRESS,
       MULTICALL3_ABI,
       provider,
     );
@@ -196,34 +194,26 @@ export class RewardsService {
       let results: Array<{ success: boolean; returnData: string }> | null =
         null;
 
-      for (let a = 0; a < RETRY_ATTEMPTS; a++) {
-        try {
-          results = await multicall3.aggregate3!.staticCall(calls);
-          break;
-        } catch (err) {
-          if (!isRetryable(err) || a === RETRY_ATTEMPTS - 1) {
-            this.logger.error(
-              `[V3][owes][${network}] Multicall3.aggregate3 failed (attempt ${
-                a + 1
-              }/${RETRY_ATTEMPTS})`,
-              err as any,
-            );
-            results = null;
-            break;
-          }
-
-          // backoff
-          await setTimeout(250 * (a + 1) * (a + 1));
-        }
-      }
-
-      if (!results) {
-        // Fail this chunk gracefully (as before)
-        continue;
+      try {
+        results = await this.rpc(
+          `[V3][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          () => multicall3.aggregate3!.staticCall(calls),
+        );
+      } catch (err) {
+        this.logger.error(
+          `[V3][owes][${network}] Multicall3.aggregate3 failed after retries chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          err as any,
+        );
+        continue; // fail chunk gracefully as before
       }
 
       let logged = 0;
 
+      if (!results) continue;
       for (let j = 0; j < results.length; j++) {
         const r: any = results[j];
         const meta = chunk[j];

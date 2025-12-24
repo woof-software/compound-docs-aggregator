@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,9 +8,12 @@ import {
   UsersSeries,
 } from './manifests.service';
 import { SqliteDatabase } from './indexer.types';
+import { shouldLogPct } from '../common/utils/should-log-pct';
 
 @Injectable()
 export class ChunksService {
+  private readonly logger = new Logger(ChunksService.name);
+
   constructor(private readonly manifestSvc: ManifestsService) {}
 
   private ensureUsersChunkSchema(db: SqliteDatabase): void {
@@ -81,6 +84,15 @@ export class ChunksService {
 
       if (newRows.length === 0) continue;
 
+      const pctTotal = newRows.length;
+      let pctProcessed = 0;
+      let pctInserted = 0;
+      let pctLast = -1;
+
+      this.logger.verbose(
+        `[flush][${network}/v${version}] 0% (newRows=${pctTotal} watermark=${watermark} chunkRows=${manifest.chunkRows})`,
+      );
+
       let active = this.getActiveChunk(series);
       if (!active) {
         const file = this.manifestSvc.chunkFileName(network, version, 0);
@@ -119,6 +131,8 @@ export class ChunksService {
         chunkDb.exec('BEGIN');
 
         for (const r of newRows) {
+          pctProcessed += 1;
+
           const createdAt = Number(r.created_at);
 
           if (createdAt < series.lastCreatedAt) {
@@ -134,10 +148,23 @@ export class ChunksService {
             r.user,
             createdAt,
           );
-          if (res.changes === 1) active!.info.rows += 1;
+          if (res.changes === 1) {
+            active!.info.rows += 1;
+            pctInserted += 1;
+          }
 
           active!.info.endCreatedAt = createdAt;
           series.lastCreatedAt = createdAt;
+
+          const pct = Math.floor((pctProcessed * 100) / pctTotal);
+          if (shouldLogPct(pctLast, pct, 5)) {
+            pctLast = pct;
+            this.logger.verbose(
+              `[flush][${network}/v${version}] ${pct}% processed=${pctProcessed}/${pctTotal} inserted=${pctInserted} activeChunk=${
+                active!.info.file
+              } activeRows=${active!.info.rows}`,
+            );
+          }
 
           if (active!.info.rows >= manifest.chunkRows) {
             chunkDb.exec('COMMIT');

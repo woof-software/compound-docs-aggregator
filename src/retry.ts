@@ -1,39 +1,29 @@
 import { spawn, type ChildProcess } from 'node:child_process';
 import * as readline from 'node:readline';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 import type { Readable } from 'node:stream';
+import { setTimeout } from 'node:timers/promises';
 
 type ExitResult = { code: number | null; signal: NodeJS.Signals | null };
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+////////////////////////////////////
+const RETRY_PATTERNS: RegExp[] = [
+  ///skipping network/i,
+  /skipping network=mainnet chainId=1/i,
+  /Error: read ECONNRESET/i,
+  /*/\bERROR\b/i,
+  /\[Nest\].*\bERROR\b/i,
+  /UnhandledPromiseRejection/i,
+  /FATAL/i,
+  /SQLITE_BUSY/i,*/
+];
 
-function pickPackageManager(): 'pnpm' | 'yarn' | 'npm' {
-  const cwd = process.cwd();
-  if (fs.existsSync(path.join(cwd, 'pnpm-lock.yaml'))) return 'pnpm';
-  if (fs.existsSync(path.join(cwd, 'yarn.lock'))) return 'yarn';
-  return 'npm';
-}
+////////////////////////////////////
 
-function buildRegexList(): RegExp[] {
-  const raw = process.env.FULL_SYNC_ERROR_REGEX?.trim();
-  if (raw) return [new RegExp(raw, 'i')];
+const RETRY_COMMAND = process.env.RETRY_COMMAND;
+if (!RETRY_COMMAND) throw new Error('Retry requires RETRY_COMMAND env');
+const retryCommand = RETRY_COMMAND;
 
-  return [
-    ///skipping network/i,
-    /skipping network=mainnet chainId=1/i,
-    /Error: read ECONNRESET/i,
-    /*/\bERROR\b/i,
-    /\[Nest\].*\bERROR\b/i,
-    /UnhandledPromiseRejection/i,
-    /FATAL/i,
-    /SQLITE_BUSY/i,*/
-  ];
-}
-
-async function killProcessTree(child: ChildProcess): Promise<void> {
+const killProcessTree = async (child: ChildProcess): Promise<void> => {
   const pid = child.pid;
   if (!pid) return;
 
@@ -54,7 +44,7 @@ async function killProcessTree(child: ChildProcess): Promise<void> {
   }
 
   const killTimeoutMs = Number(process.env.FULL_SYNC_KILL_TIMEOUT_MS ?? 5000);
-  await sleep(killTimeoutMs);
+  await setTimeout(killTimeoutMs);
 
   try {
     if (process.platform !== 'win32') {
@@ -67,14 +57,14 @@ async function killProcessTree(child: ChildProcess): Promise<void> {
   } catch {
     // ignore
   }
-}
+};
 
-function attachScanner(
+const attachScanner = (
   stream: Readable,
   mirror: NodeJS.WritableStream,
   regexList: RegExp[],
   onMatch: (line: string, re: RegExp) => void,
-): readline.Interface {
+): readline.Interface => {
   const rl = readline.createInterface({ input: stream });
 
   rl.on('line', (line: string) => {
@@ -88,14 +78,16 @@ function attachScanner(
   });
 
   return rl;
-}
+};
 
-async function runOnce(pm: 'pnpm' | 'yarn' | 'npm'): Promise<{
+const runOnce = async (
+  pm: 'pnpm' | 'yarn' | 'npm',
+): Promise<{
   exit: ExitResult;
   logTriggeredRestart: boolean;
   restartReason: string;
-}> {
-  const args = pm === 'yarn' ? ['cli:generate'] : ['run', 'cli:generate'];
+}> => {
+  const args: string[] = pm === 'yarn' ? [retryCommand] : ['run', retryCommand];
 
   let logTriggeredRestart = false;
   let restartReason = '';
@@ -111,7 +103,7 @@ async function runOnce(pm: 'pnpm' | 'yarn' | 'npm'): Promise<{
     throw new Error('[full-sync] Expected stdout/stderr to be piped.');
   }
 
-  const regexList = buildRegexList();
+  const regexList = RETRY_PATTERNS;
 
   const onMatch = (line: string, re: RegExp) => {
     if (logTriggeredRestart) return;
@@ -131,12 +123,10 @@ async function runOnce(pm: 'pnpm' | 'yarn' | 'npm'): Promise<{
   rlErr.close();
 
   return { exit, logTriggeredRestart, restartReason };
-}
+};
 
-async function main(): Promise<void> {
-  const pm =
-    (process.env.FULL_SYNC_PM as 'pnpm' | 'yarn' | 'npm' | undefined) ??
-    pickPackageManager();
+const main = async (): Promise<void> => {
+  const pm = 'yarn';
   const maxRestarts = Number(process.env.FULL_SYNC_MAX_RESTARTS ?? 5000);
   const delayMs = Number(process.env.FULL_SYNC_RESTART_DELAY_MS ?? 2000);
 
@@ -176,8 +166,8 @@ async function main(): Promise<void> {
       }`,
     );
 
-    await sleep(delayMs);
+    await setTimeout(delayMs);
   }
-}
+};
 
 void main();
