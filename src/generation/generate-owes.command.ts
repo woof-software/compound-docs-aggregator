@@ -5,6 +5,7 @@ import { RewardsService } from 'contract/rewards.service';
 import { JsonService } from 'json/json.service';
 import { CompoundVersion } from 'common/types/compound-version';
 import { IndexerService } from 'indexer/indexer.service';
+import { fmtPct } from '../common/utils/fmt-pct';
 
 @Command({ name: 'owes:generate', description: 'Generate owes' })
 export class GenerateOwesCommand extends CommandRunner {
@@ -30,10 +31,20 @@ export class GenerateOwesCommand extends CommandRunner {
         let totalSum = 0n;
         let page = 0;
 
+        const totalUsers = this.indexer.countUsersForNetwork(
+          CompoundVersion.V3,
+          network,
+        );
+
         while (true) {
           page += 1;
 
-          this.logger.verbose(`[${network}] page -> ${page}`);
+          const pct = fmtPct(
+            Math.min(offset, totalUsers),
+            Math.max(1, totalUsers),
+            2,
+          );
+          this.logger.verbose(`[${network} (${pct})] page -> ${page}`);
 
           const batch = await this.indexer.fetchUsersForNetwork(
             CompoundVersion.V3,
@@ -55,7 +66,7 @@ export class GenerateOwesCommand extends CommandRunner {
           } catch (err) {
             this.logger.error(
               `[V3][owes][${network}][page=${page}] sumOwedForUsersV3 failed`,
-              err as any,
+              err,
             );
             // Skip this page and continue
           }
@@ -83,7 +94,6 @@ export class GenerateOwesCommand extends CommandRunner {
 
   async run() {
     try {
-      await this.indexer.run();
       this.logger.log('Generating total owes V3...');
 
       const v3Results = await this.calcOwesV3();

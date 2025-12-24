@@ -13,6 +13,7 @@ import { IndexerConfig, SqliteApi, SqliteDatabase } from './indexer.types';
 import { ManifestsService } from './manifests.service';
 import { ChunksService } from './chunks.service';
 import { createSqliteApi } from './sqlite-api';
+import { shouldLogPct } from '../common/utils/should-log-pct';
 
 function sqlQuotePath(p: string): string {
   return `'${p.replaceAll("'", "''")}'`;
@@ -35,11 +36,6 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
   public get api(): SqliteApi {
     if (!this._api) throw new Error('Runtime sqlite api must be defined');
     return this._api;
-  }
-
-  public get db(): SqliteDatabase {
-    if (!this._runtimeDb) throw new Error('Runtime db must be defined');
-    return this._runtimeDb;
   }
 
   constructor(
@@ -141,34 +137,55 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
       throw new Error(`users dir not found at: ${cfg.repoUsersDir}`);
     }
 
+    // ----------------------------
+    // 1) Meta import (markets + cursors)
+    // ----------------------------
+    this.logger.verbose(`[assemble][meta] 0%`);
+
     const metaAbs = path.resolve(cfg.repoMetaPath);
     this.runtimeDb.exec(`ATTACH ${sqlQuotePath(metaAbs)} AS meta;`);
 
     try {
       this.runtimeDb.exec('BEGIN');
 
-      this.runtimeDb.exec(`
-      INSERT OR REPLACE INTO markets(network, version, market, first_seen_block, discovered_at)
-      SELECT network, version, market, first_seen_block, discovered_at
-      FROM meta.markets;
-    `);
+      // markets
+      this.runtimeDb
+        .prepare(
+          `
+        INSERT OR REPLACE INTO markets(network, version, market, first_seen_block, discovered_at)
+        SELECT network, version, market, first_seen_block, discovered_at
+        FROM meta.markets;
+      `,
+        )
+        .run();
 
-      this.runtimeDb.exec(`
-      INSERT OR REPLACE INTO cursors(network, last_block, updated_at)
-      SELECT network, last_block, updated_at
-      FROM meta.cursors;
-    `);
+      this.logger.verbose(`[assemble][meta] 50% (markets)`);
+
+      // cursors
+      this.runtimeDb
+        .prepare(
+          `
+        INSERT OR REPLACE INTO cursors(network, last_block, updated_at)
+        SELECT network, last_block, updated_at
+        FROM meta.cursors;
+      `,
+        )
+        .run();
+
+      this.logger.verbose(`[assemble][meta] 100% (cursors)`);
 
       this.runtimeDb.exec('COMMIT');
 
       const cursors = this.runtimeDb
         .prepare(`SELECT COUNT(*) AS c FROM cursors`)
         .get() as { c: number };
+
       if (cursors.c === 0) {
         throw new Error(
           `assembleRuntime: 0 cursors after meta import (empty/wrong meta.sqlite): ${cfg.repoMetaPath}`,
         );
       }
+
       this.logger.log(`after meta import: cursors=${cursors.c}`);
     } catch (e) {
       try {
@@ -179,38 +196,82 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
       this.runtimeDb.exec(`DETACH meta;`);
     }
 
-    // --- Users chunks ---
+    // ----------------------------
+    // 2) Users import (repo chunks -> runtime)
+    // Progress by EXISTING chunk files on disk.
+    // ----------------------------
     const manifest = this.manifestSvc.value;
+
+    let declaredChunks = 0;
+    const existingChunkFiles: Array<{ file: string; abs: string }> = [];
 
     for (const s of manifest.series) {
       for (const ch of s.chunks) {
-        const chunkAbs = path.resolve(cfg.repoUsersDir, ch.file);
-        if (!fs.existsSync(chunkAbs)) continue;
-
-        this.runtimeDb.exec(`ATTACH ${sqlQuotePath(chunkAbs)} AS ch;`);
-
-        try {
-          this.runtimeDb.exec('BEGIN');
-          this.runtimeDb.exec(`
-          INSERT OR IGNORE INTO users(network, version, market, user, created_at)
-          SELECT network, version, market, user, created_at
-          FROM ch.users;
-        `);
-          this.runtimeDb.exec('COMMIT');
-        } catch (e) {
-          try {
-            this.runtimeDb.exec('ROLLBACK');
-          } catch {}
-          throw e;
-        } finally {
-          this.runtimeDb.exec(`DETACH ch;`);
-        }
+        declaredChunks += 1;
+        const abs = path.resolve(cfg.repoUsersDir, ch.file);
+        if (fs.existsSync(abs)) existingChunkFiles.push({ file: ch.file, abs });
       }
+    }
+
+    const total = existingChunkFiles.length;
+    let done = 0;
+    let insertedTotal = 0;
+    let lastPct = -1;
+
+    this.logger.verbose(
+      `[assemble][users] 0% (existingChunks=${total}/${declaredChunks})`,
+    );
+
+    for (const ch of existingChunkFiles) {
+      this.runtimeDb.exec(`ATTACH ${sqlQuotePath(ch.abs)} AS ch;`);
+
+      try {
+        this.runtimeDb.exec('BEGIN');
+
+        const insertFromChunkStmt = this.runtimeDb.prepare(`
+    INSERT OR IGNORE INTO users(network, version, market, user, created_at)
+    SELECT network, version, market, user, created_at
+    FROM ch.users;
+  `);
+
+        const res = insertFromChunkStmt.run();
+        insertedTotal += res.changes;
+
+        this.runtimeDb.exec('COMMIT');
+      } catch (e) {
+        try {
+          this.runtimeDb.exec('ROLLBACK');
+        } catch {}
+        throw e;
+      } finally {
+        this.runtimeDb.exec(`DETACH ch;`);
+      }
+
+      done += 1;
+
+      const pct = total === 0 ? 100 : Math.floor((done * 100) / total);
+      if (shouldLogPct(lastPct, pct, 5)) {
+        lastPct = pct;
+        this.logger.verbose(
+          `[assemble][users] ${pct}% (${done}/${total}) insertedTotal=${insertedTotal} lastChunk=${ch.file}`,
+        );
+      }
+    }
+
+    if (total === 0) {
+      this.logger.verbose(
+        `[assemble][users] 100% (no chunk files found on disk)`,
+      );
+    } else if (lastPct < 100) {
+      this.logger.verbose(
+        `[assemble][users] 100% (${done}/${total}) insertedTotal=${insertedTotal}`,
+      );
     }
 
     const users = this.runtimeDb
       .prepare(`SELECT COUNT(*) AS c FROM users`)
       .get() as { c: number };
+
     this.logger.log(`after users import: users=${users.c}`);
   }
 
@@ -219,24 +280,41 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
 
     this.ensureMetaSchema(cfg.repoMetaPath);
 
+    this.logger.verbose(`[sync-meta] 0%`);
+
     this.runtimeDb.exec(
       `ATTACH ${sqlQuotePath(path.resolve(cfg.repoMetaPath))} AS meta;`,
     );
+
     this.runtimeDb.exec('BEGIN');
     try {
+      // markets
       this.runtimeDb.exec(`DELETE FROM meta.markets;`);
-      this.runtimeDb.exec(`
+      this.runtimeDb
+        .prepare(
+          `
         INSERT INTO meta.markets(network, version, market, first_seen_block, discovered_at)
         SELECT network, version, market, first_seen_block, discovered_at
         FROM main.markets;
-      `);
+      `,
+        )
+        .run();
 
+      this.logger.verbose(`[sync-meta] 50% (markets)`);
+
+      // cursors
       this.runtimeDb.exec(`DELETE FROM meta.cursors;`);
-      this.runtimeDb.exec(`
+      this.runtimeDb
+        .prepare(
+          `
         INSERT INTO meta.cursors(network, last_block, updated_at)
         SELECT network, last_block, updated_at
         FROM main.cursors;
-      `);
+      `,
+        )
+        .run();
+
+      this.logger.verbose(`[sync-meta] 100% (cursors)`);
 
       this.runtimeDb.exec('COMMIT');
     } catch (e) {

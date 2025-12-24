@@ -4,6 +4,7 @@ import { IndexerService } from './indexer.service';
 import { RuntimeDbService } from './runtime-db.service';
 import { ManifestsService } from './manifests.service';
 import { ChunksService } from './chunks.service';
+import { IndexCommand } from './index.command';
 
 @Module({
   imports: [NetworkModule],
@@ -12,6 +13,7 @@ import { ChunksService } from './chunks.service';
     ManifestsService,
     ChunksService,
     RuntimeDbService,
+    IndexCommand,
   ],
   exports: [IndexerService, RuntimeDbService],
 })

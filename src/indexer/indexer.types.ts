@@ -22,6 +22,7 @@ export interface SqliteApi {
   txUpsertUsers: BetterSqlite3.Transaction;
   fetchUsersPageByNetworkAndVersion: BetterSqlite3.Statement;
   fetchUsersCursorPageByNetworkAndVersion: BetterSqlite3.Statement;
+  countUsersByNetworkAndVersion: BetterSqlite3.Statement;
 }
 
 /**

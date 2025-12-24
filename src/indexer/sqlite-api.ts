@@ -116,6 +116,12 @@ export function createSqliteApi(pathOrDb: string | SqliteDatabase): SqliteApi {
     LIMIT ?
   `);
 
+  const countUsersByNetworkAndVersion = db.prepare(`
+  SELECT COUNT(*) AS cnt
+  FROM users
+  WHERE network = ? AND version = ?
+`);
+
   return {
     db,
 
@@ -132,5 +138,6 @@ export function createSqliteApi(pathOrDb: string | SqliteDatabase): SqliteApi {
     txUpsertUsers,
     fetchUsersPageByNetworkAndVersion,
     fetchUsersCursorPageByNetworkAndVersion,
+    countUsersByNetworkAndVersion,
   };
 }
