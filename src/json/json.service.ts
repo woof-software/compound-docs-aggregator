@@ -19,7 +19,7 @@ export class JsonService {
   private readonly rootPathOwesV3 = join(process.cwd(), 'owes-v3.json');
 
   writeOwes(owes: Record<string, number>, version: CompoundVersion): string {
-    const path =
+    const filePath =
       version === CompoundVersion.V2
         ? this.rootPathOwesV2
         : this.rootPathOwesV3;
@@ -32,8 +32,31 @@ export class JsonService {
       }),
     ) as Record<string, number>;
 
-    writeFileSync(path, JSON.stringify(sorted, null, 2));
-    return path;
+    writeFileSync(filePath, JSON.stringify(sorted, null, 2));
+    return filePath;
+  }
+
+  readOwes(version: CompoundVersion): Record<string, number> {
+    const filePath =
+      version === CompoundVersion.V2
+        ? this.rootPathOwesV2
+        : this.rootPathOwesV3;
+
+    try {
+      if (!existsSync(filePath)) {
+        throw new Error(`File ${filePath} does not exist`);
+      }
+
+      const fileContent = readFileSync(filePath, 'utf8');
+      const parsedData = JSON.parse(fileContent) as Record<string, number>;
+
+      return parsedData;
+    } catch (err) {
+      this.logger.error(
+        `Failed to read ${filePath}: ${(err as Error).message}`,
+      );
+      throw err;
+    }
   }
 
   writeMarkets(markets: MarketData[]) {

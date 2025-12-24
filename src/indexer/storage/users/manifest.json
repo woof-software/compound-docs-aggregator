@@ -4,7 +4,7 @@
     {
       "network": "arbitrum",
       "version": 3,
-      "lastCreatedAt": 1766580294,
+      "lastCreatedAt": 1766583098,
       "chunks": [
         {
           "file": "v3_arbitrum_0000.sqlite",
@@ -48,15 +48,15 @@
         },
         {
           "file": "v3_arbitrum_0008.sqlite",
-          "rows": 3642,
-          "endCreatedAt": 1766580294
+          "rows": 3643,
+          "endCreatedAt": 1766583098
         }
       ]
     },
     {
       "network": "base",
       "version": 3,
-      "lastCreatedAt": 1766580123,
+      "lastCreatedAt": 1766585323,
       "chunks": [
         {
           "file": "v3_base_0000.sqlite",
@@ -170,8 +170,8 @@
         },
         {
           "file": "v3_base_0022.sqlite",
-          "rows": 7658,
-          "endCreatedAt": 1766580123
+          "rows": 7670,
+          "endCreatedAt": 1766585323
         }
       ]
     },
@@ -482,7 +482,7 @@
     {
       "network": "mainnet",
       "version": 3,
-      "lastCreatedAt": 1766579195,
+      "lastCreatedAt": 1766582231,
       "chunks": [
         {
           "file": "v3_mainnet_0000.sqlite",
@@ -496,8 +496,8 @@
         },
         {
           "file": "v3_mainnet_0002.sqlite",
-          "rows": 3616,
-          "endCreatedAt": 1766579195
+          "rows": 3617,
+          "endCreatedAt": 1766582231
         }
       ]
     },
