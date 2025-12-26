@@ -38,5 +38,5 @@ jobs:
       - name: Commit & Push changes
         run: |
           git add src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
-          git diff --cached --quiet || git commit -m "chore: auto-update index"
+          git diff --cached --quiet || git commit -m "chore: run index"
           git push

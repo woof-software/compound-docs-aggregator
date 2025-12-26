@@ -38,5 +38,5 @@ jobs:
       - name: Commit & Push changes (owes v3)
         run: |
           git add owes-v3.json
-          git diff --cached --quiet || git commit -m "chore: auto-update owes v3"
+          git diff --cached --quiet || git commit -m "chore: run owes v3"
           git push

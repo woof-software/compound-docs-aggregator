@@ -38,5 +38,5 @@ jobs:
       - name: Commit & Push changes (owes md)
         run: |
           git add REWARDS.md
-          git diff --cached --quiet || git commit -m "chore: auto-update owes md"
+          git diff --cached --quiet || git commit -m "chore: run owes md"
           git push
