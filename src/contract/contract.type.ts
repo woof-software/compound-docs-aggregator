@@ -59,6 +59,17 @@ export interface CurveMap {
 }
 
 /**
+ * Base token information
+ */
+export interface BaseTokenInfo {
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+  priceFeed: string;
+}
+
+/**
  * A single collateral/asset entry as returned by the Configurator.
  */
 export interface CollateralInfo {
@@ -115,6 +126,7 @@ export interface MarketData {
   market: string;
   contracts: ContractsMap;
   curve: CurveMap;
+  baseToken: BaseTokenInfo;
   collaterals: CollateralInfo[];
   rewardsTable: RewardRecord | null;
 }
@@ -131,6 +143,7 @@ export interface NestedMarkets {
       [market: string]: {
         contracts: ContractsMap;
         curve: CurveMap;
+        baseToken: BaseTokenInfo;
         collaterals: CollateralInfo[];
       };
     };
