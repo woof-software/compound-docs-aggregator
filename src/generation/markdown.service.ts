@@ -1,13 +1,29 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { readFileSync, existsSync } from 'fs';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
+import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import {
+  getNetworkSortOrder,
+  getBlockscanOrigin,
+  getNetworkShortName,
+  getNetworkDisplayName,
+} from './helpers';
+import { STATIC_DEPLOYMENTS } from './constants';
 
 @Injectable()
 export class MarkdownService {
   private readonly logger = new Logger(MarkdownService.name);
+
+  constructor(private readonly config: ConfigService) {}
+
+  private get compoundFinance(): CompoundFinanceConfig {
+    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  }
 
   private readonly rewardsMdPath = join(process.cwd(), 'REWARDS.md');
 
@@ -475,5 +491,267 @@ export class MarkdownService {
 
     writeFileSync(this.rewardsMdPath, lines.join('\n'), 'utf-8');
     this.logger.log('rewards.md successfully generated');
+  }
+
+  /**
+   * Updates the deployments section in compound-3.md file using data from nestedMarkets
+   * This method replaces the deployments section with newly generated deployment data
+   */
+  updateCompound3Deployments(nestedMarkets: NestedMarkets): void {
+    const { directory, filename, sectionStartMarker, sectionEndMarker } =
+      this.compoundFinance.markdown;
+    const compound3Path = join(process.cwd(), directory, filename);
+
+    if (!existsSync(compound3Path)) {
+      this.logger.error(`File not found: ${compound3Path}`);
+      throw new Error(`File not found: ${compound3Path}`);
+    }
+
+    const fileContent = readFileSync(compound3Path, 'utf-8');
+    const lines = fileContent.split('\n');
+    const deploymentsSection = this.generateDeploymentsSection(nestedMarkets);
+
+    let deploymentsStartIndex = -1;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line && line.trim().startsWith(sectionStartMarker)) {
+        deploymentsStartIndex = i;
+        break;
+      }
+    }
+
+    if (deploymentsStartIndex === -1) {
+      this.logger.error(
+        `Could not find "${sectionStartMarker}" line in ${filename}`,
+      );
+      throw new Error(
+        `Could not find "${sectionStartMarker}" line in ${filename}`,
+      );
+    }
+
+    let deploymentsEndIndex = lines.length;
+    for (let i = deploymentsStartIndex + 1; i < lines.length; i++) {
+      const line = lines[i];
+      if (line && line.trim() === sectionEndMarker) {
+        deploymentsEndIndex = i;
+        break;
+      }
+    }
+
+    const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n');
+    const afterSection = lines.slice(deploymentsEndIndex).join('\n');
+    const updatedContent = `${beforeSection}\n${deploymentsSection}\n${afterSection}`;
+
+    writeFileSync(compound3Path, updatedContent, 'utf-8');
+    this.logger.log(`${filename} deployments section successfully updated`);
+  }
+
+  /**
+   * Generates the deployments YAML section from NestedMarkets data
+   */
+  private generateDeploymentsSection(nestedMarkets: NestedMarkets): string {
+    const deployments: string[] = [];
+    // Note: 'deployments:' header is already in the file, so we don't add it here
+
+    const networkEntries = Object.entries(nestedMarkets.markets).sort(
+      ([a], [b]) => getNetworkSortOrder(a) - getNetworkSortOrder(b),
+    );
+
+    for (const [networkName, networkMarkets] of networkEntries) {
+      const marketEntries = Object.entries(networkMarkets).sort(([a], [b]) =>
+        a.localeCompare(b),
+      );
+
+      // Check if network has USDC.e market (for determining native suffix)
+      const hasUSDCE = marketEntries.some(
+        ([name]) => name.toLowerCase() === 'cusdcev3',
+      );
+
+      for (const [marketName, marketData] of marketEntries) {
+        const suffix = this.getMarketSuffix(marketName, hasUSDCE);
+        const deploymentKey = this.getDeploymentKey(
+          networkName,
+          marketName,
+          suffix,
+        );
+        const tabText = this.getTabText(networkName, marketName);
+        const blockscanOrigin = getBlockscanOrigin(networkName);
+
+        deployments.push(`  ${deploymentKey}:`);
+        deployments.push(`    tab_text: ${tabText}`);
+        deployments.push(`    blockscan_origin: '${blockscanOrigin}'`);
+        deployments.push(`    contracts:`);
+
+        const contracts = this.formatContracts(
+          marketData.contracts,
+          marketData.collaterals,
+          marketName,
+        );
+        for (const [contractName, contractAddress] of Object.entries(
+          contracts,
+        )) {
+          deployments.push(`      ${contractName}: '${contractAddress}'`);
+        }
+      }
+    }
+
+    // Add static deployments for unsupported networks
+    for (const staticDeployment of STATIC_DEPLOYMENTS) {
+      deployments.push(`  ${staticDeployment.deploymentKey}:`);
+      deployments.push(`    tab_text: ${staticDeployment.tabText}`);
+      deployments.push(
+        `    blockscan_origin: '${staticDeployment.blockscanOrigin}'`,
+      );
+      deployments.push(`    contracts:`);
+      for (const [contractName, contractAddress] of Object.entries(
+        staticDeployment.contracts,
+      )) {
+        deployments.push(`      ${contractName}: '${contractAddress}'`);
+      }
+    }
+
+    return deployments.join('\n');
+  }
+
+  /**
+   * Formats contracts from market data into the format expected by compound-3.md
+   */
+  private formatContracts(
+    contracts: any,
+    collaterals: any[],
+    marketName: string,
+  ): Record<string, string> {
+    const formatted: Record<string, string> = {};
+    const cometContractName = this.getCometContractName(marketName);
+
+    const contractMappings: Record<string, string> = {
+      comet: cometContractName,
+      cometImplementation: `${cometContractName} Implementation`,
+      cometExtension: `${cometContractName} Ext`,
+      configurator: 'Configurator',
+      configuratorImplementation: 'Configurator Implementation',
+      cometAdmin: 'Proxy Admin',
+      cometFactory: 'Comet Factory',
+      rewards: 'Rewards',
+      bulker: 'Bulker',
+      governor: 'Governor',
+      timelock: 'Timelock',
+    };
+
+    const optionalContracts: Record<string, string> = {
+      bridgeReceiver: 'Bridge Receiver',
+      faucet: 'Faucet',
+      marketAdminPermissionChecker: 'Market Admin Permission Checker',
+      marketAdminUpdateTimelock: 'Market Admin Update Timelock',
+      marketAdminUpdateProposer: 'Market Admin Update Proposer',
+    };
+
+    for (const [key, displayName] of Object.entries(contractMappings)) {
+      if (contracts[key]) {
+        formatted[displayName] = contracts[key];
+      }
+    }
+
+    for (const [key, displayName] of Object.entries(optionalContracts)) {
+      if (contracts[key]) {
+        formatted[displayName] = contracts[key];
+      }
+    }
+
+    // Add collaterals as contracts (using symbol as key)
+    for (const collateral of collaterals) {
+      formatted[collateral.symbol] = collateral.address;
+    }
+
+    return formatted;
+  }
+
+  /**
+   * Gets the comet contract name based on the market name
+   */
+  private getCometContractName(marketName: string): string {
+    const normalized = marketName.trim();
+    const lowerNormalized = normalized.toLowerCase();
+
+    // Handle special case: cUSDCev3 -> cUSDCv3 (for USDC.e markets, the contract is still cUSDCv3)
+    if (lowerNormalized === 'cusdcev3' || lowerNormalized === 'cusdc.ev3') {
+      return 'cUSDCv3';
+    }
+
+    return normalized;
+  }
+
+  /**
+   * Generates deployment key (header) from network and market names
+   */
+  private getDeploymentKey(
+    networkName: string,
+    marketName: string,
+    suffix: string,
+  ): string {
+    const networkDisplay = getNetworkDisplayName(networkName);
+    const marketDisplay = this.getMarketDisplayName(marketName);
+    return `${networkDisplay} - ${marketDisplay} Base${suffix}`;
+  }
+
+  /**
+   * Gets market display name
+   */
+  private getMarketDisplayName(marketName: string): string {
+    const lowerMarket = marketName.toLowerCase();
+
+    if (lowerMarket === 'cusdcev3' || lowerMarket === 'cusdc.ev3') {
+      return 'USDC.e';
+    }
+    if (
+      lowerMarket === 'cusdbcbcv3' ||
+      lowerMarket === 'cusdbcbc' ||
+      lowerMarket.includes('usdbc')
+    ) {
+      return 'USDbC';
+    }
+    if (lowerMarket === 'cwstethv3' || lowerMarket === 'cwsteth') {
+      return 'wstETH'; // lowercase 'w'
+    }
+    if (lowerMarket === 'cusdev3' || lowerMarket === 'cusde') {
+      return 'USDe';
+    }
+    if (lowerMarket === 'caerov3' || lowerMarket === 'caero') {
+      return 'AERO';
+    }
+
+    // For standard markets: remove 'c' prefix and 'v3' suffix, then uppercase
+    return marketName.replace(/^c/i, '').replace(/v3$/i, '').toUpperCase();
+  }
+
+  /**
+   * Gets market suffix (e.g., " (Bridged)", " (Native)")
+   */
+  private getMarketSuffix(marketName: string, hasUSDCE: boolean): string {
+    const lowerMarket = marketName.toLowerCase();
+
+    if (lowerMarket === 'cusdcev3' || lowerMarket.includes('usdce')) {
+      return ' (Bridged)';
+    }
+
+    if (lowerMarket.includes('usdbc') || lowerMarket === 'cusdbcbcv3') {
+      return ' (Bridged)';
+    }
+
+    // For USDC markets, if there's also a USDC.e market in the same network, this is native
+    if (lowerMarket === 'cusdcv3' && hasUSDCE) {
+      return ' (Native)';
+    }
+
+    return '';
+  }
+
+  /**
+   * Generates tab text from network and market names
+   */
+  private getTabText(networkName: string, marketName: string): string {
+    const networkShort = getNetworkShortName(networkName);
+    const marketShort = this.getMarketDisplayName(marketName);
+    return `${networkShort} ${marketShort}`;
   }
 }
