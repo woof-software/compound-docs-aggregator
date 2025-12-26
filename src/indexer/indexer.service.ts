@@ -1,4 +1,4 @@
-import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { JsonRpcProvider, getAddress, ethers } from 'ethers';
@@ -27,7 +27,7 @@ const normAddr = (a: string) => getAddress(a).toLowerCase();
 const topicToAddress = (topic: string) => normAddr('0x' + topic.slice(-40));
 
 @Injectable()
-export class IndexerService implements OnApplicationBootstrap {
+export class IndexerService {
   private readonly logger = new Logger(IndexerService.name);
 
   private _sqlite?: SqliteApi;
@@ -76,10 +76,6 @@ export class IndexerService implements OnApplicationBootstrap {
     );
   }
 
-  public async onApplicationBootstrap(): Promise<void> {
-    this.sqlite = this.runtimeDb.api;
-  }
-
   private get networks(): NetworkConfig[] {
     return this.config.get<NetworkConfig[]>('networks') ?? [];
   }
@@ -110,6 +106,8 @@ export class IndexerService implements OnApplicationBootstrap {
    * This MUST be the only indexing entrypoint if you want cursor correctness.
    */
   public async run(): Promise<void> {
+    await this.runtimeDb.assemble();
+    this.sqlite = this.runtimeDb.api;
     const targets = this.networks.filter((n) => {
       const enabled = Boolean(
         n.indexingEnabled && (n.comptrollerV2 || n.configuratorV3),
@@ -137,6 +135,8 @@ export class IndexerService implements OnApplicationBootstrap {
         }
       },
     );
+
+    await this.runtimeDb.flush();
 
     this.logger.log(`Indexing finished. networks=${targets.length}`);
   }

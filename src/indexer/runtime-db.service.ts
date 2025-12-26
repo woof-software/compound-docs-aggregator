@@ -20,7 +20,7 @@ function sqlQuotePath(p: string): string {
 }
 
 @Injectable()
-export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
+export class RuntimeDbService {
   private readonly logger = new Logger(RuntimeDbService.name);
 
   private _runtimeDb?: SqliteDatabase;
@@ -325,7 +325,7 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  public async onModuleInit(): Promise<void> {
+  public async assemble(): Promise<void> {
     const cfg = this.cfg();
 
     this.manifestSvc.load(cfg.manifestPath);
@@ -358,7 +358,7 @@ export class RuntimeDbService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  public async onModuleDestroy(): Promise<void> {
+  public async flush(): Promise<void> {
     if (!this._runtimeDb) return;
 
     const cfg = this.cfg();

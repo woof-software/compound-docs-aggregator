@@ -20,6 +20,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     // startBlock: 15331590,
     startBlock: 7710671,
     rewardsCalcEnabled: true,
+    comp: '0xc00e94cb662c3520282e6f5717214004a7f26888',
   },
   {
     network: 'sepolia',
@@ -80,9 +81,9 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'unichain',
     chainId: 130,
-    url: `https://unichain.drpc.org`,
+    // url: `https://unichain.drpc.org`,
     // url: `https://solemn-smart-violet.unichain-mainnet.quiknode.pro/${quickNodeKey}`,
-    // url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${quickNodeKey}`,
+    url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${quickNodeKey}`,
     indexingEnabled: true,
     reorgWindow: 32,
     configuratorV3: '0x8df378453ff9deffa513367cdf9b3b53726303e9',

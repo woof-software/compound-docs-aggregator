@@ -15,8 +15,11 @@ jobs:
         with:
           lfs: true
 
-      - name: Init git lfs
-        run: git lfs install --local
+      - name: Init git and lfs
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git lfs install --local
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,23 +39,45 @@ jobs:
 
       - name: Commit & Push changes (index)
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "github-actions"
           git add src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
           git diff --cached --quiet || git commit -m "chore: auto-update index"
           git push
 
-      - name: Run owes generation
+      - name: Run owes v3 generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
           UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn cli:generate:owes
+        run: yarn cli:generate:owes:v3
 
-      - name: Commit & Push changes (owes)
+      - name: Commit & Push changes (owes v3)
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "github-actions"
-          git add owes-v3.json owes-v2.json REWARDS.md
-          git diff --cached --quiet || git commit -m "chore: auto-update owes"
+          git add owes-v3.json
+          git diff --cached --quiet || git commit -m "chore: auto-update owes v3"
+          git push
+
+      - name: Run owes v2 generation
+        env:
+          ANKR_KEY: ${{ secrets.ANKR_KEY }}
+          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn cli:generate:owes:v2
+
+      - name: Commit & Push changes (owes v2)
+        run: |
+          git add owes-v2.json
+          git diff --cached --quiet || git commit -m "chore: auto-update owes v2"
+          git push
+
+      - name: Run owes markdown generation
+        env:
+          ANKR_KEY: ${{ secrets.ANKR_KEY }}
+          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn cli:generate:owes:md
+
+      - name: Commit & Push changes (owes md)
+        run: |
+          git add REWARDS.md
+          git diff --cached --quiet || git commit -m "chore: auto-update owes md"
           git push

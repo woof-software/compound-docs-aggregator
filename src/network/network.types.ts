@@ -11,4 +11,5 @@ export interface NetworkConfig {
   startBlock?: number;
   // Ows
   rewardsCalcEnabled: boolean;
+  comp?: string; // required if comptrollerV2 !== undefined
 }

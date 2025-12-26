@@ -6,7 +6,9 @@ import { NetworkModule } from 'network/network.module';
 import { IndexerModule } from 'indexer/indexer.module';
 import { MarkdownService } from './markdown.service';
 import { GenerateMarkdownCommand } from './generate-markdown.command';
-import { GenerateOwesCommand } from './generate-owes.command';
+import { GenerateOwesV3Command } from './generate-owes-v3.command';
+import { GenerateOwesV2Command } from './generate-owes-v2.command';
+import { GenerateOwesMarkdown } from './generate-owes-md.command';
 
 @Module({
   imports: [
@@ -16,7 +18,13 @@ import { GenerateOwesCommand } from './generate-owes.command';
     NetworkModule,
     IndexerModule,
   ],
-  providers: [MarkdownService, GenerateMarkdownCommand, GenerateOwesCommand],
+  providers: [
+    MarkdownService,
+    GenerateMarkdownCommand,
+    GenerateOwesV2Command,
+    GenerateOwesV3Command,
+    GenerateOwesMarkdown,
+  ],
   exports: [MarkdownService],
 })
 export class GenerationModule {}
