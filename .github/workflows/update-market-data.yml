@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Init git lfs
+        run: git lfs install --local
+
       - name: Run data generation
         run: yarn cli:generate:md
 
