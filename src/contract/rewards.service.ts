@@ -3,14 +3,22 @@ import { ethers } from 'ethers';
 
 import RewardsABI from './abi/RewardsABI.json';
 import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
+import ERC20ABI from './abi/ERC20ABI.json';
 import { ProviderFactory } from 'network/provider.factory';
 import { CompoundVersion } from 'common/types/compound-version';
+import { withRetries } from 'common/helpers/with-retries';
 import { ConfigService } from '@nestjs/config';
 import { NetworkConfig } from 'network/network.types';
-import { withRetries } from '../common/helpers/with-retries';
+import { V2RewardsAtContract } from './rewards.types';
 
 const MULTICALL3_ABI = [
   'function aggregate3(tuple(address target, bool allowFailure, bytes callData)[] calls) view returns (tuple(bool success, bytes returnData)[] returnData)',
+];
+
+// === V2 Comptroller (Compound v2 COMP rewards) ===
+const COMPTROLLER_V2_ABI = [
+  // public mapping getter
+  'function compAccrued(address) view returns (uint256)',
 ];
 
 const DEFAULT_MULTICALL3_ADDRESS = '0xcA11bde05977b3631167028862bE2a173976CA11';
@@ -61,8 +69,6 @@ export class RewardsService {
       const calc = calculated[item.network];
       if (calc) {
         acc[item.network] = calc;
-      } else {
-        acc[item.network] = 0;
       }
 
       return acc;
@@ -71,9 +77,9 @@ export class RewardsService {
 
   public zeroOwes(version: CompoundVersion): Record<string, bigint> {
     return this.networksList.reduce((acc, item) => {
-      if (!item.rewardsCalcEnabled) {
+      /*if (!item.rewardsCalcEnabled) {
         return acc;
-      }
+      }*/
       if (version === CompoundVersion.V3) {
         if (!item.configuratorV3) return acc;
       } else {
@@ -145,6 +151,123 @@ export class RewardsService {
     } catch {
       return null;
     }
+  }
+
+  /**
+   * V2: Fetch COMP owed for a list of users using Comptroller.compAccrued(user).
+   * Uses Multicall3.aggregate3 to tolerate per-call failures.
+   */
+  public async sumOwedForUsersV2(params: {
+    network: string;
+    comptroller: string;
+    users: Array<string | { userAddress: string }>;
+    chunkSize?: number;
+    maxLoggedFailuresPerChunk?: number;
+  }): Promise<bigint> {
+    const {
+      network,
+      comptroller,
+      users,
+      chunkSize = 1000,
+      maxLoggedFailuresPerChunk = 5,
+    } = params;
+
+    if (!users.length) return 0n;
+
+    const provider = this.providerFactory.get(network);
+
+    const multicall3 = new ethers.Contract(
+      DEFAULT_MULTICALL3_ADDRESS,
+      MULTICALL3_ABI,
+      provider,
+    );
+
+    const comptrollerIface = new ethers.Interface(COMPTROLLER_V2_ABI);
+
+    const normUsers = users.map((u) =>
+      typeof u === 'string' ? u : u.userAddress,
+    );
+
+    let sum = 0n;
+
+    for (let i = 0; i < normUsers.length; i += chunkSize) {
+      const chunk = normUsers.slice(i, i + chunkSize);
+
+      const calls = chunk.map((userAddress) => ({
+        target: comptroller,
+        allowFailure: true,
+        callData: comptrollerIface.encodeFunctionData('compAccrued', [
+          userAddress,
+        ]),
+      }));
+
+      let results: Array<{ success: boolean; returnData: string }> | null =
+        null;
+
+      try {
+        results = await this.rpc(
+          `[V2][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          () => multicall3.aggregate3!.staticCall(calls),
+        );
+      } catch (err) {
+        this.logger.error(
+          `[V2][owes][${network}] Multicall3.aggregate3 failed after retries chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          err as any,
+        );
+        continue;
+      }
+
+      if (!results) continue;
+
+      let logged = 0;
+
+      for (let j = 0; j < results.length; j++) {
+        const r: any = results[j];
+        const userAddress = chunk[j];
+
+        const success = Boolean(r?.success);
+        const returnData = (r?.returnData as string) ?? '0x';
+
+        if (!success || returnData === '0x') {
+          if (logged < maxLoggedFailuresPerChunk) {
+            logged++;
+            this.logger.warn(
+              `[V2][owes][${network}] compAccrued failed: comptroller=${comptroller} user=${userAddress}`,
+            );
+          }
+          continue;
+        }
+
+        try {
+          const decoded: any = comptrollerIface.decodeFunctionResult(
+            'compAccrued',
+            returnData,
+          );
+
+          // Usually shape: [uint256]
+          const owed = Array.isArray(decoded)
+            ? BigInt(decoded[0])
+            : BigInt(decoded);
+          sum += owed;
+        } catch {
+          if (logged < maxLoggedFailuresPerChunk) {
+            logged++;
+            this.logger.warn(
+              `[V2][owes][${network}] decode failed: comptroller=${comptroller} user=${userAddress} dataPrefix=${returnData.slice(
+                0,
+                18,
+              )}`,
+            );
+          }
+        }
+      }
+    }
+
+    return sum;
   }
 
   /**
@@ -258,5 +381,65 @@ export class RewardsService {
     }
 
     return sum;
+  }
+
+  /**
+   * Reads V2 "Rewards at contract" = rewardToken.balanceOf(comptroller),
+   * plus token meta (symbol/decimals).
+   */
+  public async getRewardsAtContractV2(params: {
+    network: string;
+    comptroller: string;
+    comp: string;
+  }): Promise<V2RewardsAtContract> {
+    const { network, comptroller, comp } = params;
+
+    const provider = this.providerFactory.multicall(network);
+
+    const token = new ethers.Contract(comp, ERC20ABI, provider);
+
+    // Run in parallel so MulticallProvider can batch efficiently.
+    const [decimals, balance] = await Promise.all([
+      this.rpc(`[ERC20][${network}] decimals`, async () => {
+        const d = await token.decimals!.staticCall();
+        const n = Number(d);
+        return Number.isFinite(n) ? n : 18;
+      }),
+      this.rpc(`[ERC20][${network}] balanceOf(comptroller)`, async () => {
+        const b = await token.balanceOf!.staticCall(comptroller);
+        return BigInt(b);
+      }),
+    ]);
+
+    const atContractRaw = balance;
+    const atContract = Number(ethers.formatUnits(atContractRaw, decimals));
+
+    return {
+      network,
+      comptroller,
+      tokenDecimals: decimals,
+      atContractRaw,
+      atContract,
+    };
+  }
+
+  public async getHealedRewardsV2(params: {
+    network: string;
+    doctorContract: string;
+    comp: string;
+  }): Promise<bigint> {
+    const { network, doctorContract, comp } = params;
+
+    const provider = this.providerFactory.get(network);
+
+    const token = new ethers.Contract(comp, ERC20ABI, provider);
+
+    return this.rpc(
+      `[ERC20][${network}] balanceOf(doctorContract)`,
+      async () => {
+        const b = await token.balanceOf!.staticCall(doctorContract);
+        return BigInt(b);
+      },
+    );
   }
 }

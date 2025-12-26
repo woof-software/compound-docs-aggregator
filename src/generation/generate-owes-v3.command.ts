@@ -6,17 +6,16 @@ import { JsonService } from 'json/json.service';
 import { CompoundVersion } from 'common/types/compound-version';
 import { fmtPct } from 'common/utils/fmt-pct';
 import { IndexerService } from 'indexer/indexer.service';
-import { MarkdownService } from './markdown.service';
 
-@Command({ name: 'owes:generate', description: 'Generate owes' })
-export class GenerateOwesCommand extends CommandRunner {
-  private readonly logger = new Logger(GenerateOwesCommand.name);
+@Command({ name: 'owes:generate-v3', description: 'Generate V3 owes' })
+export class GenerateOwesV3Command extends CommandRunner {
+  private readonly logger = new Logger(GenerateOwesV3Command.name);
+  private readonly batchSize = 1000;
 
   constructor(
     private readonly json: JsonService,
     private readonly indexer: IndexerService,
     private readonly rewards: RewardsService,
-    private readonly markdown: MarkdownService,
   ) {
     super();
   }
@@ -24,7 +23,7 @@ export class GenerateOwesCommand extends CommandRunner {
   private async calcOwesV3(): Promise<Record<string, bigint>> {
     const owes = this.rewards.zeroOwes(CompoundVersion.V3);
 
-    const BATCH = 1000;
+    const BATCH = this.batchSize;
     const networks = Object.keys(owes);
 
     const results = await Promise.allSettled(
@@ -101,10 +100,6 @@ export class GenerateOwesCommand extends CommandRunner {
       const owesV3 = this.rewards.formatOwes(resultsV3);
 
       this.json.writeOwes(owesV3, CompoundVersion.V3);
-      const nested = this.json.readMarkets();
-
-      // const owesV3 = this.json.readOwes(CompoundVersion.V3);
-      this.markdown.writeRewardsMd(nested, owesV3);
 
       this.logger.log('Generating of totalOwesV3 completed.');
       return;

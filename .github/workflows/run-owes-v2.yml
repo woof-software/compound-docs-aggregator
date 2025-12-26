@@ -1,4 +1,4 @@
-name: Run indexing
+name: Run owes v2 calculation
 
 on:
   workflow_dispatch: # manual start Actions → Run workflow
@@ -28,15 +28,15 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run indexing
+      - name: Run owes v2 generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
           UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn cli:index
+        run: yarn cli:generate:owes:v2
 
-      - name: Commit & Push changes
+      - name: Commit & Push changes (owes v2)
         run: |
-          git add src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
-          git diff --cached --quiet || git commit -m "chore: auto-update index"
+          git add owes-v2.json
+          git diff --cached --quiet || git commit -m "chore: auto-update owes v2"
           git push
