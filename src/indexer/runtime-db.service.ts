@@ -8,14 +8,11 @@ import { shouldLogPct } from 'common/utils/should-log-pct';
 import { CompoundVersion } from 'common/types/compound-version';
 import { NetworkConfig } from 'network/network.types';
 import {
-  FetchOwesRowV2,
-  FetchOwesRowV3,
   IndexerConfig,
   IndexerUsers,
   OwedRow,
   SqliteApi,
   SqliteDatabase,
-  UpsertOwesBatchArgs,
 } from './indexer.types';
 import { ManifestsService } from './manifests.service';
 import { ChunksService } from './chunks.service';
