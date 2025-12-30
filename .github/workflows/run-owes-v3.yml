@@ -3,6 +3,13 @@ name: Run owes v3 calculation
 on:
   workflow_dispatch: # manual start Actions → Run workflow
 
+permissions:
+  contents: write
+
+concurrency:
+  group: update-owes-v3-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,8 +18,20 @@ jobs:
       - name: Checkout repository (with LFS)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           lfs: false
+
+      - name: Cache Git LFS objects
+        uses: actions/cache@v4
+        with:
+          path: |
+            .git/lfs
+            ~/.git/lfs
+          # Key changes / chunk changes
+          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('.gitattributes', 'src/indexer/storage/**/manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-${{ github.ref_name }}-
+            ${{ runner.os }}-lfs-
 
       - name: Init git and lfs (pull ONLY sqlite)
         run: |
