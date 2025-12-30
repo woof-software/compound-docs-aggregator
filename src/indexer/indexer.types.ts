@@ -1,5 +1,4 @@
 import type BetterSqlite3 from 'better-sqlite3';
-import { CompoundVersion } from '../common/types/compound-version';
 
 export type IndexerConfig = {
   repoMetaPath: string;
