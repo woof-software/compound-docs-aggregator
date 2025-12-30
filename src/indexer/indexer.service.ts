@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { JsonRpcProvider, getAddress, ethers } from 'ethers';
 import { ProviderFactory } from 'network/provider.factory';
 import { NetworkConfig } from 'network/network.types';
-import { CompoundVersion } from 'common/types/compound-version';
 
 import { createSqliteApi } from './sqlite-api';
 import {
@@ -16,7 +15,6 @@ import {
   V3_USER_ADDR_SOURCES,
   V3_USER_TOPIC0_OR,
 } from './topics';
-import { IndexerUsers } from './indexer.types';
 import { RuntimeDbService } from './runtime-db.service';
 import { fmtPct } from '../common/utils/fmt-pct';
 import { withRetries } from '../common/helpers/with-retries';
@@ -60,21 +58,13 @@ export class IndexerService {
     });
   }
 
-  private readonly rewardsV3ByNetwork: Map<string, string | null>;
   private readonly progressTagByNetwork = new Map<string, string>();
 
   constructor(
     private readonly config: ConfigService,
     private readonly providerFactory: ProviderFactory,
     private readonly runtimeDb: RuntimeDbService, // explicit dependency for init order
-  ) {
-    this.rewardsV3ByNetwork = new Map(
-      this.networks.map((n) => [
-        n.network,
-        n.rewardsV3 ? normAddr(n.rewardsV3) : null,
-      ]),
-    );
-  }
+  ) {}
 
   private get networks(): NetworkConfig[] {
     return this.config.get<NetworkConfig[]>('networks') ?? [];
@@ -139,45 +129,6 @@ export class IndexerService {
     await this.runtimeDb.flush();
 
     this.logger.log(`Indexing finished. networks=${targets.length}`);
-  }
-
-  public async fetchUsersForNetwork(
-    version: CompoundVersion,
-    network: string,
-    limit: number,
-    offset: number,
-  ): Promise<IndexerUsers[string]> {
-    const rows = this.sqlite.fetchUsersPageByNetworkAndVersion.all(
-      network,
-      version === CompoundVersion.V3 ? 3 : 2,
-      limit,
-      offset,
-    ) as Array<{ market: string; user: string }>;
-
-    const rewardsAddress = this.rewardsV3ByNetwork.get(network);
-
-    if (!rewardsAddress) {
-      // Should exist everywhere
-      throw new Error(`RewardsV3 for ${network} not found!`);
-    }
-
-    return rows.map((r) => ({
-      rewardsAddress,
-      cometAddress: r.market,
-      userAddress: r.user,
-    }));
-  }
-
-  public countUsersForNetwork(
-    version: CompoundVersion,
-    network: string,
-  ): number {
-    const row = this.sqlite.countUsersByNetworkAndVersion.get(
-      network,
-      version === CompoundVersion.V3 ? 3 : 2,
-    ) as { cnt: number } | undefined;
-
-    return Number(row?.cnt ?? 0);
   }
 
   // ============================

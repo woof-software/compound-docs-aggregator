@@ -38,6 +38,21 @@ export function createSqliteApi(pathOrDb: string | SqliteDatabase): SqliteApi {
     CREATE INDEX IF NOT EXISTS idx_markets_net_block ON markets(network, first_seen_block);
     CREATE INDEX IF NOT EXISTS idx_users_net_ver_market ON users(network, version, market);
     CREATE INDEX IF NOT EXISTS idx_users_cursor ON users(network, version, created_at, market, user);
+
+
+    CREATE TABLE IF NOT EXISTS owes (
+                                      network TEXT NOT NULL,
+                                      version INTEGER NOT NULL,     -- 2 | 3
+                                      market  TEXT NOT NULL,        -- V2: comptroller, V3: comet
+                                      user    TEXT NOT NULL,
+                                      owed_dec TEXT NOT NULL,       -- bigint decimal string
+                                      owed_hex TEXT NOT NULL,       -- 0x + 64 hex chars for sorting
+                                      updated_at INTEGER NOT NULL,
+                                      PRIMARY KEY (network, version, market, user)
+      );
+
+    CREATE INDEX IF NOT EXISTS idx_owes_ver_owed ON owes(version, owed_hex DESC);
+    CREATE INDEX IF NOT EXISTS idx_owes_ver_net  ON owes(version, network);
   `);
 
   const upsertMarket = db.prepare(`
@@ -122,6 +137,45 @@ export function createSqliteApi(pathOrDb: string | SqliteDatabase): SqliteApi {
   WHERE network = ? AND version = ?
 `);
 
+  const deleteOwesByVersion = db.prepare(`
+    DELETE FROM owes WHERE version = ?
+  `);
+
+  const upsertOwe = db.prepare(`
+  INSERT INTO owes(network, version, market, user, owed_dec, owed_hex, updated_at)
+  VALUES (?, ?, ?, ?, ?, ?, ?)
+  ON CONFLICT(network, version, market, user) DO UPDATE SET
+    owed_dec = excluded.owed_dec,
+    owed_hex = excluded.owed_hex,
+    updated_at = excluded.updated_at
+`);
+
+  const txUpsertOwes = db.transaction(
+    (rows: Array<[string, number, string, string, string, string, number]>) => {
+      for (const r of rows) upsertOwe.run(...r);
+    },
+  );
+
+  const fetchOwesPageByVersion = db.prepare(`
+    SELECT network, market, user, owed_dec
+    FROM owes
+    WHERE version = ?
+    ORDER BY owed_hex DESC, network ASC, market ASC, user ASC
+      LIMIT ? OFFSET ?
+  `);
+
+  const iterateOwesByVersion = db.prepare(`
+  SELECT network, owed_dec
+  FROM owes
+  WHERE version = ?
+`);
+
+  const countOwesByVersion = db.prepare(`
+  SELECT COUNT(*) AS cnt
+  FROM owes
+  WHERE version = ?
+`);
+
   return {
     db,
 
@@ -139,5 +193,13 @@ export function createSqliteApi(pathOrDb: string | SqliteDatabase): SqliteApi {
     fetchUsersPageByNetworkAndVersion,
     fetchUsersCursorPageByNetworkAndVersion,
     countUsersByNetworkAndVersion,
+
+    // temporary - owes
+    deleteOwesByVersion,
+    upsertOwe,
+    txUpsertOwes,
+    fetchOwesPageByVersion,
+    iterateOwesByVersion,
+    countOwesByVersion,
   };
 }

@@ -1,41 +1,82 @@
 import { Logger } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
+import { ConfigService } from '@nestjs/config';
 
 import { RewardsService } from 'contract/rewards.service';
 import { JsonService } from 'json/json.service';
 import { CompoundVersion } from 'common/types/compound-version';
 import { fmtPct } from 'common/utils/fmt-pct';
-import { IndexerService } from 'indexer/indexer.service';
+import { NetworkConfig } from 'network/network.types';
+import { RuntimeDbService } from 'indexer/runtime-db.service';
+import { OwesExportService } from './owes-export.service';
 
 @Command({ name: 'owes:generate-v3', description: 'Generate V3 owes' })
 export class GenerateOwesV3Command extends CommandRunner {
   private readonly logger = new Logger(GenerateOwesV3Command.name);
-  private readonly batchSize = 1000;
+
+  // Paging over users table
+  private readonly pageSize = 1000;
+
+  // Multicall chunk size for V3 getRewardOwed (usually heavier than V2)
+  private readonly multicallChunkSize = 400;
+
+  // Parallel networks (keep low; sqlite is one file)
+  private readonly maxParallelNetworks = 2;
 
   constructor(
     private readonly json: JsonService,
-    private readonly indexer: IndexerService,
+    private readonly db: RuntimeDbService,
     private readonly rewards: RewardsService,
+    private readonly exp: OwesExportService,
+    private readonly config: ConfigService,
   ) {
     super();
   }
 
+  private get networksList(): NetworkConfig[] {
+    return this.config
+      .getOrThrow<NetworkConfig[]>('networks')
+      .filter((n) => n.rewardsCalcEnabled);
+  }
+
+  private async runWithConcurrency<T>(
+    items: T[],
+    concurrency: number,
+    fn: (item: T) => Promise<void>,
+  ): Promise<void> {
+    if (items.length === 0) return;
+
+    const limit = Math.max(1, Math.min(concurrency, items.length));
+    let idx = 0;
+
+    const workers = Array.from({ length: limit }, async () => {
+      while (true) {
+        const current = idx++;
+        if (current >= items.length) return;
+        await fn(items[current]!);
+      }
+    });
+
+    await Promise.all(workers);
+  }
+
   private async calcOwesV3(): Promise<Record<string, bigint>> {
     const owes = this.rewards.zeroOwes(CompoundVersion.V3);
+    const networks = this.networksList.map((n) => n.network);
 
-    const BATCH = this.batchSize;
-    const networks = Object.keys(owes);
+    const PAGE = this.pageSize;
 
-    const results = await Promise.allSettled(
-      networks.map(async (network) => {
-        let offset = 0;
-        let totalSum = 0n;
-        let page = 0;
-
-        const totalUsers = this.indexer.countUsersForNetwork(
+    await this.runWithConcurrency(
+      networks,
+      this.maxParallelNetworks,
+      async (network) => {
+        const totalUsers = this.db.countUsersForNetwork(
           CompoundVersion.V3,
           network,
         );
+
+        let offset = 0;
+        let page = 0;
 
         while (true) {
           page += 1;
@@ -45,67 +86,80 @@ export class GenerateOwesV3Command extends CommandRunner {
             Math.max(1, totalUsers),
             2,
           );
-          this.logger.verbose(`[${network} (${pct})] page -> ${page}`);
+          this.logger.verbose(
+            `[V3][${network}] page=${page} (${pct}) offset=${offset}/${totalUsers}`,
+          );
 
-          const batch = await this.indexer.fetchUsersForNetwork(
+          const batch = await this.db.fetchUsersForNetwork(
             CompoundVersion.V3,
             network,
-            BATCH,
+            PAGE,
             offset,
           );
 
           if (batch.length === 0) break;
 
           try {
-            const sum = await this.rewards.sumOwedForUsersV3({
+            // batch already matches RewardsService UserRewardCall shape:
+            // { rewardsAddress, cometAddress, userAddress }
+            const owedRows = await this.rewards.owedForUsers({
+              version: CompoundVersion.V3,
               network,
               users: batch,
-              chunkSize: BATCH,
+              chunkSize: this.multicallChunkSize,
             });
 
-            totalSum += sum;
+            this.db.upsertOwesBatch({
+              network,
+              version: CompoundVersion.V3,
+              rows: owedRows,
+            });
           } catch (err) {
             this.logger.error(
-              `[V3][owes][${network}][page=${page}] sumOwedForUsersV3 failed`,
-              err,
+              `[V3][owes][${network}][page=${page}] owedForUsers failed`,
+              err as any,
             );
             // Skip this page and continue
           }
 
-          offset += BATCH;
-          if (batch.length < BATCH) break;
+          offset += batch.length;
+          if (batch.length < PAGE) break;
         }
-
-        return [network, totalSum] as const;
-      }),
+      },
     );
 
-    for (const r of results) {
-      if (r.status === 'fulfilled') {
-        const [network, sum] = r.value;
-        owes[network] = (owes[network] ?? 0n) + sum;
-      } else {
-        this.logger.error(`[V3][owes] Network task failed`, r.reason as any);
-        // keep owes[network] as 0n
-      }
-    }
+    // Totals are read from DB (no in-loop accumulation).
+    const totals = this.db.getOwesTotalsByNetwork(CompoundVersion.V3);
+    for (const n of Object.keys(owes)) owes[n] = totals[n] ?? 0n;
 
     return owes;
   }
 
-  async run() {
+  async run(): Promise<void> {
     try {
       this.logger.log('Generating total owes V3...');
-      const resultsV3 = await this.calcOwesV3();
-      const owesV3 = this.rewards.formatOwes(resultsV3);
 
+      await this.db.assemble();
+      this.db.resetOwes(CompoundVersion.V3);
+
+      const resultsV3 = await this.calcOwesV3();
+
+      const owesV3 = this.rewards.formatOwes(resultsV3);
       this.json.writeOwes(owesV3, CompoundVersion.V3);
 
+      this.exp.exportDetailedOwes(CompoundVersion.V3);
+
+      this.db.closeRuntime();
+
       this.logger.log('Generating of totalOwesV3 completed.');
-      return;
     } catch (error) {
-      this.logger.error('An error occurred while generating markdown:', error);
-      return;
+      this.logger.error(
+        'An error occurred while generating owes V3:',
+        error as any,
+      );
+      try {
+        this.db.closeRuntime();
+      } catch {}
     }
   }
 }

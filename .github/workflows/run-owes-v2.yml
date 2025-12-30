@@ -11,13 +11,22 @@ jobs:
       - name: Checkout repository (with LFS)
         uses: actions/checkout@v4
         with:
-          lfs: true
+          fetch-depth: 0
+          lfs: false
 
-      - name: Init git and lfs
+      - name: Init git and lfs (pull ONLY sqlite)
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "github-actions"
-          git lfs install --local
+          git config user.email "action@github.com"
+          git config user.name "github-actions"
+          
+          git lfs install --local --skip-smudge
+          
+          # Only allow pulling sqlite from LFS
+          git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
+          git config lfs.fetchexclude ""
+          
+          # Actually pull allowed LFS objects (sqlite only)
+          git lfs pull
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,6 +46,6 @@ jobs:
 
       - name: Commit & Push changes (owes v2)
         run: |
-          git add owes-v2.json
+          git add owes-v2.json owes-detailed-v2.json
           git diff --cached --quiet || git commit -m "chore: run owes v2"
           git push

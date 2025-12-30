@@ -1,26 +1,49 @@
-import {
-  Injectable,
-  Logger,
-  OnModuleDestroy,
-  OnModuleInit,
-} from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import path from 'node:path';
-
-import { IndexerConfig, SqliteApi, SqliteDatabase } from './indexer.types';
+import { getAddress } from 'ethers';
+import { shouldLogPct } from 'common/utils/should-log-pct';
+import { CompoundVersion } from 'common/types/compound-version';
+import { NetworkConfig } from 'network/network.types';
+import {
+  FetchOwesRowV2,
+  FetchOwesRowV3,
+  IndexerConfig,
+  IndexerUsers,
+  OwedRow,
+  SqliteApi,
+  SqliteDatabase,
+  UpsertOwesBatchArgs,
+} from './indexer.types';
 import { ManifestsService } from './manifests.service';
 import { ChunksService } from './chunks.service';
 import { createSqliteApi } from './sqlite-api';
-import { shouldLogPct } from '../common/utils/should-log-pct';
 
-function sqlQuotePath(p: string): string {
-  return `'${p.replaceAll("'", "''")}'`;
-}
+const sqlQuotePath = (p: string): string => `'${p.replaceAll("'", "''")}'`;
+
+const normAddr = (a: string) => getAddress(a).toLowerCase();
+
+const toDbVersion = (v: CompoundVersion): number =>
+  v === CompoundVersion.V3 ? 3 : 2;
+
+const toU256Hex = (value: bigint): string => {
+  if (value < 0n) throw new Error('owed must be non-negative');
+  const hex = value.toString(16);
+  if (hex.length > 64) throw new Error('owed exceeds uint256');
+  return hex.padStart(64, '0');
+};
 
 @Injectable()
 export class RuntimeDbService {
+  private get networks(): NetworkConfig[] {
+    return this.config.get<NetworkConfig[]>('networks') ?? [];
+  }
+  private get cfg(): IndexerConfig {
+    return this.config.getOrThrow<IndexerConfig>('indexer');
+  }
+
   private readonly logger = new Logger(RuntimeDbService.name);
 
   private _runtimeDb?: SqliteDatabase;
@@ -32,21 +55,144 @@ export class RuntimeDbService {
     return this._runtimeDb;
   }
   private _api?: SqliteApi;
-
   public get api(): SqliteApi {
     if (!this._api) throw new Error('Runtime sqlite api must be defined');
     return this._api;
   }
+  private readonly rewardsV3ByNetwork: Map<string, string | null>;
 
   constructor(
     private readonly config: ConfigService,
     private readonly manifestSvc: ManifestsService,
     private readonly chunksSvc: ChunksService,
-  ) {}
-
-  private cfg(): IndexerConfig {
-    return this.config.getOrThrow<IndexerConfig>('indexer');
+  ) {
+    this.rewardsV3ByNetwork = new Map(
+      this.networks.map((n) => [
+        n.network,
+        n.rewardsV3 ? normAddr(n.rewardsV3) : null,
+      ]),
+    );
   }
+
+  //// API
+
+  public async fetchUsersForNetwork(
+    version: CompoundVersion,
+    network: string,
+    limit: number,
+    offset: number,
+  ): Promise<IndexerUsers[string]> {
+    const rows = this.api.fetchUsersPageByNetworkAndVersion.all(
+      network,
+      toDbVersion(version),
+      limit,
+      offset,
+    ) as Array<{ market: string; user: string }>;
+
+    const rewardsAddress = this.rewardsV3ByNetwork.get(network);
+
+    if (!rewardsAddress) {
+      // Should exist everywhere
+      throw new Error(`RewardsV3 for ${network} not found!`);
+    }
+
+    return rows.map((r) => ({
+      rewardsAddress,
+      cometAddress: r.market,
+      userAddress: r.user,
+    }));
+  }
+
+  public countUsersForNetwork(
+    version: CompoundVersion,
+    network: string,
+  ): number {
+    const row = this.api.countUsersByNetworkAndVersion.get(
+      network,
+      toDbVersion(version),
+    ) as { cnt: number } | undefined;
+
+    return Number(row?.cnt ?? 0);
+  }
+
+  //// TEMP API
+
+  public resetOwes(version: CompoundVersion): void {
+    this.api.deleteOwesByVersion.run(toDbVersion(version));
+  }
+
+  public upsertOwesBatch(args: {
+    network: string;
+    version: CompoundVersion;
+    rows: OwedRow[];
+    updatedAt?: number;
+  }): void {
+    const now = Math.floor(Date.now() / 1000);
+
+    const packed = args.rows.map((r) => {
+      const owedBig = r.owed;
+      return [
+        args.network,
+        toDbVersion(args.version),
+        normAddr(r.marketAddress),
+        normAddr(r.userAddress),
+        owedBig.toString(10),
+        toU256Hex(owedBig),
+        args.updatedAt ?? now,
+      ] as [string, number, string, string, string, string, number];
+    });
+
+    this.api.txUpsertOwes(packed);
+  }
+
+  // Accurate totals: BigInt sum in Node (SQLite can't SUM uint256 safely)
+  public getOwesTotalsByNetwork(
+    version: CompoundVersion,
+  ): Record<string, bigint> {
+    const ver = toDbVersion(version);
+    const totals: Record<string, bigint> = {};
+
+    for (const row of this.api.iterateOwesByVersion.iterate(ver) as Iterable<{
+      network: string;
+      owed_dec: string;
+    }>) {
+      totals[row.network] = (totals[row.network] ?? 0n) + BigInt(row.owed_dec);
+    }
+
+    return totals;
+  }
+
+  public countOwesByVersion(version: CompoundVersion): number {
+    const row = this.api.countOwesByVersion.get(toDbVersion(version)) as
+      | { cnt: number }
+      | undefined;
+
+    return Number(row?.cnt ?? 0);
+  }
+
+  public fetchOwesPageByVersion(args: {
+    version: CompoundVersion;
+    limit: number;
+    offset: number;
+  }): Array<{
+    network: string;
+    market: string;
+    user: string;
+    owed_dec: string;
+  }> {
+    return this.api.fetchOwesPageByVersion.all(
+      toDbVersion(args.version),
+      args.limit,
+      args.offset,
+    ) as Array<{
+      network: string;
+      market: string;
+      user: string;
+      owed_dec: string;
+    }>;
+  }
+
+  ////
 
   private ensureRuntimeSchema(db: SqliteDatabase): void {
     db.exec(`
@@ -125,7 +271,7 @@ export class RuntimeDbService {
   }
 
   private assembleRuntime(): void {
-    const cfg = this.cfg();
+    const cfg = this.cfg;
 
     if (!fs.existsSync(cfg.repoMetaPath)) {
       throw new Error(`meta.sqlite not found at: ${cfg.repoMetaPath}`);
@@ -276,7 +422,7 @@ export class RuntimeDbService {
   }
 
   private syncMetaFromRuntime(): void {
-    const cfg = this.cfg();
+    const cfg = this.cfg;
 
     this.ensureMetaSchema(cfg.repoMetaPath);
 
@@ -326,7 +472,7 @@ export class RuntimeDbService {
   }
 
   public async assemble(): Promise<void> {
-    const cfg = this.cfg();
+    const cfg = this.cfg;
 
     this.manifestSvc.load(cfg.manifestPath);
 
@@ -361,7 +507,7 @@ export class RuntimeDbService {
   public async flush(): Promise<void> {
     if (!this._runtimeDb) return;
 
-    const cfg = this.cfg();
+    const cfg = this.cfg;
 
     this.chunksSvc.flushNewUsersFromRuntime({
       runtimeDb: this.runtimeDb,
@@ -376,5 +522,13 @@ export class RuntimeDbService {
     this._runtimeDb = undefined;
 
     this.logger.log(`Repo updated (meta + tail chunks), runtime closed.`);
+  }
+
+  // !: owes commands should NOT call flush() (it mutates repo chunks/meta).
+  public closeRuntime(): void {
+    if (!this._runtimeDb) return;
+    this._runtimeDb.close();
+    this._runtimeDb = undefined;
+    this._api = undefined;
   }
 }

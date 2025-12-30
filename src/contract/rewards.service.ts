@@ -10,6 +10,7 @@ import { withRetries } from 'common/helpers/with-retries';
 import { ConfigService } from '@nestjs/config';
 import { NetworkConfig } from 'network/network.types';
 import { V2RewardsAtContract } from './rewards.types';
+import { OwedRow } from '../indexer/indexer.types';
 
 const MULTICALL3_ABI = [
   'function aggregate3(tuple(address target, bool allowFailure, bytes callData)[] calls) view returns (tuple(bool success, bytes returnData)[] returnData)',
@@ -441,5 +442,230 @@ export class RewardsService {
         return BigInt(b);
       },
     );
+  }
+
+  public async owedForUsers(
+    params:
+      | {
+          version: CompoundVersion.V2;
+          network: string;
+          market: string; // comptroller
+          users: Array<string | { userAddress: string }>;
+          chunkSize?: number;
+          maxLoggedFailuresPerChunk?: number;
+          includeZero?: boolean;
+        }
+      | {
+          version: CompoundVersion.V3;
+          network: string;
+          users: UserRewardCall[];
+          chunkSize?: number;
+          maxLoggedFailuresPerChunk?: number;
+          includeZero?: boolean;
+        },
+  ): Promise<OwedRow[]> {
+    const includeZero = params.includeZero ?? false;
+    const maxLoggedFailuresPerChunk = params.maxLoggedFailuresPerChunk ?? 5;
+
+    if (params.version === CompoundVersion.V2) {
+      const { network, market: comptroller } = params;
+      const chunkSize = params.chunkSize ?? 1000;
+
+      if (!params.users.length) return [];
+
+      const provider = this.providerFactory.get(network);
+      const multicall3 = new ethers.Contract(
+        DEFAULT_MULTICALL3_ADDRESS,
+        MULTICALL3_ABI,
+        provider,
+      );
+
+      const comptrollerIface = new ethers.Interface(COMPTROLLER_V2_ABI);
+      const normUsers = params.users.map((u) =>
+        typeof u === 'string' ? u : u.userAddress,
+      );
+
+      const out: OwedRow[] = [];
+
+      for (let i = 0; i < normUsers.length; i += chunkSize) {
+        const chunk = normUsers.slice(i, i + chunkSize);
+
+        const calls = chunk.map((userAddress) => ({
+          target: comptroller,
+          allowFailure: true,
+          callData: comptrollerIface.encodeFunctionData('compAccrued', [
+            userAddress,
+          ]),
+        }));
+
+        let results: Array<{ success: boolean; returnData: string }> | null =
+          null;
+
+        try {
+          results = await this.rpc(
+            `[V2][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
+              i + chunk.length - 1
+            }`,
+            () => multicall3.aggregate3!.staticCall(calls),
+          );
+        } catch (err) {
+          this.logger.error(
+            `[V2][owes][${network}] Multicall3.aggregate3 failed after retries chunk=${i}-${
+              i + chunk.length - 1
+            }`,
+            err as any,
+          );
+          continue;
+        }
+
+        if (!results) continue;
+
+        let logged = 0;
+
+        for (let j = 0; j < results.length; j++) {
+          const r: any = results[j];
+          const userAddress = chunk[j];
+          if (!userAddress) continue;
+
+          const success = Boolean(r?.success);
+          const returnData = (r?.returnData as string) ?? '0x';
+
+          if (!success || returnData === '0x') {
+            if (logged < maxLoggedFailuresPerChunk) {
+              logged++;
+              this.logger.warn(
+                `[V2][owes][${network}] compAccrued failed: comptroller=${comptroller} user=${userAddress}`,
+              );
+            }
+            continue;
+          }
+
+          try {
+            const decoded: any = comptrollerIface.decodeFunctionResult(
+              'compAccrued',
+              returnData,
+            );
+            const owed = Array.isArray(decoded)
+              ? BigInt(decoded[0])
+              : BigInt(decoded);
+
+            if (owed !== 0n || includeZero) {
+              out.push({ marketAddress: comptroller, userAddress, owed });
+            }
+          } catch {
+            if (logged < maxLoggedFailuresPerChunk) {
+              logged++;
+              this.logger.warn(
+                `[V2][owes][${network}] decode failed: comptroller=${comptroller} user=${userAddress} dataPrefix=${returnData.slice(
+                  0,
+                  18,
+                )}`,
+              );
+            }
+          }
+        }
+      }
+
+      return out;
+    }
+
+    // V3
+    const { network, users } = params;
+    const chunkSize = params.chunkSize ?? 400;
+
+    if (!users.length) return [];
+
+    const provider = this.providerFactory.get(network);
+    const multicall3 = new ethers.Contract(
+      DEFAULT_MULTICALL3_ADDRESS,
+      MULTICALL3_ABI,
+      provider,
+    );
+
+    const rewardsIface = new ethers.Interface(RewardsABI);
+    const out: OwedRow[] = [];
+
+    for (let i = 0; i < users.length; i += chunkSize) {
+      const chunk = users.slice(i, i + chunkSize);
+
+      const calls = chunk.map((d) => ({
+        target: d.rewardsAddress,
+        allowFailure: true,
+        callData: rewardsIface.encodeFunctionData('getRewardOwed', [
+          d.cometAddress,
+          d.userAddress,
+        ]),
+      }));
+
+      let results: Array<{ success: boolean; returnData: string }> | null =
+        null;
+
+      try {
+        results = await this.rpc(
+          `[V3][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          () => multicall3.aggregate3!.staticCall(calls),
+        );
+      } catch (err) {
+        this.logger.error(
+          `[V3][owes][${network}] Multicall3.aggregate3 failed after retries chunk=${i}-${
+            i + chunk.length - 1
+          }`,
+          err as any,
+        );
+        continue;
+      }
+
+      if (!results) continue;
+
+      let logged = 0;
+
+      for (let j = 0; j < results.length; j++) {
+        const r: any = results[j];
+        const meta = chunk[j];
+        if (!meta) continue;
+
+        const success = Boolean(r?.success);
+        const returnData = (r?.returnData as string) ?? '0x';
+
+        if (!success || returnData === '0x') {
+          if (logged < maxLoggedFailuresPerChunk) {
+            logged++;
+            this.logger.warn(
+              `[V3][owes][${network}] getRewardOwed failed: rewards=${meta?.rewardsAddress} comet=${meta?.cometAddress} user=${meta?.userAddress}`,
+            );
+          }
+          continue;
+        }
+
+        const owed =
+          this.decodeOwedModern(returnData) ??
+          this.decodeOwedLegacy(returnData);
+        if (owed == null) {
+          if (logged < maxLoggedFailuresPerChunk) {
+            logged++;
+            this.logger.warn(
+              `[V3][owes][${network}] decode failed: rewards=${
+                meta?.rewardsAddress
+              } comet=${meta?.cometAddress} user=${
+                meta?.userAddress
+              } dataPrefix=${returnData.slice(0, 18)}`,
+            );
+          }
+          continue;
+        }
+
+        if (owed !== 0n || includeZero) {
+          out.push({
+            marketAddress: meta.cometAddress,
+            userAddress: meta.userAddress,
+            owed,
+          });
+        }
+      }
+    }
+
+    return out;
   }
 }

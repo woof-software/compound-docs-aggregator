@@ -26,13 +26,45 @@ UNICHAIN_QUICKNODE_KEY=your_unichain_api_key_here
 
 ---
 
-## Git LFS Setup
+## Git LFS Setup (Recommended)
 
-This repo stores large database chunks via Git LFS.
+This repo stores large artifacts in Git LFS:
+
+- Runtime/indexer DB chunks: `src/indexer/storage/**/*.sqlite` (**required for indexing**)
+- Detailed owes snapshots: `owes-detailed-v2.json`, `owes-detailed-v3.json` (optional)
+
+### Minimal LFS sync (pull ONLY SQLite chunks)
+
+This is the recommended setup if you want to **avoid downloading large non-DB artifacts** (like `owes-detailed-*.json`) but still run the indexer locally.
+
+```bash
+git lfs install --local --skip-smudge
+
+# Only allow pulling sqlite chunks
+git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
+git config lfs.fetchexclude ""
+
+# Pull only what is allowed (sqlite only)
+git lfs pull
+```
+
+### Full LFS sync (pull everything tracked by LFS)
+
+Use this if you want **all** LFS artifacts locally.
 
 ```bash
 git lfs install --local
 git lfs pull
+```
+
+### Pull a specific LFS file on demand
+
+If later you do need a detailed owes file:
+
+```bash
+git lfs pull --include="owes-detailed-v3.json"
+# or
+git lfs pull --include="owes-detailed-v2.json"
 ```
 
 ---
@@ -91,16 +123,14 @@ Owes snapshots are generated **from the already indexed users database**.
 yarn cli:generate:owes:v2
 ```
 
-What it does (high level):
+This command will:
 
-1. Reads previously indexed users from the local database
-2. Computes current **Compound v2** owes for those users on each configured v2 network
-3. Produces `owes-v2.json` in the repository root
+1. Read previously indexed users from the local database
+2. Compute current **Compound v2** owes for those users on each configured v2 network
+3. Produce `owes-v2.json` in the repository root
 
-> Note on v2 accrual (“heal”): this project **does not rely on a “heal” flow to force accrual** for v2.
-> The snapshot is derived from **current on-chain state** available via `eth_call`.  
-> For some addresses, the “perfectly up-to-the-moment” claimable amount may require a state-changing interaction on-chain
-> (the protocol updates certain accounting lazily). This tool intentionally avoids mutating chain state.
+> Note on v2 accrual (“heal”): this project does **not** rely on a state-changing “heal” flow to force accrual.  
+> The snapshot is derived from **current on-chain state** available via `eth_call`.
 
 ### Compound v3 owes
 
@@ -113,6 +143,15 @@ This command will:
 1. Read all previously indexed users from the local database
 2. For each configured v3 network, compute the current protocol owed amounts for those users
 3. Produce `owes-v3.json` in the repository root
+
+### Detailed owes snapshots (Git LFS)
+
+Some workflows may also produce large “detailed” owes JSON files, stored via Git LFS:
+
+- `owes-detailed-v2.json`
+- `owes-detailed-v3.json`
+
+These files are **optional to download** (see “Git LFS Setup”), and are typically only needed for deep dives / debugging / analytics.
 
 ### Generate owes Markdown
 
@@ -152,6 +191,8 @@ These keep the repository snapshots up to date (for example, market metadata and
 - `update-market-data.yml` — updates market metadata and generated docs (`output.json` + README)
 - `update-owes.yml` — updates owes snapshots (and related markdown, if configured)
 
+> CI tip: if you want to **avoid downloading large LFS artifacts** in Actions, use `actions/checkout` with `lfs: false`, then run `git lfs install --skip-smudge` + `git lfs pull` with `lfs.fetchinclude` set to `src/indexer/storage/**/*.sqlite`.
+
 ---
 
 ## Outputs
@@ -161,8 +202,9 @@ Common generated artifacts in the repository root:
 - `output.json` — markets / metadata snapshot used by the docs generator
 - `owes-v2.json` — Compound v2 owes snapshot (if enabled)
 - `owes-v3.json` — Compound v3 owes snapshot
-- `owes.md` — Markdown summary of owes (generated from the JSON snapshots)
+- `REWARDS.md` — Markdown summary of owes (generated from the JSON snapshots)
 - SQLite database chunks (tracked via Git LFS) — used by the indexer
+- Detailed owes JSON (tracked via Git LFS): `owes-detailed-v2.json`, `owes-detailed-v3.json` (optional)
 
 ---
 
@@ -221,7 +263,7 @@ Provider entry example:
 You can either:
 
 - **Run the scripts locally** to regenerate snapshots and docs, or
-- **Consume the committed snapshots** (`output.json`, `owes-*.json`, `owes.md`) produced by GitHub Actions.
+- **Consume the committed snapshots** (`output.json`, `owes-*.json`, `REWARDS.md`) produced by GitHub Actions.
 
 For local regeneration:
 

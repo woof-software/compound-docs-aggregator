@@ -1,66 +1,93 @@
 import { Logger } from '@nestjs/common';
 import { Command, CommandRunner } from 'nest-commander';
+import { ConfigService } from '@nestjs/config';
 
 import { RewardsService } from 'contract/rewards.service';
 import { JsonService } from 'json/json.service';
 import { CompoundVersion } from 'common/types/compound-version';
 import { fmtPct } from 'common/utils/fmt-pct';
-import { IndexerService } from 'indexer/indexer.service';
+import { RuntimeDbService } from 'indexer/runtime-db.service';
 import { NetworkConfig } from 'network/network.types';
-import { ConfigService } from '@nestjs/config';
+import { OwesExportService } from './owes-export.service';
 
 @Command({ name: 'owes:generate-v2', description: 'Generate V2 owes' })
 export class GenerateOwesV2Command extends CommandRunner {
   private readonly logger = new Logger(GenerateOwesV2Command.name);
-  private readonly batchSize = 1000;
+
+  // Paging over users table
+  private readonly pageSize = 1000;
+
+  // Parallel networks (keep low; sqlite is one file)
+  private readonly maxParallelNetworks = 2;
 
   private readonly comptrollers: Map<string, string>;
 
   constructor(
     private readonly json: JsonService,
-    private readonly indexer: IndexerService,
+    private readonly db: RuntimeDbService,
     private readonly rewards: RewardsService,
+    private readonly exp: OwesExportService,
     private readonly config: ConfigService,
   ) {
     super();
+
     this.comptrollers = new Map<string, string>(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.networksList.map((n) => [n.network, n.comptrollerV2!]),
     );
   }
 
-  private get networksList() {
+  private get networksList(): NetworkConfig[] {
     return this.config
       .getOrThrow<NetworkConfig[]>('networks')
-      .filter((n) => n.comptrollerV2);
+      .filter((n) => n.comptrollerV2 && n.rewardsCalcEnabled);
+  }
+
+  private async runWithConcurrency<T>(
+    items: T[],
+    concurrency: number,
+    fn: (item: T) => Promise<void>,
+  ): Promise<void> {
+    if (items.length === 0) return;
+
+    const limit = Math.max(1, Math.min(concurrency, items.length));
+    let idx = 0;
+
+    const workers = Array.from({ length: limit }, async () => {
+      while (true) {
+        const current = idx++;
+        if (current >= items.length) return;
+        await fn(items[current]!);
+      }
+    });
+
+    await Promise.all(workers);
   }
 
   private async calcOwesV2(): Promise<Record<string, bigint>> {
     const owes = this.rewards.zeroOwes(CompoundVersion.V2);
+    const networks = this.networksList.map((n) => n.network);
 
-    const BATCH = this.batchSize;
-    const networks = Object.keys(owes);
+    const PAGE = this.pageSize;
 
-    type NetworkSum = readonly [string, bigint];
-
-    const tasks: Promise<NetworkSum>[] = networks.map(
-      async (network): Promise<NetworkSum> => {
+    await this.runWithConcurrency(
+      networks,
+      this.maxParallelNetworks,
+      async (network) => {
         const comptroller = this.comptrollers.get(network);
 
-        // ✅ Always return a tuple (never `undefined`)
         if (!comptroller) {
-          this.logger.warn(`No comptroller found for ${network}`);
-          return [network, 0n] as const;
+          this.logger.warn(`[V2][${network}] No comptroller found in config`);
+          return;
         }
 
-        let offset = 0;
-        let totalSum = 0n;
-        let page = 0;
-
-        const totalUsers = this.indexer.countUsersForNetwork(
+        const totalUsers = this.db.countUsersForNetwork(
           CompoundVersion.V2,
           network,
         );
+
+        let offset = 0;
+        let page = 0;
 
         while (true) {
           page += 1;
@@ -70,91 +97,116 @@ export class GenerateOwesV2Command extends CommandRunner {
             Math.max(1, totalUsers),
             2,
           );
-          this.logger.verbose(`[${network} V2 (${pct})] page -> ${page}`);
+          this.logger.verbose(
+            `[V2][${network}] page=${page} (${pct}) offset=${offset}/${totalUsers}`,
+          );
 
-          const batch = await this.indexer.fetchUsersForNetwork(
+          const batch = await this.db.fetchUsersForNetwork(
             CompoundVersion.V2,
             network,
-            BATCH,
+            PAGE,
             offset,
           );
 
           if (batch.length === 0) break;
 
+          // RewardsService V2 only needs userAddress
+          const v2Users = batch.map((u) => ({ userAddress: u.userAddress }));
+
           try {
-            const sum = await this.rewards.sumOwedForUsersV2({
+            const owedRows = await this.rewards.owedForUsers({
+              version: CompoundVersion.V2,
               network,
-              comptroller,
-              users: batch as any, // string[] or [{ userAddress }]
-              chunkSize: BATCH,
+              market: comptroller, // V2 "market" = comptroller
+              users: v2Users,
+              chunkSize: PAGE, // multicall chunk
             });
 
-            totalSum += sum;
+            this.db.upsertOwesBatch({
+              network,
+              version: CompoundVersion.V2,
+              rows: owedRows,
+            });
           } catch (err) {
             this.logger.error(
-              `[V2][owes][${network}][page=${page}] sumOwedForUsersV2 failed`,
+              `[V2][owes][${network}][page=${page}] owedForUsers failed`,
               err as any,
             );
             // Skip this page and continue
           }
 
-          offset += BATCH;
-          if (batch.length < BATCH) break;
+          offset += batch.length;
+          if (batch.length < PAGE) break;
         }
-
-        return [network, totalSum] as const;
       },
     );
 
-    const results: PromiseSettledResult<NetworkSum>[] =
-      await Promise.allSettled(tasks);
-
-    for (const r of results) {
-      if (r.status === 'fulfilled') {
-        const [network, sum] = r.value;
-        owes[network] = (owes[network] ?? 0n) + sum;
-      } else if (r.status === 'rejected') {
-        this.logger.error(`[V2][owes] Network task failed`, r.reason as any);
-      }
-    }
+    // Totals are read from DB (no in-loop accumulation).
+    const totals = this.db.getOwesTotalsByNetwork(CompoundVersion.V2);
+    for (const n of Object.keys(owes)) owes[n] = totals[n] ?? 0n;
 
     return owes;
   }
 
-  private async heal(results: Record<string, bigint>): Promise<void> {
-    const mainnet = this.networksList.find((n) => (n.chainId = 1));
+  private saveDetailedOwesV2() {
+    const writer = this.json.startDetailedOwes(CompoundVersion.V2); // или V3
 
-    if (!mainnet || !mainnet.comp) {
-      throw new Error('Not found config for mainnet');
+    const LIMIT = 5000;
+    let offset = 0;
+
+    while (true) {
+      const page = this.db.fetchOwesPageByVersion({
+        version: CompoundVersion.V2, // или V3
+        limit: LIMIT,
+        offset,
+      });
+
+      if (page.length === 0) break;
+
+      // page уже отсортирован по owed DESC (из SQL)
+      this.json.appendDetailedOwesBatch(
+        writer,
+        page.map((r) => ({
+          network: r.network,
+          market: r.market,
+          user: r.user,
+          owedDec: r.owed_dec,
+        })),
+      );
+
+      offset += page.length;
+      if (page.length < LIMIT) break;
     }
 
-    const mainnetValue = await this.rewards.getHealedRewardsV2({
-      network: mainnet.network,
-      doctorContract: '0xc00e94cb662c3520282e6f5717214004a7f26888',
-      comp: mainnet.comp,
-    });
-
-    if (typeof results[mainnet.network] === 'bigint') {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      results[mainnet.network]! += mainnetValue;
-    }
+    const detailedPath = this.json.finishDetailedOwes(writer);
+    this.logger.log(`Detailed owes written: ${detailedPath}`);
   }
 
-  async run() {
+  async run(): Promise<void> {
     try {
       this.logger.log('Generating total owes V2...');
-      const resultsV2 = await this.calcOwesV2();
-      // !: no need in heal while using accrue call
-      // await this.heal(resultsV2);
-      const owesV2 = this.rewards.formatOwes(resultsV2);
 
+      await this.db.assemble();
+      this.db.resetOwes(CompoundVersion.V2);
+
+      const resultsV2 = await this.calcOwesV2();
+
+      const owesV2 = this.rewards.formatOwes(resultsV2);
       this.json.writeOwes(owesV2, CompoundVersion.V2);
 
+      this.exp.exportDetailedOwes(CompoundVersion.V2);
+
+      this.db.closeRuntime();
+
       this.logger.log('Generating of totalOwesV2 completed.');
-      return;
     } catch (error) {
-      this.logger.error('An error occurred while generating markdown:', error);
-      return;
+      this.logger.error(
+        'An error occurred while generating owes V2:',
+        error as any,
+      );
+      try {
+        this.db.closeRuntime();
+      } catch {}
     }
   }
 }

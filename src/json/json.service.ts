@@ -10,6 +10,8 @@ import {
   RewardRecord,
 } from 'contract/contract.types';
 import { CompoundVersion } from 'common/types/compound-version';
+import { DetailedOweRow, DetailedOwesWriter } from './json.types';
+import { appendFileSync } from 'node:fs';
 
 @Injectable()
 export class JsonService {
@@ -17,6 +19,14 @@ export class JsonService {
   private readonly rootPathMarkets = join(process.cwd(), 'output.json');
   private readonly rootPathOwesV2 = join(process.cwd(), 'owes-v2.json');
   private readonly rootPathOwesV3 = join(process.cwd(), 'owes-v3.json');
+  private readonly rootPathOwesDetailedV2 = join(
+    process.cwd(),
+    'owes-detailed-v2.json',
+  );
+  private readonly rootPathOwesDetailedV3 = join(
+    process.cwd(),
+    'owes-detailed-v3.json',
+  );
 
   writeOwes(owes: Record<string, number>, version: CompoundVersion): string {
     const filePath =
@@ -58,6 +68,42 @@ export class JsonService {
       throw err;
     }
   }
+
+  ////
+
+  public startDetailedOwes(version: CompoundVersion): DetailedOwesWriter {
+    const filePath =
+      version === CompoundVersion.V2
+        ? this.rootPathOwesDetailedV2
+        : this.rootPathOwesDetailedV3;
+
+    // overwrite file
+    writeFileSync(filePath, '[\n');
+    return { filePath, first: true };
+  }
+
+  public appendDetailedOwesBatch(
+    writer: DetailedOwesWriter,
+    rows: DetailedOweRow[],
+  ): void {
+    if (rows.length === 0) return;
+
+    let buf = '';
+    for (const r of rows) {
+      buf += (writer.first ? '' : ',\n') + JSON.stringify(r);
+      writer.first = false;
+    }
+
+    appendFileSync(writer.filePath, buf);
+  }
+
+  public finishDetailedOwes(writer: DetailedOwesWriter): string {
+    // close JSON array
+    appendFileSync(writer.filePath, '\n]\n');
+    return writer.filePath;
+  }
+
+  ////
 
   writeMarkets(markets: MarketData[]) {
     const filePath = this.rootPathMarkets;

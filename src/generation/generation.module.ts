@@ -9,6 +9,7 @@ import { GenerateMarkdownCommand } from './generate-markdown.command';
 import { GenerateOwesV3Command } from './generate-owes-v3.command';
 import { GenerateOwesV2Command } from './generate-owes-v2.command';
 import { GenerateOwesMarkdown } from './generate-owes-md.command';
+import { OwesExportService } from './owes-export.service';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GenerateOwesMarkdown } from './generate-owes-md.command';
   ],
   providers: [
     MarkdownService,
+    OwesExportService,
     GenerateMarkdownCommand,
     GenerateOwesV2Command,
     GenerateOwesV3Command,
