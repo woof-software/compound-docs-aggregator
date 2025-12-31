@@ -1,7 +1,7 @@
 name: Run owes v3 calculation
 
 on:
-  workflow_dispatch: # manual start Actions → Run workflow
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,37 +15,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository (with LFS)
+      - name: Checkout org repository (code)
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           lfs: false
 
-      - name: Cache Git LFS objects
+      - name: Checkout artifacts repository (private)
+        uses: actions/checkout@v4
+        with:
+          repository: cryptease/compound-docs-artifacts
+          path: artifacts
+          token: ${{ secrets.ARTIFACTS_TOKEN }}
+          fetch-depth: 1
+          lfs: false
+
+      - name: Cache Git LFS objects (artifacts)
         uses: actions/cache@v4
         with:
           path: |
-            .git/lfs
+            artifacts/.git/lfs
             ~/.git/lfs
-          # Key changes / chunk changes
-          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('.gitattributes', 'src/indexer/storage/**/manifest.json') }}
+          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('artifacts/.gitattributes') }}
           restore-keys: |
             ${{ runner.os }}-lfs-${{ github.ref_name }}-
             ${{ runner.os }}-lfs-
 
-      - name: Init git and lfs (pull ONLY sqlite)
+      - name: Pull artifacts LFS (sqlite only)
+        working-directory: artifacts
         run: |
-          git config user.email "action@github.com"
-          git config user.name "github-actions"
-          
           git lfs install --local --skip-smudge
-          
-          # Only allow pulling sqlite from LFS
-          git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
+          git config lfs.fetchinclude "storage/**/*.sqlite"
           git config lfs.fetchexclude ""
-          
-          # Actually pull allowed LFS objects (sqlite only)
           git lfs pull
+
+      - name: Overlay storage into workspace (required for owes)
+        run: |
+          mkdir -p artifacts/storage
+          mkdir -p src/indexer/storage
+          rsync -a artifacts/storage/ src/indexer/storage/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -63,8 +71,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes:v3
 
-      - name: Commit & Push changes (owes v3)
+      # Push small snapshot to org repo
+      - name: Commit & Push org snapshot (owes v3)
         run: |
-          git add owes-v3.json owes-detailed-v3.json
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
+          git add owes-v3.json
           git diff --cached --quiet || git commit -m "chore: run owes v3"
+          git pull --rebase
+          git push
+
+      # Move detailed snapshot into artifacts repo and push it there
+      - name: Sync detailed owes into artifacts repo
+        run: |
+          mkdir -p artifacts/snapshots
+          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json
+
+      - name: Commit & Push artifacts (detailed owes v3)
+        working-directory: artifacts
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
+          git add snapshots/owes-detailed-v3.json
+          git diff --cached --quiet || git commit -m "chore: update detailed owes v3"
+          git pull --rebase
           git push

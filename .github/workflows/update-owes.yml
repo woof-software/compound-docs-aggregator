@@ -1,9 +1,9 @@
 name: Update owes
 
 on:
-  workflow_dispatch: # manual start Actions → Run workflow
+  workflow_dispatch:
   schedule:
-    - cron: '5 13 * * *' # every day at 13:05 (UTC)
+    - cron: '5 13 * * *' # daily 13:05 UTC
 
 permissions:
   contents: write
@@ -17,37 +17,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository (with LFS)
+      - name: Checkout org repository (code)
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           lfs: false
 
-      - name: Cache Git LFS objects
+      - name: Checkout artifacts repository (private)
+        uses: actions/checkout@v4
+        with:
+          repository: cryptease/compound-docs-artifacts
+          path: artifacts
+          token: ${{ secrets.ARTIFACTS_TOKEN }}
+          fetch-depth: 1
+          lfs: false
+
+      - name: Cache Git LFS objects (artifacts)
         uses: actions/cache@v4
         with:
           path: |
-            .git/lfs
+            artifacts/.git/lfs
             ~/.git/lfs
-          # Key changes / chunk changes
-          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('.gitattributes', 'src/indexer/storage/**/manifest.json') }}
+          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('artifacts/.gitattributes') }}
           restore-keys: |
             ${{ runner.os }}-lfs-${{ github.ref_name }}-
             ${{ runner.os }}-lfs-
 
-      - name: Init git and lfs (pull ONLY sqlite)
+      - name: Pull artifacts LFS (sqlite only)
+        working-directory: artifacts
         run: |
-          git config user.email "action@github.com"
-          git config user.name "github-actions"
-          
           git lfs install --local --skip-smudge
-          
-          # Only allow pulling sqlite from LFS
-          git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
+          git config lfs.fetchinclude "storage/**/*.sqlite"
           git config lfs.fetchexclude ""
-          
-          # Actually pull allowed LFS objects (sqlite only)
           git lfs pull
+
+      - name: Overlay artifacts storage into workspace
+        run: |
+          mkdir -p artifacts/storage
+          mkdir -p src/indexer/storage
+          rsync -a artifacts/storage/ src/indexer/storage/
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -65,24 +73,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:index
 
-      - name: Commit & Push changes (index)
-        run: |
-          git add src/indexer/storage/meta.sqlite src/indexer/storage/users/manifest.json src/indexer/storage/users/*.sqlite
-          git diff --cached --quiet || git commit -m "chore: auto-update index"
-          git push
-
       - name: Run owes v3 generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
           UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes:v3
-
-      - name: Commit & Push changes (owes v3)
-        run: |
-          git add owes-v3.json owes-detailed-v3.json
-          git diff --cached --quiet || git commit -m "chore: auto-update owes v3"
-          git push
 
       - name: Run owes v2 generation
         env:
@@ -91,12 +87,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes:v2
 
-      - name: Commit & Push changes (owes v2)
-        run: |
-          git add owes-v2.json owes-detailed-v2.json
-          git diff --cached --quiet || git commit -m "chore: auto-update owes v2"
-          git push
-
       - name: Run owes markdown generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
@@ -104,8 +94,37 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes:md
 
-      - name: Commit & Push changes (owes md)
+      # === Push public outputs to org repo (single commit) ===
+      - name: Commit & Push org outputs (owes + md)
         run: |
-          git add REWARDS.md
-          git diff --cached --quiet || git commit -m "chore: auto-update owes md"
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
+          git add owes-v2.json owes-v3.json REWARDS.md
+          git diff --cached --quiet || git commit -m "chore: auto-update owes snapshots"
+          git pull --rebase
+          git push
+
+      # === Sync heavy outputs back into artifacts repo ===
+      - name: Sync updated storage & detailed owes into artifacts repo
+        run: |
+          mkdir -p artifacts/storage
+          mkdir -p artifacts/snapshots
+
+          # updated index DB back to artifacts
+          rsync -a src/indexer/storage/ artifacts/storage/
+
+          # detailed owes snapshots (large) to artifacts
+          cp -f owes-detailed-v2.json artifacts/snapshots/owes-detailed-v2.json
+          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json
+
+      - name: Commit & Push artifacts (storage + detailed owes)
+        working-directory: artifacts
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
+          git add -A
+          git diff --cached --quiet || git commit -m "chore: auto-update artifacts"
+          git pull --rebase
           git push

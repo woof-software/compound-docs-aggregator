@@ -1,9 +1,9 @@
 name: Update market data
 
 on:
-  workflow_dispatch: # manual start Actions → Run workflow
+  workflow_dispatch:
   schedule:
-    - cron: '2 12 * * *' # every day at noon (UTC)
+    - cron: '2 12 * * *' # every day at 12:02 UTC
 
 permissions:
   contents: write
@@ -17,37 +17,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository (with LFS)
+      - name: Checkout org repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
           lfs: false
-
-      - name: Cache Git LFS objects
-        uses: actions/cache@v4
-        with:
-          path: |
-            .git/lfs
-            ~/.git/lfs
-          # Key changes / chunk changes
-          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('.gitattributes', 'src/indexer/storage/**/manifest.json') }}
-          restore-keys: |
-            ${{ runner.os }}-lfs-${{ github.ref_name }}-
-            ${{ runner.os }}-lfs-
-
-      - name: Init git and lfs (pull ONLY sqlite)
-        run: |
-          git config user.email "action@github.com"
-          git config user.name "github-actions"
-          
-          git lfs install --local --skip-smudge
-          
-          # Only allow pulling sqlite from LFS
-          git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
-          git config lfs.fetchexclude ""
-          
-          # Actually pull allowed LFS objects (sqlite only)
-          git lfs pull
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -67,6 +41,10 @@ jobs:
 
       - name: Commit & Push changes
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
           git add README.md output.json
           git diff --cached --quiet || git commit -m "chore: auto-update market data"
+          git pull --rebase
           git push
