@@ -2,6 +2,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
 
 import { ProviderFactory } from 'network/provider.factory';
+import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
+import { JsonService } from 'json/json.service';
 import CometABI from './abi/CometABI.json';
 import CometExtensionABI from './abi/CometExtensionABI.json';
 import ConfiguratorABI from './abi/ConfiguratorABI.json';
@@ -14,9 +16,7 @@ import {
   CurveMap,
   MarketData,
   RootJson,
-} from './contract.type';
-import { JsonService } from 'json/json.service';
-import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
+} from './contract.types';
 
 @Injectable()
 export class ContractService {
@@ -26,6 +26,53 @@ export class ContractService {
     private readonly providerFactory: ProviderFactory,
     private readonly jsonService: JsonService,
   ) {}
+
+  /**
+   * Fetch owed rewards for a list of (rewardsAddress, cometAddress, userAddress).
+   * Returns sum of owed amounts (bigint) for this batch.
+   */
+  public async sumOwedForUsersV3(params: {
+    network: string;
+    users: {
+      userAddress: string;
+      cometAddress: string;
+      rewardsAddress: string;
+    }[];
+    chunkSize?: number;
+  }): Promise<bigint> {
+    const { network, users, chunkSize = 1000 } = params;
+
+    if (!users.length) return 0n;
+
+    const multicall = this.providerFactory.multicall(network);
+
+    let sum = 0n;
+
+    for (let i = 0; i < users.length; i += chunkSize) {
+      const chunk = users.slice(i, i + chunkSize);
+
+      const results = await Promise.all(
+        chunk.map((d) => {
+          const rewards = new ethers.Contract(
+            d.rewardsAddress,
+            RewardsABI,
+            multicall,
+          );
+          // getRewardOwed returns [token, owed]
+          return rewards.getRewardOwed!.staticCall(
+            d.cometAddress,
+            d.userAddress,
+          ) as Promise<[string, bigint]>;
+        }),
+      );
+
+      for (const [, amount] of results) {
+        sum += amount;
+      }
+    }
+
+    return sum;
+  }
 
   async readMarketData(
     root: RootJson,

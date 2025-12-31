@@ -4,8 +4,8 @@ import axios from 'axios';
 
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
-import { MarkdownService } from './markdown.service';
 import { JsonService } from 'json/json.service';
+import { MarkdownService } from './markdown.service';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
 export class GenerateMarkdownCommand extends CommandRunner {
@@ -58,21 +58,25 @@ export class GenerateMarkdownCommand extends CommandRunner {
           continue;
         }
 
+        this.logger.debug(
+          `Found data for ${marketData.network} - ${marketData.market}`,
+        );
         marketsData.push(marketData);
       }
 
       // Generate JSON file with all markets data
-      const jsonPath = this.jsonService.write(marketsData);
+      const jsonPath = this.jsonService.writeMarkets(marketsData);
       this.logger.log(`JSON generated: ${jsonPath}`);
 
       // Read the structured data for markdown generation
-      const nestedMarketsData = this.jsonService.read();
+      const nestedMarketsData = this.jsonService.readMarkets(); // market rewards -> rewards table
 
       // Update README.md with hierarchical structure
       this.markdownService.write(nestedMarketsData, jsonPath);
       this.logger.log(`README.md updated with hierarchical market data`);
 
       this.logger.log('Generating of markdown completed.');
+
       return;
     } catch (error) {
       this.logger.error('An error occurred while generating markdown:', error);

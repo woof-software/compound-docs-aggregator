@@ -1,11 +1,15 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { writeFileSync } from 'fs';
+import { join } from 'path';
 import { markdownTable } from 'markdown-table';
-import { CurveEntry, NestedMarkets } from 'contract/contract.type';
+import { CurveEntry, NestedMarkets } from 'contract/contract.types';
+import { V2RewardsAtContract } from '../contract/rewards.types';
 
 @Injectable()
 export class MarkdownService {
   private readonly logger = new Logger(MarkdownService.name);
+
+  private readonly rewardsMdPath = join(process.cwd(), 'REWARDS.md');
 
   write(nestedMarkets: NestedMarkets, jsonPath: string): void {
     const lines: string[] = [];
@@ -324,5 +328,152 @@ export class MarkdownService {
 
     writeFileSync('README.md', lines.join('\n'), 'utf-8');
     this.logger.log('README.md successfully generated');
+  }
+
+  public writeRewardsMd(params: {
+    owesV2: Record<string, number>;
+    owesV3: Record<string, number>;
+    nestedMarketsV3: NestedMarkets; // V3-only
+    v2At: V2RewardsAtContract[]; // from v2At()
+  }): void {
+    const { owesV2, owesV3, nestedMarketsV3, v2At } = params;
+
+    const lines: string[] = [];
+
+    lines.push('# 🎁 Rewards');
+    lines.push('');
+
+    // =========================
+    // V3
+    // =========================
+    lines.push('## Compound V3');
+    lines.push('');
+
+    const v3AtByNetwork = new Map<string, number>(
+      nestedMarketsV3.networkCompBalance.networks.map((n) => [
+        n.network,
+        n.currentCompBalance,
+      ]),
+    );
+
+    {
+      const allNetworks = Array.from(
+        new Set([...Object.keys(owesV3), ...Array.from(v3AtByNetwork.keys())]),
+      );
+
+      const rowsRaw = allNetworks.map((network) => {
+        const atContract = v3AtByNetwork.get(network) ?? 0;
+        const owed = owesV3[network] ?? 0;
+        const delta = atContract - owed;
+        return { network, atContract, owed, delta };
+      });
+
+      rowsRaw.sort(
+        (a, b) => b.owed - a.owed || a.network.localeCompare(b.network),
+      );
+
+      const header = [
+        'Network',
+        'Rewards at contract',
+        'Rewards owed',
+        'Rewards delta (at contract - owed)',
+      ];
+
+      const rows: string[][] = rowsRaw.map((r) => [
+        r.network,
+        `${r.atContract.toFixed(2)} COMP`,
+        `${r.owed.toFixed(2)} COMP`,
+        `${r.delta.toFixed(2)} COMP`,
+      ]);
+
+      const totalAt = rowsRaw.reduce((acc, r) => acc + r.atContract, 0);
+      const totalOwed = rowsRaw.reduce((acc, r) => acc + r.owed, 0);
+      const totalDelta = rowsRaw.reduce((acc, r) => acc + r.delta, 0);
+
+      rows.push([
+        '**TOTAL**',
+        `**${totalAt.toFixed(2)} COMP**`,
+        `**${totalOwed.toFixed(2)} COMP**`,
+        `**${totalDelta.toFixed(2)} COMP**`,
+      ]);
+
+      lines.push(
+        markdownTable([header, ...rows], { align: ['l', 'r', 'r', 'r'] }),
+      );
+      lines.push('');
+    }
+
+    lines.push('---');
+    lines.push('');
+
+    // =========================
+    // V2
+    // =========================
+    lines.push('## Compound V2');
+    lines.push('');
+
+    const v2AtByNetwork = new Map<string, number>(
+      v2At.map((r) => [r.network, r.atContract]),
+    );
+
+    {
+      const allNetworks = Array.from(
+        new Set([...Object.keys(owesV2), ...Array.from(v2AtByNetwork.keys())]),
+      );
+
+      const rowsRaw = allNetworks.map((network) => {
+        const atContract = v2AtByNetwork.get(network) ?? 0;
+        const owed = owesV2[network] ?? 0;
+        const delta = atContract - owed;
+        return { network, atContract, owed, delta };
+      });
+
+      rowsRaw.sort(
+        (a, b) => b.owed - a.owed || a.network.localeCompare(b.network),
+      );
+
+      const header = [
+        'Network',
+        'Rewards at contract',
+        'Rewards owed',
+        'Rewards delta (at contract - owed)',
+      ];
+
+      const rows: string[][] = rowsRaw.map((r) => [
+        r.network,
+        `${r.atContract.toFixed(2)} COMP`,
+        `${r.owed.toFixed(2)} COMP`,
+        `${r.delta.toFixed(2)} COMP`,
+      ]);
+
+      const totalAt = rowsRaw.reduce((acc, r) => acc + r.atContract, 0);
+      const totalOwed = rowsRaw.reduce((acc, r) => acc + r.owed, 0);
+      const totalDelta = rowsRaw.reduce((acc, r) => acc + r.delta, 0);
+
+      rows.push([
+        '**TOTAL**',
+        `**${totalAt.toFixed(2)} COMP**`,
+        `**${totalOwed.toFixed(2)} COMP**`,
+        `**${totalDelta.toFixed(2)} COMP**`,
+      ]);
+
+      lines.push(
+        markdownTable([header, ...rows], { align: ['l', 'r', 'r', 'r'] }),
+      );
+      lines.push('');
+    }
+
+    lines.push('---');
+    lines.push('');
+    lines.push(
+      `*Last updated:* ${new Date()
+        .toISOString()
+        .replace('T', ' ')
+        .replace('Z', ' UTC')}`,
+    );
+    lines.push('');
+
+    writeFileSync(this.rewardsMdPath, lines.join('\n'), 'utf-8');
+    this.logger.log('rewards.md successfully generated');
   }
 }
