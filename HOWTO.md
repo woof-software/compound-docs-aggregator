@@ -1,6 +1,8 @@
 # 🚀 Quick Start
 
-This repository indexes on-chain users for Compound markets and generates **deterministic, on-chain–derived snapshots** (JSON + Markdown) such as protocol **owes** and **markets overview**. Large SQLite artifacts are stored in **chunked form** (Git LFS) and assembled at runtime.
+This repository indexes on-chain users for Compound markets and generates **deterministic, on-chain–derived snapshots** (JSON + Markdown), such as protocol **owes** and a **markets overview**.
+
+To keep the **public repo lightweight** (and avoid GitHub LFS bandwidth issues on forks/clones), **large artifacts are stored in a separate private “artifacts” repository** using **Git LFS** and synced in CI/local runs when needed.
 
 ---
 
@@ -26,45 +28,74 @@ UNICHAIN_QUICKNODE_KEY=your_unichain_api_key_here
 
 ---
 
-## Git LFS Setup (Recommended)
+## Artifacts Repository (Git LFS)
 
-This repo stores large artifacts in Git LFS:
+This repository (**code repo**) does **not** store large artifacts in Git LFS anymore.
 
-- Runtime/indexer DB chunks: `src/indexer/storage/**/*.sqlite` (**required for indexing**)
-- Detailed owes snapshots: `owes-detailed-v2.json`, `owes-detailed-v3.json` (optional)
+Instead, heavy data lives in a separate **private artifacts repository** (example: `cryptease/compound-docs-artifacts`) with this structure:
 
-### Minimal LFS sync (pull ONLY SQLite chunks)
+- `storage/` — runtime/indexer DB snapshot (manifests + chunks)
+  - `storage/**/manifest.json` (regular Git)
+  - `storage/**/*.sqlite` (Git LFS)
+- `snapshots/` — large detailed snapshots
+  - `snapshots/owes-detailed-v2.json` (Git LFS)
+  - `snapshots/owes-detailed-v3.json` (Git LFS)
 
-This is the recommended setup if you want to **avoid downloading large non-DB artifacts** (like `owes-detailed-*.json`) but still run the indexer locally.
+CI and local runs **rsync** `artifacts/storage/` into `src/indexer/storage/` before running commands that need the indexed DB.
+
+---
+
+## ARTIFACTS_TOKEN (GitHub Actions)
+
+Workflows that need the indexed DB or detailed snapshots must clone the **private artifacts repo**.
+
+To do this, the code repo uses a GitHub Actions secret named:
+
+- **`ARTIFACTS_TOKEN`** — a **fine-grained Personal Access Token (PAT)** with access to the private artifacts repository.
+
+### How to create `ARTIFACTS_TOKEN`
+
+1. GitHub → **Settings** → **Developer settings**
+2. **Personal access tokens** → **Fine-grained tokens** → **Generate new token**
+3. **Repository access** → *Only select repositories* → select your private artifacts repo
+4. **Repository permissions**:
+  - **Contents: Read and write** (required)
+5. Create token and copy it.
+
+### How to add it to the code repo
+
+In the **code repo** (this repo):
+- **Settings → Secrets and variables → Actions → New repository secret**
+- Name: `ARTIFACTS_TOKEN`
+- Value: your PAT
+
+> Keep this token only in GitHub Secrets (do not commit it, do not store it in `.env`).
+
+---
+
+## Local Setup (Optional)
+
+If you only want to regenerate docs that don’t require the indexed DB (e.g. `cli:generate:md`), you can run locally without artifacts.
+
+If you want to run the **indexer** or generate **owes**, you need the artifacts repo.
+
+### Clone + pull artifacts (sqlite only)
 
 ```bash
+# 1) Clone artifacts repo (private)
+git clone git@github.com:cryptease/compound-docs-artifacts.git ../compound-docs-artifacts
+cd ../compound-docs-artifacts
+
+# 2) Pull ONLY sqlite chunks from LFS
 git lfs install --local --skip-smudge
-
-# Only allow pulling sqlite chunks
-git config lfs.fetchinclude "src/indexer/storage/**/*.sqlite"
+git config lfs.fetchinclude "storage/**/*.sqlite"
 git config lfs.fetchexclude ""
-
-# Pull only what is allowed (sqlite only)
 git lfs pull
-```
 
-### Full LFS sync (pull everything tracked by LFS)
-
-Use this if you want **all** LFS artifacts locally.
-
-```bash
-git lfs install --local
-git lfs pull
-```
-
-### Pull a specific LFS file on demand
-
-If later you do need a detailed owes file:
-
-```bash
-git lfs pull --include="owes-detailed-v3.json"
-# or
-git lfs pull --include="owes-detailed-v2.json"
+# 3) Overlay into the code repo
+cd ../compound-docs-aggregator   # <- your code repo folder
+mkdir -p src/indexer/storage
+rsync -a ../compound-docs-artifacts/storage/ src/indexer/storage/
 ```
 
 ---
@@ -84,6 +115,8 @@ This command will:
 3. Generate/update `output.json` in the repository root
 4. Create/update the generated Markdown documentation (README)
 
+> This command does **not** require the indexed DB.
+
 ---
 
 ## Index On-Chain Users Database
@@ -97,11 +130,11 @@ yarn cli:index
 This command will:
 
 1. Build the NestJS application
-2. Assemble the **chunked** databases into a single working (runtime) database
+2. Assemble the DB snapshot into a working (runtime) database
 3. Index all configured networks that should be indexed
-4. Discover and persist users that appear on each network (per supported protocol/version and topics)
+4. Discover and persist users that appear on each network
 5. Update the indexer cursor/state to support resumable runs
-6. Split the updated runtime database back into stored chunks for long-term persistence
+6. Write updated DB back to `src/indexer/storage/` (which CI then syncs to the artifacts repo)
 
 ### Full local sync with retries
 
@@ -128,6 +161,7 @@ This command will:
 1. Read previously indexed users from the local database
 2. Compute current **Compound v2** owes for those users on each configured v2 network
 3. Produce `owes-v2.json` in the repository root
+4. Optionally produce a large detailed file `owes-detailed-v2.json` (stored in the artifacts repo)
 
 > Note on v2 accrual (“heal”): this project does **not** rely on a state-changing “heal” flow to force accrual.  
 > The snapshot is derived from **current on-chain state** available via `eth_call`.
@@ -143,15 +177,7 @@ This command will:
 1. Read all previously indexed users from the local database
 2. For each configured v3 network, compute the current protocol owed amounts for those users
 3. Produce `owes-v3.json` in the repository root
-
-### Detailed owes snapshots (Git LFS)
-
-Some workflows may also produce large “detailed” owes JSON files, stored via Git LFS:
-
-- `owes-detailed-v2.json`
-- `owes-detailed-v3.json`
-
-These files are **optional to download** (see “Git LFS Setup”), and are typically only needed for deep dives / debugging / analytics.
+4. Optionally produce a large detailed file `owes-detailed-v3.json` (stored in the artifacts repo)
 
 ### Generate owes Markdown
 
@@ -168,8 +194,8 @@ This command will:
 
 ### Important workflow note
 
-In CI, the GitHub Actions workflow runs **`cli:index` before** any owes generation.  
-When running locally, you must ensure `yarn cli:index` completed successfully first — otherwise owes output may be incomplete or stale.
+In CI, GitHub Actions runs **`cli:index` before** any owes generation.  
+When running locally, ensure `yarn cli:index` completed successfully first — otherwise owes output may be incomplete or stale.
 
 ---
 
@@ -178,33 +204,38 @@ When running locally, you must ensure `yarn cli:index` completed successfully fi
 There are two kinds of workflows:
 
 ### 1) Manually triggered workflows (`run-*`)
-These are intended to be executed on demand from the GitHub Actions UI.
-
-- `run-indexing.yml` — runs the user indexer (`yarn cli:index`)
-- `run-owes-v2.yml` — generates `owes-v2.json`
-- `run-owes-v3.yml` — generates `owes-v3.json`
-- `run-owes-md.yml` — generates the owes Markdown summary
+- `run-indexing.yml` — runs the user indexer (`yarn cli:index`)  
+  **Requires** `ARTIFACTS_TOKEN` (to pull/push DB artifacts)
+- `run-owes-v2.yml` — generates `owes-v2.json`  
+  **Requires** `ARTIFACTS_TOKEN` (needs indexed DB; pushes detailed snapshot to artifacts repo)
+- `run-owes-v3.yml` — generates `owes-v3.json`  
+  **Requires** `ARTIFACTS_TOKEN`
+- `run-owes-md.yml` — generates the owes Markdown summary (`REWARDS.md`)  
+  Does **not** require `ARTIFACTS_TOKEN` (reads public `owes-*.json`)
 
 ### 2) Scheduled / maintenance workflows (`update-*`)
-These keep the repository snapshots up to date (for example, market metadata and owes snapshots), and may be configured on a timer.
-
-- `update-market-data.yml` — updates market metadata and generated docs (`output.json` + README)
-- `update-owes.yml` — updates owes snapshots (and related markdown, if configured)
-
-> CI tip: if you want to **avoid downloading large LFS artifacts** in Actions, use `actions/checkout` with `lfs: false`, then run `git lfs install --skip-smudge` + `git lfs pull` with `lfs.fetchinclude` set to `src/indexer/storage/**/*.sqlite`.
+- `update-market-data.yml` — updates market metadata and docs (`output.json` + README)  
+  Does **not** require `ARTIFACTS_TOKEN`
+- `update-owes.yml` — updates index + owes + markdown  
+  **Requires** `ARTIFACTS_TOKEN`
 
 ---
 
 ## Outputs
 
-Common generated artifacts in the repository root:
+Artifacts committed in the **code repo** (this repo):
 
 - `output.json` — markets / metadata snapshot used by the docs generator
 - `owes-v2.json` — Compound v2 owes snapshot (if enabled)
 - `owes-v3.json` — Compound v3 owes snapshot
 - `REWARDS.md` — Markdown summary of owes (generated from the JSON snapshots)
-- SQLite database chunks (tracked via Git LFS) — used by the indexer
-- Detailed owes JSON (tracked via Git LFS): `owes-detailed-v2.json`, `owes-detailed-v3.json` (optional)
+
+Artifacts stored in the **private artifacts repo**:
+
+- `storage/**/*.sqlite` — indexed DB chunks (Git LFS)
+- `storage/**/manifest.json` — manifests (regular Git)
+- `snapshots/owes-detailed-v2.json` — detailed owes v2 (Git LFS)
+- `snapshots/owes-detailed-v3.json` — detailed owes v3 (Git LFS)
 
 ---
 
@@ -223,7 +254,7 @@ yarn format
 # Generate documentation and market snapshot (README + output.json)
 yarn cli:generate:md
 
-# Index users across configured networks (writes chunked DB artifacts)
+# Index users across configured networks (writes updated DB into src/indexer/storage/)
 yarn cli:index
 
 # Generate owes snapshots
@@ -265,7 +296,7 @@ You can either:
 - **Run the scripts locally** to regenerate snapshots and docs, or
 - **Consume the committed snapshots** (`output.json`, `owes-*.json`, `REWARDS.md`) produced by GitHub Actions.
 
-For local regeneration:
+Typical local flow (with artifacts synced first if you need indexing/owes):
 
 ```bash
 yarn cli:generate:md
