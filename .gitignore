@@ -1,3 +1,10 @@
+# Artifacts live in a separate private repo
+src/indexer/storage/**
+owes-detailed-v2.json
+owes-detailed-v3.json
+
+!src/indexer/storage/.gitkeep
+
 # Database
 .runtime
 
