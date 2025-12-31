@@ -24,8 +24,15 @@ export class JsonService {
     let totalDailyRewards = 0;
     let totalYearlyRewards = 0;
     for (const m of markets) {
-      const { network, market, contracts, curve, collaterals, rewardsTable } =
-        m;
+      const {
+        network,
+        market,
+        contracts,
+        curve,
+        baseToken,
+        collaterals,
+        rewardsTable,
+      } = m;
 
       if (!nested[network]) {
         nested[network] = {};
@@ -34,6 +41,7 @@ export class JsonService {
       nested[network][market] = {
         contracts,
         curve,
+        baseToken,
         collaterals,
       };
 
