@@ -10,7 +10,7 @@ permissions:
 
 concurrency:
   group: update-owes-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -101,7 +101,7 @@ jobs:
           git config --local user.name "github-actions"
 
           git add owes-v2.json owes-v3.json REWARDS.md
-          git diff --cached --quiet || git commit -m "chore: auto-update owes snapshots"
+          git diff --cached --quiet || git commit -m "chore: auto-update owes"
           git pull --rebase
           git push
 
@@ -115,8 +115,8 @@ jobs:
           rsync -a src/indexer/storage/ artifacts/storage/
 
           # detailed owes snapshots (large) to artifacts
-          cp -f owes-detailed-v2.json artifacts/snapshots/owes-detailed-v2.json
-          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json
+          cp -f owes-detailed-v2.json artifacts/snapshots/owes-detailed-v2.json || true
+          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json || true
 
       - name: Commit & Push artifacts (storage + detailed owes)
         working-directory: artifacts
@@ -126,5 +126,6 @@ jobs:
 
           git add -A
           git diff --cached --quiet || git commit -m "chore: auto-update artifacts"
-          git pull --rebase
+          git fetch origin main
+          git rebase -X ours origin/main
           git push

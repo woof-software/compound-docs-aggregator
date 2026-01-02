@@ -86,7 +86,7 @@ jobs:
       - name: Sync detailed owes into artifacts repo
         run: |
           mkdir -p artifacts/snapshots
-          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json
+          cp -f owes-detailed-v3.json artifacts/snapshots/owes-detailed-v3.json || true
 
       - name: Commit & Push artifacts (detailed owes v3)
         working-directory: artifacts
@@ -96,5 +96,6 @@ jobs:
 
           git add snapshots/owes-detailed-v3.json
           git diff --cached --quiet || git commit -m "chore: update detailed owes v3"
-          git pull --rebase
+          git fetch origin main
+          git rebase -X ours origin/main
           git push

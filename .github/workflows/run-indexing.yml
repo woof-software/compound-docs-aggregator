@@ -84,5 +84,6 @@ jobs:
 
           git add -A
           git diff --cached --quiet || git commit -m "chore: run index"
-          git pull --rebase
+          git fetch origin main
+          git rebase -X ours origin/main
           git push
