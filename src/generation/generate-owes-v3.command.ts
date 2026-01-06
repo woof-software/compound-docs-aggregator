@@ -53,6 +53,7 @@ export class GenerateOwesV3Command extends CommandRunner {
       while (true) {
         const current = idx++;
         if (current >= items.length) return;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await fn(items[current]!);
       }
     });

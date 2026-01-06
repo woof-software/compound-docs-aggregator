@@ -210,6 +210,7 @@ export class RewardsService {
           `[V2][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
             i + chunk.length - 1
           }`,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           () => multicall3.aggregate3!.staticCall(calls),
         );
       } catch (err) {
@@ -323,6 +324,7 @@ export class RewardsService {
           `[V3][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
             i + chunk.length - 1
           }`,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           () => multicall3.aggregate3!.staticCall(calls),
         );
       } catch (err) {
@@ -402,11 +404,13 @@ export class RewardsService {
     // Run in parallel so MulticallProvider can batch efficiently.
     const [decimals, balance] = await Promise.all([
       this.rpc(`[ERC20][${network}] decimals`, async () => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const d = await token.decimals!.staticCall();
         const n = Number(d);
         return Number.isFinite(n) ? n : 18;
       }),
       this.rpc(`[ERC20][${network}] balanceOf(comptroller)`, async () => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const b = await token.balanceOf!.staticCall(comptroller);
         return BigInt(b);
       }),
@@ -438,6 +442,7 @@ export class RewardsService {
     return this.rpc(
       `[ERC20][${network}] balanceOf(doctorContract)`,
       async () => {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const b = await token.balanceOf!.staticCall(doctorContract);
         return BigInt(b);
       },
@@ -506,6 +511,7 @@ export class RewardsService {
             `[V2][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
               i + chunk.length - 1
             }`,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             () => multicall3.aggregate3!.staticCall(calls),
           );
         } catch (err) {
@@ -605,6 +611,7 @@ export class RewardsService {
           `[V3][owes][${network}] Multicall3.aggregate3 chunk=${i}-${
             i + chunk.length - 1
           }`,
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           () => multicall3.aggregate3!.staticCall(calls),
         );
       } catch (err) {

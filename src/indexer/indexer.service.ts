@@ -84,6 +84,7 @@ export class IndexerService {
       while (true) {
         const current = idx++;
         if (current >= items.length) return;
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         await fn(items[current]!);
       }
     });
@@ -427,6 +428,7 @@ export class IndexerService {
 
         const market = normAddr(String(log.address));
         const bn = Number(log.blockNumber);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const createdAt = tsCache.get(bn)!;
 
         for (const s of sources) {
@@ -469,6 +471,7 @@ export class IndexerService {
     const stack: Array<[number, number]> = [[req.fromBlock, req.toBlock]];
 
     while (stack.length) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const [a, b] = stack.pop()!;
       try {
         const logs = await this.rpc(`getLogs(${a}-${b})`, () =>
