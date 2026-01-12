@@ -496,6 +496,7 @@ export class MarkdownService {
   /**
    * Updates the deployments section in compound-3.md file using data from nestedMarkets
    * This method replaces the deployments section with newly generated deployment data
+   * and updates the date display in the Note section
    */
   updateCompound3Deployments(nestedMarkets: NestedMarkets): void {
     const { directory, filename, sectionStartMarker, sectionEndMarker } =
@@ -539,11 +540,38 @@ export class MarkdownService {
     }
 
     const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n');
-    const afterSection = lines.slice(deploymentsEndIndex).join('\n');
+    let afterSection = lines.slice(deploymentsEndIndex).join('\n');
+
+    // Update date display in markdown content
+    afterSection = this.updateDateDisplayInContent(afterSection);
+
     const updatedContent = `${beforeSection}\n${deploymentsSection}\n${afterSection}`;
 
     writeFileSync(compound3Path, updatedContent, 'utf-8');
     this.logger.log(`${filename} deployments section successfully updated`);
+  }
+
+  private updateDateDisplayInContent(content: string): string {
+    const dataCollectedAt = new Date().toISOString().split('T')[0];
+
+    // Check if the note line exists
+    if (content.includes('compound-docs-aggregator')) {
+      if (content.includes('Data collected on:')) {
+        // Replace existing date
+        return content.replace(
+          /Data collected on: \*\*[0-9]{4}-[0-9]{2}-[0-9]{2}\*\*\.?/g,
+          `Data collected on: **${dataCollectedAt}**.`,
+        );
+      } else {
+        // Add date to existing note (after repository.)
+        return content.replace(
+          /(repository\.)/g,
+          `$1 Data collected on: **${dataCollectedAt}**.`,
+        );
+      }
+    }
+
+    return content;
   }
 
   /**
