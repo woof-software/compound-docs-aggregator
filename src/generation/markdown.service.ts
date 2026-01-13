@@ -1,17 +1,16 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { readFileSync, existsSync } from 'fs';
-import { writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
 import {
-  getNetworkSortOrder,
   getBlockscanOrigin,
-  getNetworkShortName,
   getNetworkDisplayName,
+  getNetworkShortName,
+  getNetworkSortOrder,
 } from './helpers';
 import { STATIC_DEPLOYMENTS } from './constants';
 
@@ -615,10 +614,50 @@ export class MarkdownService {
           marketData.collaterals,
           marketName,
         );
+
+        const collateralSymbols = new Set(
+          marketData.collaterals.map((c) => c.symbol),
+        );
+
         for (const [contractName, contractAddress] of Object.entries(
           contracts,
         )) {
-          deployments.push(`      ${contractName}: '${contractAddress}'`);
+          if (contractName.includes('_')) {
+            continue;
+          }
+
+          if (collateralSymbols.has(contractName)) {
+            deployments.push(`      ${contractName}:`);
+            deployments.push(`        address: '${contractAddress}'`);
+
+            const metadataPrefix = `${contractName}_`;
+            const metadataFields: Array<[string, string]> = [];
+
+            for (const [key, value] of Object.entries(contracts)) {
+              if (key.startsWith(metadataPrefix)) {
+                const metadataKey = key.replace(metadataPrefix, '');
+                metadataFields.push([metadataKey, value]);
+              }
+            }
+
+            const fieldOrder = [
+              'Borrow CF',
+              'Liquidation CF',
+              'Liquidation Penalty',
+              'Supply Cap',
+              'Price Feed',
+            ];
+
+            const orderedFields = this.orderMetadataFields(
+              metadataFields,
+              fieldOrder,
+            );
+            for (const [key, value] of orderedFields) {
+              deployments.push(`        ${key}: '${value}'`);
+            }
+          } else {
+            deployments.push(`      ${contractName}: '${contractAddress}'`);
+          }
         }
       }
     }
@@ -686,9 +725,31 @@ export class MarkdownService {
       }
     }
 
-    // Add collaterals as contracts (using symbol as key)
     for (const collateral of collaterals) {
       formatted[collateral.symbol] = collateral.address;
+
+      if (collateral.CF) {
+        formatted[`${collateral.symbol}_Borrow CF`] = collateral.CF;
+      }
+      if (collateral.LF) {
+        formatted[`${collateral.symbol}_Liquidation CF`] = collateral.LF;
+      }
+      if (collateral.LP) {
+        formatted[`${collateral.symbol}_Liquidation Penalty`] = collateral.LP;
+      }
+
+      formatted[`${collateral.symbol}_Supply Cap`] =
+        collateral.supplyCapFormatted ||
+        (collateral.supplyCap !== undefined &&
+        collateral.supplyCap !== null &&
+        collateral.supplyCap !== '0'
+          ? String(collateral.supplyCap)
+          : 'Unlimited');
+
+      if (collateral.priceFeedAddress) {
+        formatted[`${collateral.symbol}_Price Feed`] =
+          collateral.priceFeedAddress;
+      }
     }
 
     return formatted;
@@ -781,5 +842,27 @@ export class MarkdownService {
     const networkShort = getNetworkShortName(networkName);
     const marketShort = this.getMarketDisplayName(marketName);
     return `${networkShort} ${marketShort}`;
+  }
+
+  private orderMetadataFields(
+    fields: Array<[string, string]>,
+    order: string[],
+  ): Array<[string, string]> {
+    const ordered: Array<[string, string]> = [];
+    const fieldMap = new Map(fields);
+
+    for (const key of order) {
+      const value = fieldMap.get(key);
+      if (value !== undefined) {
+        ordered.push([key, value]);
+        fieldMap.delete(key);
+      }
+    }
+
+    for (const [key, value] of fieldMap) {
+      ordered.push([key, value]);
+    }
+
+    return ordered;
   }
 }
