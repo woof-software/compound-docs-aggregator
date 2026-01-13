@@ -642,9 +642,13 @@ export class MarkdownService {
 
             const fieldOrder = [
               'Borrow CF',
+              'Borrow CF Raw',
               'Liquidation CF',
+              'Liquidation CF Raw',
               'Liquidation Penalty',
+              'Liquidation Penalty Raw',
               'Supply Cap',
+              'Supply Cap Raw',
               'Price Feed',
             ];
 
@@ -730,21 +734,35 @@ export class MarkdownService {
 
       if (collateral.CF) {
         formatted[`${collateral.symbol}_Borrow CF`] = collateral.CF;
+        if (collateral.borrowCollateralFactorRaw) {
+          formatted[`${collateral.symbol}_Borrow CF Raw`] =
+            collateral.borrowCollateralFactorRaw;
+        }
       }
       if (collateral.LF) {
         formatted[`${collateral.symbol}_Liquidation CF`] = collateral.LF;
+        if (collateral.liquidateCollateralFactorRaw) {
+          formatted[`${collateral.symbol}_Liquidation CF Raw`] =
+            collateral.liquidateCollateralFactorRaw;
+        }
       }
       if (collateral.LP) {
         formatted[`${collateral.symbol}_Liquidation Penalty`] = collateral.LP;
+        if (collateral.liquidationFactorRaw) {
+          formatted[`${collateral.symbol}_Liquidation Penalty Raw`] =
+            collateral.liquidationFactorRaw;
+        }
       }
 
-      formatted[`${collateral.symbol}_Supply Cap`] =
-        collateral.supplyCapFormatted ||
-        (collateral.supplyCap !== undefined &&
-        collateral.supplyCap !== null &&
-        collateral.supplyCap !== '0'
-          ? String(collateral.supplyCap)
-          : 'Unlimited');
+      if (collateral.supplyCapFormatted) {
+        formatted[`${collateral.symbol}_Supply Cap`] =
+          collateral.supplyCapFormatted;
+      }
+
+      if (collateral.supplyCapRaw) {
+        formatted[`${collateral.symbol}_Supply Cap Raw`] =
+          collateral.supplyCapRaw;
+      }
 
       if (collateral.priceFeedAddress) {
         formatted[`${collateral.symbol}_Price Feed`] =

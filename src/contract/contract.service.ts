@@ -17,6 +17,7 @@ import {
   MarketData,
   RootJson,
 } from './contract.types';
+import { formatSupplyCap } from './helpers';
 
 @Injectable()
 export class ContractService {
@@ -342,6 +343,17 @@ export class ContractService {
       const maxLeverage =
         1 / (1 - Number(ethers.formatEther(collateral.borrowCollateralFactor)));
 
+      const borrowCollateralFactorRaw =
+        collateral.borrowCollateralFactor.toString();
+      const liquidateCollateralFactorRaw =
+        collateral.liquidateCollateralFactor.toString();
+      const liquidationFactorRaw = collateral.liquidationFactor.toString();
+      const supplyCapRaw = collateral.supplyCap.toString();
+      const supplyCapFormatted = formatSupplyCap(
+        supplyCapRaw,
+        Number(decimals),
+      );
+
       const asset = {
         idx: i,
         date,
@@ -357,7 +369,12 @@ export class ContractService {
         CF,
         LF,
         LP,
+        supplyCapFormatted,
         maxLeverage: maxLeverage.toFixed(2) + 'x',
+        borrowCollateralFactorRaw,
+        liquidateCollateralFactorRaw,
+        liquidationFactorRaw,
+        supplyCapRaw,
       };
       collaterals.push(asset);
     }
