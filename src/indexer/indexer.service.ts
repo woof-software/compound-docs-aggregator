@@ -224,11 +224,11 @@ export class IndexerService {
       this.sqlite.setCursor.run(n.network, to, Math.floor(Date.now() / 1000));
 
       // log on EVERY committed chunk
-      this.logger.log(
+      /*this.logger.verbose(
         `${chunkTag} Cursor committed: processedTo=${to} plannedTo=${plannedTo} nextFrom=${
           to + 1
         }`,
-      );
+      );*/
 
       if (to < plannedTo) {
         this.logger.verbose(
