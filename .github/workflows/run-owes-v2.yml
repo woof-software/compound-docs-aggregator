@@ -24,7 +24,7 @@ jobs:
       - name: Checkout artifacts repository (private)
         uses: actions/checkout@v4
         with:
-          repository: cryptease/compound-docs-artifacts
+          repository: ${{ vars.ARTIFACTS_REPO }}
           path: artifacts
           token: ${{ secrets.ARTIFACTS_TOKEN }}
           fetch-depth: 1
