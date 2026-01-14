@@ -87,12 +87,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:owes:v2
 
-      - name: Run owes markdown generation
-        env:
-          ANKR_KEY: ${{ secrets.ANKR_KEY }}
-          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn cli:generate:owes:md
+      # !: removed REWARDS.md
+      # - name: Run owes markdown generation
+      #   env:
+      #     ANKR_KEY: ${{ secrets.ANKR_KEY }}
+      #     UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: yarn cli:generate:owes:md
 
       # === Push public outputs to org repo (single commit) ===
       - name: Commit & Push org outputs (owes + md)
@@ -100,7 +101,10 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
 
-          git add owes-v2.json owes-v3.json REWARDS.md
+          # !: removed rewards
+          # git add owes-v2.json owes-v3.json REWARDS.md
+          git add owes-v2.json owes-v3.json
+          
           git diff --cached --quiet || git commit -m "chore: auto-update owes"
           git pull --rebase
           git push

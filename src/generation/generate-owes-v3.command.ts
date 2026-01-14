@@ -18,7 +18,7 @@ export class GenerateOwesV3Command extends CommandRunner {
   private readonly pageSize = 1000;
 
   // Multicall chunk size for V3 getRewardOwed (usually heavier than V2)
-  private readonly multicallChunkSize = 400;
+  private readonly multicallChunkSize = 1000;
 
   // Parallel networks (keep low; sqlite is one file)
   private readonly maxParallelNetworks = 2;
