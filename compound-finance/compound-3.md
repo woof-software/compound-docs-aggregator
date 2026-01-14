@@ -135,7 +135,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
       sdeUSD:
@@ -146,7 +146,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
       rsETH:
@@ -271,7 +271,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
       sdeUSD:
@@ -282,7 +282,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
   Ethereum Mainnet - USDT Base:
@@ -396,7 +396,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '0.00%'
         Liquidation Penalty Raw: '1000000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
       sFRAX:
@@ -440,7 +440,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
       deUSD:
@@ -451,7 +451,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '8.00%'
         Liquidation Penalty Raw: '920000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9'
   Ethereum Mainnet - WBTC Base:
@@ -874,7 +874,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '0.00%'
         Liquidation Penalty Raw: '1000000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x8671d5e3a10639a573bACffEF448CA076b2d5cD7'
   Optimism - USDT Base:
@@ -944,7 +944,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '0.00%'
         Liquidation Penalty Raw: '1000000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x8671d5e3a10639a573bACffEF448CA076b2d5cD7'
   Optimism - WETH Base:
@@ -1534,7 +1534,7 @@ deployments:
         Liquidation CF Raw: '600000000000000000'
         Liquidation Penalty: '20.00%'
         Liquidation Penalty Raw: '800000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x4687670f5f01716fAA382E2356C103BaD776752C'
       WETH:
@@ -1545,7 +1545,7 @@ deployments:
         Liquidation CF Raw: '640000000000000000'
         Liquidation Penalty: '15.00%'
         Liquidation Penalty Raw: '850000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70'
   Base - USDC Base:
@@ -1652,7 +1652,7 @@ deployments:
         Liquidation CF Raw: '850000000000000000'
         Liquidation Penalty: '5.00%'
         Liquidation Penalty Raw: '950000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x07DA0E54543a844a80ABE69c8A12F22B3aA59f9D'
   Base - WETH Base:
@@ -1906,7 +1906,7 @@ deployments:
         Liquidation CF Raw: '100000000000000'
         Liquidation Penalty: '0.00%'
         Liquidation Penalty Raw: '1000000000000000000'
-        Supply Cap: 'Unlimited'
+        Supply Cap: '0'
         Supply Cap Raw: '0'
         Price Feed: '0x5D173813B4505701e79E654b36A95E6c1FAD4448'
       tETH:
@@ -2410,7 +2410,7 @@ The network deployment artifacts with contract addresses are available in the [C
 The v3 proxy is the only address to be used to interact with a Compound III instance. It is the first address listed in each of the tabs below. To generate the proper [Comet Interface ABI](/public/files/comet-interface-abi-98f438b.json){:target="_blank"} (`CometInterface.sol`), compile the Comet project using `yarn compile`.
 
 <br />
-> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-01-13**.
+> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-01-14**.
 
 <div id="networks-widget-container"></div>
 
