@@ -712,6 +712,7 @@ export class MarkdownService {
     const optionalContracts: Record<string, string> = {
       bridgeReceiver: 'Bridge Receiver',
       faucet: 'Faucet',
+      svrFeeRecipient: 'SVR Fee Recipient',
       marketAdminPermissionChecker: 'Market Admin Permission Checker',
       marketAdminUpdateTimelock: 'Market Admin Update Timelock',
       marketAdminUpdateProposer: 'Market Admin Update Proposer',

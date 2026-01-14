@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
 
 import { ProviderFactory } from 'network/provider.factory';
+import { NetworkService } from 'network/network.service';
 import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
 import { JsonService } from 'json/json.service';
 import CometABI from './abi/CometABI.json';
@@ -25,6 +26,7 @@ export class ContractService {
 
   constructor(
     private readonly providerFactory: ProviderFactory,
+    private readonly networkService: NetworkService,
     private readonly jsonService: JsonService,
   ) {}
 
@@ -104,6 +106,9 @@ export class ContractService {
       provider,
     ) as any;
 
+    const networkConfig = this.networkService.byName(networkKey);
+    const svrFeeRecipient = networkConfig?.svrFeeRecipient;
+
     const cometContractImplementation = (
       await this.getImplementationAddress(cometAddress, provider)
     ).address as string;
@@ -177,6 +182,7 @@ export class ContractService {
         bulker: root.bulker,
         governor: governorAddress,
         timelock: timelockAddress,
+        ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
       },
       curve: curveData,
       collaterals,
