@@ -80,8 +80,8 @@ export interface CollateralInfo {
   borrowCollateralFactorRaw: string; // Raw borrowCollateralFactor value (wei format, 1e18 = 100%)
   liquidateCollateralFactorRaw: string; // Raw liquidateCollateralFactor value (wei format, 1e18 = 100%)
   liquidationFactorRaw: string; // Raw liquidationFactor value (wei format, 1e18 = 100%)
-  supplyCapRaw: string; // Raw supplyCap value (uint128, 0 means unlimited)
-  supplyCapFormatted: string; // Formatted supplyCap (human-readable: K/M/B or "Unlimited")
+  supplyCapRaw: string; // Raw supplyCap value (uint128, 0)
+  supplyCapFormatted: string; // Formatted supplyCap (human-readable: K/M/B or "0")
 }
 
 /**

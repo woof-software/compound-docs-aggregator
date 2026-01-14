@@ -5,7 +5,7 @@ export function formatSupplyCap(
   decimals: number,
 ): string {
   if (supplyCapRaw === '0') {
-    return 'Unlimited';
+    return '0';
   }
 
   try {
