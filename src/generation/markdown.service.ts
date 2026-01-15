@@ -536,6 +536,17 @@ export class MarkdownService {
       }
     }
 
+    const existingDeploymentsSection = lines
+      .slice(deploymentsStartIndex + 1, deploymentsEndIndex)
+      .join('\n');
+
+    if (existingDeploymentsSection === deploymentsSection) {
+      this.logger.log(
+        `${filename} deployments section unchanged; skipping date update`,
+      );
+      return;
+    }
+
     const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n');
     let afterSection = lines.slice(deploymentsEndIndex).join('\n');
 
