@@ -1,23 +1,19 @@
-name: Update market data
+name: Run pull request creation
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '2 12 * * *' # every day at 12:02 UTC
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-market-data-${{ github.ref }}
+  group: run-pull-request-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      ANKR_KEY: ${{ secrets.ANKR_KEY }}
-      UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GITHUB_TOKEN_PAT: ${{ secrets.GITHUB_TOKEN_PAT }}
 
@@ -36,19 +32,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-      - name: Run data generation
-        run: yarn cli:generate:md
-
-      - name: Commit & Push changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-
-          git add README.md output.json compound-finance/compound-3.md
-          git diff --cached --quiet || git commit -m "chore: auto-update market data"
-          git pull --rebase
-          git push
 
       - name: Create pull request
         run: yarn cli:pull-request

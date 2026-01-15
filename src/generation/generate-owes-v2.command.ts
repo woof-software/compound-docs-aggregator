@@ -148,40 +148,6 @@ export class GenerateOwesV2Command extends CommandRunner {
     return owes;
   }
 
-  private saveDetailedOwesV2() {
-    const writer = this.json.startDetailedOwes(CompoundVersion.V2); // или V3
-
-    const LIMIT = 5000;
-    let offset = 0;
-
-    while (true) {
-      const page = this.db.fetchOwesPageByVersion({
-        version: CompoundVersion.V2, // или V3
-        limit: LIMIT,
-        offset,
-      });
-
-      if (page.length === 0) break;
-
-      // page уже отсортирован по owed DESC (из SQL)
-      this.json.appendDetailedOwesBatch(
-        writer,
-        page.map((r) => ({
-          network: r.network,
-          market: r.market,
-          user: r.user,
-          owedDec: r.owed_dec,
-        })),
-      );
-
-      offset += page.length;
-      if (page.length < LIMIT) break;
-    }
-
-    const detailedPath = this.json.finishDetailedOwes(writer);
-    this.logger.log(`Detailed owes written: ${detailedPath}`);
-  }
-
   async run(): Promise<void> {
     try {
       this.logger.log('Generating total owes V2...');

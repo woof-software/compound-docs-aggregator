@@ -31,6 +31,7 @@ export interface ContractsMap {
   bulker: string;
   governor: string;
   timelock: string;
+  svrFeeRecipient?: string;
 }
 
 /**
@@ -73,10 +74,15 @@ export interface CollateralInfo {
   oevEnabled: boolean; // open‐ended‐value flag
   capEnabled: boolean; // CAPO flag
   rateType: string; // e.g. "Market / Exchange rate"
-  CF: string; // AssetInfo.borrowCollateralFactor
-  LF: string; // AssetInfo.liquidateCollateralFactor
-  LP: string; // 100 - AssetInfo.liquidationFactor
+  CF: string; // AssetInfo.borrowCollateralFactor (formatted as percentage)
+  LF: string; // AssetInfo.liquidateCollateralFactor (formatted as percentage)
+  LP: string; // 100 - AssetInfo.liquidationFactor (formatted as percentage)
   maxLeverage: string; // e.g. "11x"
+  borrowCollateralFactorRaw: string; // Raw borrowCollateralFactor value (wei format, 1e18 = 100%)
+  liquidateCollateralFactorRaw: string; // Raw liquidateCollateralFactor value (wei format, 1e18 = 100%)
+  liquidationFactorRaw: string; // Raw liquidationFactor value (wei format, 1e18 = 100%)
+  supplyCapRaw: string; // Raw supplyCap value (uint128, 0)
+  supplyCapFormatted: string; // Formatted supplyCap (human-readable: K/M/B or "0")
 }
 
 /**

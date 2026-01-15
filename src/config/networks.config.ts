@@ -21,6 +21,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     startBlock: 7710671,
     rewardsCalcEnabled: true,
     comp: '0xc00e94cb662c3520282e6f5717214004a7f26888',
+    svrFeeRecipient: '0xd9496F2A3fd2a97d8A4531D92742F3C8F53183cB',
   },
   {
     network: 'sepolia',

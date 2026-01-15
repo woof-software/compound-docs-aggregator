@@ -12,4 +12,5 @@ export interface NetworkConfig {
   // Ows
   rewardsCalcEnabled: boolean;
   comp?: string; // required if comptrollerV2 !== undefined
+  svrFeeRecipient?: string; // optional SVR protocol fee recipient
 }
