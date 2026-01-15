@@ -6,13 +6,11 @@ import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
-import {
-  getBlockscanOrigin,
-  getNetworkDisplayName,
-  getNetworkShortName,
-  getNetworkSortOrder,
-} from './helpers';
-import { STATIC_DEPLOYMENTS } from './constants';
+import { STATIC_DEPLOYMENTS } from './constants/static-deployments';
+import { getNetworkSortOrder } from './helpers/get-network-sort-order';
+import { getBlockscanOrigin } from './helpers/get-blockscan-origin';
+import { getNetworkDisplayName } from './helpers/get-network-display-name';
+import { getNetworkShortName } from './helpers/get-network-short-name';
 
 @Injectable()
 export class MarkdownService {

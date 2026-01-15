@@ -15,6 +15,11 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANKR_KEY: ${{ secrets.ANKR_KEY }}
+      UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN_PAT: ${{ secrets.GITHUB_TOKEN_PAT }}
 
     steps:
       - name: Checkout org repository
@@ -33,10 +38,6 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run data generation
-        env:
-          ANKR_KEY: ${{ secrets.ANKR_KEY }}
-          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:md
 
       - name: Commit & Push changes
@@ -44,7 +45,10 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
 
-          git add README.md output.json
+          git add README.md output.json compound-finance/compound-3.md
           git diff --cached --quiet || git commit -m "chore: auto-update market data"
           git pull --rebase
           git push
+
+      - name: Create pull request
+        run: yarn cli:pull-request
