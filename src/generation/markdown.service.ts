@@ -551,18 +551,22 @@ export class MarkdownService {
   }
 
   private updateDateDisplayInContent(content: string): string {
-    const dataCollectedAt = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const dataCollectedAt = now
+      .toISOString()
+      .replace('T', ' ')
+      .replace('Z', ' UTC');
 
     // Check if the note line exists
     if (content.includes('compound-docs-aggregator')) {
       if (content.includes('Data collected on:')) {
-        // Replace existing date
+        // Replace existing date/timestamp (handles both date-only and full timestamp formats)
         return content.replace(
-          /Data collected on: \*\*[0-9]{4}-[0-9]{2}-[0-9]{2}\*\*\.?/g,
+          /Data collected on: \*\*[^*]+\*\*\.?/g,
           `Data collected on: **${dataCollectedAt}**.`,
         );
       } else {
-        // Add date to existing note (after repository.)
+        // Add timestamp to existing note (after repository.)
         return content.replace(
           /(repository\.)/g,
           `$1 Data collected on: **${dataCollectedAt}**.`,
