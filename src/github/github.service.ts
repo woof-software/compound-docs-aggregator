@@ -43,7 +43,7 @@ export class GithubService {
     });
   }
 
-  private get compoundFinance() {
+  private get compoundFinance(): CompoundFinanceConfig {
     return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
   }
 

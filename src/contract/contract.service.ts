@@ -18,7 +18,7 @@ import {
   MarketData,
   RootJson,
 } from './contract.types';
-import { formatSupplyCap } from './helpers';
+import { formatSupplyCap } from './helpers/format-supply-cap';
 
 @Injectable()
 export class ContractService {

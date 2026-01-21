@@ -6,13 +6,11 @@ import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
-import {
-  getBlockscanOrigin,
-  getNetworkDisplayName,
-  getNetworkShortName,
-  getNetworkSortOrder,
-} from './helpers';
-import { STATIC_DEPLOYMENTS } from './constants';
+import { STATIC_DEPLOYMENTS } from './constants/static-deployments';
+import { getNetworkSortOrder } from './helpers/get-network-sort-order';
+import { getBlockscanOrigin } from './helpers/get-blockscan-origin';
+import { getNetworkDisplayName } from './helpers/get-network-display-name';
+import { getNetworkShortName } from './helpers/get-network-short-name';
 
 @Injectable()
 export class MarkdownService {
@@ -538,6 +536,17 @@ export class MarkdownService {
       }
     }
 
+    const existingDeploymentsSection = lines
+      .slice(deploymentsStartIndex + 1, deploymentsEndIndex)
+      .join('\n');
+
+    if (existingDeploymentsSection === deploymentsSection) {
+      this.logger.log(
+        `${filename} deployments section unchanged; skipping date update`,
+      );
+      return;
+    }
+
     const beforeSection = lines.slice(0, deploymentsStartIndex + 1).join('\n');
     let afterSection = lines.slice(deploymentsEndIndex).join('\n');
 
@@ -551,18 +560,22 @@ export class MarkdownService {
   }
 
   private updateDateDisplayInContent(content: string): string {
-    const dataCollectedAt = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const dataCollectedAt = now
+      .toISOString()
+      .replace('T', ' ')
+      .replace('Z', ' UTC');
 
     // Check if the note line exists
     if (content.includes('compound-docs-aggregator')) {
       if (content.includes('Data collected on:')) {
-        // Replace existing date
+        // Replace existing date/timestamp (handles both date-only and full timestamp formats)
         return content.replace(
-          /Data collected on: \*\*[0-9]{4}-[0-9]{2}-[0-9]{2}\*\*\.?/g,
+          /Data collected on: \*\*[^*]+\*\*\.?/g,
           `Data collected on: **${dataCollectedAt}**.`,
         );
       } else {
-        // Add date to existing note (after repository.)
+        // Add timestamp to existing note (after repository.)
         return content.replace(
           /(repository\.)/g,
           `$1 Data collected on: **${dataCollectedAt}**.`,
