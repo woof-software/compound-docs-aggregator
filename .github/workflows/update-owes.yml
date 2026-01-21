@@ -2,8 +2,9 @@ name: Update owes
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '5 13 * * *' # daily 13:05 UTC
+  # !: turned off
+  # schedule:
+  #   - cron: '5 13 * * *' # daily 13:05 UTC
 
 permissions:
   contents: write
@@ -26,7 +27,7 @@ jobs:
       - name: Checkout artifacts repository (private)
         uses: actions/checkout@v4
         with:
-          repository: cryptease/compound-docs-artifacts
+          repository: ${{ vars.ARTIFACTS_REPO }}
           path: artifacts
           token: ${{ secrets.ARTIFACTS_TOKEN }}
           fetch-depth: 1
