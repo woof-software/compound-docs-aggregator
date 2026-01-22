@@ -8,7 +8,7 @@ import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
 import { NetworkConfig } from 'network/network.types';
 import { STATIC_DEPLOYMENTS } from './constants/static-deployments';
-import { getNetworkSortOrder } from './helpers/get-network-sort-order';
+import { getNetworkSortPosition } from './helpers/get-network-sort-position';
 import { getBlockscanOrigin } from './helpers/get-blockscan-origin';
 import { getNetworkDisplayName } from './helpers/get-network-display-name';
 import { getNetworkShortName } from './helpers/get-network-short-name';
@@ -600,8 +600,8 @@ export class MarkdownService {
 
     const networkEntries = Object.entries(nestedMarkets.markets).sort(
       ([a], [b]) =>
-        getNetworkSortOrder(a, this.networks) -
-        getNetworkSortOrder(b, this.networks),
+        getNetworkSortPosition(a, this.networks) -
+        getNetworkSortPosition(b, this.networks),
     );
 
     for (const [networkName, networkMarkets] of networkEntries) {

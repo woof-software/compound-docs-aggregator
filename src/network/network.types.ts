@@ -2,7 +2,7 @@ export interface NetworkConfig {
   network: string;
   chainId: number;
   url: string;
-  sortOrder: number; // Order matches compound.finance/markets page
+  sortPosition: number; // Position matches compound.finance/markets page
   blockscanOrigin: string; // Blockscan explorer URL
   displayName: string; // Network display name for deployment key
   // Indexer
