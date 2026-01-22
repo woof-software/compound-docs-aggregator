@@ -1,28 +1,27 @@
+import { NetworkConfig } from 'network/network.types';
+
 /**
  * Gets short network name for tab text
+ * Uses network name with first letter capitalized, handling hyphens
  */
-export function getNetworkShortName(networkName: string): string {
-  const shortMap: Record<string, string> = {
-    mainnet: 'Mainnet',
-    sepolia: 'Sepolia',
-    polygon: 'Polygon',
-    arbitrum: 'Arbitrum',
-    base: 'Base',
-    optimism: 'Optimism',
-    scroll: 'Scroll',
-    mantle: 'Mantle',
-    mumbai: 'Mumbai',
-    'base-sepolia': 'Base Sepolia',
-    ronin: 'Ronin',
-    unichain: 'Unichain',
-    avalanche: 'Avalanche',
-    fuji: 'Fuji',
-    linea: 'Linea',
-  };
+export function getNetworkShortName(
+  networkName: string,
+  networks: NetworkConfig[],
+): string {
+  const capitalizeNetworkName = (name: string): string =>
+    name
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
 
-  const shortName = shortMap[networkName.toLowerCase()];
-  if (!shortName) {
-    throw new Error(`Network short name not found for network: ${networkName}`);
+  const network = networks.find(
+    (n) => n.network.toLowerCase() === networkName.toLowerCase(),
+  );
+
+  if (network) {
+    return capitalizeNetworkName(network.network);
   }
-  return shortName;
+
+  // Fallback for networks not in config (e.g., mumbai, base-sepolia)
+  return capitalizeNetworkName(networkName);
 }

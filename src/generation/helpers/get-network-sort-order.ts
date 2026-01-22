@@ -1,27 +1,28 @@
+import { NetworkConfig } from 'network/network.types';
+
 /**
  * Gets network sort order for consistent ordering
  * Order matches compound.finance/markets page
  */
-export function getNetworkSortOrder(networkName: string): number {
-  const orderMap: Record<string, number> = {
-    mainnet: 1,
-    optimism: 2,
-    unichain: 3,
-    polygon: 4,
-    ronin: 5,
-    mantle: 6,
-    base: 7,
-    arbitrum: 8,
-    linea: 9,
-    scroll: 10,
-    avalanche: 11,
-    sepolia: 12,
+export function getNetworkSortOrder(
+  networkName: string,
+  networks: NetworkConfig[],
+): number {
+  const network = networks.find(
+    (n) => n.network.toLowerCase() === networkName.toLowerCase(),
+  );
+
+  if (network) {
+    return network.sortOrder;
+  }
+
+  // Fallback for networks not in config (e.g., mumbai, base-sepolia)
+  const fallbackOrderMap: Record<string, number> = {
     mumbai: 13,
     'base-sepolia': 14,
-    fuji: 15,
   };
 
-  const sortOrder = orderMap[networkName.toLowerCase()];
+  const sortOrder = fallbackOrderMap[networkName.toLowerCase()];
   if (sortOrder === undefined) {
     throw new Error(`Network sort order not found for network: ${networkName}`);
   }

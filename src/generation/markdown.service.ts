@@ -6,6 +6,7 @@ import { markdownTable } from 'markdown-table';
 import { CurveEntry, NestedMarkets } from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import { NetworkConfig } from 'network/network.types';
 import { STATIC_DEPLOYMENTS } from './constants/static-deployments';
 import { getNetworkSortOrder } from './helpers/get-network-sort-order';
 import { getBlockscanOrigin } from './helpers/get-blockscan-origin';
@@ -20,6 +21,10 @@ export class MarkdownService {
 
   private get compoundFinance(): CompoundFinanceConfig {
     return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  }
+
+  private get networks(): NetworkConfig[] {
+    return this.config.getOrThrow<NetworkConfig[]>('networks');
   }
 
   private readonly rewardsMdPath = join(process.cwd(), 'REWARDS.md');
@@ -594,7 +599,9 @@ export class MarkdownService {
     // Note: 'deployments:' header is already in the file, so we don't add it here
 
     const networkEntries = Object.entries(nestedMarkets.markets).sort(
-      ([a], [b]) => getNetworkSortOrder(a) - getNetworkSortOrder(b),
+      ([a], [b]) =>
+        getNetworkSortOrder(a, this.networks) -
+        getNetworkSortOrder(b, this.networks),
     );
 
     for (const [networkName, networkMarkets] of networkEntries) {
@@ -615,7 +622,7 @@ export class MarkdownService {
           suffix,
         );
         const tabText = this.getTabText(networkName, marketName);
-        const blockscanOrigin = getBlockscanOrigin(networkName);
+        const blockscanOrigin = getBlockscanOrigin(networkName, this.networks);
 
         deployments.push(`  ${deploymentKey}:`);
         deployments.push(`    tab_text: ${tabText}`);
@@ -810,7 +817,7 @@ export class MarkdownService {
     marketName: string,
     suffix: string,
   ): string {
-    const networkDisplay = getNetworkDisplayName(networkName);
+    const networkDisplay = getNetworkDisplayName(networkName, this.networks);
     const marketDisplay = this.getMarketDisplayName(marketName);
     return `${networkDisplay} - ${marketDisplay} Base${suffix}`;
   }
@@ -871,7 +878,7 @@ export class MarkdownService {
    * Generates tab text from network and market names
    */
   private getTabText(networkName: string, marketName: string): string {
-    const networkShort = getNetworkShortName(networkName);
+    const networkShort = getNetworkShortName(networkName, this.networks);
     const marketShort = this.getMarketDisplayName(marketName);
     return `${networkShort} ${marketShort}`;
   }
