@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
 
 import { ProviderFactory } from 'network/provider.factory';
+import { NetworkService } from 'network/network.service';
 import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
 import { JsonService } from 'json/json.service';
 import CometABI from './abi/CometABI.json';
@@ -17,6 +18,7 @@ import {
   MarketData,
   RootJson,
 } from './contract.types';
+import { formatSupplyCap } from './helpers/format-supply-cap';
 
 @Injectable()
 export class ContractService {
@@ -24,6 +26,7 @@ export class ContractService {
 
   constructor(
     private readonly providerFactory: ProviderFactory,
+    private readonly networkService: NetworkService,
     private readonly jsonService: JsonService,
   ) {}
 
@@ -103,6 +106,9 @@ export class ContractService {
       provider,
     ) as any;
 
+    const networkConfig = this.networkService.byName(networkKey);
+    const svrFeeRecipient = networkConfig?.svrFeeRecipient;
+
     const cometContractImplementation = (
       await this.getImplementationAddress(cometAddress, provider)
     ).address as string;
@@ -176,6 +182,7 @@ export class ContractService {
         bulker: root.bulker,
         governor: governorAddress,
         timelock: timelockAddress,
+        ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
       },
       curve: curveData,
       collaterals,
@@ -342,6 +349,17 @@ export class ContractService {
       const maxLeverage =
         1 / (1 - Number(ethers.formatEther(collateral.borrowCollateralFactor)));
 
+      const borrowCollateralFactorRaw =
+        collateral.borrowCollateralFactor.toString();
+      const liquidateCollateralFactorRaw =
+        collateral.liquidateCollateralFactor.toString();
+      const liquidationFactorRaw = collateral.liquidationFactor.toString();
+      const supplyCapRaw = collateral.supplyCap.toString();
+      const supplyCapFormatted = formatSupplyCap(
+        supplyCapRaw,
+        Number(decimals),
+      );
+
       const asset = {
         idx: i,
         date,
@@ -357,7 +375,12 @@ export class ContractService {
         CF,
         LF,
         LP,
+        supplyCapFormatted,
         maxLeverage: maxLeverage.toFixed(2) + 'x',
+        borrowCollateralFactorRaw,
+        liquidateCollateralFactorRaw,
+        liquidationFactorRaw,
+        supplyCapRaw,
       };
       collaterals.push(asset);
     }

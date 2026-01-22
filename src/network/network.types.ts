@@ -2,6 +2,9 @@ export interface NetworkConfig {
   network: string;
   chainId: number;
   url: string;
+  sortPosition: number; // Position matches compound.finance/markets page
+  blockscanOrigin: string; // Blockscan explorer URL
+  displayName: string; // Network display name for deployment key
   // Indexer
   indexingEnabled: boolean;
   reorgWindow: number;
@@ -12,4 +15,5 @@ export interface NetworkConfig {
   // Ows
   rewardsCalcEnabled: boolean;
   comp?: string; // required if comptrollerV2 !== undefined
+  svrFeeRecipient?: string; // optional SVR protocol fee recipient
 }

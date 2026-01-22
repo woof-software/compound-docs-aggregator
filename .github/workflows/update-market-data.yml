@@ -44,7 +44,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
 
-          git add README.md output.json
+          git add README.md output.json compound-finance/compound-3.md
           git diff --cached --quiet || git commit -m "chore: auto-update market data"
           git pull --rebase
           git push

@@ -75,6 +75,10 @@ export class GenerateMarkdownCommand extends CommandRunner {
       this.markdownService.write(nestedMarketsData, jsonPath);
       this.logger.log(`README.md updated with hierarchical market data`);
 
+      // Update compound-3.md deployments section
+      this.markdownService.updateCompound3Deployments(nestedMarketsData);
+      this.logger.log(`compound-3.md deployments section updated`);
+
       this.logger.log('Generating of markdown completed.');
 
       return;
