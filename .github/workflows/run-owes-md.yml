@@ -1,15 +1,13 @@
-name: Update market data
+name: Run owes markdown creation
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '2 12 * * *' # every day at 12:02 UTC
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-market-data-${{ github.ref }}
+  group: run-owes-md-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -17,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout org repository
+      - name: Checkout org repository (code + snapshots)
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -32,19 +30,19 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run data generation
+      - name: Run owes markdown generation
         env:
           ANKR_KEY: ${{ secrets.ANKR_KEY }}
           UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn cli:generate:md
+        run: yarn cli:generate:owes:md
 
-      - name: Commit & Push changes
+      - name: Commit & Push changes (owes md)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
 
-          git add README.md output.json compound-finance/compound-3.md
-          git diff --cached --quiet || git commit -m "chore: auto-update market data"
+          git add REWARDS.md
+          git diff --cached --quiet || git commit -m "chore: run owes md"
           git pull --rebase
           git push

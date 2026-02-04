@@ -1,0 +1,101 @@
+name: Run owes v2 calculation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-owes-v2-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout org repository (code)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          lfs: false
+
+      - name: Checkout artifacts repository (private)
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.ARTIFACTS_REPO }}
+          path: artifacts
+          token: ${{ secrets.ARTIFACTS_TOKEN }}
+          fetch-depth: 1
+          lfs: false
+
+      - name: Cache Git LFS objects (artifacts)
+        uses: actions/cache@v4
+        with:
+          path: |
+            artifacts/.git/lfs
+            ~/.git/lfs
+          key: ${{ runner.os }}-lfs-${{ github.ref_name }}-${{ hashFiles('artifacts/.gitattributes') }}
+          restore-keys: |
+            ${{ runner.os }}-lfs-${{ github.ref_name }}-
+            ${{ runner.os }}-lfs-
+
+      - name: Pull artifacts LFS (sqlite only)
+        working-directory: artifacts
+        run: |
+          git lfs install --local --skip-smudge
+          git config lfs.fetchinclude "storage/**/*.sqlite"
+          git config lfs.fetchexclude ""
+          git lfs pull
+
+      - name: Overlay storage into workspace (required for owes)
+        run: |
+          mkdir -p src/indexer/storage
+          mkdir -p artifacts/storage
+          rsync -a artifacts/storage/ src/indexer/storage/
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run owes v2 generation
+        env:
+          ANKR_KEY: ${{ secrets.ANKR_KEY }}
+          UNICHAIN_QUICKNODE_KEY: ${{ secrets.UNICHAIN_QUICKNODE_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn cli:generate:owes:v2
+
+      # Push small snapshot to org repo
+      - name: Commit & Push org snapshot (owes v2)
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+
+          git add owes-v2.json
+          git diff --cached --quiet || git commit -m "chore: run owes v2"
+          git pull --rebase
+          git push
+
+      # Move detailed snapshot into artifacts repo and push it there
+      - name: Sync detailed owes into artifacts repo
+        run: |
+          mkdir -p artifacts/snapshots
+          cp -f owes-detailed-v2.json artifacts/snapshots/owes-detailed-v2.json || true
+
+      - name: Commit & Push artifacts (detailed owes v2)
+        working-directory: artifacts
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          
+          git add snapshots/owes-detailed-v2.json
+          git diff --cached --quiet || git commit -m "chore: update detailed owes v2"
+          git fetch origin main
+          git rebase -X ours origin/main
+          git push

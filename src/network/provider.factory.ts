@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ethers } from 'ethers';
 import { NetworkService } from './network.service';
+import { MulticallProvider, MulticallWrapper } from 'ethers-multicall-provider';
 
 @Injectable()
 export class ProviderFactory {
@@ -30,5 +31,12 @@ export class ProviderFactory {
       );
     }
     return provider;
+  }
+
+  multicall(
+    identifier: string | number,
+    maxMulticallDataLength = 400_000,
+  ): MulticallProvider {
+    return MulticallWrapper.wrap(this.get(identifier), maxMulticallDataLength);
   }
 }
