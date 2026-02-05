@@ -33,6 +33,7 @@ import {
 import { Address } from 'common/types/address';
 import { formatSupplyCap } from './helpers/format-supply-cap';
 import { CURVE_KEYS, LEGACY_REWARDS_NETWORKS } from './contract.constants';
+import { toSafeInteger } from '../common/helpers/to-safe-integer';
 
 @Injectable()
 export class ContractService {
@@ -115,14 +116,6 @@ export class ContractService {
     runner: ethers.ContractRunner,
   ): Erc20Contract {
     return this.createContract<Erc20Contract>(address, ERC20ABI, runner);
-  }
-
-  private toSafeInteger(value: bigint, label: string): number {
-    const numberValue = Number(value);
-    if (!Number.isFinite(numberValue) || !Number.isSafeInteger(numberValue)) {
-      throw new Error(`Invalid ${label}: ${value.toString()}`);
-    }
-    return numberValue;
   }
 
   private getDateString(): string {
@@ -270,7 +263,7 @@ export class ContractService {
       baseTokenContract.decimals(),
     ]);
 
-    const baseTokenDecimalsNumber = this.toSafeInteger(
+    const baseTokenDecimalsNumber = toSafeInteger(
       baseTokenDecimals,
       'base token decimals',
     );
@@ -483,7 +476,7 @@ export class ContractService {
     multicall: MulticallProvider,
   ): Promise<CollateralInfo[]> {
     const date = this.getDateString();
-    const collateralCount = this.toSafeInteger(
+    const collateralCount = toSafeInteger(
       await cometContract.numAssets(),
       'collateral count',
     );
@@ -506,10 +499,7 @@ export class ContractService {
           collateralContract.decimals(),
         ]);
 
-        const decimalsNumber = this.toSafeInteger(
-          decimals,
-          `${symbol} decimals`,
-        );
+        const decimalsNumber = toSafeInteger(decimals, `${symbol} decimals`);
 
         const CF = `${ethers.formatEther(
           collateral.borrowCollateralFactor * 100n,
