@@ -454,9 +454,20 @@ export class ContractService {
           tokenAddress,
           ERC20ABI,
           provider,
-        ) as any;
-        const compBalance = await tokenContract.balanceOf(rewardsAddress);
-        compAmountOnRewardContract = Number(ethers.formatEther(compBalance));
+        );
+        if (tokenContract.balanceOf) {
+          try {
+            const compBalance = await tokenContract.balanceOf(rewardsAddress);
+            compAmountOnRewardContract = Number(
+              ethers.formatEther(compBalance),
+            );
+          } catch (error) {
+            this.logger.error(
+              `Failed to read reward token balance for rewardsAddress ${rewardsAddress} and tokenAddress ${tokenAddress}.`,
+              error instanceof Error ? error.message : String(error),
+            );
+          }
+        }
       }
 
       return {
