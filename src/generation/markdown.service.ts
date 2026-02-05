@@ -3,7 +3,11 @@ import { ConfigService } from '@nestjs/config';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { markdownTable } from 'markdown-table';
-import { CurveEntry, NestedMarkets } from 'contract/contract.types';
+import {
+  BaseTokenInfo,
+  CurveEntry,
+  NestedMarkets,
+} from 'contract/contract.types';
 import { V2RewardsAtContract } from '../contract/rewards.types';
 import { CompoundFinanceConfig } from 'config/compound-finance.config';
 import { NetworkConfig } from 'network/network.types';
@@ -200,6 +204,36 @@ export class MarkdownService {
           align: ['c', 'l', 'r', 'r', 'l'],
         });
         curveTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
+        lines.push('');
+
+        // 2.5) Base Token Table
+        lines.push('**🪙 Base Token**');
+        lines.push('');
+        const baseTokenHeader = [
+          '#',
+          'Name',
+          'Symbol',
+          'Address',
+          'Decimals',
+          'Price Feed',
+        ];
+        const baseTokenRows: string[][] = [];
+        const baseToken = marketData.baseToken;
+        baseTokenRows.push([
+          '1',
+          baseToken.name,
+          baseToken.symbol,
+          baseToken.address,
+          baseToken.decimals.toString(),
+          baseToken.priceFeed,
+        ]);
+        const baseTokenTableMd = markdownTable(
+          [baseTokenHeader, ...baseTokenRows],
+          {
+            align: ['c', 'l', 'l', 'l', 'r', 'l'],
+          },
+        );
+        baseTokenTableMd.split('\n').forEach((row) => lines.push(`  ${row}`));
         lines.push('');
 
         // 3) Collaterals Table
@@ -639,48 +673,60 @@ export class MarkdownService {
           marketData.collaterals.map((c) => c.symbol),
         );
 
-        for (const [contractName, contractAddress] of Object.entries(
-          contracts,
-        )) {
-          if (contractName.includes('_')) {
+        const contractEntries = Object.entries(contracts);
+
+        for (const [contractName, contractAddress] of contractEntries) {
+          if (
+            contractName.includes('_') ||
+            collateralSymbols.has(contractName)
+          ) {
             continue;
           }
 
-          if (collateralSymbols.has(contractName)) {
-            deployments.push(`      ${contractName}:`);
-            deployments.push(`        address: '${contractAddress}'`);
+          deployments.push(`      ${contractName}: '${contractAddress}'`);
+        }
 
-            const metadataPrefix = `${contractName}_`;
-            const metadataFields: Array<[string, string]> = [];
+        this.appendBaseTokenContracts(deployments, marketData.baseToken);
 
-            for (const [key, value] of Object.entries(contracts)) {
-              if (key.startsWith(metadataPrefix)) {
-                const metadataKey = key.replace(metadataPrefix, '');
-                metadataFields.push([metadataKey, value]);
-              }
+        for (const [contractName, contractAddress] of contractEntries) {
+          if (
+            contractName.includes('_') ||
+            !collateralSymbols.has(contractName)
+          ) {
+            continue;
+          }
+
+          deployments.push(`      ${contractName}:`);
+          deployments.push(`        address: '${contractAddress}'`);
+
+          const metadataPrefix = `${contractName}_`;
+          const metadataFields: Array<[string, string]> = [];
+
+          for (const [key, value] of contractEntries) {
+            if (key.startsWith(metadataPrefix)) {
+              const metadataKey = key.replace(metadataPrefix, '');
+              metadataFields.push([metadataKey, value]);
             }
+          }
 
-            const fieldOrder = [
-              'Borrow CF',
-              'Borrow CF Raw',
-              'Liquidation CF',
-              'Liquidation CF Raw',
-              'Liquidation Penalty',
-              'Liquidation Penalty Raw',
-              'Supply Cap',
-              'Supply Cap Raw',
-              'Price Feed',
-            ];
+          const fieldOrder = [
+            'Borrow CF',
+            'Borrow CF Raw',
+            'Liquidation CF',
+            'Liquidation CF Raw',
+            'Liquidation Penalty',
+            'Liquidation Penalty Raw',
+            'Supply Cap',
+            'Supply Cap Raw',
+            'Price Feed',
+          ];
 
-            const orderedFields = this.orderMetadataFields(
-              metadataFields,
-              fieldOrder,
-            );
-            for (const [key, value] of orderedFields) {
-              deployments.push(`        ${key}: '${value}'`);
-            }
-          } else {
-            deployments.push(`      ${contractName}: '${contractAddress}'`);
+          const orderedFields = this.orderMetadataFields(
+            metadataFields,
+            fieldOrder,
+          );
+          for (const [key, value] of orderedFields) {
+            deployments.push(`        ${key}: '${value}'`);
           }
         }
       }
@@ -702,6 +748,19 @@ export class MarkdownService {
     }
 
     return deployments.join('\n');
+  }
+
+  private appendBaseTokenContracts(
+    deployments: string[],
+    baseToken: BaseTokenInfo,
+  ): void {
+    if (!baseToken?.symbol || !baseToken.address) {
+      return;
+    }
+
+    deployments.push(`      ${baseToken.symbol}:`);
+    deployments.push(`        address: '${baseToken.address}'`);
+    deployments.push(`        Price Feed: '${baseToken.priceFeed}'`);
   }
 
   /**

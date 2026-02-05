@@ -20,7 +20,11 @@ export class ProviderFactory {
     }
 
     if (!this.cache.has(config.chainId)) {
-      const provider = new ethers.JsonRpcProvider(config.url, config.chainId);
+      const provider = new ethers.JsonRpcProvider(
+        config.url,
+        config.chainId,
+        config.batchMaxCount ? { batchMaxCount: config.batchMaxCount } : {},
+      );
       this.cache.set(config.chainId, provider);
     }
 

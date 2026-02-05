@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ethers } from 'ethers';
+import { MulticallProvider } from 'ethers-multicall-provider';
 
 import { ProviderFactory } from 'network/provider.factory';
 import { NetworkService } from 'network/network.service';
@@ -14,11 +15,25 @@ import RewardsABI from './abi/RewardsABI.json';
 import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
 import {
   CollateralInfo,
+  CometContract,
+  CometExtensionContract,
+  ConfiguratorContract,
+  CurveEntry,
+  CurveKey,
   CurveMap,
+  Erc20Contract,
   MarketData,
+  ProxyAddressInfo,
+  RewardRecord,
+  RewardsConfigContract,
+  RewardsOwedContract,
   RootJson,
+  TimelockContract,
 } from './contract.types';
+import { Address } from 'common/types/address';
 import { formatSupplyCap } from './helpers/format-supply-cap';
+import { CURVE_KEYS, LEGACY_REWARDS_NETWORKS } from './contract.constants';
+import { toSafeInteger } from '../common/helpers/to-safe-integer';
 
 @Injectable()
 export class ContractService {
@@ -30,6 +45,94 @@ export class ContractService {
     private readonly jsonService: JsonService,
   ) {}
 
+  private createContract<T>(
+    address: Address,
+    abi: ethers.InterfaceAbi,
+    runner: ethers.ContractRunner,
+  ): T {
+    return new ethers.Contract(address, abi, runner) as unknown as T;
+  }
+
+  private getCometContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): CometContract {
+    return this.createContract<CometContract>(address, CometABI, runner);
+  }
+
+  private getCometExtensionContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): CometExtensionContract {
+    return this.createContract<CometExtensionContract>(
+      address,
+      CometExtensionABI,
+      runner,
+    );
+  }
+
+  private getConfiguratorContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): ConfiguratorContract {
+    return this.createContract<ConfiguratorContract>(
+      address,
+      ConfiguratorABI,
+      runner,
+    );
+  }
+
+  private getTimelockContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): TimelockContract {
+    return this.createContract<TimelockContract>(address, TimelockABI, runner);
+  }
+
+  private getRewardsOwedContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): RewardsOwedContract {
+    return this.createContract<RewardsOwedContract>(
+      address,
+      RewardsABI,
+      runner,
+    );
+  }
+
+  private getRewardsConfigContract(
+    address: Address,
+    runner: ethers.ContractRunner,
+    network: string,
+  ): RewardsConfigContract {
+    const abi = LEGACY_REWARDS_NETWORKS.has(network)
+      ? LegacyRewardsABI
+      : RewardsABI;
+    return this.createContract<RewardsConfigContract>(address, abi, runner);
+  }
+
+  private getErc20Contract(
+    address: Address,
+    runner: ethers.ContractRunner,
+  ): Erc20Contract {
+    return this.createContract<Erc20Contract>(address, ERC20ABI, runner);
+  }
+
+  private getDateString(): string {
+    const date = new Date().toISOString().split('T')[0];
+    if (!date) {
+      throw new Error('Failed to build date string');
+    }
+    return date;
+  }
+
+  private requireAddress(address: Address | null, label: string): Address {
+    if (!address) {
+      throw new Error(`Missing ${label} address`);
+    }
+    return address;
+  }
+
   /**
    * Fetch owed rewards for a list of (rewardsAddress, cometAddress, userAddress).
    * Returns sum of owed amounts (bigint) for this batch.
@@ -37,9 +140,9 @@ export class ContractService {
   public async sumOwedForUsersV3(params: {
     network: string;
     users: {
-      userAddress: string;
-      cometAddress: string;
-      rewardsAddress: string;
+      userAddress: Address;
+      cometAddress: Address;
+      rewardsAddress: Address;
     }[];
     chunkSize?: number;
   }): Promise<bigint> {
@@ -56,16 +159,12 @@ export class ContractService {
 
       const results = await Promise.all(
         chunk.map((d) => {
-          const rewards = new ethers.Contract(
+          const rewards = this.getRewardsOwedContract(
             d.rewardsAddress,
-            RewardsABI,
             multicall,
           );
           // getRewardOwed returns [token, owed]
-          return rewards.getRewardOwed!.staticCall(
-            d.cometAddress,
-            d.userAddress,
-          ) as Promise<[string, bigint]>;
+          return rewards.getRewardOwed(d.cometAddress, d.userAddress);
         }),
       );
 
@@ -99,72 +198,93 @@ export class ContractService {
       throw e;
     }
 
+    const multicall = this.providerFactory.multicall(networkKey);
+
     const cometAddress = root.comet;
-    const cometContract = new ethers.Contract(
-      cometAddress,
-      CometABI,
-      provider,
-    ) as any;
+    const configuratorAddress = root.configurator;
+
+    const cometContract = this.getCometContract(cometAddress, multicall);
+    const configuratorContract = this.getConfiguratorContract(
+      configuratorAddress,
+      multicall,
+    );
 
     const networkConfig = this.networkService.byName(networkKey);
     const svrFeeRecipient = networkConfig?.svrFeeRecipient;
 
-    const cometContractImplementation = (
-      await this.getImplementationAddress(cometAddress, provider)
-    ).address as string;
+    const [
+      cometImplementationInfo,
+      configuratorImplementationInfo,
+      cometAdminInfo,
+    ] = await Promise.all([
+      this.getImplementationAddress(cometAddress, provider),
+      this.getImplementationAddress(configuratorAddress, provider),
+      this.getAdminAddress(cometAddress, provider),
+    ]);
 
-    const extensionDelegateAddress = await cometContract.extensionDelegate();
-    const extensionDelegateContract = new ethers.Contract(
+    const [
       extensionDelegateAddress,
-      CometExtensionABI,
-      provider,
-    ) as any;
-
-    const cometSymbol = await extensionDelegateContract.symbol();
-
-    const configuratorAddress = root.configurator;
-    const configuratorContract = new ethers.Contract(
-      configuratorAddress,
-      ConfiguratorABI,
-      provider,
-    ) as any;
-
-    const configuratorContractImplemenationAddress = (
-      await this.getImplementationAddress(configuratorAddress, provider)
-    ).address as string;
-
-    const cometAdminAddress = (
-      await this.getAdminAddress(cometAddress, provider)
-    ).address as string;
-
-    const cometFactoryAddress = await configuratorContract.factory(
-      cometAddress,
-    );
-
-    const timelockAddress = await cometContract.governor();
-    const timelockContract = new ethers.Contract(
+      baseTokenAddress,
+      baseTokenPriceFeedAddress,
       timelockAddress,
-      TimelockABI,
-      provider,
-    ) as any;
+      cometFactoryAddress,
+    ] = await Promise.all([
+      cometContract.extensionDelegate(),
+      cometContract.baseToken(),
+      cometContract.baseTokenPriceFeed(),
+      cometContract.governor(),
+      configuratorContract.factory(cometAddress),
+    ]);
 
-    const governorAddress = await timelockContract.admin();
-
-    const curveData: CurveMap = await this.getCurveData(
-      cometContract,
-      networkKey,
-      cometSymbol,
+    const extensionDelegateContract = this.getCometExtensionContract(
+      extensionDelegateAddress,
+      multicall,
+    );
+    const timelockContract = this.getTimelockContract(
+      timelockAddress,
+      multicall,
+    );
+    const baseTokenContract = this.getErc20Contract(
+      baseTokenAddress,
+      multicall,
     );
 
-    await this.sleep(1000);
-
-    const collaterals = await this.getCollaterals(cometContract, provider);
-
-    const rewardsTable = await this.getRewardsTable(
-      root,
-      provider,
-      networkKey,
+    const [
       cometSymbol,
+      governorAddress,
+      baseTokenName,
+      baseTokenSymbol,
+      baseTokenDecimals,
+    ] = await Promise.all([
+      extensionDelegateContract.symbol(),
+      timelockContract.admin(),
+      baseTokenContract.name(),
+      baseTokenContract.symbol(),
+      baseTokenContract.decimals(),
+    ]);
+
+    const baseTokenDecimalsNumber = toSafeInteger(
+      baseTokenDecimals,
+      'base token decimals',
+    );
+
+    const [curveData, collaterals, rewardsTable] = await Promise.all([
+      this.getCurveData(cometContract, networkKey, cometSymbol),
+      this.getCollaterals(cometContract, multicall),
+      this.getRewardsTable(root, multicall, networkKey, cometSymbol),
+    ]);
+
+    const cometContractImplementation = this.requireAddress(
+      cometImplementationInfo.address,
+      'comet implementation',
+    );
+    const configuratorContractImplementation = this.requireAddress(
+      configuratorImplementationInfo.address,
+      'configurator implementation',
+    );
+    const cometAdminAddress = this.requireAddress(
+      cometAdminInfo.address,
+      'comet admin',
     );
 
     return {
@@ -175,7 +295,7 @@ export class ContractService {
         cometImplementation: cometContractImplementation,
         cometExtension: extensionDelegateAddress,
         configurator: configuratorAddress,
-        configuratorImplementation: configuratorContractImplemenationAddress,
+        configuratorImplementation: configuratorContractImplementation,
         cometAdmin: cometAdminAddress,
         cometFactory: cometFactoryAddress,
         rewards: root.rewards,
@@ -185,20 +305,31 @@ export class ContractService {
         ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
       },
       curve: curveData,
+      baseToken: {
+        name: baseTokenName,
+        symbol: baseTokenSymbol,
+        address: baseTokenAddress,
+        decimals: baseTokenDecimalsNumber,
+        priceFeed: baseTokenPriceFeedAddress,
+      },
       collaterals,
       rewardsTable,
     };
   }
 
-  private parseAddress(storageValue) {
+  private parseAddress(storageValue?: string | null): Address | null {
     if (!storageValue || storageValue === ethers.ZeroHash) return null;
-    return ethers.getAddress('0x' + storageValue.slice(-40));
+    try {
+      return ethers.getAddress(`0x${storageValue.slice(-40)}`) as Address;
+    } catch {
+      return null;
+    }
   }
 
   private async getAdminAddress(
-    proxyAddress: string,
+    proxyAddress: Address,
     provider: ethers.JsonRpcProvider,
-  ) {
+  ): Promise<ProxyAddressInfo> {
     const ADMIN_SLOT =
       '0xb53127684a568b3173ae13b9f8a6016e243e63b6e8ee1178d6a717850b5d6103';
     const adminStorage = await provider.getStorage(proxyAddress, ADMIN_SLOT);
@@ -212,9 +343,9 @@ export class ContractService {
   }
 
   private async getImplementationAddress(
-    proxyAddress: string,
+    proxyAddress: Address,
     provider: ethers.JsonRpcProvider,
-  ) {
+  ): Promise<ProxyAddressInfo> {
     // Storage slots for EIP-1967
     const STORAGE_SLOTS = {
       implementation:
@@ -253,36 +384,62 @@ export class ContractService {
   }
 
   private async getCurveData(
-    cometContract: any,
+    cometContract: CometContract,
     network: string,
     market: string,
-  ) {
-    const date = new Date().toISOString().split('T')[0];
+  ): Promise<CurveMap> {
+    const date = this.getDateString();
 
-    const keys = [
-      'supplyKink',
-      'supplyPerSecondInterestRateSlopeLow',
-      'supplyPerSecondInterestRateSlopeHigh',
-      'supplyPerSecondInterestRateBase',
-      'borrowKink',
-      'borrowPerSecondInterestRateSlopeLow',
-      'borrowPerSecondInterestRateSlopeHigh',
-      'borrowPerSecondInterestRateBase',
-    ];
+    const [
+      supplyKink,
+      supplyPerSecondInterestRateSlopeLow,
+      supplyPerSecondInterestRateSlopeHigh,
+      supplyPerSecondInterestRateBase,
+      borrowKink,
+      borrowPerSecondInterestRateSlopeLow,
+      borrowPerSecondInterestRateSlopeHigh,
+      borrowPerSecondInterestRateBase,
+    ] = await Promise.all([
+      cometContract.supplyKink(),
+      cometContract.supplyPerSecondInterestRateSlopeLow(),
+      cometContract.supplyPerSecondInterestRateSlopeHigh(),
+      cometContract.supplyPerSecondInterestRateBase(),
+      cometContract.borrowKink(),
+      cometContract.borrowPerSecondInterestRateSlopeLow(),
+      cometContract.borrowPerSecondInterestRateSlopeHigh(),
+      cometContract.borrowPerSecondInterestRateBase(),
+    ]);
 
-    const chainMethods = keys.reduce((acc, key) => {
-      acc[key] = async () => (await cometContract[key]()).toString();
-      return acc;
-    }, {});
+    const chainValues: Record<CurveKey, string> = {
+      supplyKink: supplyKink.toString(),
+      supplyPerSecondInterestRateSlopeLow:
+        supplyPerSecondInterestRateSlopeLow.toString(),
+      supplyPerSecondInterestRateSlopeHigh:
+        supplyPerSecondInterestRateSlopeHigh.toString(),
+      supplyPerSecondInterestRateBase:
+        supplyPerSecondInterestRateBase.toString(),
+      borrowKink: borrowKink.toString(),
+      borrowPerSecondInterestRateSlopeLow:
+        borrowPerSecondInterestRateSlopeLow.toString(),
+      borrowPerSecondInterestRateSlopeHigh:
+        borrowPerSecondInterestRateSlopeHigh.toString(),
+      borrowPerSecondInterestRateBase:
+        borrowPerSecondInterestRateBase.toString(),
+    };
 
-    const existingCurve =
-      this.jsonService.getMarketData(network, market)?.curve ?? {};
+    const existingCurve = this.jsonService.getMarketData(
+      network,
+      market,
+    )?.curve;
 
-    const result = {};
+    const result: Record<CurveKey, CurveEntry> = {} as Record<
+      CurveKey,
+      CurveEntry
+    >;
 
-    for (const key of keys) {
-      const chainValue = await chainMethods[key]();
-      const prevEntry = existingCurve[key];
+    for (const key of CURVE_KEYS) {
+      const chainValue = chainValues[key];
+      const prevEntry = existingCurve?.[key];
 
       if (!prevEntry) {
         result[key] = {
@@ -315,110 +472,117 @@ export class ContractService {
   }
 
   private async getCollaterals(
-    cometContract: any,
-    provider: ethers.JsonRpcProvider,
-  ) {
-    const date = new Date().toISOString().split('T')[0] as string;
-    const collaterals: CollateralInfo[] = [];
-    const collateralCount = await cometContract.numAssets();
+    cometContract: CometContract,
+    multicall: MulticallProvider,
+  ): Promise<CollateralInfo[]> {
+    const date = this.getDateString();
+    const collateralCount = toSafeInteger(
+      await cometContract.numAssets(),
+      'collateral count',
+    );
 
-    for (let i = 0; i < collateralCount; i++) {
-      const collateral = await cometContract.getAssetInfo(i);
-      const collateralContract = new ethers.Contract(
-        collateral.asset,
-        ERC20ABI,
-        provider,
-      ) as any;
-      const name = await collateralContract.name();
-      const symbol = await collateralContract.symbol();
-      const decimals = await collateralContract.decimals();
+    const assetInfos = await Promise.all(
+      Array.from({ length: collateralCount }, (_, i) =>
+        cometContract.getAssetInfo(i),
+      ),
+    );
 
-      const CF = `${ethers.formatEther(
-        collateral.borrowCollateralFactor * 100n,
-      )}%`;
+    const collaterals = await Promise.all(
+      assetInfos.map(async (collateral, idx) => {
+        const collateralContract = this.getErc20Contract(
+          collateral.asset,
+          multicall,
+        );
+        const [name, symbol, decimals] = await Promise.all([
+          collateralContract.name(),
+          collateralContract.symbol(),
+          collateralContract.decimals(),
+        ]);
 
-      const LF = `${ethers.formatEther(
-        collateral.liquidateCollateralFactor * 100n,
-      )}%`;
+        const decimalsNumber = toSafeInteger(decimals, `${symbol} decimals`);
 
-      const LP = `${(
-        (1 - Number(ethers.formatEther(collateral.liquidationFactor))) *
-        100
-      ).toFixed(2)}%`;
+        const CF = `${ethers.formatEther(
+          collateral.borrowCollateralFactor * 100n,
+        )}%`;
 
-      const maxLeverage =
-        1 / (1 - Number(ethers.formatEther(collateral.borrowCollateralFactor)));
+        const LF = `${ethers.formatEther(
+          collateral.liquidateCollateralFactor * 100n,
+        )}%`;
 
-      const borrowCollateralFactorRaw =
-        collateral.borrowCollateralFactor.toString();
-      const liquidateCollateralFactorRaw =
-        collateral.liquidateCollateralFactor.toString();
-      const liquidationFactorRaw = collateral.liquidationFactor.toString();
-      const supplyCapRaw = collateral.supplyCap.toString();
-      const supplyCapFormatted = formatSupplyCap(
-        supplyCapRaw,
-        Number(decimals),
-      );
+        const LP = `${(
+          (1 - Number(ethers.formatEther(collateral.liquidationFactor))) *
+          100
+        ).toFixed(2)}%`;
 
-      const asset = {
-        idx: i,
-        date,
-        name,
-        symbol,
-        address: collateral.asset as string,
-        decimals: Number(decimals),
-        priceFeedAddress: collateral.priceFeed as string,
-        priceFeedProvider: 'Chainlink',
-        oevEnabled: false,
-        capEnabled: false,
-        rateType: 'Market',
-        CF,
-        LF,
-        LP,
-        supplyCapFormatted,
-        maxLeverage: maxLeverage.toFixed(2) + 'x',
-        borrowCollateralFactorRaw,
-        liquidateCollateralFactorRaw,
-        liquidationFactorRaw,
-        supplyCapRaw,
-      };
-      collaterals.push(asset);
-    }
+        const maxLeverage =
+          1 /
+          (1 - Number(ethers.formatEther(collateral.borrowCollateralFactor)));
 
-    await this.sleep(1000);
+        const borrowCollateralFactorRaw =
+          collateral.borrowCollateralFactor.toString();
+        const liquidateCollateralFactorRaw =
+          collateral.liquidateCollateralFactor.toString();
+        const liquidationFactorRaw = collateral.liquidationFactor.toString();
+        const supplyCapRaw = collateral.supplyCap.toString();
+        const supplyCapFormatted = formatSupplyCap(
+          supplyCapRaw,
+          decimalsNumber,
+        );
+
+        return {
+          idx,
+          date,
+          name,
+          symbol,
+          address: collateral.asset,
+          decimals: decimalsNumber,
+          priceFeedAddress: collateral.priceFeed,
+          priceFeedProvider: 'Chainlink',
+          oevEnabled: false,
+          capEnabled: false,
+          rateType: 'Market',
+          CF,
+          LF,
+          LP,
+          supplyCapFormatted,
+          maxLeverage: maxLeverage.toFixed(2) + 'x',
+          borrowCollateralFactorRaw,
+          liquidateCollateralFactorRaw,
+          liquidationFactorRaw,
+          supplyCapRaw,
+        };
+      }),
+    );
 
     return collaterals;
   }
 
   private async getRewardsTable(
     root: RootJson,
-    provider: ethers.JsonRpcProvider,
+    multicall: MulticallProvider,
     network: string,
     market: string,
-  ) {
+  ): Promise<RewardRecord | null> {
     try {
-      const date = new Date().toISOString().split('T')[0] as string;
+      const date = this.getDateString();
 
       const cometAddress = root.comet;
-      const cometContract = new ethers.Contract(
-        cometAddress,
-        CometABI,
-        provider,
-      ) as any;
+      const cometContract = this.getCometContract(cometAddress, multicall);
 
       const rewardsAddress = root.rewards;
-      const legacyNetworks = ['mainnet', 'polygon'];
-      const rewardsABI = legacyNetworks.includes(network)
-        ? LegacyRewardsABI
-        : RewardsABI;
-      const rewardsContract = new ethers.Contract(
+      const rewardsContract = this.getRewardsConfigContract(
         rewardsAddress,
-        rewardsABI,
-        provider,
-      ) as any;
+        multicall,
+        network,
+      );
 
-      const lendRewardsSpeed = await cometContract.baseTrackingSupplySpeed();
-      const borrowRewardsSpeed = await cometContract.baseTrackingBorrowSpeed();
+      const [lendRewardsSpeed, borrowRewardsSpeed, rewardConfig] =
+        await Promise.all([
+          cometContract.baseTrackingSupplySpeed(),
+          cometContract.baseTrackingBorrowSpeed(),
+          rewardsContract.rewardConfig(cometAddress),
+        ]);
+
       const lendDailyRewards = Math.round(
         Number(ethers.formatUnits(lendRewardsSpeed, 15)) * DAY_IN_SECONDS,
       );
@@ -427,17 +591,21 @@ export class ContractService {
       );
       const dailyRewards = lendDailyRewards + borrowDailyRewards;
       const yearlyRewards = dailyRewards * YEAR_IN_DAYS;
-      const rewardConfig = await rewardsContract.rewardConfig(cometAddress);
-      const tokenAddress = rewardConfig[0];
-      const tokenContract = new ethers.Contract(
-        tokenAddress,
-        ERC20ABI,
-        provider,
-      ) as any;
-      const compBalance = await tokenContract.balanceOf(rewardsAddress);
-      const compAmountOnRewardContract = Number(
-        ethers.formatEther(compBalance),
-      );
+      const [tokenAddress] = rewardConfig;
+
+      let compAmountOnRewardContract = 0;
+      if (tokenAddress && tokenAddress !== ethers.ZeroAddress) {
+        const tokenContract = this.getErc20Contract(tokenAddress, multicall);
+        try {
+          const compBalance = await tokenContract.balanceOf(rewardsAddress);
+          compAmountOnRewardContract = Number(ethers.formatEther(compBalance));
+        } catch (error) {
+          this.logger.error(
+            `Failed to read reward token balance for rewardsAddress ${rewardsAddress} and tokenAddress ${tokenAddress}.`,
+            error instanceof Error ? error.message : String(error),
+          );
+        }
+      }
 
       return {
         date,
@@ -457,12 +625,6 @@ export class ContractService {
         error instanceof Error ? error.message : String(error),
       );
       return null;
-    } finally {
-      await this.sleep(1000);
     }
-  }
-
-  private async sleep(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

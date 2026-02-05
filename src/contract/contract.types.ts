@@ -1,10 +1,78 @@
+import { Address } from 'common/types/address';
+
 export interface RootJson {
-  comet: string; // Comet contract address
-  configurator: string; // Configurator contract address
-  rewards: string; // (optional) Rewards contract address
-  bulker: string; // (optional) Bulker contract address
-  bridgeReceiver?: string; // (optional) BridgeReceiver contract address
+  comet: Address; // Comet contract address
+  configurator: Address; // Configurator contract address
+  rewards: Address; // (optional) Rewards contract address
+  bulker: Address; // (optional) Bulker contract address
+  bridgeReceiver?: Address; // (optional) BridgeReceiver contract address
   [key: string]: any;
+}
+
+export type RewardConfig = readonly [Address, ...unknown[]];
+
+export interface AssetInfo {
+  asset: Address;
+  priceFeed: Address;
+  decimals: bigint;
+  borrowCollateralFactor: bigint;
+  liquidateCollateralFactor: bigint;
+  liquidationFactor: bigint;
+  supplyCap: bigint;
+}
+
+export interface CometContract {
+  baseToken(): Promise<Address>;
+  baseTokenPriceFeed(): Promise<Address>;
+  extensionDelegate(): Promise<Address>;
+  governor(): Promise<Address>;
+  baseTrackingSupplySpeed(): Promise<bigint>;
+  baseTrackingBorrowSpeed(): Promise<bigint>;
+  numAssets(): Promise<bigint>;
+  getAssetInfo(index: number): Promise<AssetInfo>;
+  supplyKink(): Promise<bigint>;
+  supplyPerSecondInterestRateSlopeLow(): Promise<bigint>;
+  supplyPerSecondInterestRateSlopeHigh(): Promise<bigint>;
+  supplyPerSecondInterestRateBase(): Promise<bigint>;
+  borrowKink(): Promise<bigint>;
+  borrowPerSecondInterestRateSlopeLow(): Promise<bigint>;
+  borrowPerSecondInterestRateSlopeHigh(): Promise<bigint>;
+  borrowPerSecondInterestRateBase(): Promise<bigint>;
+}
+
+export interface CometExtensionContract {
+  symbol(): Promise<string>;
+}
+
+export interface ConfiguratorContract {
+  factory(cometAddress: Address): Promise<Address>;
+}
+
+export interface TimelockContract {
+  admin(): Promise<Address>;
+}
+
+export interface RewardsConfigContract {
+  rewardConfig(cometAddress: Address): Promise<RewardConfig>;
+}
+
+export interface RewardsOwedContract {
+  getRewardOwed(
+    cometAddress: Address,
+    userAddress: Address,
+  ): Promise<[Address, bigint]>;
+}
+
+export interface Erc20Contract {
+  name(): Promise<string>;
+  symbol(): Promise<string>;
+  decimals(): Promise<bigint>;
+  balanceOf(owner: Address): Promise<bigint>;
+}
+
+export interface ProxyAddressInfo {
+  type: string;
+  address: Address | null;
 }
 
 /**
@@ -39,10 +107,20 @@ export interface ContractsMap {
  */
 export interface CurveEntry {
   date: string;
-  value: number;
+  value: string;
   valueSetDate?: string;
-  previousValue?: number; // optional previous value
+  previousValue?: string; // optional previous value
 }
+
+export type CurveKey =
+  | 'supplyKink'
+  | 'supplyPerSecondInterestRateSlopeLow'
+  | 'supplyPerSecondInterestRateSlopeHigh'
+  | 'supplyPerSecondInterestRateBase'
+  | 'borrowKink'
+  | 'borrowPerSecondInterestRateSlopeLow'
+  | 'borrowPerSecondInterestRateSlopeHigh'
+  | 'borrowPerSecondInterestRateBase';
 
 /**
  * All the curve parameters we fetch from the Comet contract.
@@ -57,6 +135,17 @@ export interface CurveMap {
   borrowPerSecondInterestRateSlopeLow: CurveEntry;
   borrowPerSecondInterestRateSlopeHigh: CurveEntry;
   borrowPerSecondInterestRateBase: CurveEntry;
+}
+
+/**
+ * Base token information
+ */
+export interface BaseTokenInfo {
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+  priceFeed: string;
 }
 
 /**
@@ -121,6 +210,7 @@ export interface MarketData {
   market: string;
   contracts: ContractsMap;
   curve: CurveMap;
+  baseToken: BaseTokenInfo;
   collaterals: CollateralInfo[];
   rewardsTable: RewardRecord | null;
 }
@@ -137,6 +227,7 @@ export interface NestedMarkets {
       [market: string]: {
         contracts: ContractsMap;
         curve: CurveMap;
+        baseToken: BaseTokenInfo;
         collaterals: CollateralInfo[];
       };
     };
