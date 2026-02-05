@@ -38,6 +38,12 @@
   |  7  | Borrow Rate Slope High |       126839167935 |       126839167935 | 2025-12-30 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-12-30 |
 
+**🪙 Base Token**
+
+  |  #  | Name            | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :-------------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin (Arb1) | USDC   | 0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8 |        6 | 0x50834F3163758fcC1Df9973b6e91f0F0F0434aD3 |
+
 **💰 Collaterals**
 
   |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -80,6 +86,12 @@
   |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2025-12-09 |
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-12-09 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-12-09 |
+
+**🪙 Base Token**
+
+  |  #  | Name     | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin | USDC   | 0xaf88d065e77c8cC2239327C5EDb3A432268e5831 |        6 | 0x50834F3163758fcC1Df9973b6e91f0F0F0434aD3 |
 
 **💰 Collaterals**
 
@@ -129,6 +141,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name  | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :---- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD₮0 | USD₮0  | 0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9 |        6 | 0x3f3f5dF88dC9F13eac63DF89EC16ef6e7E25DdE7 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -174,6 +192,12 @@
   |  6  | Borrow Rate Slope Low  |          459791983 |          459791983 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |        47564687975 |        47564687975 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0x82aF49447D8a07e3bd95BD0d56f35241523fBab1 |       18 | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C |
 
 **💰 Collaterals**
 
@@ -227,6 +251,12 @@
   |  7  | Borrow Rate Slope High |       116270294266 |       116270294266 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          697615423 |          697615423 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name      | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :-------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Aerodrome | AERO   | 0x940181a94A35A4569E4529A3CDfB74e38FD98631 |       18 | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -270,6 +300,12 @@
   |  7  | Borrow Rate Slope High |       109927289446 |       109927289446 | 2025-10-31 |
   |  8  | Borrow Rate Base       |         1585489599 |         1585489599 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Base Coin | USDbC  | 0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA |        6 | 0x7e860098F58bBFC8648a4311b374B1D669a2bc6B |
+
 **💰 Collaterals**
 
   |  #  | Name                        | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -310,6 +346,12 @@
   |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name     | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin | USDC   | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 |        6 | 0x7e860098F58bBFC8648a4311b374B1D669a2bc6B |
 
 **💰 Collaterals**
 
@@ -355,6 +397,12 @@
   |  7  | Borrow Rate Slope High |       107813292744 |       107813292744 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name            | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :-------------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDS Stablecoin | USDS   | 0x820C137fa70C8691f0e44Dc420a5e53c168921Dc |       18 | 0x2330aaE3bca5F05169d5f4597964D44522F62930 |
+
 **💰 Collaterals**
 
   |  #  | Name                 | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |    LP | Max Leverage |
@@ -395,6 +443,12 @@
   |  6  | Borrow Rate Slope Low  |          491501775 |          491501775 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0x4200000000000000000000000000000000000006 |       18 | 0x9f485610E26B9c0140439f88Dc0C7742903Bd1CF |
 
 **💰 Collaterals**
 
@@ -447,6 +501,12 @@
   |  7  | Borrow Rate Slope High |       107813292744 |       107813292744 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :--- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDC | USDC   | 0x176211869cA2b568f2A7D4EE941E073a821EE1ff |        6 | 0xAADAa473C1bDF7317ec07c915680Af29DeBfdCb5 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -488,6 +548,12 @@
   |  6  | Borrow Rate Slope Low  |          491501775 |          491501775 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f |       18 | 0xc4A9fFF2152fe11FBB40F059100ce1271a330C51 |
 
 **💰 Collaterals**
 
@@ -536,6 +602,12 @@
   |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name     | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin | USDC   | 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 |        6 | 0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6 |
 
 **💰 Collaterals**
 
@@ -588,6 +660,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name            | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :-------------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDS Stablecoin | USDS   | 0xdC035D45d973E3EC169d2276DDab16f1e407384F |       18 | 0xfF30586cD0F29eD462364C7e81375FC0C71219b1 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -636,6 +714,12 @@
   |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name       | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :--------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Tether USD | USDT   | 0xdAC17F958D2ee523a2206206994597C13D831ec7 |        6 | 0x3E7d1eAB13ad0104d2750B8863b489D65364e32D |
 
 **💰 Collaterals**
 
@@ -690,6 +774,12 @@
   |  7  | Borrow Rate Slope High |        36466260781 |        36466260781 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name        | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :---------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped BTC | WBTC   | 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599 |        8 | 0xfdFD9C85aD200c506Cf9e21F1FD8dd01932FBB23 |
+
 **💰 Collaterals**
 
   |  #  | Name                   | Symbol  | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -732,6 +822,12 @@
   |  6  | Borrow Rate Slope Low  |          491501775 |          491501775 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 |       18 | 0xD72ac1bCE9177CFe7aEb5d0516a38c88a64cE0AB |
 
 **💰 Collaterals**
 
@@ -789,6 +885,12 @@
   |  7  | Borrow Rate Slope High |        36466260781 |        36466260781 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped liquid staked Ether 2.0 | wstETH | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0 |       18 | 0x72e9B6F907365d76C6192aD49C0C5ba356b7Fa48 |
+
 **💰 Collaterals**
 
   |  #  | Name               | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -839,6 +941,12 @@
   |  7  | Borrow Rate Slope High |       126839167935 |       126839167935 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :--- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDe | USDe   | 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34 |       18 | 0xE5dB8474880459F6fd189F8282518443a8b39Aa5 |
+
 **💰 Collaterals**
 
   |  #  | Name         | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -885,6 +993,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name     | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin | USDC   | 0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85 |        6 | 0x16a9FA2FDa030272Ce99B29CF780dFA30361E0f3 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -929,6 +1043,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name       | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :--------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Tether USD | USDT   | 0x94b008aA00579c1307B0EF2c499aD98a8ce58e58 |        6 | 0xECef79E109e997bCA29c1c0897ec9d7b03647F5E |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -972,6 +1092,12 @@
   |  6  | Borrow Rate Slope Low  |          491501775 |          491501775 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0x4200000000000000000000000000000000000006 |       18 | 0x0be923b1716115d742E35Fa359d415598c50510F |
 
 **💰 Collaterals**
 
@@ -1024,6 +1150,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name           | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin (PoS) | USDC   | 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174 |        6 | 0xfE4A8cc5b5B2366C1B58Bea3858e81843581b2F7 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol  | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -1067,6 +1199,12 @@
   |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2025-10-31 |
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
+
+**🪙 Base Token**
+
+  |  #  | Name  | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :---- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDT0 | USDT0  | 0xc2132D05D31c914a87C6611C10748AEb04B58e8F |        6 | 0x0A6513e40db6EB1b165753AD52E80663aeA50545 |
 
 **💰 Collaterals**
 
@@ -1116,6 +1254,12 @@
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-09-17 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-09-17 |
 
+**🪙 Base Token**
+
+  |  #  | Name                | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Ronin Wrapped Ether | WETH   | 0xc99a6A985eD2Cac1ef41640596C5A5f9F4E19Ef5 |       18 | 0x8AC2b57d15c84755A3333aD68025d2496AE3BeBD |
+
 **💰 Collaterals**
 
   |  #  | Name                | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -1157,6 +1301,12 @@
   |  6  | Borrow Rate Slope Low  |          559582699 |          559582699 | 2025-12-28 |
   |  7  | Borrow Rate Slope High |        47564687975 |        47564687975 | 2025-12-28 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-12-28 |
+
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ronin | WRON   | 0xe514d9DEB7966c8BE0ca922de8a064264eA6bcd4 |       18 | 0x0B6074F21488B95945989E513EFEA070096d931D |
 
 **💰 Collaterals**
 
@@ -1204,6 +1354,12 @@
   |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2025-10-31 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-10-31 |
 
+**🪙 Base Token**
+
+  |  #  | Name     | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USD Coin | USDC   | 0x06eFdBFf2a14a7c8E15944D1F4A48F9F95F663A4 |        6 | 0x43d12Fb3AfCAd5347fA764EeAB105478337b7200 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -1249,6 +1405,12 @@
   |  7  | Borrow Rate Slope High |       107813292744 |       107813292744 | 2025-11-17 |
   |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2025-11-17 |
 
+**🪙 Base Token**
+
+  |  #  | Name | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :--- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | USDC | USDC   | 0x078D782b760474a361dDA0AF3839290b0EF57AD6 |        6 | 0x1F71901daf98d70B4BAF40DE080321e5C2676856 |
+
 **💰 Collaterals**
 
   |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -1290,6 +1452,12 @@
   |  7  | Borrow Rate Slope High |        39954337899 |        39954337899 | 2025-11-17 |
   |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2025-11-17 |
 
+**🪙 Base Token**
+
+  |  #  | Name          | Symbol | Address                                    | Decimals | Price Feed                                 |
+  | :-: | :------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
+  |  1  | Wrapped Ether | WETH   | 0x4200000000000000000000000000000000000006 |       18 | 0x3C30B5a5A04656565686f800481580Ac4E7ed178 |
+
 **💰 Collaterals**
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
@@ -1309,32 +1477,34 @@
 
 |  #  | Date       | Network  | Market    | Daily Rewards |  Yearly Rewards | Lend Daily Rewards | Borrow Daily Rewards | COMP on Reward Contract |
 | :-: | :--------- | :------- | :-------- | ------------: | --------------: | -----------------: | -------------------: | ----------------------: |
-|  1  | 2026-02-04 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             948.90 COMP |
-|  2  | 2026-02-04 | arbitrum | cUSDCv3   |       24 COMP |       8760 COMP |            14 COMP |              10 COMP |             948.90 COMP |
-|  3  | 2026-02-04 | arbitrum | cUSDTv3   |       22 COMP |       8030 COMP |            11 COMP |              11 COMP |             948.90 COMP |
-|  4  | 2026-02-04 | arbitrum | cWETHv3   |        3 COMP |       1095 COMP |             1 COMP |               2 COMP |             948.90 COMP |
-|  5  | 2026-02-04 | base     | cAEROv3   |        5 COMP |       1825 COMP |             1 COMP |               4 COMP |             781.57 COMP |
-|  6  | 2026-02-04 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             781.57 COMP |
-|  7  | 2026-02-04 | base     | cUSDCv3   |       13 COMP |       4745 COMP |             9 COMP |               4 COMP |             781.57 COMP |
-|  8  | 2026-02-04 | base     | cUSDSv3   |       24 COMP |       8760 COMP |            15 COMP |               9 COMP |             781.57 COMP |
-|  9  | 2026-02-04 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |             781.57 COMP |
-|  10 | 2026-02-04 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            2083.47 COMP |
-|  11 | 2026-02-04 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            2083.47 COMP |
-|  12 | 2026-02-04 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            8892.25 COMP |
-|  13 | 2026-02-04 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            8892.25 COMP |
-|  14 | 2026-02-04 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            8892.25 COMP |
-|  15 | 2026-02-04 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            8892.25 COMP |
-|  16 | 2026-02-04 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            8892.25 COMP |
-|  17 | 2026-02-04 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            8892.25 COMP |
-|  18 | 2026-02-04 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            1756.32 COMP |
-|  19 | 2026-02-04 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             728.11 COMP |
-|  20 | 2026-02-04 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             728.11 COMP |
-|  21 | 2026-02-04 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             728.11 COMP |
-|  22 | 2026-02-04 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             608.37 COMP |
-|  23 | 2026-02-04 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             608.37 COMP |
-|  24 | 2026-02-04 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  25 | 2026-02-04 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             408.95 COMP |
-|  26 | 2026-02-04 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             408.95 COMP |
+|  1  | 2026-02-05 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             884.62 COMP |
+|  2  | 2026-02-05 | arbitrum | cUSDCv3   |       24 COMP |       8760 COMP |            14 COMP |              10 COMP |             884.62 COMP |
+|  3  | 2026-02-05 | arbitrum | cUSDTv3   |       22 COMP |       8030 COMP |            11 COMP |              11 COMP |             884.62 COMP |
+|  4  | 2026-02-05 | arbitrum | cWETHv3   |        3 COMP |       1095 COMP |             1 COMP |               2 COMP |             884.62 COMP |
+|  5  | 2026-02-05 | base     | cAEROv3   |        5 COMP |       1825 COMP |             1 COMP |               4 COMP |             729.25 COMP |
+|  6  | 2026-02-05 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             729.25 COMP |
+|  7  | 2026-02-05 | base     | cUSDCv3   |       13 COMP |       4745 COMP |             9 COMP |               4 COMP |             729.25 COMP |
+|  8  | 2026-02-05 | base     | cUSDSv3   |       24 COMP |       8760 COMP |            15 COMP |               9 COMP |             729.25 COMP |
+|  9  | 2026-02-05 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |             729.25 COMP |
+|  10 | 2026-02-05 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            2074.66 COMP |
+|  11 | 2026-02-05 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            2074.66 COMP |
+|  12 | 2026-02-05 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            8680.47 COMP |
+|  13 | 2026-02-05 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            8680.47 COMP |
+|  14 | 2026-02-05 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            8680.47 COMP |
+|  15 | 2026-02-05 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            8680.47 COMP |
+|  16 | 2026-02-05 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            8680.47 COMP |
+|  17 | 2026-02-05 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            8680.47 COMP |
+|  18 | 2026-02-05 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            1749.76 COMP |
+|  19 | 2026-02-05 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             688.08 COMP |
+|  20 | 2026-02-05 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             688.08 COMP |
+|  21 | 2026-02-05 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             688.08 COMP |
+|  22 | 2026-02-05 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             608.37 COMP |
+|  23 | 2026-02-05 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             608.37 COMP |
+|  24 | 2026-02-05 | ronin    | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  25 | 2026-02-05 | ronin    | cWRONv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  26 | 2026-02-05 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  27 | 2026-02-05 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             408.51 COMP |
+|  28 | 2026-02-05 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             408.51 COMP |
 |     | **TOTAL**  |          |           |  **381 COMP** | **139065 COMP** |                    |                      |                         |
 
 ---
@@ -1343,17 +1513,18 @@
 
 |  #  | Date       | Network  | Current COMP Balance |
 | :-: | :--------- | :------- | -------------------: |
-|  1  | 2026-02-04 | arbitrum |          948.90 COMP |
-|  2  | 2026-02-04 | base     |          781.57 COMP |
-|  3  | 2026-02-04 | linea    |         2083.47 COMP |
-|  4  | 2026-02-04 | mainnet  |         8892.25 COMP |
-|  5  | 2026-02-04 | mantle   |         1756.32 COMP |
-|  6  | 2026-02-04 | optimism |          728.11 COMP |
-|  7  | 2026-02-04 | polygon  |          608.37 COMP |
-|  8  | 2026-02-04 | scroll   |            0.00 COMP |
-|  9  | 2026-02-04 | unichain |          408.95 COMP |
-|     | **TOTAL**  |          |    **16207.95 COMP** |
+|  1  | 2026-02-05 | arbitrum |          884.62 COMP |
+|  2  | 2026-02-05 | base     |          729.25 COMP |
+|  3  | 2026-02-05 | linea    |         2074.66 COMP |
+|  4  | 2026-02-05 | mainnet  |         8680.47 COMP |
+|  5  | 2026-02-05 | mantle   |         1749.76 COMP |
+|  6  | 2026-02-05 | optimism |          688.08 COMP |
+|  7  | 2026-02-05 | polygon  |          608.37 COMP |
+|  8  | 2026-02-05 | ronin    |            0.00 COMP |
+|  9  | 2026-02-05 | scroll   |            0.00 COMP |
+|  10 | 2026-02-05 | unichain |          408.51 COMP |
+|     | **TOTAL**  |          |    **15823.72 COMP** |
 
 ---
 
-*Last updated:* 2026-02-04 12:48:58.930 UTC
+*Last updated:* 2026-02-05 12:50:48.473 UTC
