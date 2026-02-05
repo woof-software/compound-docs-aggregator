@@ -74,6 +74,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     network: 'ronin',
     chainId: 2020,
     url: 'https://ronin.drpc.org',
+    batchMaxCount: 3,
     // url: 'https://ronin.lgns.net/rpc',
     sortPosition: 5,
     blockscanOrigin: 'https://app.roninchain.com/',
