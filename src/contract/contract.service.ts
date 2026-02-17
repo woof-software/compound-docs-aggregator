@@ -210,6 +210,7 @@ export class ContractService {
     );
 
     const networkConfig = this.networkService.byName(networkKey);
+    const comp = networkConfig?.comp;
     const svrFeeRecipient = networkConfig?.svrFeeRecipient;
     const svrFeeReceiver = networkConfig?.svrFeeReceiver;
 
@@ -303,6 +304,7 @@ export class ContractService {
         bulker: root.bulker,
         governor: governorAddress,
         timelock: timelockAddress,
+        ...(comp ? { comp } : {}),
         ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
         ...(svrFeeReceiver ? { svrFeeReceiver } : {}),
       },
