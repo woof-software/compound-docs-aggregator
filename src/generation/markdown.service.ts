@@ -66,7 +66,7 @@ export class MarkdownService {
         const contracts = marketData.contracts;
         let rowNum = 1;
 
-        // Основные контракты
+        // Core contracts
         contractRows.push([
           rowNum.toString(),
           'Comet',
@@ -149,6 +149,17 @@ export class MarkdownService {
           contracts.timelock,
           'Timelock contract',
         ]);
+        rowNum++;
+
+        if (contracts.svrFeeRecipient) {
+          contractRows.push([
+            rowNum.toString(),
+            'SVR Fee Recipient',
+            contracts.svrFeeRecipient,
+            'SVR protocol fee recipient address',
+          ]);
+          rowNum++;
+        }
 
         const contractTableMd = markdownTable(
           [contractHeader, ...contractRows],
