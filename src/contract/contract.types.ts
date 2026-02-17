@@ -100,6 +100,7 @@ export interface ContractsMap {
   governor: string;
   timelock: string;
   svrFeeRecipient?: string;
+  svrFeeReceiver?: string;
 }
 
 /**

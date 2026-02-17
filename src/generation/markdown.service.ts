@@ -161,6 +161,16 @@ export class MarkdownService {
           rowNum++;
         }
 
+        if (contracts.svrFeeReceiver) {
+          contractRows.push([
+            rowNum.toString(),
+            'SVR Fee Receiver',
+            contracts.svrFeeReceiver,
+            'SVR protocol fee receiver address',
+          ]);
+          rowNum++;
+        }
+
         const contractTableMd = markdownTable(
           [contractHeader, ...contractRows],
           {
@@ -803,6 +813,7 @@ export class MarkdownService {
       bridgeReceiver: 'Bridge Receiver',
       faucet: 'Faucet',
       svrFeeRecipient: 'SVR Fee Recipient',
+      svrFeeReceiver: 'SVR Fee Receiver',
       marketAdminPermissionChecker: 'Market Admin Permission Checker',
       marketAdminUpdateTimelock: 'Market Admin Update Timelock',
       marketAdminUpdateProposer: 'Market Admin Update Proposer',
