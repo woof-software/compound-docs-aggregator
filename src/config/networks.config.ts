@@ -39,6 +39,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x443ea0340cb75a160f31a440722dec7b5bc3c2e9',
     startBlock: 118406281,
     rewardsCalcEnabled: true,
+    comp: '0x7e7d4467112689329f7e06571ed0e8cbad4910ee',
   },
   {
     network: 'unichain',
@@ -55,6 +56,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x6f7d514bbd4aff3bcd1140b7344b32f063dee486',
     startBlock: 9170506,
     rewardsCalcEnabled: true,
+    comp: '0xdf78e4f0a8279942ca68046476919a90f2288656',
   },
   {
     network: 'polygon',
@@ -69,6 +71,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x45939657d1ca34a8fa39a924b71d28fe8431e581',
     startBlock: 39412378,
     rewardsCalcEnabled: true,
+    comp: '0x8505b9d2254a7ae468c0e9dd10ccea3a837aef5c',
   },
   {
     network: 'ronin',
@@ -99,6 +102,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0xcd83cbbfce149d141a5171c3d6a0f0fccee225ab',
     startBlock: 70789059,
     rewardsCalcEnabled: true,
+    comp: '0x52b7d8851d6ccbc6342ba0855be65f7b82a3f17f',
   },
   {
     network: 'base',
@@ -113,6 +117,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x123964802e6ababbe1bc9547d72ef1b69b00a6b1',
     startBlock: 2197594,
     rewardsCalcEnabled: true,
+    comp: '0x9e1028f5f1d5ede59748ffcee5532509976840e0',
   },
   {
     network: 'arbitrum',
@@ -127,6 +132,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x88730d254a2f7e6ac8388c3198afd694ba9f7fae',
     startBlock: 87335242,
     rewardsCalcEnabled: true,
+    comp: '0x354a6da3fcde098f8389cad84b0182725c6c91de',
   },
   {
     network: 'linea',
@@ -141,6 +147,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     rewardsV3: '0x2c7118c4C88B9841FCF839074c26Ae8f035f2921',
     startBlock: 15197724,
     rewardsCalcEnabled: true,
+    comp: '0x0ece76334fb560f2b1a49a60e38cf726b02203f0',
   },
   {
     network: 'scroll',

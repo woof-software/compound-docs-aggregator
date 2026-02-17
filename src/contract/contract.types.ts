@@ -99,6 +99,7 @@ export interface ContractsMap {
   bulker: string;
   governor: string;
   timelock: string;
+  comp?: string;
   svrFeeRecipient?: string;
 }
 

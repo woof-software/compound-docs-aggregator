@@ -151,6 +151,15 @@ export class MarkdownService {
         ]);
         rowNum++;
 
+        if (contracts.comp) {
+          contractRows.push([
+            rowNum.toString(),
+            'COMP',
+            contracts.comp,
+            'COMP Token',
+          ]);
+        }
+
         if (contracts.svrFeeRecipient) {
           contractRows.push([
             rowNum.toString(),
@@ -802,6 +811,7 @@ export class MarkdownService {
     const optionalContracts: Record<string, string> = {
       bridgeReceiver: 'Bridge Receiver',
       faucet: 'Faucet',
+      comp: 'COMP Token',
       svrFeeRecipient: 'SVR Fee Recipient',
       marketAdminPermissionChecker: 'Market Admin Permission Checker',
       marketAdminUpdateTimelock: 'Market Admin Update Timelock',

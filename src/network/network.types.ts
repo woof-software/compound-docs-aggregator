@@ -15,6 +15,6 @@ export interface NetworkConfig {
   startBlock?: number;
   // Ows
   rewardsCalcEnabled: boolean;
-  comp?: string; // required if comptrollerV2 !== undefined
+  comp?: string; // required if comptrollerV2 !== undefined / displayed in the list of contracts
   svrFeeRecipient?: string; // optional SVR protocol fee recipient
 }
