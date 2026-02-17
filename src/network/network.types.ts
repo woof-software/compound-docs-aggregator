@@ -17,4 +17,5 @@ export interface NetworkConfig {
   rewardsCalcEnabled: boolean;
   comp?: string; // required if comptrollerV2 !== undefined / displayed in the list of contracts
   svrFeeRecipient?: string; // optional SVR protocol fee recipient
+  svrFeeReceiver?: string; // optional SVR protocol fee receiver
 }

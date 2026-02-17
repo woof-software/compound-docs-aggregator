@@ -212,6 +212,7 @@ export class ContractService {
     const networkConfig = this.networkService.byName(networkKey);
     const comp = networkConfig?.comp;
     const svrFeeRecipient = networkConfig?.svrFeeRecipient;
+    const svrFeeReceiver = networkConfig?.svrFeeReceiver;
 
     const [
       cometImplementationInfo,
@@ -305,6 +306,7 @@ export class ContractService {
         timelock: timelockAddress,
         ...(comp ? { comp } : {}),
         ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
+        ...(svrFeeReceiver ? { svrFeeReceiver } : {}),
       },
       curve: curveData,
       baseToken: {

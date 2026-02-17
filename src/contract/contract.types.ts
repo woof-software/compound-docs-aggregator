@@ -101,6 +101,7 @@ export interface ContractsMap {
   timelock: string;
   comp?: string;
   svrFeeRecipient?: string;
+  svrFeeReceiver?: string;
 }
 
 /**

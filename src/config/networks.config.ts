@@ -24,7 +24,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     startBlock: 7710671,
     rewardsCalcEnabled: true,
     comp: '0xc00e94cb662c3520282e6f5717214004a7f26888',
-    svrFeeRecipient: '0xd9496F2A3fd2a97d8A4531D92742F3C8F53183cB',
+    svrFeeRecipient: '0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb',
   },
   {
     network: 'optimism',
@@ -118,6 +118,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     startBlock: 2197594,
     rewardsCalcEnabled: true,
     comp: '0x9e1028f5f1d5ede59748ffcee5532509976840e0',
+    svrFeeReceiver: '0xb3e79c7cac540ca833015e63d96d3032ba0c4129',
   },
   {
     network: 'arbitrum',
@@ -133,6 +134,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
     startBlock: 87335242,
     rewardsCalcEnabled: true,
     comp: '0x354a6da3fcde098f8389cad84b0182725c6c91de',
+    svrFeeReceiver: '0xb3e79c7cac540ca833015e63d96d3032ba0c4129',
   },
   {
     network: 'linea',
