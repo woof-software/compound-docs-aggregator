@@ -11,19 +11,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xA5EDBDD9646f8dFF606d7448e414884C7d905dCA | Main market contract        |
-  |  2  | Comet Implementation        | 0x47885403524C26a4514b5F8D82747a8c90CEf0C6 | Implementation contract     |
-  |  3  | Comet Extension             | 0x5D409e56D886231aDAf00c8775665AD0f9897b56 | Extension delegate contract |
-  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator         |
-  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract              |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract            |
-  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract            |
-  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract             |
-  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract         |
-  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0xA5EDBDD9646f8dFF606d7448e414884C7d905dCA | Main market contract              |
+  |  2  | Comet Implementation        | 0x47885403524C26a4514b5F8D82747a8c90CEf0C6 | Implementation contract           |
+  |  3  | Comet Extension             | 0x5D409e56D886231aDAf00c8775665AD0f9897b56 | Extension delegate contract       |
+  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
+  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
+  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
+  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
+  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
+  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract                 |
+  |  12 | COMP                        | 0x354a6da3fcde098f8389cad84b0182725c6c91de | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -60,19 +62,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract        |
-  |  2  | Comet Implementation        | 0x3410F05Fb77715AC1d1eC68A8D74F38D0850d54c | Implementation contract     |
-  |  3  | Comet Extension             | 0x95DeDD64b551F05E9f59a101a519B024b6b116E7 | Extension delegate contract |
-  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator         |
-  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract              |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract            |
-  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract            |
-  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract             |
-  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract         |
-  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract              |
+  |  2  | Comet Implementation        | 0x3410F05Fb77715AC1d1eC68A8D74F38D0850d54c | Implementation contract           |
+  |  3  | Comet Extension             | 0x95DeDD64b551F05E9f59a101a519B024b6b116E7 | Extension delegate contract       |
+  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
+  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
+  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
+  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
+  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
+  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract                 |
+  |  12 | COMP                        | 0x354a6da3fcde098f8389cad84b0182725c6c91de | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -114,19 +118,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Main market contract        |
-  |  2  | Comet Implementation        | 0x69Ad47985Da1b3aa3Fa3C1fE642c81C08De21941 | Implementation contract     |
-  |  3  | Comet Extension             | 0x271A200023c9512d37149dfbb62bf0F62a8D4680 | Extension delegate contract |
-  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator         |
-  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract              |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract            |
-  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract            |
-  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract             |
-  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract         |
-  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Main market contract              |
+  |  2  | Comet Implementation        | 0x69Ad47985Da1b3aa3Fa3C1fE642c81C08De21941 | Implementation contract           |
+  |  3  | Comet Extension             | 0x271A200023c9512d37149dfbb62bf0F62a8D4680 | Extension delegate contract       |
+  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
+  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
+  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
+  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
+  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
+  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract                 |
+  |  12 | COMP                        | 0x354a6da3fcde098f8389cad84b0182725c6c91de | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -166,19 +172,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Main market contract        |
-  |  2  | Comet Implementation        | 0x70175d5F312d2ac5B8d71D76C055d1C9f000eBa5 | Implementation contract     |
-  |  3  | Comet Extension             | 0x0be923b1716115d742E35Fa359d415598c50510F | Extension delegate contract |
-  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator         |
-  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract              |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract            |
-  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract            |
-  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract             |
-  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract         |
-  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Main market contract              |
+  |  2  | Comet Implementation        | 0x70175d5F312d2ac5B8d71D76C055d1C9f000eBa5 | Implementation contract           |
+  |  3  | Comet Extension             | 0x0be923b1716115d742E35Fa359d415598c50510F | Extension delegate contract       |
+  |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
+  |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
+  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
+  |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
+  |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
+  |  11 | Timelock                    | 0x3fB4d38ea7EC20D91917c09591490Eeda38Cf88A | Timelock contract                 |
+  |  12 | COMP                        | 0x354a6da3fcde098f8389cad84b0182725c6c91de | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -224,19 +232,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract        |
-  |  2  | Comet Implementation        | 0xC89567205207E481c1162c7E8A03E27e8E619A77 | Implementation contract     |
-  |  3  | Comet Extension             | 0xDd18688Bb75Af704f3Fb1183e459C4d4D41132D9 | Extension delegate contract |
-  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
-  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract              |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract            |
-  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract            |
-  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract             |
-  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
-  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract              |
+  |  2  | Comet Implementation        | 0xC89567205207E481c1162c7E8A03E27e8E619A77 | Implementation contract           |
+  |  3  | Comet Extension             | 0xDd18688Bb75Af704f3Fb1183e459C4d4D41132D9 | Extension delegate contract       |
+  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
+  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
+  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
+  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
+  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
+  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract                 |
+  |  12 | COMP                        | 0x9e1028f5f1d5ede59748ffcee5532509976840e0 | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -273,19 +283,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract        |
-  |  2  | Comet Implementation        | 0x564417B682817e1C7806b2A1a4F73e084d742925 | Implementation contract     |
-  |  3  | Comet Extension             | 0x0E383794EaaA6Cf7Ffb2C8AD5BEbbBC5CB0F0A7b | Extension delegate contract |
-  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
-  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract              |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract            |
-  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract            |
-  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract             |
-  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
-  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract              |
+  |  2  | Comet Implementation        | 0x564417B682817e1C7806b2A1a4F73e084d742925 | Implementation contract           |
+  |  3  | Comet Extension             | 0x0E383794EaaA6Cf7Ffb2C8AD5BEbbBC5CB0F0A7b | Extension delegate contract       |
+  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
+  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
+  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
+  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
+  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
+  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract                 |
+  |  12 | COMP                        | 0x9e1028f5f1d5ede59748ffcee5532509976840e0 | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -320,19 +332,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xb125E6687d4313864e53df431d5425969c15Eb2F | Main market contract        |
-  |  2  | Comet Implementation        | 0x89e9b098bb0e3d09f4288fb2b9632B4dcB40bBF6 | Implementation contract     |
-  |  3  | Comet Extension             | 0x220Da2686dC870aC0A97498A1845e610d2f13431 | Extension delegate contract |
-  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
-  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract              |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract            |
-  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract            |
-  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract             |
-  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
-  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0xb125E6687d4313864e53df431d5425969c15Eb2F | Main market contract              |
+  |  2  | Comet Implementation        | 0x89e9b098bb0e3d09f4288fb2b9632B4dcB40bBF6 | Implementation contract           |
+  |  3  | Comet Extension             | 0x220Da2686dC870aC0A97498A1845e610d2f13431 | Extension delegate contract       |
+  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
+  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
+  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
+  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
+  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
+  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract                 |
+  |  12 | COMP                        | 0x9e1028f5f1d5ede59748ffcee5532509976840e0 | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -370,19 +384,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Main market contract        |
-  |  2  | Comet Implementation        | 0x8c087080253cd3Bd395AEcAF16f36Ee608acd96f | Implementation contract     |
-  |  3  | Comet Extension             | 0xaA390749cb758Af4070E93478Fc743c72c18989c | Extension delegate contract |
-  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
-  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract              |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract            |
-  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract            |
-  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract             |
-  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
-  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Main market contract              |
+  |  2  | Comet Implementation        | 0x8c087080253cd3Bd395AEcAF16f36Ee608acd96f | Implementation contract           |
+  |  3  | Comet Extension             | 0xaA390749cb758Af4070E93478Fc743c72c18989c | Extension delegate contract       |
+  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
+  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
+  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
+  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
+  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
+  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract                 |
+  |  12 | COMP                        | 0x9e1028f5f1d5ede59748ffcee5532509976840e0 | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -417,19 +433,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract        |
-  |  2  | Comet Implementation        | 0x6B2F857d3F3A32BA7d9Ac46D0AD8E5bd6e2011f1 | Implementation contract     |
-  |  3  | Comet Extension             | 0xbd4CfC08d64a848A9116A92Cd06D2f2bDC0a2505 | Extension delegate contract |
-  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator         |
-  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation |
-  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract              |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract            |
-  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract            |
-  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract             |
-  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
-  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                              |
+  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
+  |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract              |
+  |  2  | Comet Implementation        | 0x6B2F857d3F3A32BA7d9Ac46D0AD8E5bd6e2011f1 | Implementation contract           |
+  |  3  | Comet Extension             | 0xbd4CfC08d64a848A9116A92Cd06D2f2bDC0a2505 | Extension delegate contract       |
+  |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
+  |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
+  |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
+  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
+  |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
+  |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
+  |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract                 |
+  |  12 | COMP                        | 0x9e1028f5f1d5ede59748ffcee5532509976840e0 | COMP Token                        |
+  |  12 | SVR Fee Receiver            | 0xb3e79c7cac540ca833015e63d96d3032ba0c4129 | SVR protocol fee receiver address |
 
 **📈 Interest Rate Curve**
 
@@ -487,6 +505,7 @@
   |  9  | Bulker                      | 0x023ee795361B28cDbB94e302983578486A0A5f1B | Bulker contract             |
   |  10 | Governor                    | 0x1F71901daf98d70B4BAF40DE080321e5C2676856 | Governance contract         |
   |  11 | Timelock                    | 0x4A900f81dEdA753bbBab12453b3775D5f26df6F3 | Timelock contract           |
+  |  12 | COMP                        | 0x0ece76334fb560f2b1a49a60e38cf726b02203f0 | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -535,6 +554,7 @@
   |  9  | Bulker                      | 0x023ee795361B28cDbB94e302983578486A0A5f1B | Bulker contract             |
   |  10 | Governor                    | 0x1F71901daf98d70B4BAF40DE080321e5C2676856 | Governance contract         |
   |  11 | Timelock                    | 0x4A900f81dEdA753bbBab12453b3775D5f26df6F3 | Timelock contract           |
+  |  12 | COMP                        | 0x0ece76334fb560f2b1a49a60e38cf726b02203f0 | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -576,19 +596,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xc3d688B66703497DAA19211EEdff47f25384cdc3 | Main market contract        |
-  |  2  | Comet Implementation        | 0xEb330B7c1622E0F8b18a7dD1decc27Cf3d980E61 | Implementation contract     |
-  |  3  | Comet Extension             | 0xA70a0227028aD005F4Fc9376a82cd1462e3AAedC | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0xc3d688B66703497DAA19211EEdff47f25384cdc3 | Main market contract               |
+  |  2  | Comet Implementation        | 0xEb330B7c1622E0F8b18a7dD1decc27Cf3d980E61 | Implementation contract            |
+  |  3  | Comet Extension             | 0xA70a0227028aD005F4Fc9376a82cd1462e3AAedC | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -633,19 +655,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x5D409e56D886231aDAf00c8775665AD0f9897b56 | Main market contract        |
-  |  2  | Comet Implementation        | 0x5ACaE76A83D9770370989738452aD3a8be3c54Dd | Implementation contract     |
-  |  3  | Comet Extension             | 0xd4eC911B8FD79139736950235a93d3ea9c3f68ed | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0x5D409e56D886231aDAf00c8775665AD0f9897b56 | Main market contract               |
+  |  2  | Comet Implementation        | 0x5ACaE76A83D9770370989738452aD3a8be3c54Dd | Implementation contract            |
+  |  3  | Comet Extension             | 0xd4eC911B8FD79139736950235a93d3ea9c3f68ed | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -688,19 +712,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x3Afdc9BCA9213A35503b077a6072F3D0d5AB0840 | Main market contract        |
-  |  2  | Comet Implementation        | 0xDa54EdE5a49CD61932d5507714d0a0E9D1F87eb5 | Implementation contract     |
-  |  3  | Comet Extension             | 0xe3458a0BdBd5A413d3731595C5Eb7C4CD6a14DD1 | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0x3Afdc9BCA9213A35503b077a6072F3D0d5AB0840 | Main market contract               |
+  |  2  | Comet Implementation        | 0xDa54EdE5a49CD61932d5507714d0a0E9D1F87eb5 | Implementation contract            |
+  |  3  | Comet Extension             | 0xe3458a0BdBd5A413d3731595C5Eb7C4CD6a14DD1 | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -748,19 +774,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xe85Dc543813B8c2CFEaAc371517b925a166a9293 | Main market contract        |
-  |  2  | Comet Implementation        | 0x1C0C89c1Fa07E1dBfCB99ddb80c57252498c82B2 | Implementation contract     |
-  |  3  | Comet Extension             | 0x4f4D5A808E2448cB12df7aC12EFb12888FD9BDd5 | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0xe85Dc543813B8c2CFEaAc371517b925a166a9293 | Main market contract               |
+  |  2  | Comet Implementation        | 0x1C0C89c1Fa07E1dBfCB99ddb80c57252498c82B2 | Implementation contract            |
+  |  3  | Comet Extension             | 0x4f4D5A808E2448cB12df7aC12EFb12888FD9BDd5 | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -797,19 +825,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0xA17581A9E3356d9A858b789D68B4d866e593aE94 | Main market contract        |
-  |  2  | Comet Implementation        | 0x2BEa101d992b58DA3F52C4c2aaeb49d33f7DCE14 | Implementation contract     |
-  |  3  | Comet Extension             | 0x16F3532e6AF45A2C51B6C77b1267cEF34A9cf3B3 | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0xA17581A9E3356d9A858b789D68B4d866e593aE94 | Main market contract               |
+  |  2  | Comet Implementation        | 0x2BEa101d992b58DA3F52C4c2aaeb49d33f7DCE14 | Implementation contract            |
+  |  3  | Comet Extension             | 0x16F3532e6AF45A2C51B6C77b1267cEF34A9cf3B3 | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -859,19 +889,21 @@
 
 **📋 Contracts**
 
-  |  #  | Name                        | Address                                    | Note                        |
-  | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
-  |  1  | Comet                       | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Main market contract        |
-  |  2  | Comet Implementation        | 0x400249b8244AfAc24aeDC658041E56E449B43b5d | Implementation contract     |
-  |  3  | Comet Extension             | 0x055E53F50B84FD91c4Be367220EFD36c3d091E1f | Extension delegate contract |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator         |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract              |
-  |  7  | Comet Factory               | 0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867 | Factory contract            |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract            |
-  |  9  | Bulker                      | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Bulker contract             |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract         |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract           |
+  |  #  | Name                        | Address                                    | Note                               |
+  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
+  |  1  | Comet                       | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Main market contract               |
+  |  2  | Comet Implementation        | 0x400249b8244AfAc24aeDC658041E56E449B43b5d | Implementation contract            |
+  |  3  | Comet Extension             | 0x055E53F50B84FD91c4Be367220EFD36c3d091E1f | Extension delegate contract        |
+  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
+  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
+  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
+  |  7  | Comet Factory               | 0xBa8F83ffFC7097CBcD89fe323D31753CfaC33867 | Factory contract                   |
+  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
+  |  9  | Bulker                      | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Bulker contract                    |
+  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
+  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
+  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
+  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
 
 **📈 Interest Rate Curve**
 
@@ -928,6 +960,7 @@
   |  9  | Bulker                      | 0x67DFCa85CcEEFA2C5B1dB4DEe3BEa716A28B9baa | Bulker contract             |
   |  10 | Governor                    | 0xc91EcA15747E73d6dd7f616C49dAFF37b9F1B604 | Governance contract         |
   |  11 | Timelock                    | 0x16C7B5C1b10489F4B111af11de2Bd607c9728107 | Timelock contract           |
+  |  12 | COMP                        | 0x52b7d8851d6ccbc6342ba0855be65f7b82a3f17f | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -980,6 +1013,7 @@
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
   |  11 | Timelock                    | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Timelock contract           |
+  |  12 | COMP                        | 0x7e7d4467112689329f7e06571ed0e8cbad4910ee | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1030,6 +1064,7 @@
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
   |  11 | Timelock                    | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Timelock contract           |
+  |  12 | COMP                        | 0x7e7d4467112689329f7e06571ed0e8cbad4910ee | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1080,6 +1115,7 @@
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
   |  11 | Timelock                    | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Timelock contract           |
+  |  12 | COMP                        | 0x7e7d4467112689329f7e06571ed0e8cbad4910ee | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1137,6 +1173,7 @@
   |  9  | Bulker                      | 0x59e242D352ae13166B4987aE5c990C232f7f7CD6 | Bulker contract             |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
   |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  12 | COMP                        | 0x8505b9d2254a7ae468c0e9dd10ccea3a837aef5c | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1187,6 +1224,7 @@
   |  9  | Bulker                      | 0x59e242D352ae13166B4987aE5c990C232f7f7CD6 | Bulker contract             |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
   |  11 | Timelock                    | 0xCC3E7c85Bb0EE4f09380e041fee95a0caeDD4a02 | Timelock contract           |
+  |  12 | COMP                        | 0x8505b9d2254a7ae468c0e9dd10ccea3a837aef5c | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1392,6 +1430,7 @@
   |  9  | Bulker                      | 0x58EbB8Db8b4FdF2dCbbB16E04c2F5b952963B514 | Bulker contract             |
   |  10 | Governor                    | 0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118 | Governance contract         |
   |  11 | Timelock                    | 0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0 | Timelock contract           |
+  |  12 | COMP                        | 0xdf78e4f0a8279942ca68046476919a90f2288656 | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1439,6 +1478,7 @@
   |  9  | Bulker                      | 0x58EbB8Db8b4FdF2dCbbB16E04c2F5b952963B514 | Bulker contract             |
   |  10 | Governor                    | 0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118 | Governance contract         |
   |  11 | Timelock                    | 0x2F4eAF29dfeeF4654bD091F7112926E108eF4Ed0 | Timelock contract           |
+  |  12 | COMP                        | 0xdf78e4f0a8279942ca68046476919a90f2288656 | COMP Token                  |
 
 **📈 Interest Rate Curve**
 
@@ -1478,34 +1518,34 @@
 
 |  #  | Date       | Network  | Market    | Daily Rewards |  Yearly Rewards | Lend Daily Rewards | Borrow Daily Rewards | COMP on Reward Contract |
 | :-: | :--------- | :------- | :-------- | ------------: | --------------: | -----------------: | -------------------: | ----------------------: |
-|  1  | 2026-02-17 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             377.78 COMP |
-|  2  | 2026-02-17 | arbitrum | cUSDCv3   |       24 COMP |       8760 COMP |            14 COMP |              10 COMP |             377.78 COMP |
-|  3  | 2026-02-17 | arbitrum | cUSDTv3   |       22 COMP |       8030 COMP |            11 COMP |              11 COMP |             377.78 COMP |
-|  4  | 2026-02-17 | arbitrum | cWETHv3   |        3 COMP |       1095 COMP |             1 COMP |               2 COMP |             377.78 COMP |
-|  5  | 2026-02-17 | base     | cAEROv3   |        5 COMP |       1825 COMP |             1 COMP |               4 COMP |             123.11 COMP |
-|  6  | 2026-02-17 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             123.11 COMP |
-|  7  | 2026-02-17 | base     | cUSDCv3   |       13 COMP |       4745 COMP |             9 COMP |               4 COMP |             123.11 COMP |
-|  8  | 2026-02-17 | base     | cUSDSv3   |       24 COMP |       8760 COMP |            15 COMP |               9 COMP |             123.11 COMP |
-|  9  | 2026-02-17 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |             123.11 COMP |
-|  10 | 2026-02-17 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            1944.34 COMP |
-|  11 | 2026-02-17 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            1944.34 COMP |
-|  12 | 2026-02-17 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            1396.64 COMP |
-|  13 | 2026-02-17 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            1396.64 COMP |
-|  14 | 2026-02-17 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            1396.64 COMP |
-|  15 | 2026-02-17 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            1396.64 COMP |
-|  16 | 2026-02-17 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            1396.64 COMP |
-|  17 | 2026-02-17 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            1396.64 COMP |
-|  18 | 2026-02-17 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            1730.81 COMP |
-|  19 | 2026-02-17 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             456.29 COMP |
-|  20 | 2026-02-17 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             456.29 COMP |
-|  21 | 2026-02-17 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             456.29 COMP |
-|  22 | 2026-02-17 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             577.02 COMP |
-|  23 | 2026-02-17 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             577.02 COMP |
-|  24 | 2026-02-17 | ronin    | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  25 | 2026-02-17 | ronin    | cWRONv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  26 | 2026-02-17 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  27 | 2026-02-17 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             217.90 COMP |
-|  28 | 2026-02-17 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             217.90 COMP |
+|  1  | 2026-02-18 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             259.30 COMP |
+|  2  | 2026-02-18 | arbitrum | cUSDCv3   |       24 COMP |       8760 COMP |            14 COMP |              10 COMP |             259.30 COMP |
+|  3  | 2026-02-18 | arbitrum | cUSDTv3   |       22 COMP |       8030 COMP |            11 COMP |              11 COMP |             259.30 COMP |
+|  4  | 2026-02-18 | arbitrum | cWETHv3   |        3 COMP |       1095 COMP |             1 COMP |               2 COMP |             259.30 COMP |
+|  5  | 2026-02-18 | base     | cAEROv3   |        5 COMP |       1825 COMP |             1 COMP |               4 COMP |              98.63 COMP |
+|  6  | 2026-02-18 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |              98.63 COMP |
+|  7  | 2026-02-18 | base     | cUSDCv3   |       13 COMP |       4745 COMP |             9 COMP |               4 COMP |              98.63 COMP |
+|  8  | 2026-02-18 | base     | cUSDSv3   |       24 COMP |       8760 COMP |            15 COMP |               9 COMP |              98.63 COMP |
+|  9  | 2026-02-18 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |              98.63 COMP |
+|  10 | 2026-02-18 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            1944.05 COMP |
+|  11 | 2026-02-18 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            1944.05 COMP |
+|  12 | 2026-02-18 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            1203.45 COMP |
+|  13 | 2026-02-18 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            1203.45 COMP |
+|  14 | 2026-02-18 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            1203.45 COMP |
+|  15 | 2026-02-18 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            1203.45 COMP |
+|  16 | 2026-02-18 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            1203.45 COMP |
+|  17 | 2026-02-18 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            1203.45 COMP |
+|  18 | 2026-02-18 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            1730.81 COMP |
+|  19 | 2026-02-18 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             451.63 COMP |
+|  20 | 2026-02-18 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             451.63 COMP |
+|  21 | 2026-02-18 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             451.63 COMP |
+|  22 | 2026-02-18 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             577.02 COMP |
+|  23 | 2026-02-18 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             577.02 COMP |
+|  24 | 2026-02-18 | ronin    | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  25 | 2026-02-18 | ronin    | cWRONv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  26 | 2026-02-18 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  27 | 2026-02-18 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             183.07 COMP |
+|  28 | 2026-02-18 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |             183.07 COMP |
 |     | **TOTAL**  |          |           |  **381 COMP** | **139065 COMP** |                    |                      |                         |
 
 ---
@@ -1514,18 +1554,18 @@
 
 |  #  | Date       | Network  | Current COMP Balance |
 | :-: | :--------- | :------- | -------------------: |
-|  1  | 2026-02-17 | arbitrum |          377.78 COMP |
-|  2  | 2026-02-17 | base     |          123.11 COMP |
-|  3  | 2026-02-17 | linea    |         1944.34 COMP |
-|  4  | 2026-02-17 | mainnet  |         1396.64 COMP |
-|  5  | 2026-02-17 | mantle   |         1730.81 COMP |
-|  6  | 2026-02-17 | optimism |          456.29 COMP |
-|  7  | 2026-02-17 | polygon  |          577.02 COMP |
-|  8  | 2026-02-17 | ronin    |            0.00 COMP |
-|  9  | 2026-02-17 | scroll   |            0.00 COMP |
-|  10 | 2026-02-17 | unichain |          217.90 COMP |
-|     | **TOTAL**  |          |     **6823.90 COMP** |
+|  1  | 2026-02-18 | arbitrum |          259.30 COMP |
+|  2  | 2026-02-18 | base     |           98.63 COMP |
+|  3  | 2026-02-18 | linea    |         1944.05 COMP |
+|  4  | 2026-02-18 | mainnet  |         1203.45 COMP |
+|  5  | 2026-02-18 | mantle   |         1730.81 COMP |
+|  6  | 2026-02-18 | optimism |          451.63 COMP |
+|  7  | 2026-02-18 | polygon  |          577.02 COMP |
+|  8  | 2026-02-18 | ronin    |            0.00 COMP |
+|  9  | 2026-02-18 | scroll   |            0.00 COMP |
+|  10 | 2026-02-18 | unichain |          183.07 COMP |
+|     | **TOTAL**  |          |     **6447.96 COMP** |
 
 ---
 
-*Last updated:* 2026-02-17 12:52:40.879 UTC
+*Last updated:* 2026-02-18 10:20:49.129 UTC
