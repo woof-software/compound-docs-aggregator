@@ -5883,7 +5883,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 259.303299
+        "compAmountOnRewardContract": 259.302227
       },
       {
         "date": "2026-02-18",
@@ -5893,7 +5893,7 @@
         "yearlyRewards": 8760,
         "lendDailyRewards": 14,
         "borrowDailyRewards": 10,
-        "compAmountOnRewardContract": 259.303299
+        "compAmountOnRewardContract": 259.302227
       },
       {
         "date": "2026-02-18",
@@ -5903,7 +5903,7 @@
         "yearlyRewards": 8030,
         "lendDailyRewards": 11,
         "borrowDailyRewards": 11,
-        "compAmountOnRewardContract": 259.303299
+        "compAmountOnRewardContract": 259.302227
       },
       {
         "date": "2026-02-18",
@@ -5913,7 +5913,7 @@
         "yearlyRewards": 1095,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 2,
-        "compAmountOnRewardContract": 259.303299
+        "compAmountOnRewardContract": 259.302227
       },
       {
         "date": "2026-02-18",
@@ -5923,7 +5923,7 @@
         "yearlyRewards": 1825,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 98.629336
+        "compAmountOnRewardContract": 97.387824
       },
       {
         "date": "2026-02-18",
@@ -5933,7 +5933,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 98.629336
+        "compAmountOnRewardContract": 97.387824
       },
       {
         "date": "2026-02-18",
@@ -5943,7 +5943,7 @@
         "yearlyRewards": 4745,
         "lendDailyRewards": 9,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 98.629336
+        "compAmountOnRewardContract": 97.387824
       },
       {
         "date": "2026-02-18",
@@ -5953,7 +5953,7 @@
         "yearlyRewards": 8760,
         "lendDailyRewards": 15,
         "borrowDailyRewards": 9,
-        "compAmountOnRewardContract": 98.629336
+        "compAmountOnRewardContract": 97.387824
       },
       {
         "date": "2026-02-18",
@@ -5963,7 +5963,7 @@
         "yearlyRewards": 1460,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 2,
-        "compAmountOnRewardContract": 98.629336
+        "compAmountOnRewardContract": 97.387824
       },
       {
         "date": "2026-02-18",
@@ -6063,7 +6063,7 @@
         "yearlyRewards": 2190,
         "lendDailyRewards": 2,
         "borrowDailyRewards": 4,
-        "compAmountOnRewardContract": 451.625514
+        "compAmountOnRewardContract": 443.572921
       },
       {
         "date": "2026-02-18",
@@ -6073,7 +6073,7 @@
         "yearlyRewards": 3650,
         "lendDailyRewards": 5,
         "borrowDailyRewards": 5,
-        "compAmountOnRewardContract": 451.625514
+        "compAmountOnRewardContract": 443.572921
       },
       {
         "date": "2026-02-18",
@@ -6083,7 +6083,7 @@
         "yearlyRewards": 730,
         "lendDailyRewards": 1,
         "borrowDailyRewards": 1,
-        "compAmountOnRewardContract": 451.625514
+        "compAmountOnRewardContract": 443.572921
       },
       {
         "date": "2026-02-18",
@@ -6093,7 +6093,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 577.017802882675
+        "compAmountOnRewardContract": 576.801833882675
       },
       {
         "date": "2026-02-18",
@@ -6103,7 +6103,7 @@
         "yearlyRewards": 0,
         "lendDailyRewards": 0,
         "borrowDailyRewards": 0,
-        "compAmountOnRewardContract": 577.017802882675
+        "compAmountOnRewardContract": 576.801833882675
       },
       {
         "date": "2026-02-18",
@@ -6165,13 +6165,13 @@
         "idx": 0,
         "date": "2026-02-18",
         "network": "arbitrum",
-        "currentCompBalance": 259.303299
+        "currentCompBalance": 259.302227
       },
       {
         "idx": 1,
         "date": "2026-02-18",
         "network": "base",
-        "currentCompBalance": 98.629336
+        "currentCompBalance": 97.387824
       },
       {
         "idx": 2,
@@ -6195,13 +6195,13 @@
         "idx": 5,
         "date": "2026-02-18",
         "network": "optimism",
-        "currentCompBalance": 451.625514
+        "currentCompBalance": 443.572921
       },
       {
         "idx": 6,
         "date": "2026-02-18",
         "network": "polygon",
-        "currentCompBalance": 577.017802882675
+        "currentCompBalance": 576.801833882675
       },
       {
         "idx": 7,
@@ -6222,6 +6222,6 @@
         "currentCompBalance": 183.071956
       }
     ],
-    "totalCompBalance": 6447.961526899675
+    "totalCompBalance": 6438.450380899674
   }
 }
