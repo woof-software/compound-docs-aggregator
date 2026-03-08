@@ -65,7 +65,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x3410F05Fb77715AC1d1eC68A8D74F38D0850d54c | Implementation contract           |
+  |  2  | Comet Implementation        | 0x88a7d5D0107aa7757a8B1BC8c0Dbb22584dc78bd | Implementation contract           |
   |  3  | Comet Extension             | 0x95DeDD64b551F05E9f59a101a519B024b6b116E7 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
@@ -121,7 +121,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Main market contract              |
-  |  2  | Comet Implementation        | 0x69Ad47985Da1b3aa3Fa3C1fE642c81C08De21941 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x5f86A682B2372b606A2F8eC980Da22F9bBE4c736 | Implementation contract           |
   |  3  | Comet Extension             | 0x271A200023c9512d37149dfbb62bf0F62a8D4680 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
@@ -175,7 +175,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Main market contract              |
-  |  2  | Comet Implementation        | 0x70175d5F312d2ac5B8d71D76C055d1C9f000eBa5 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x449DCc31af12A59938398B10625933C0cD3A6eDf | Implementation contract           |
   |  3  | Comet Extension             | 0x0be923b1716115d742E35Fa359d415598c50510F | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
@@ -235,7 +235,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract              |
-  |  2  | Comet Implementation        | 0xC89567205207E481c1162c7E8A03E27e8E619A77 | Implementation contract           |
+  |  2  | Comet Implementation        | 0xDdbc9DD0E1400E6d8441289E2b5F47B4839350Cd | Implementation contract           |
   |  3  | Comet Extension             | 0xDd18688Bb75Af704f3Fb1183e459C4d4D41132D9 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -335,7 +335,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xb125E6687d4313864e53df431d5425969c15Eb2F | Main market contract              |
-  |  2  | Comet Implementation        | 0x89e9b098bb0e3d09f4288fb2b9632B4dcB40bBF6 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x5Bb86246EFFa867521aE528328EAf536da85aE9b | Implementation contract           |
   |  3  | Comet Extension             | 0x220Da2686dC870aC0A97498A1845e610d2f13431 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -387,7 +387,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Main market contract              |
-  |  2  | Comet Implementation        | 0x8c087080253cd3Bd395AEcAF16f36Ee608acd96f | Implementation contract           |
+  |  2  | Comet Implementation        | 0xbF42493f669AD33081cD8e7F9D97B16A1E9C8826 | Implementation contract           |
   |  3  | Comet Extension             | 0xaA390749cb758Af4070E93478Fc743c72c18989c | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -436,7 +436,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x6B2F857d3F3A32BA7d9Ac46D0AD8E5bd6e2011f1 | Implementation contract           |
+  |  2  | Comet Implementation        | 0xE9d8e504f4Ce350FD5517EbD7fF62D6E2D3dd74A | Implementation contract           |
   |  3  | Comet Extension             | 0xbd4CfC08d64a848A9116A92Cd06D2f2bDC0a2505 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -952,7 +952,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x606174f62cd968d8e684c645080fa694c1D7786E | Main market contract        |
-  |  2  | Comet Implementation        | 0x602cc55D673f134c2D6C8085D10674EC4Df4D155 | Implementation contract     |
+  |  2  | Comet Implementation        | 0xc59DA41a151C7D70b3Eac29D191207C51E192ed0 | Implementation contract     |
   |  3  | Comet Extension             | 0xf528B4bCAc12dad0bFa114282b219ad706bA7f18 | Extension delegate contract |
   |  4  | Configurator                | 0xb77Cd4cD000957283D8BAf53cD782ECf029cF7DB | Market configurator         |
   |  5  | Configurator Implementation | 0x3c851CbE2740747f5cE4e8894842A313e5A3aee3 | Configurator implementation |
@@ -1520,35 +1520,35 @@
 
 |  #  | Date       | Network  | Market    | Daily Rewards |  Yearly Rewards | Lend Daily Rewards | Borrow Daily Rewards | COMP on Reward Contract |
 | :-: | :--------- | :------- | :-------- | ------------: | --------------: | -----------------: | -------------------: | ----------------------: |
-|  1  | 2026-03-07 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  2  | 2026-03-07 | arbitrum | cUSDCv3   |       24 COMP |       8760 COMP |            14 COMP |              10 COMP |               0.00 COMP |
-|  3  | 2026-03-07 | arbitrum | cUSDTv3   |       22 COMP |       8030 COMP |            11 COMP |              11 COMP |               0.00 COMP |
-|  4  | 2026-03-07 | arbitrum | cWETHv3   |        3 COMP |       1095 COMP |             1 COMP |               2 COMP |               0.00 COMP |
-|  5  | 2026-03-07 | base     | cAEROv3   |        5 COMP |       1825 COMP |             1 COMP |               4 COMP |               0.00 COMP |
-|  6  | 2026-03-07 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  7  | 2026-03-07 | base     | cUSDCv3   |       13 COMP |       4745 COMP |             9 COMP |               4 COMP |               0.00 COMP |
-|  8  | 2026-03-07 | base     | cUSDSv3   |       24 COMP |       8760 COMP |            15 COMP |               9 COMP |               0.00 COMP |
-|  9  | 2026-03-07 | base     | cWETHv3   |        4 COMP |       1460 COMP |             2 COMP |               2 COMP |               0.00 COMP |
-|  10 | 2026-03-07 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            1753.75 COMP |
-|  11 | 2026-03-07 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            1753.75 COMP |
-|  12 | 2026-03-07 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            2915.25 COMP |
-|  13 | 2026-03-07 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            2915.25 COMP |
-|  14 | 2026-03-07 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            2915.25 COMP |
-|  15 | 2026-03-07 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            2915.25 COMP |
-|  16 | 2026-03-07 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            2915.25 COMP |
-|  17 | 2026-03-07 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            2915.25 COMP |
-|  18 | 2026-03-07 | mantle   | cUSDev3   |        8 COMP |       2920 COMP |             4 COMP |               4 COMP |            1689.89 COMP |
-|  19 | 2026-03-07 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             298.37 COMP |
-|  20 | 2026-03-07 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             298.37 COMP |
-|  21 | 2026-03-07 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             298.37 COMP |
-|  22 | 2026-03-07 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             576.75 COMP |
-|  23 | 2026-03-07 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             576.75 COMP |
-|  24 | 2026-03-07 | ronin    | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  25 | 2026-03-07 | ronin    | cWRONv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  26 | 2026-03-07 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
-|  27 | 2026-03-07 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |               0.23 COMP |
-|  28 | 2026-03-07 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |               0.23 COMP |
-|     | **TOTAL**  |          |           |  **381 COMP** | **139065 COMP** |                    |                      |                         |
+|  1  | 2026-03-08 | arbitrum | cUSDCev3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  2  | 2026-03-08 | arbitrum | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  3  | 2026-03-08 | arbitrum | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  4  | 2026-03-08 | arbitrum | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  5  | 2026-03-08 | base     | cAEROv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  6  | 2026-03-08 | base     | cUSDbCv3  |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  7  | 2026-03-08 | base     | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  8  | 2026-03-08 | base     | cUSDSv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  9  | 2026-03-08 | base     | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  10 | 2026-03-08 | linea    | cUSDCv3   |        7 COMP |       2555 COMP |             4 COMP |               3 COMP |            1753.28 COMP |
+|  11 | 2026-03-08 | linea    | cWETHv3   |       10 COMP |       3650 COMP |             6 COMP |               4 COMP |            1753.28 COMP |
+|  12 | 2026-03-08 | mainnet  | cUSDCv3   |      110 COMP |      40150 COMP |            55 COMP |              55 COMP |            2813.09 COMP |
+|  13 | 2026-03-08 | mainnet  | cUSDSv3   |       17 COMP |       6205 COMP |            12 COMP |               5 COMP |            2813.09 COMP |
+|  14 | 2026-03-08 | mainnet  | cUSDTv3   |       60 COMP |      21900 COMP |            30 COMP |              30 COMP |            2813.09 COMP |
+|  15 | 2026-03-08 | mainnet  | cWBTCv3   |        1 COMP |        365 COMP |             1 COMP |               0 COMP |            2813.09 COMP |
+|  16 | 2026-03-08 | mainnet  | cWETHv3   |       30 COMP |      10950 COMP |            10 COMP |              20 COMP |            2813.09 COMP |
+|  17 | 2026-03-08 | mainnet  | cWstETHv3 |        3 COMP |       1095 COMP |             0 COMP |               3 COMP |            2813.09 COMP |
+|  18 | 2026-03-08 | mantle   | cUSDev3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |            1679.61 COMP |
+|  19 | 2026-03-08 | optimism | cUSDCv3   |        6 COMP |       2190 COMP |             2 COMP |               4 COMP |             280.93 COMP |
+|  20 | 2026-03-08 | optimism | cUSDTv3   |       10 COMP |       3650 COMP |             5 COMP |               5 COMP |             280.93 COMP |
+|  21 | 2026-03-08 | optimism | cWETHv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |             280.93 COMP |
+|  22 | 2026-03-08 | polygon  | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             576.75 COMP |
+|  23 | 2026-03-08 | polygon  | cUSDTv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |             576.75 COMP |
+|  24 | 2026-03-08 | ronin    | cWETHv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  25 | 2026-03-08 | ronin    | cWRONv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  26 | 2026-03-08 | scroll   | cUSDCv3   |        0 COMP |          0 COMP |             0 COMP |               0 COMP |               0.00 COMP |
+|  27 | 2026-03-08 | unichain | cUSDCv3   |        2 COMP |        730 COMP |             1 COMP |               1 COMP |               0.23 COMP |
+|  28 | 2026-03-08 | unichain | cWETHv3   |       20 COMP |       7300 COMP |            12 COMP |               8 COMP |               0.23 COMP |
+|     | **TOTAL**  |          |           |  **278 COMP** | **101470 COMP** |                    |                      |                         |
 
 ---
 
@@ -1556,18 +1556,18 @@
 
 |  #  | Date       | Network  | Current COMP Balance |
 | :-: | :--------- | :------- | -------------------: |
-|  1  | 2026-03-07 | arbitrum |            0.00 COMP |
-|  2  | 2026-03-07 | base     |            0.00 COMP |
-|  3  | 2026-03-07 | linea    |         1753.75 COMP |
-|  4  | 2026-03-07 | mainnet  |         2915.25 COMP |
-|  5  | 2026-03-07 | mantle   |         1689.89 COMP |
-|  6  | 2026-03-07 | optimism |          298.37 COMP |
-|  7  | 2026-03-07 | polygon  |          576.75 COMP |
-|  8  | 2026-03-07 | ronin    |            0.00 COMP |
-|  9  | 2026-03-07 | scroll   |            0.00 COMP |
-|  10 | 2026-03-07 | unichain |            0.23 COMP |
-|     | **TOTAL**  |          |     **7234.24 COMP** |
+|  1  | 2026-03-08 | arbitrum |            0.00 COMP |
+|  2  | 2026-03-08 | base     |            0.00 COMP |
+|  3  | 2026-03-08 | linea    |         1753.28 COMP |
+|  4  | 2026-03-08 | mainnet  |         2813.09 COMP |
+|  5  | 2026-03-08 | mantle   |         1679.61 COMP |
+|  6  | 2026-03-08 | optimism |          280.93 COMP |
+|  7  | 2026-03-08 | polygon  |          576.75 COMP |
+|  8  | 2026-03-08 | ronin    |            0.00 COMP |
+|  9  | 2026-03-08 | scroll   |            0.00 COMP |
+|  10 | 2026-03-08 | unichain |            0.23 COMP |
+|     | **TOTAL**  |          |     **7103.89 COMP** |
 
 ---
 
-*Last updated:* 2026-03-07 12:36:06.750 UTC
+*Last updated:* 2026-03-08 12:37:01.365 UTC
