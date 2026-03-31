@@ -33,6 +33,29 @@ jobs:
           fetch-depth: 1
           lfs: false
 
+      - name: Ensure Git LFS is available
+        if: runner.os == 'Linux'
+        run: |
+          if git lfs version >/dev/null 2>&1; then
+            git lfs version
+            exit 0
+          fi
+
+          if ! command -v apt-get >/dev/null 2>&1; then
+            echo "git-lfs is missing and apt-get is unavailable on this runner"
+            exit 1
+          fi
+
+          if command -v sudo >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y git-lfs
+          else
+            apt-get update
+            apt-get install -y git-lfs
+          fi
+
+          git lfs version
+
       - name: Cache Git LFS objects (artifacts)
         uses: actions/cache@v4
         with:
@@ -62,7 +85,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-          cache: 'yarn'
+
+      - name: Enable Corepack (Yarn)
+        run: corepack enable
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
