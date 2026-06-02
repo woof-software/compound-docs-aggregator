@@ -69,7 +69,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
       this.logger.log(`JSON generated: ${jsonPath}`);
 
       // Read the structured data for markdown generation
-      const nestedMarketsData = this.jsonService.readMarkets(); // market rewards -> rewards table
+      const nestedMarketsData = this.jsonService.readMarkets();
 
       // Update README.md with hierarchical structure
       this.markdownService.write(nestedMarketsData, jsonPath);

@@ -9,8 +9,6 @@ export interface RootJson {
   [key: string]: any;
 }
 
-export type RewardConfig = readonly [Address, ...unknown[]];
-
 export interface AssetInfo {
   asset: Address;
   priceFeed: Address;
@@ -26,8 +24,6 @@ export interface CometContract {
   baseTokenPriceFeed(): Promise<Address>;
   extensionDelegate(): Promise<Address>;
   governor(): Promise<Address>;
-  baseTrackingSupplySpeed(): Promise<bigint>;
-  baseTrackingBorrowSpeed(): Promise<bigint>;
   numAssets(): Promise<bigint>;
   getAssetInfo(index: number): Promise<AssetInfo>;
   supplyKink(): Promise<bigint>;
@@ -50,17 +46,6 @@ export interface ConfiguratorContract {
 
 export interface TimelockContract {
   admin(): Promise<Address>;
-}
-
-export interface RewardsConfigContract {
-  rewardConfig(cometAddress: Address): Promise<RewardConfig>;
-}
-
-export interface RewardsOwedContract {
-  getRewardOwed(
-    cometAddress: Address,
-    userAddress: Address,
-  ): Promise<[Address, bigint]>;
 }
 
 export interface Erc20Contract {
@@ -177,34 +162,6 @@ export interface CollateralInfo {
 }
 
 /**
- * One record in the rewards summary (Date of record + computed yields).
- */
-export interface RewardRecord {
-  date: string; // ISO date or "Date of record"
-  network: string; // e.g. "Arbitrum"
-  market: string; // e.g. "USDC.e"
-  dailyRewards: number; // e.g. "3 COMP"
-  yearlyRewards: number; // e.g. "3 COMP * 365"
-  lendDailyRewards: number; // e.g. "1 COMP"
-  borrowDailyRewards: number; // e.g. "2 COMP"
-  compAmountOnRewardContract: number; // e.g. raw COMP balance on the rewards contract
-  lendAprBoost?: number; // optional APR boost number
-  borrowAprBoost?: number; // optional APR boost number
-}
-
-export interface NetworkCompBalanceRecord {
-  idx: number;
-  date: string; // ISO date or "Date of record"
-  network: string; // e.g. "Arbitrum"
-  currentCompBalance: number; // e.g. "100 COMP"
-}
-
-export interface NetworkCompBalanceTable {
-  networks: NetworkCompBalanceRecord[];
-  totalCompBalance: number; // total COMP balance across all networks
-}
-
-/**
  * The full JSON shape for one Comet market.
  */
 export interface MarketData {
@@ -214,13 +171,6 @@ export interface MarketData {
   curve: CurveMap;
   baseToken: BaseTokenInfo;
   collaterals: CollateralInfo[];
-  rewardsTable: RewardRecord | null;
-}
-
-export interface RewardsTable {
-  marketRewards: RewardRecord[];
-  totalDailyRewards: number; // e.g. "3 COMP"
-  totalYearlyRewards: number; // e.g. "3 COMP * 365"
 }
 
 export interface NestedMarkets {
@@ -234,6 +184,4 @@ export interface NestedMarkets {
       };
     };
   };
-  rewards: RewardsTable;
-  networkCompBalance: NetworkCompBalanceTable;
 }
