@@ -4,15 +4,12 @@ import { MulticallProvider } from 'ethers-multicall-provider';
 
 import { ProviderFactory } from 'network/provider.factory';
 import { NetworkService } from 'network/network.service';
-import { DAY_IN_SECONDS, YEAR_IN_DAYS } from 'common/constants';
 import { JsonService } from 'json/json.service';
 import CometABI from './abi/CometABI.json';
 import CometExtensionABI from './abi/CometExtensionABI.json';
 import ConfiguratorABI from './abi/ConfiguratorABI.json';
 import TimelockABI from './abi/TimelockABI.json';
 import ERC20ABI from './abi/ERC20ABI.json';
-import RewardsABI from './abi/RewardsABI.json';
-import LegacyRewardsABI from './abi/LegacyRewardsABI.json';
 import {
   CollateralInfo,
   CometContract,
@@ -24,15 +21,12 @@ import {
   Erc20Contract,
   MarketData,
   ProxyAddressInfo,
-  RewardRecord,
-  RewardsConfigContract,
-  RewardsOwedContract,
   RootJson,
   TimelockContract,
 } from './contract.types';
 import { Address } from 'common/types/address';
 import { formatSupplyCap } from './helpers/format-supply-cap';
-import { CURVE_KEYS, LEGACY_REWARDS_NETWORKS } from './contract.constants';
+import { CURVE_KEYS } from './contract.constants';
 import { toSafeInteger } from '../common/helpers/to-safe-integer';
 
 @Injectable()
@@ -89,28 +83,6 @@ export class ContractService {
     return this.createContract<TimelockContract>(address, TimelockABI, runner);
   }
 
-  private getRewardsOwedContract(
-    address: Address,
-    runner: ethers.ContractRunner,
-  ): RewardsOwedContract {
-    return this.createContract<RewardsOwedContract>(
-      address,
-      RewardsABI,
-      runner,
-    );
-  }
-
-  private getRewardsConfigContract(
-    address: Address,
-    runner: ethers.ContractRunner,
-    network: string,
-  ): RewardsConfigContract {
-    const abi = LEGACY_REWARDS_NETWORKS.has(network)
-      ? LegacyRewardsABI
-      : RewardsABI;
-    return this.createContract<RewardsConfigContract>(address, abi, runner);
-  }
-
   private getErc20Contract(
     address: Address,
     runner: ethers.ContractRunner,
@@ -131,49 +103,6 @@ export class ContractService {
       throw new Error(`Missing ${label} address`);
     }
     return address;
-  }
-
-  /**
-   * Fetch owed rewards for a list of (rewardsAddress, cometAddress, userAddress).
-   * Returns sum of owed amounts (bigint) for this batch.
-   */
-  public async sumOwedForUsersV3(params: {
-    network: string;
-    users: {
-      userAddress: Address;
-      cometAddress: Address;
-      rewardsAddress: Address;
-    }[];
-    chunkSize?: number;
-  }): Promise<bigint> {
-    const { network, users, chunkSize = 1000 } = params;
-
-    if (!users.length) return 0n;
-
-    const multicall = this.providerFactory.multicall(network);
-
-    let sum = 0n;
-
-    for (let i = 0; i < users.length; i += chunkSize) {
-      const chunk = users.slice(i, i + chunkSize);
-
-      const results = await Promise.all(
-        chunk.map((d) => {
-          const rewards = this.getRewardsOwedContract(
-            d.rewardsAddress,
-            multicall,
-          );
-          // getRewardOwed returns [token, owed]
-          return rewards.getRewardOwed(d.cometAddress, d.userAddress);
-        }),
-      );
-
-      for (const [, amount] of results) {
-        sum += amount;
-      }
-    }
-
-    return sum;
   }
 
   async readMarketData(
@@ -270,10 +199,9 @@ export class ContractService {
       'base token decimals',
     );
 
-    const [curveData, collaterals, rewardsTable] = await Promise.all([
+    const [curveData, collaterals] = await Promise.all([
       this.getCurveData(cometContract, networkKey, cometSymbol),
       this.getCollaterals(cometContract, multicall),
-      this.getRewardsTable(root, multicall, networkKey, cometSymbol),
     ]);
 
     const cometContractImplementation = this.requireAddress(
@@ -317,7 +245,6 @@ export class ContractService {
         priceFeed: baseTokenPriceFeedAddress,
       },
       collaterals,
-      rewardsTable,
     };
   }
 
@@ -559,76 +486,5 @@ export class ContractService {
     );
 
     return collaterals;
-  }
-
-  private async getRewardsTable(
-    root: RootJson,
-    multicall: MulticallProvider,
-    network: string,
-    market: string,
-  ): Promise<RewardRecord | null> {
-    try {
-      const date = this.getDateString();
-
-      const cometAddress = root.comet;
-      const cometContract = this.getCometContract(cometAddress, multicall);
-
-      const rewardsAddress = root.rewards;
-      const rewardsContract = this.getRewardsConfigContract(
-        rewardsAddress,
-        multicall,
-        network,
-      );
-
-      const [lendRewardsSpeed, borrowRewardsSpeed, rewardConfig] =
-        await Promise.all([
-          cometContract.baseTrackingSupplySpeed(),
-          cometContract.baseTrackingBorrowSpeed(),
-          rewardsContract.rewardConfig(cometAddress),
-        ]);
-
-      const lendDailyRewards = Math.round(
-        Number(ethers.formatUnits(lendRewardsSpeed, 15)) * DAY_IN_SECONDS,
-      );
-      const borrowDailyRewards = Math.round(
-        Number(ethers.formatUnits(borrowRewardsSpeed, 15)) * DAY_IN_SECONDS,
-      );
-      const dailyRewards = lendDailyRewards + borrowDailyRewards;
-      const yearlyRewards = dailyRewards * YEAR_IN_DAYS;
-      const [tokenAddress] = rewardConfig;
-
-      let compAmountOnRewardContract = 0;
-      if (tokenAddress && tokenAddress !== ethers.ZeroAddress) {
-        const tokenContract = this.getErc20Contract(tokenAddress, multicall);
-        try {
-          const compBalance = await tokenContract.balanceOf(rewardsAddress);
-          compAmountOnRewardContract = Number(ethers.formatEther(compBalance));
-        } catch (error) {
-          this.logger.error(
-            `Failed to read reward token balance for rewardsAddress ${rewardsAddress} and tokenAddress ${tokenAddress}.`,
-            error instanceof Error ? error.message : String(error),
-          );
-        }
-      }
-
-      return {
-        date,
-        network,
-        market,
-        dailyRewards,
-        yearlyRewards,
-        lendDailyRewards,
-        borrowDailyRewards,
-        compAmountOnRewardContract,
-        // lendAprBoost: null,
-        // borrowAprBoost: null,
-      };
-    } catch (error) {
-      this.logger.error(
-        `Error getting rewards table for network ${network} and market ${market}:`,
-        error instanceof Error ? error.message : String(error),
-      );
-      return null;
-    }
   }
 }
