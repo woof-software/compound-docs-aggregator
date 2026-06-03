@@ -1,7 +1,8 @@
 export interface NetworkConfig {
   network: string;
   chainId: number;
-  url: string;
+  /** Name of the env var whose value is the JSON-RPC URL (e.g. RPC_MAINNET). */
+  urlEnvVar: string;
   batchMaxCount?: number;
   sortPosition: number; // Position matches compound.finance/markets page
   blockscanOrigin: string; // Blockscan explorer URL

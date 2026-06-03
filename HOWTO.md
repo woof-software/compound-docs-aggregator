@@ -14,15 +14,23 @@ yarn install
 
 ## Environment Setup
 
-Create a `.env` file in the project root:
+Copy `.env.example` to `.env` and set a **full RPC URL per chain**:
 
-```env
-ANKR_KEY=your_ankr_api_key_here
-UNICHAIN_QUICKNODE_KEY=your_unichain_api_key_here
-GITHUB_TOKEN_PAT=your_github_pat_for_compound_finance_docs_optional
+```bash
+cp .env.example .env
 ```
 
-> If a network provider URL requires an API key, the corresponding env var must be set.
+Each `RPC_*` variable holds the **full endpoint URL** for that chain (see `.env.example`).
+
+Public endpoints (`RPC_RONIN`, `RPC_AVALANCHE`, `RPC_FUJI`) are listed there too — set them in `.env` like the rest.
+
+Optional:
+
+```env
+GITHUB_TOKEN_PAT=...   # for compound-finance docs PR workflow
+```
+
+For CI, add matching repository secrets `RPC_MAINNET`, `RPC_ARBITRUM`, etc. (same names as in `.env.example`).
 
 ---
 
@@ -64,17 +72,17 @@ yarn cli:pull-request
 
 ## Add Network
 
-Add an entry to `src/config/networks.config.ts`:
+Add an entry to `src/config/networks.config.ts` and a matching `RPC_*` variable in `.env.example`:
 
 ```ts
 {
   network: string,
   chainId: number,
-  url: string,
+  urlEnvVar: 'RPC_MY_NETWORK', // env var name; value in .env is the full RPC URL
   sortPosition: number,
   blockscanOrigin: string,
   displayName: string,
-  comp?: string,           // optional, for contracts table
+  comp?: string,
   svrFeeRecipient?: string,
   svrFeeReceiver?: string,
 }

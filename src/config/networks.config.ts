@@ -1,17 +1,11 @@
 import { registerAs } from '@nestjs/config';
 import { NetworkConfig } from 'network/network.types';
 
-const ankrKey = process.env.ANKR_KEY;
-if (!ankrKey) throw new Error('ANKR_KEY was not provided!');
-
-const quickNodeKey = process.env.UNICHAIN_QUICKNODE_KEY;
-if (!quickNodeKey) throw new Error('UNICHAIN_QUICKNODE_KEY was not provided!');
-
 export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'mainnet',
     chainId: 1,
-    url: `https://rpc.ankr.com/eth/${ankrKey}`,
+    urlEnvVar: 'RPC_MAINNET',
     sortPosition: 1,
     blockscanOrigin: 'https://etherscan.io/',
     displayName: 'Ethereum Mainnet',
@@ -21,7 +15,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'optimism',
     chainId: 10,
-    url: `https://rpc.ankr.com/optimism/${ankrKey}`,
+    urlEnvVar: 'RPC_OPTIMISM',
     sortPosition: 2,
     blockscanOrigin: 'https://optimistic.etherscan.io/',
     displayName: 'Optimism',
@@ -30,7 +24,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'unichain',
     chainId: 130,
-    url: `https://multi-boldest-patina.unichain-mainnet.quiknode.pro/${quickNodeKey}`,
+    urlEnvVar: 'RPC_UNICHAIN',
     sortPosition: 3,
     blockscanOrigin: 'https://uniscan.xyz/',
     displayName: 'Unichain',
@@ -39,7 +33,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'polygon',
     chainId: 137,
-    url: `https://rpc.ankr.com/polygon/${ankrKey}`,
+    urlEnvVar: 'RPC_POLYGON',
     sortPosition: 4,
     blockscanOrigin: 'https://polygonscan.com/',
     displayName: 'Polygon Mainnet',
@@ -48,7 +42,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'ronin',
     chainId: 2020,
-    url: 'https://ronin.drpc.org',
+    urlEnvVar: 'RPC_RONIN',
     batchMaxCount: 3,
     sortPosition: 5,
     blockscanOrigin: 'https://app.roninchain.com/',
@@ -57,7 +51,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'mantle',
     chainId: 5000,
-    url: `https://rpc.ankr.com/mantle/${ankrKey}`,
+    urlEnvVar: 'RPC_MANTLE',
     sortPosition: 6,
     blockscanOrigin: 'https://mantlescan.xyz/',
     displayName: 'Mantle',
@@ -66,7 +60,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'base',
     chainId: 8453,
-    url: `https://rpc.ankr.com/base/${ankrKey}`,
+    urlEnvVar: 'RPC_BASE',
     sortPosition: 7,
     blockscanOrigin: 'https://basescan.org/',
     displayName: 'Base',
@@ -76,7 +70,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'arbitrum',
     chainId: 42161,
-    url: `https://rpc.ankr.com/arbitrum/${ankrKey}`,
+    urlEnvVar: 'RPC_ARBITRUM',
     sortPosition: 8,
     blockscanOrigin: 'https://arbiscan.io/',
     displayName: 'Arbitrum',
@@ -86,7 +80,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'linea',
     chainId: 59144,
-    url: `https://rpc.ankr.com/linea/${ankrKey}`,
+    urlEnvVar: 'RPC_LINEA',
     sortPosition: 9,
     blockscanOrigin: 'https://lineascan.build/',
     displayName: 'Linea',
@@ -95,7 +89,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'scroll',
     chainId: 534352,
-    url: `https://rpc.ankr.com/scroll/${ankrKey}`,
+    urlEnvVar: 'RPC_SCROLL',
     sortPosition: 10,
     blockscanOrigin: 'https://scrollscan.com/',
     displayName: 'Scroll',
@@ -103,7 +97,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'avalanche',
     chainId: 43114,
-    url: 'https://api.avax.network/ext/bc/C/rpc',
+    urlEnvVar: 'RPC_AVALANCHE',
     sortPosition: 11,
     blockscanOrigin: 'https://snowtrace.io/',
     displayName: 'Avalanche',
@@ -111,7 +105,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'sepolia',
     chainId: 11155111,
-    url: `https://rpc.ankr.com/eth_sepolia/${ankrKey}`,
+    urlEnvVar: 'RPC_SEPOLIA',
     sortPosition: 12,
     blockscanOrigin: 'https://sepolia.etherscan.io/',
     displayName: 'Ethereum Sepolia Testnet',
@@ -119,7 +113,7 @@ export default registerAs('networks', (): NetworkConfig[] => [
   {
     network: 'fuji',
     chainId: 43113,
-    url: 'https://api.avax-test.network/ext/bc/C/rpc',
+    urlEnvVar: 'RPC_FUJI',
     sortPosition: 15,
     blockscanOrigin: 'https://testnet.snowtrace.io/',
     displayName: 'Avalanche Fuji Testnet',

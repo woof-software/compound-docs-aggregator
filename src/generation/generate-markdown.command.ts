@@ -5,6 +5,7 @@ import axios from 'axios';
 import { GithubService } from 'github/github.service';
 import { ContractService } from 'contract/contract.service';
 import { JsonService } from 'json/json.service';
+import { ProviderFactory } from 'network/provider.factory';
 import { MarkdownService } from './markdown.service';
 
 @Command({ name: 'markdown:generate', description: 'Generate markdown' })
@@ -16,6 +17,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
     private readonly contractService: ContractService,
     private readonly jsonService: JsonService,
     private readonly markdownService: MarkdownService,
+    private readonly providerFactory: ProviderFactory,
   ) {
     super();
   }
@@ -50,6 +52,10 @@ export class GenerateMarkdownCommand extends CommandRunner {
         try {
           marketData = await this.contractService.readMarketData(rootObj, path);
         } catch (err) {
+          const network = path.split('/')[0];
+          if (network) {
+            this.providerFactory.evict(network);
+          }
           this.logger.error(
             `Error reading on-chain data for ${path}:`,
             err instanceof Error ? err.message : String(err),
@@ -85,6 +91,8 @@ export class GenerateMarkdownCommand extends CommandRunner {
     } catch (error) {
       this.logger.error('An error occurred while generating markdown:', error);
       return;
+    } finally {
+      this.providerFactory.destroyAll();
     }
   }
 }
