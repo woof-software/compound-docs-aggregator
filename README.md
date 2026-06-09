@@ -1165,7 +1165,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xF25212E676D1F7F89Cd72fFEe66158f541246445 | Main market contract        |
-  |  2  | Comet Implementation        | 0x19D0F32E00b08bcB7B386c72aeb1b768e6472dbb | Implementation contract     |
+  |  2  | Comet Implementation        | 0x5C5e6E6FbC218dba91E4911C606A8363d26C7AeB | Implementation contract     |
   |  3  | Comet Extension             | 0x5Eba6Ec97843163C92Ab48a7aC0CCc8423c652b1 | Extension delegate contract |
   |  4  | Configurator                | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Market configurator         |
   |  5  | Configurator Implementation | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Configurator implementation |
@@ -1216,7 +1216,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xaeB318360f27748Acb200CE616E389A6C9409a07 | Main market contract        |
-  |  2  | Comet Implementation        | 0xEb0DcFa34719663505711D20111d3621B7801c50 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x7512Ae36102330bDd30229B15C18f79b91523d42 | Implementation contract     |
   |  3  | Comet Extension             | 0xe6eb5B9b85cFF2C84Df3De6e7855bC9E76f034d5 | Extension delegate contract |
   |  4  | Configurator                | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Market configurator         |
   |  5  | Configurator Implementation | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Configurator implementation |
@@ -1465,4 +1465,4 @@
 
 ---
 
-*Last updated:* 2026-06-08 15:40:27.536 UTC
+*Last updated:* 2026-06-09 14:37:02.023 UTC
