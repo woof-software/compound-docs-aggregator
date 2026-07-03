@@ -495,7 +495,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991 | Main market contract        |
-  |  2  | Comet Implementation        | 0x3B51bc728d8C0b56E6fCB9aEecE671Afbb9D1b01 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x235683bAf251b30158dBF66439D98ae737686d73 | Implementation contract     |
   |  3  | Comet Extension             | 0xBC7B80c97b560e83A229a6417Ed4fC2d75Fc1209 | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -512,13 +512,13 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1712328767 |         1712328767 | 2026-06-02 |
-  |  3  | Supply Rate Slope High |        96207508878 |        96207508878 | 2026-06-02 |
+  |  2  | Supply Rate Slope Low  |         1871955859 |         1712328767 | 2026-07-03 |
+  |  3  | Supply Rate Slope High |        96292935058 |        96207508878 | 2026-07-03 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  6  | Borrow Rate Slope Low  |         1585489599 |         1585489599 | 2026-06-02 |
+  |  6  | Borrow Rate Slope Low  |                  0 |         1585489599 | 2026-07-03 |
   |  7  | Borrow Rate Slope High |       107813292744 |       107813292744 | 2026-06-02 |
-  |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2026-06-02 |
+  |  8  | Borrow Rate Base       |         1902587519 |          475646879 | 2026-07-03 |
 
 **🪙 Base Token**
 
@@ -530,9 +530,9 @@
 
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
   | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Wrapped Ether                   | WETH   | 0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f |       18 | 0x3c6Cd9Cc7c7a4c2Cf5a82734CD249D7D593354dA | 83.0% | 90.0% |  5.00% |        5.88x |
-  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0x0746928E47f858944D189996829Ca711f64461a7 | 82.0% | 87.0% |  5.00% |        5.56x |
-  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0x7A99092816C8BD5ec8ba229e3a6E6Da1E628E1F9 | 80.0% | 85.0% | 10.00% |        5.00x |
+  |  1  | Wrapped Ether                   | WETH   | 0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f |       18 | 0x3c6Cd9Cc7c7a4c2Cf5a82734CD249D7D593354dA | 42.0% | 90.0% |  5.00% |        1.72x |
+  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0x0746928E47f858944D189996829Ca711f64461a7 | 41.0% | 87.0% |  5.00% |        1.69x |
+  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0x7A99092816C8BD5ec8ba229e3a6E6Da1E628E1F9 | 40.0% | 85.0% | 10.00% |        1.67x |
 
 </details>
 
@@ -544,7 +544,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x60F2058379716A64a7A5d29219397e79bC552194 | Main market contract        |
-  |  2  | Comet Implementation        | 0xE8064Be46b6F5C5AeE0a21Bec454840896108590 | Implementation contract     |
+  |  2  | Comet Implementation        | 0xA53E807a433d552a03949cD6B4ee756d1fF2a4d6 | Implementation contract     |
   |  3  | Comet Extension             | 0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -561,13 +561,13 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |          475646879 |          475646879 | 2026-06-02 |
-  |  3  | Supply Rate Slope High |         4280821917 |         4280821917 | 2026-06-02 |
+  |  2  | Supply Rate Slope Low  |          467988964 |          475646879 | 2026-07-03 |
+  |  3  | Supply Rate Slope High |         4273639649 |         4280821917 | 2026-07-03 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  6  | Borrow Rate Slope Low  |          176165511 |          176165511 | 2026-06-02 |
+  |  6  | Borrow Rate Slope Low  |                  0 |          176165511 | 2026-07-03 |
   |  7  | Borrow Rate Slope High |         4756468797 |         4756468797 | 2026-06-02 |
-  |  8  | Borrow Rate Base       |          317097919 |          317097919 | 2026-06-02 |
+  |  8  | Borrow Rate Base       |          475646879 |          317097919 | 2026-07-03 |
 
 **🪙 Base Token**
 
@@ -580,9 +580,9 @@
   |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
   | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
   |  1  | Renzo Restaked ETH              | ezETH  | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x13933885C9A392Ce73f396707EC61f30a8b05e37 | 90.0% | 93.0% |  6.00% |       10.00x |
-  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B | 90.0% | 93.0% |  3.00% |       10.00x |
-  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  4  | Wrapped eETH                    | weETH  | 0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6 |       18 | 0xfd5282968119c348C1E47fBCaDD13069d9857Bf2 | 90.0% | 93.0% |  4.00% |       10.00x |
+  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B | 45.0% | 93.0% |  3.00% |        1.82x |
+  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 40.0% | 85.0% | 10.00% |        1.67x |
+  |  4  | Wrapped eETH                    | weETH  | 0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6 |       18 | 0xfd5282968119c348C1E47fBCaDD13069d9857Bf2 | 45.0% | 93.0% |  4.00% |        1.82x |
   |  5  | rsETHWrapper                    | wrsETH | 0xD2671165570f41BBB3B0097893300b6EB6101E6C |       18 | 0x8D50B433C0Dcf3636c29695122464Df5deb37eDc |  0.0% | 93.0% |  4.00% |        1.00x |
 
 </details>
@@ -1465,4 +1465,4 @@
 
 ---
 
-*Last updated:* 2026-07-02 12:42:47.942 UTC
+*Last updated:* 2026-07-03 13:50:33.902 UTC
