@@ -709,69 +709,6 @@
 </details>
 
 <details>
-<summary><strong>cUSDTv3</strong></summary>
-
-**📋 Contracts**
-
-  |  #  | Name                        | Address                                    | Note                               |
-  | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
-  |  1  | Comet                       | 0x3Afdc9BCA9213A35503b077a6072F3D0d5AB0840 | Main market contract               |
-  |  2  | Comet Implementation        | 0x948e4B70338561D279B74A91fe5e8cB8F3f2B11E | Implementation contract            |
-  |  3  | Comet Extension             | 0xe3458a0BdBd5A413d3731595C5Eb7C4CD6a14DD1 | Extension delegate contract        |
-  |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
-  |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
-  |  6  | Comet Admin                 | 0x1EC63B5883C3481134FD50D5DAebc83Ecd2E8779 | Admin contract                     |
-  |  7  | Comet Factory               | 0x1fA408992e74A42D1787E28b880C451452E8C958 | Factory contract                   |
-  |  8  | Rewards                     | 0x1B0e765F6224C21223AeA2af16c1C46E38885a40 | Rewards contract                   |
-  |  9  | Bulker                      | 0xa397a8C2086C554B531c02E29f3291c9704B00c7 | Bulker contract                    |
-  |  10 | Governor                    | 0x309a862bbC1A00e45506cB8A802D1ff10004c8C0 | Governance contract                |
-  |  11 | Timelock                    | 0x6d903f6003cca6255D85CcA4D3B5E5146dC33925 | Timelock contract                  |
-  |  12 | COMP                        | 0xc00e94cb662c3520282e6f5717214004a7f26888 | COMP Token                         |
-  |  12 | SVR Fee Recipient           | 0xd9496f2a3fd2a97d8a4531d92742f3c8f53183cb | SVR protocol fee recipient address |
-
-**📈 Interest Rate Curve**
-
-  |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
-  | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
-  |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1141552511 |         1141552511 | 2026-06-02 |
-  |  3  | Supply Rate Slope High |       101344495180 |       101344495180 | 2026-06-02 |
-  |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
-  |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  6  | Borrow Rate Slope Low  |          880834601 |          880834601 | 2026-06-02 |
-  |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2026-06-02 |
-  |  8  | Borrow Rate Base       |          475646879 |          475646879 | 2026-06-02 |
-
-**🪙 Base Token**
-
-  |  #  | Name       | Symbol | Address                                    | Decimals | Price Feed                                 |
-  | :-: | :--------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- |
-  |  1  | Tether USD | USDT   | 0xdAC17F958D2ee523a2206206994597C13D831ec7 |        6 | 0x3E7d1eAB13ad0104d2750B8863b489D65364e32D |
-
-**💰 Collaterals**
-
-  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Compound                        | COMP   | 0xc00e94Cb662C3520282E6f5717214004A7f26888 |       18 | 0x69B50fF403E995d9c4441a303438D9049dAC8cCD | 50.0% | 70.0% | 25.00% |        2.00x |
-  |  2  | Wrapped Ether                   | WETH   | 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2 |       18 | 0xc0053f3FBcCD593758258334Dfce24C2A9A673aD | 83.0% | 88.0% |  7.00% |        5.88x |
-  |  3  | Wrapped BTC                     | WBTC   | 0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599 |        8 | 0xc8E4c3F58d5FC4409522503927Ecea057EbbA1fc | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  4  | Uniswap                         | UNI    | 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984 |       18 | 0x553303d460EE0afB37EdFf9bE42922D8FF63220e | 68.0% | 74.0% | 17.00% |        3.13x |
-  |  5  | ChainLink Token                 | LINK   | 0x514910771AF9Ca656af840dff83E8264EcF986CA |       18 | 0x83B34662f65532e611A87EBed38063Dec889D5A7 | 73.0% | 79.0% | 17.00% |        3.70x |
-  |  6  | Wrapped liquid staked Ether 2.0 | wstETH | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0 |       18 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 82.0% | 86.0% |  9.00% |        5.56x |
-  |  7  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x2D09142Eae60Fd8BD454a276E95AeBdFFD05722d | 80.0% | 85.0% |  5.00% |        5.00x |
-  |  8  | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0x7b03a016dBC36dB8e05C480192faDcdB0a06bC37 | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  9  | Wrapped Mountain Protocol USD   | wUSDM  | 0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  0.00% |        1.00x |
-  |  10 | Staked FRAX                     | sFRAX  | 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32 |       18 | 0x8C74B2811D2F1aD65517ADB5C65773c1E520ed2f | 88.0% | 90.0% |  5.00% |        8.33x |
-  |  11 | mETH                            | mETH   | 0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa |       18 | 0x60F2058379716A64a7A5d29219397e79bC552194 | 80.0% | 85.0% |  5.00% |        5.00x |
-  |  12 | Wrapped eETH                    | weETH  | 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee |       18 | 0x4F12633d511dC3049DE1ea923b7047fBeD0070D2 | 75.0% | 80.0% | 10.00% |        4.00x |
-  |  13 | Staked deUSD                    | sdeUSD | 0x5C5b196aBE0d54485975D1Ec29617D42D9198326 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  8.00% |        1.00x |
-  |  14 | deUSD                           | deUSD  | 0x15700B564Ca08D9439C58cA5053166E8317aa138 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  8.00% |        1.00x |
-  |  15 | Tether Gold                     | XAUt   | 0x68749665FF8D2d112Fa859AA293F07A622782F38 |        6 | 0x214eD9Da11D2fbe465a6fc601a91E62EbEc1a0D6 | 70.0% | 75.0% | 10.00% |        3.33x |
-  |  16 | USDe                            | USDe   | 0x4c9EDD5852cd905f086C759E8383e09bff1E68B3 |       18 | 0xa569d910839Ae8865Da8F8e70FfFb0cBA869F961 |  0.0% | 94.0% |  4.00% |        1.00x |
-
-</details>
-
-<details>
 <summary><strong>cWBTCv3</strong></summary>
 
 **📋 Contracts**
@@ -1465,4 +1402,4 @@
 
 ---
 
-*Last updated:* 2026-07-13 14:19:52.271 UTC
+*Last updated:* 2026-07-14 13:20:14.698 UTC
