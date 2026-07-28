@@ -335,7 +335,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xb125E6687d4313864e53df431d5425969c15Eb2F | Main market contract              |
-  |  2  | Comet Implementation        | 0x731fD1BA790e97d61Ef16B031cF76ffE4e70e765 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x079990620d904fB1FdE68b6d54a5f8647134CDE9 | Implementation contract           |
   |  3  | Comet Extension             | 0x220Da2686dC870aC0A97498A1845e610d2f13431 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -374,7 +374,7 @@
   |  1  | Coinbase Wrapped Staked ETH     | cbETH  | 0x2Ae3F1Ec7F1F5012CFEab0185bfc7aa3cf0DEc22 |       18 | 0x0866Fc8a76BfC485B8E8C7D543A54bd72F015b1C | 80.0% | 85.0% | 10.00% |        5.00x |
   |  2  | Wrapped Ether                   | WETH   | 0x4200000000000000000000000000000000000006 |       18 | 0xe6eb5B9b85cFF2C84Df3De6e7855bC9E76f034d5 | 85.0% | 90.0% |  5.00% |        6.67x |
   |  3  | Wrapped liquid staked Ether 2.0 | wstETH | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452 |       18 | 0x1738FCAe8D5A6aEf39985dF31Fe60e5Dc5e1a7b3 | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  4  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991 | 80.0% | 85.0% |  5.00% |        5.00x |
+  |  4  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x8C74B2811D2F1aD65517ADB5C65773c1E520ed2f | 80.0% | 85.0% |  5.00% |        5.00x |
   |  5  | Base tBTC v2                    | tBTC   | 0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b |       18 | 0x6D75BFB5A5885f841b132198C9f0bE8c872057BF | 80.0% | 85.0% | 10.00% |        5.00x |
 
 </details>
@@ -387,7 +387,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Main market contract              |
-  |  2  | Comet Implementation        | 0xbF42493f669AD33081cD8e7F9D97B16A1E9C8826 | Implementation contract           |
+  |  2  | Comet Implementation        | 0xD319554aDF19575463b7f06A147883bE0C00E721 | Implementation contract           |
   |  3  | Comet Extension             | 0xaA390749cb758Af4070E93478Fc743c72c18989c | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -424,7 +424,7 @@
   |  #  | Name                 | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |    LP | Max Leverage |
   | :-: | :------------------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | ----: | -----------: |
   |  1  | Savings USDS         | sUSDS  | 0x5875eEE11Cf8398102FdAd704C9E96607675467a |       18 | 0x72e9B6F907365d76C6192aD49C0C5ba356b7Fa48 | 93.0% | 95.0% | 4.00% |       14.29x |
-  |  2  | Coinbase Wrapped BTC | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x07DA0E54543a844a80ABE69c8A12F22B3aA59f9D | 80.0% | 85.0% | 5.00% |        5.00x |
+  |  2  | Coinbase Wrapped BTC | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x8C74B2811D2F1aD65517ADB5C65773c1E520ed2f | 80.0% | 85.0% | 5.00% |        5.00x |
 
 </details>
 
@@ -1465,4 +1465,4 @@
 
 ---
 
-*Last updated:* 2026-07-27 14:19:00.668 UTC
+*Last updated:* 2026-07-28 13:55:57.681 UTC
