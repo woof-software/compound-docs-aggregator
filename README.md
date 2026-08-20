@@ -14,12 +14,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xA5EDBDD9646f8dFF606d7448e414884C7d905dCA | Main market contract              |
-  |  2  | Comet Implementation        | 0x5aff3B789daB684Fe82173D4D58d873f84921b52 | Implementation contract           |
-  |  3  | Comet Extension             | 0x5D409e56D886231aDAf00c8775665AD0f9897b56 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x5Ee554a59b93Bb61A50a0d66Eb002Fa254043950 | Implementation contract           |
+  |  3  | Comet Extension             | 0xb971973b595C43cb59492dd0ec9b56c648daea33 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
   |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
   |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
@@ -65,12 +65,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x616491636952285f18Cb6A973fD33b940FC5e3e7 | Implementation contract           |
-  |  3  | Comet Extension             | 0x95DeDD64b551F05E9f59a101a519B024b6b116E7 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x5D3DfD6B0C855DCfE2CB768bB0800D16553C758b | Implementation contract           |
+  |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
   |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
   |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
@@ -121,12 +121,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Main market contract              |
-  |  2  | Comet Implementation        | 0x40E2B4Cace64051D7d9De25744849156a5CD514B | Implementation contract           |
-  |  3  | Comet Extension             | 0x271A200023c9512d37149dfbb62bf0F62a8D4680 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x423717a277eaD7A33Ccc47fa38755FBaf8aDec2B | Implementation contract           |
+  |  3  | Comet Extension             | 0x5F5406b32ca3Da65e40978190C88B9809A95c6Ba | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
   |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
   |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
@@ -175,12 +175,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Main market contract              |
-  |  2  | Comet Implementation        | 0x63BDA4bF1a0d8597d437A709e064DD62D475eAa8 | Implementation contract           |
-  |  3  | Comet Extension             | 0x0be923b1716115d742E35Fa359d415598c50510F | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x1084493Ffb34c9dC0573a0E8f74d8dFec5346931 | Implementation contract           |
+  |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xD10b40fF1D92e2267D099Da3509253D9Da4D715e | Admin contract                    |
-  |  7  | Comet Factory               | 0x7dE363b6Bf0a892B94a1Cd0C9DF76826bFC14228 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x88730d254A2f7e6AC8388c3198aFd694bA9f7fae | Rewards contract                  |
   |  9  | Bulker                      | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Bulker contract                   |
   |  10 | Governor                    | 0x42480C37B249e33aABaf4c22B20235656bd38068 | Governance contract               |
@@ -235,12 +235,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract              |
-  |  2  | Comet Implementation        | 0xDdbc9DD0E1400E6d8441289E2b5F47B4839350Cd | Implementation contract           |
-  |  3  | Comet Extension             | 0xDd18688Bb75Af704f3Fb1183e459C4d4D41132D9 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x4eDcC21F4E8Dfa10D426e36A3B5D872dcCB40228 | Implementation contract           |
+  |  3  | Comet Extension             | 0x7E5873DD6a92802b280D8d59DEc2aa6Ce0EEB13A | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
   |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
@@ -286,12 +286,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x564417B682817e1C7806b2A1a4F73e084d742925 | Implementation contract           |
-  |  3  | Comet Extension             | 0x0E383794EaaA6Cf7Ffb2C8AD5BEbbBC5CB0F0A7b | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x3a82A35fe68D975F8eDB5E8DfFA60B13FbB4e040 | Implementation contract           |
+  |  3  | Comet Extension             | 0xD149132Db93C44e0B306493dC3021966167B1b02 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
   |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
@@ -335,12 +335,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xb125E6687d4313864e53df431d5425969c15Eb2F | Main market contract              |
-  |  2  | Comet Implementation        | 0x079990620d904fB1FdE68b6d54a5f8647134CDE9 | Implementation contract           |
-  |  3  | Comet Extension             | 0x220Da2686dC870aC0A97498A1845e610d2f13431 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0xC1455ae6Df6cd808ed677F048E434E22892682a7 | Implementation contract           |
+  |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
   |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
@@ -387,12 +387,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x2c776041CCFe903071AF44aa147368a9c8EEA518 | Main market contract              |
-  |  2  | Comet Implementation        | 0xD319554aDF19575463b7f06A147883bE0C00E721 | Implementation contract           |
-  |  3  | Comet Extension             | 0xaA390749cb758Af4070E93478Fc743c72c18989c | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x8AC1747bE2B6c7534f1a1fd086306a80996C0F0c | Implementation contract           |
+  |  3  | Comet Extension             | 0xeCB8e46FcEa6339D68fdA37cC3FfBBC6838759Ff | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
   |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
@@ -436,12 +436,12 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x23590479B97e93603d43060500A70eF8Fd6eC142 | Implementation contract           |
-  |  3  | Comet Extension             | 0xbd4CfC08d64a848A9116A92Cd06D2f2bDC0a2505 | Extension delegate contract       |
+  |  2  | Comet Implementation        | 0x3E631eF28AA80a3234de3c8FD704E6Bb17D80721 | Implementation contract           |
+  |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
   |  6  | Comet Admin                 | 0xbdE8F31D2DdDA895264e27DD990faB3DC87b372d | Admin contract                    |
-  |  7  | Comet Factory               | 0x3D0bb1ccaB520A66e607822fC55BC921738fAFE3 | Factory contract                  |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract                  |
   |  8  | Rewards                     | 0x123964802e6ABabBE1Bc9547D72Ef1B69B00A6b1 | Rewards contract                  |
   |  9  | Bulker                      | 0x78D0677032A35c63D142a48A2037048871212a8C | Bulker contract                   |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract               |
@@ -495,7 +495,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991 | Main market contract        |
-  |  2  | Comet Implementation        | 0x235683bAf251b30158dBF66439D98ae737686d73 | Implementation contract     |
+  |  2  | Comet Implementation        | 0xA27483387D1Fe437E786cC0563A8AD527145526c | Implementation contract     |
   |  3  | Comet Extension             | 0xBC7B80c97b560e83A229a6417Ed4fC2d75Fc1209 | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -512,8 +512,8 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1871955859 |         1712328767 | 2026-07-03 |
-  |  3  | Supply Rate Slope High |        96292935058 |        96207508878 | 2026-07-03 |
+  |  2  | Supply Rate Slope Low  |                  0 |         1871955859 | 2026-08-20 |
+  |  3  | Supply Rate Slope High |                  0 |        96292935058 | 2026-08-20 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
   |  6  | Borrow Rate Slope Low  |                  0 |         1585489599 | 2026-07-03 |
@@ -544,7 +544,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x60F2058379716A64a7A5d29219397e79bC552194 | Main market contract        |
-  |  2  | Comet Implementation        | 0xA53E807a433d552a03949cD6B4ee756d1fF2a4d6 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x3Bbc6ef751b773454cDCD1e492c99e691697FD81 | Implementation contract     |
   |  3  | Comet Extension             | 0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -561,8 +561,8 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |          467988964 |          475646879 | 2026-07-03 |
-  |  3  | Supply Rate Slope High |         4273639649 |         4280821917 | 2026-07-03 |
+  |  2  | Supply Rate Slope Low  |                  0 |          467988964 | 2026-08-20 |
+  |  3  | Supply Rate Slope High |                  0 |         4273639649 | 2026-08-20 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
   |  6  | Borrow Rate Slope Low  |                  0 |          176165511 | 2026-07-03 |
@@ -599,12 +599,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x606174f62cd968d8e684c645080fa694c1D7786E | Main market contract        |
-  |  2  | Comet Implementation        | 0x2Dd3c60F2B7b26E0D35230CD3df97a414eB66018 | Implementation contract     |
-  |  3  | Comet Extension             | 0x62623C1374D12F946a9CA8597a137BbfBE015665 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0x6e29E1542006317a7e11835F4bB4547779b356e0 | Implementation contract     |
+  |  3  | Comet Extension             | 0x63fB5e296B9e7423B9281Df31bcdB0282BbeeE25 | Extension delegate contract |
   |  4  | Configurator                | 0xb77Cd4cD000957283D8BAf53cD782ECf029cF7DB | Market configurator         |
   |  5  | Configurator Implementation | 0x3c851CbE2740747f5cE4e8894842A313e5A3aee3 | Configurator implementation |
   |  6  | Comet Admin                 | 0xe268B436E75648aa0639e2088fa803feA517a0c7 | Admin contract              |
-  |  7  | Comet Factory               | 0x5D173813B4505701e79E654b36A95E6c1FAD4448 | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0xCd83CbBFCE149d141A5171C3D6a0F0fCCeE225Ab | Rewards contract            |
   |  9  | Bulker                      | 0x67DFCa85CcEEFA2C5B1dB4DEe3BEa716A28B9baa | Bulker contract             |
   |  10 | Governor                    | 0xc91EcA15747E73d6dd7f616C49dAFF37b9F1B604 | Governance contract         |
@@ -616,8 +616,8 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1403966894 |         1236681887 | 2026-07-02 |
-  |  3  | Supply Rate Slope High |       113233146245 |       114155251141 | 2026-07-02 |
+  |  2  | Supply Rate Slope Low  |                  0 |         1403966894 | 2026-08-20 |
+  |  3  | Supply Rate Slope High |                  0 |       113233146245 | 2026-08-20 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
   |  6  | Borrow Rate Slope Low  |                  0 |         1055936073 | 2026-07-02 |
@@ -652,12 +652,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x2e44e174f7D53F0212823acC11C01A11d58c5bCB | Main market contract        |
-  |  2  | Comet Implementation        | 0x51fA6A62F9A0cB3711e2CB9AabBdF09FFce7B61e | Implementation contract     |
-  |  3  | Comet Extension             | 0xadF7aD4Dd000Ea75667A3CDf65F3D3b7f1e9F02E | Extension delegate contract |
+  |  2  | Comet Implementation        | 0xa3D6eE70cF0b0aEC013A364759B45A85648AA61A | Implementation contract     |
+  |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
   |  6  | Comet Admin                 | 0x24D86Da09C4Dd64e50dB7501b0f695d030f397aF | Admin contract              |
-  |  7  | Comet Factory               | 0xd187F938348AA245E2104be8D849ea6d8d23f434 | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x443EA0340cb75a160F31A440722dec7b5bc3C2E9 | Rewards contract            |
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
@@ -703,12 +703,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x995E394b8B2437aC8Ce61Ee0bC610D617962B214 | Main market contract        |
-  |  2  | Comet Implementation        | 0x2Be3d9B329CDC6D4E0D06EC2dE8aC5B1db7E4DAD | Implementation contract     |
-  |  3  | Comet Extension             | 0xdFb81f0EbFDfdd90143f5deBD1cd016b677d1585 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0x8c27De31D9a371A25Fc1C1A5A6Ff2B947AFc967F | Implementation contract     |
+  |  3  | Comet Extension             | 0x5F5406b32ca3Da65e40978190C88B9809A95c6Ba | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
   |  6  | Comet Admin                 | 0x24D86Da09C4Dd64e50dB7501b0f695d030f397aF | Admin contract              |
-  |  7  | Comet Factory               | 0xd187F938348AA245E2104be8D849ea6d8d23f434 | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x443EA0340cb75a160F31A440722dec7b5bc3C2E9 | Rewards contract            |
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
@@ -754,12 +754,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xE36A30D249f7761327fd973001A32010b521b6Fd | Main market contract        |
-  |  2  | Comet Implementation        | 0xdBf2746e9B8ac6EF5BF09316773a427b05dFf6fE | Implementation contract     |
-  |  3  | Comet Extension             | 0xc4aaFC9F0c52FDDa0fed972c55B136bD07552ad0 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0x3b8548aB4B337d84665613A2267B62996011F4A3 | Implementation contract     |
+  |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
   |  6  | Comet Admin                 | 0x24D86Da09C4Dd64e50dB7501b0f695d030f397aF | Admin contract              |
-  |  7  | Comet Factory               | 0xd187F938348AA245E2104be8D849ea6d8d23f434 | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x443EA0340cb75a160F31A440722dec7b5bc3C2E9 | Rewards contract            |
   |  9  | Bulker                      | 0xcb3643CC8294B23171272845473dEc49739d4Ba3 | Bulker contract             |
   |  10 | Governor                    | 0xC3a73A70d1577CD5B02da0bA91C0Afc8fA434DAF | Governance contract         |
@@ -812,12 +812,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xF25212E676D1F7F89Cd72fFEe66158f541246445 | Main market contract        |
-  |  2  | Comet Implementation        | 0xD3a4705F0415de72f3A35e49aF6048882435A875 | Implementation contract     |
-  |  3  | Comet Extension             | 0x5Eba6Ec97843163C92Ab48a7aC0CCc8423c652b1 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0xCB25eDf8178d36166564707A15B98862251928af | Implementation contract     |
+  |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract |
   |  4  | Configurator                | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Market configurator         |
   |  5  | Configurator Implementation | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Configurator implementation |
   |  6  | Comet Admin                 | 0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9 | Admin contract              |
-  |  7  | Comet Factory               | 0x3fb418B74Ec30bC3e940221F58A04e16afC6378B | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Rewards contract            |
   |  9  | Bulker                      | 0x59e242D352ae13166B4987aE5c990C232f7f7CD6 | Bulker contract             |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
@@ -863,12 +863,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xaeB318360f27748Acb200CE616E389A6C9409a07 | Main market contract        |
-  |  2  | Comet Implementation        | 0x40f6Ed2B0f408f6B692a9B86CAb061A3D8689EFB | Implementation contract     |
-  |  3  | Comet Extension             | 0xe6eb5B9b85cFF2C84Df3De6e7855bC9E76f034d5 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0xD7F19060f9B6daCa9A5cE591F077E15B07089524 | Implementation contract     |
+  |  3  | Comet Extension             | 0x5F5406b32ca3Da65e40978190C88B9809A95c6Ba | Extension delegate contract |
   |  4  | Configurator                | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Market configurator         |
   |  5  | Configurator Implementation | 0x9c4ec768c28520B50860ea7a15bd7213a9fF58bf | Configurator implementation |
   |  6  | Comet Admin                 | 0xd712ACe4ca490D4F3E92992Ecf3DE12251b975F9 | Admin contract              |
-  |  7  | Comet Factory               | 0x3fb418B74Ec30bC3e940221F58A04e16afC6378B | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Rewards contract            |
   |  9  | Bulker                      | 0x59e242D352ae13166B4987aE5c990C232f7f7CD6 | Bulker contract             |
   |  10 | Governor                    | 0x18281dfC4d00905DA1aaA6731414EABa843c468A | Governance contract         |
@@ -918,12 +918,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x2c7118c4C88B9841FCF839074c26Ae8f035f2921 | Main market contract        |
-  |  2  | Comet Implementation        | 0x58F3F390211b58e1C006FbEa29218E641F9C0B60 | Implementation contract     |
-  |  3  | Comet Extension             | 0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0x3015606B09e6A2C8464cBE4fc225AA656656272c | Implementation contract     |
+  |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract |
   |  4  | Configurator                | 0x8df378453Ff9dEFFa513367CDF9b3B53726303e9 | Market configurator         |
   |  5  | Configurator Implementation | 0x5404872d8f2e24b230EC9B9eC64E3855F637FB93 | Configurator implementation |
   |  6  | Comet Admin                 | 0xaeB318360f27748Acb200CE616E389A6C9409a07 | Admin contract              |
-  |  7  | Comet Factory               | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Rewards contract            |
   |  9  | Bulker                      | 0x58EbB8Db8b4FdF2dCbbB16E04c2F5b952963B514 | Bulker contract             |
   |  10 | Governor                    | 0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118 | Governance contract         |
@@ -966,12 +966,12 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x6C987dDE50dB1dcDd32Cd4175778C2a291978E2a | Main market contract        |
-  |  2  | Comet Implementation        | 0x84Af8d4Aa0184c7dd78aDae60d9C7eeb485550da | Implementation contract     |
-  |  3  | Comet Extension             | 0x443EA0340cb75a160F31A440722dec7b5bc3C2E9 | Extension delegate contract |
+  |  2  | Comet Implementation        | 0xA8feE4A2B19C29fA96f297062BD19Ec9cC572Fa6 | Implementation contract     |
+  |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract |
   |  4  | Configurator                | 0x8df378453Ff9dEFFa513367CDF9b3B53726303e9 | Market configurator         |
   |  5  | Configurator Implementation | 0x5404872d8f2e24b230EC9B9eC64E3855F637FB93 | Configurator implementation |
   |  6  | Comet Admin                 | 0xaeB318360f27748Acb200CE616E389A6C9409a07 | Admin contract              |
-  |  7  | Comet Factory               | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Factory contract            |
+  |  7  | Comet Factory               | 0x30beAd17D2641bCc900dc1ABC5d55c88059D176F | Factory contract            |
   |  8  | Rewards                     | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Rewards contract            |
   |  9  | Bulker                      | 0x58EbB8Db8b4FdF2dCbbB16E04c2F5b952963B514 | Bulker contract             |
   |  10 | Governor                    | 0x4b5DeE60531a72C1264319Ec6A22678a4D0C8118 | Governance contract         |
@@ -1012,4 +1012,4 @@
 
 ---
 
-*Last updated:* 2026-08-19 12:34:09.961 UTC
+*Last updated:* 2026-08-20 12:35:06.115 UTC
