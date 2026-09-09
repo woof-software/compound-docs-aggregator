@@ -121,7 +121,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0xd98Be00b5D27fc98112BdE293e487f8D4cA57d07 | Main market contract              |
-  |  2  | Comet Implementation        | 0x423717a277eaD7A33Ccc47fa38755FBaf8aDec2B | Implementation contract           |
+  |  2  | Comet Implementation        | 0xdA7BC6f56C4172059a209440Fcc1ccCC32fa4c32 | Implementation contract           |
   |  3  | Comet Extension             | 0x5F5406b32ca3Da65e40978190C88B9809A95c6Ba | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
@@ -175,7 +175,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x6f7D514bbD4aFf3BcD1140B7344b32f063dEe486 | Main market contract              |
-  |  2  | Comet Implementation        | 0xb417f2cD7a75801aFc20163e2B299657b7BC84B7 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x39bB2061bB18e3B7a80D32e49a2b678d4E6A3ebf | Implementation contract           |
   |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract       |
   |  4  | Configurator                | 0xb21b06D71c75973babdE35b49fFDAc3F82Ad3775 | Market configurator               |
   |  5  | Configurator Implementation | 0x8495AF03fb797E2965bCB42Cb0693e1c15614798 | Configurator implementation       |
@@ -235,7 +235,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract              |
-  |  2  | Comet Implementation        | 0x4eDcC21F4E8Dfa10D426e36A3B5D872dcCB40228 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x32c42397bC4B9E37061Fb1C7A8B6B55074Fe1ea0 | Implementation contract           |
   |  3  | Comet Extension             | 0x7E5873DD6a92802b280D8d59DEc2aa6Ce0EEB13A | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -436,7 +436,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract              |
-  |  2  | Comet Implementation        | 0xa15C1556255940E4014C07330b0873088557077E | Implementation contract           |
+  |  2  | Comet Implementation        | 0x0d517F7759FD3F083E8B807936e9700B4E1374C2 | Implementation contract           |
   |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -1012,4 +1012,4 @@
 
 ---
 
-*Last updated:* 2026-09-08 15:50:17.095 UTC
+*Last updated:* 2026-09-09 15:45:59.403 UTC
