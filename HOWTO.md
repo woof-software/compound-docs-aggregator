@@ -27,7 +27,7 @@ Public endpoints (`RPC_RONIN`, `RPC_AVALANCHE`, `RPC_FUJI`) are listed there too
 Optional:
 
 ```env
-GITHUB_TOKEN_PAT=...   # for compound-finance docs PR workflow
+GITHUB_TOKEN_PAT=...   # for Compound-Foundation docs PR workflow
 ```
 
 For CI, add matching repository secrets `RPC_MAINNET`, `RPC_ARBITRUM`, etc. (same names as in `.env.example`).
@@ -43,9 +43,9 @@ yarn cli:generate:md
 This command will:
 
 1. Build the NestJS application
-2. Fetch deployment metadata from `compound-finance/comet`
+2. Fetch deployment metadata from `Compound-Foundation/comet`
 3. Read on-chain market state via RPC
-4. Update `output.json`, `README.md`, and `compound-finance/compound-3.md`
+4. Update `output.json`, `README.md`, and `compound-foundation/compound-3.md`
 
 ---
 
@@ -54,7 +54,7 @@ This command will:
 | Workflow | Trigger | Command |
 |----------|---------|---------|
 | `update-market-data.yml` | daily + manual | `yarn cli:generate:md` |
-| `run-pull-request.yml` | manual | opens PR to compound-finance docs |
+| `run-pull-request.yml` | manual | opens PR to Compound-Foundation docs |
 
 ---
 
@@ -88,7 +88,7 @@ Add an entry to `src/config/networks.config.ts` and a matching `RPC_*` variable 
 }
 ```
 
-Markets themselves are discovered from `compound-finance/comet` deployments (`roots.json`).
+Markets themselves are discovered from `Compound-Foundation/comet` deployments (`roots.json`).
 
 ---
 
@@ -96,4 +96,4 @@ Markets themselves are discovered from `compound-finance/comet` deployments (`ro
 
 - `output.json` — structured market snapshot
 - `README.md` — human-readable markets overview
-- `compound-finance/compound-3.md` — deployments section for Compound docs
+- `compound-foundation/compound-3.md` — deployments section for Compound docs

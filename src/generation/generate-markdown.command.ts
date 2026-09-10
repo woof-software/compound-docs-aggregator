@@ -34,7 +34,7 @@ export class GenerateMarkdownCommand extends CommandRunner {
       const marketsData: Array<any> = [];
 
       for (const path of rootsPaths) {
-        const rawUrl = `https://raw.githubusercontent.com/compound-finance/comet/main/deployments/${path}`;
+        const rawUrl = `https://raw.githubusercontent.com/Compound-Foundation/comet/main/deployments/${path}`;
 
         let rootObj: any;
         try {

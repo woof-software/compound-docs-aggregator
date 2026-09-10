@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 
-export interface CompoundFinanceConfig {
+export interface CompoundFoundationConfig {
   markdown: {
     directory: string;
     filename: string;
@@ -24,17 +24,17 @@ if (!githubTokenPat) {
 }
 
 export default registerAs(
-  'compoundFinance',
-  (): CompoundFinanceConfig => ({
+  'compoundFoundation',
+  (): CompoundFoundationConfig => ({
     markdown: {
-      directory: 'compound-finance',
+      directory: 'compound-foundation',
       filename: 'compound-3.md',
       sectionStartMarker: 'deployments:',
       sectionEndMarker: '---',
     },
     repository: {
-      owner: 'compound-finance',
-      repo: 'compound-finance.github.io',
+      owner: 'Compound-Foundation',
+      repo: 'compound-v3-docs.github.io',
       defaultBranch: 'master',
       filePath: 'docs/pages/v3/compound-3.md',
       autoUpdateBranch: 'auto-update-compound-3',

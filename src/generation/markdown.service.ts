@@ -8,7 +8,7 @@ import {
   CurveEntry,
   NestedMarkets,
 } from 'contract/contract.types';
-import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import { CompoundFoundationConfig } from 'config/compound-foundation.config';
 import { NetworkConfig } from 'network/network.types';
 import { STATIC_DEPLOYMENTS } from './constants/static-deployments';
 import { getNetworkSortPosition } from './helpers/get-network-sort-position';
@@ -22,8 +22,10 @@ export class MarkdownService {
 
   constructor(private readonly config: ConfigService) {}
 
-  private get compoundFinance(): CompoundFinanceConfig {
-    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  private get compoundFoundation(): CompoundFoundationConfig {
+    return this.config.getOrThrow<CompoundFoundationConfig>(
+      'compoundFoundation',
+    );
   }
 
   private get networks(): NetworkConfig[] {
@@ -329,7 +331,7 @@ export class MarkdownService {
    */
   updateCompound3Deployments(nestedMarkets: NestedMarkets): void {
     const { directory, filename, sectionStartMarker, sectionEndMarker } =
-      this.compoundFinance.markdown;
+      this.compoundFoundation.markdown;
     const compound3Path = join(process.cwd(), directory, filename);
 
     if (!existsSync(compound3Path)) {
