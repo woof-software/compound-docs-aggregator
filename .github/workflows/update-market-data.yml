@@ -3,7 +3,7 @@ name: Update market data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '2 12 * * *' # every day at 12:02 UTC
+    - cron: "2 12 * * *" # every day at 12:02 UTC
 
 permissions:
   contents: write
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: "20.x"
 
       - name: Enable Corepack (Yarn 4)
         run: |
@@ -53,7 +53,6 @@ jobs:
           RPC_OPTIMISM: ${{ secrets.RPC_OPTIMISM }}
           RPC_UNICHAIN: ${{ secrets.RPC_UNICHAIN }}
           RPC_POLYGON: ${{ secrets.RPC_POLYGON }}
-          RPC_RONIN: ${{ secrets.RPC_RONIN }}
           RPC_MANTLE: ${{ secrets.RPC_MANTLE }}
           RPC_BASE: ${{ secrets.RPC_BASE }}
           RPC_ARBITRUM: ${{ secrets.RPC_ARBITRUM }}
@@ -61,7 +60,7 @@ jobs:
           RPC_SCROLL: ${{ secrets.RPC_SCROLL }}
           RPC_AVALANCHE: ${{ secrets.RPC_AVALANCHE }}
           RPC_SEPOLIA: ${{ secrets.RPC_SEPOLIA }}
-          RPC_FUJI: ${{ secrets.RPC_FUJI }}
+          RPC_RONIN: ${{ secrets.RPC_RONIN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn cli:generate:md
 

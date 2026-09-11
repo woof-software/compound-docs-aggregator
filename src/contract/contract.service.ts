@@ -182,13 +182,13 @@ export class ContractService {
 
     const [
       cometSymbol,
-      governorAddress,
+      timelockAdminAddress,
       baseTokenName,
       baseTokenSymbol,
       baseTokenDecimals,
     ] = await Promise.all([
       extensionDelegateContract.symbol(),
-      timelockContract.admin(),
+      this.getTimelockAdmin(timelockContract),
       baseTokenContract.name(),
       baseTokenContract.symbol(),
       baseTokenContract.decimals(),
@@ -217,6 +217,12 @@ export class ContractService {
       'comet admin',
     );
 
+    if (!timelockAdminAddress) {
+      this.logger.warn(
+        `${networkPath}: Comet governor ${timelockAddress} is not a Timelock, skipping Timelock`,
+      );
+    }
+
     return {
       network: networkKey,
       market: cometSymbol,
@@ -230,8 +236,9 @@ export class ContractService {
         cometFactory: cometFactoryAddress,
         rewards: root.rewards,
         bulker: root.bulker,
-        governor: governorAddress,
-        timelock: timelockAddress,
+        // Without a Timelock the Comet governor itself (e.g. a Safe) governs the market
+        governor: timelockAdminAddress ?? timelockAddress,
+        timelock: timelockAdminAddress ? timelockAddress : '',
         ...(comp ? { comp } : {}),
         ...(svrFeeRecipient ? { svrFeeRecipient } : {}),
         ...(svrFeeReceiver ? { svrFeeReceiver } : {}),
@@ -246,6 +253,28 @@ export class ContractService {
       },
       collaterals,
     };
+  }
+
+  /**
+   * Returns the Timelock admin (the Governor), or null when the Comet governor
+   * is not a Timelock (e.g. a Safe multisig without admin()).
+   */
+  private async getTimelockAdmin(
+    timelockContract: TimelockContract,
+  ): Promise<Address | null> {
+    try {
+      return await timelockContract.admin();
+    } catch (err) {
+      // Through multicall a reverted call comes back as BAD_DATA ("0x");
+      // anything else (RPC/network failure) must still fail the market.
+      if (
+        ethers.isError(err, 'BAD_DATA') ||
+        ethers.isError(err, 'CALL_EXCEPTION')
+      ) {
+        return null;
+      }
+      throw err;
+    }
   }
 
   private parseAddress(storageValue?: string | null): Address | null {
