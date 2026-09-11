@@ -142,13 +142,15 @@ export class MarkdownService {
           'Governance contract',
         ]);
         rowNum++;
-        contractRows.push([
-          rowNum.toString(),
-          'Timelock',
-          contracts.timelock,
-          'Timelock contract',
-        ]);
-        rowNum++;
+        if (contracts.timelock) {
+          contractRows.push([
+            rowNum.toString(),
+            'Timelock',
+            contracts.timelock,
+            'Timelock contract',
+          ]);
+          rowNum++;
+        }
 
         if (contracts.comp) {
           contractRows.push([
@@ -702,6 +704,9 @@ export class MarkdownService {
     }
     if (lowerMarket === 'caerov3' || lowerMarket === 'caero') {
       return 'AERO';
+    }
+    if (lowerMarket === 'ciusdcv3') {
+      return 'Institutional USDC';
     }
 
     // For standard markets: remove 'c' prefix and 'v3' suffix, then uppercase

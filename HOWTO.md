@@ -14,15 +14,15 @@ yarn install
 
 ## Environment Setup
 
-Copy `.env.example` to `.env` and set a **full RPC URL per chain**:
+Copy `.env.example` to `.env` and fill in the RPC endpoints:
 
 ```bash
 cp .env.example .env
 ```
 
-Each `RPC_*` variable holds the **full endpoint URL** for that chain (see `.env.example`).
+`RPC_MAINNET`, `RPC_OPTIMISM`, `RPC_UNICHAIN`, `RPC_POLYGON`, `RPC_MANTLE`, `RPC_BASE`, `RPC_ARBITRUM`, `RPC_LINEA`, `RPC_SCROLL`, `RPC_AVALANCHE`, `RPC_SEPOLIA` are **full QuickNode HTTP RPC URLs** (not API keys) — the same endpoints as in `compound-aggregator`.
 
-Public endpoints (`RPC_RONIN`, `RPC_AVALANCHE`, `RPC_FUJI`) are listed there too — set them in `.env` like the rest.
+`RPC_RONIN` is public endpoint and comes prefilled.
 
 Optional:
 
