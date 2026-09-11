@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios, { AxiosInstance } from 'axios';
 import { writeFileSync, readFileSync, existsSync } from 'fs';
-import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import { CompoundFoundationConfig } from 'config/compound-foundation.config';
 
 interface CacheEntry {
   timestamp: number;
@@ -12,7 +12,7 @@ interface CacheEntry {
 @Injectable()
 export class GithubService {
   private readonly logger = new Logger(GithubService.name);
-  private readonly owner = 'compound-finance';
+  private readonly owner = 'Compound-Foundation';
   private readonly repo = 'comet';
   private readonly defaultBranch = 'main';
   private readonly api: AxiosInstance;
@@ -37,14 +37,16 @@ export class GithubService {
 
     this.docsApi = axios.create({
       baseURL: this.baseURL,
-      headers: this.compoundFinance.githubTokenPat
-        ? { Authorization: `token ${this.compoundFinance.githubTokenPat}` }
+      headers: this.compoundFoundation.githubTokenPat
+        ? { Authorization: `token ${this.compoundFoundation.githubTokenPat}` }
         : undefined,
     });
   }
 
-  private get compoundFinance(): CompoundFinanceConfig {
-    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  private get compoundFoundation(): CompoundFoundationConfig {
+    return this.config.getOrThrow<CompoundFoundationConfig>(
+      'compoundFoundation',
+    );
   }
 
   /**
@@ -224,7 +226,7 @@ export class GithubService {
   async readDocsRepoFile(): Promise<string | null> {
     try {
       const { owner, repo, defaultBranch, filePath } =
-        this.compoundFinance.repository;
+        this.compoundFoundation.repository;
       const url = `/repos/${owner}/${repo}/contents/${filePath}?ref=${defaultBranch}`;
       const response = await this.docsApi.get(url);
 
@@ -235,7 +237,7 @@ export class GithubService {
       return null;
     } catch (err: any) {
       if (err.response?.status === 404) {
-        const filePath = this.compoundFinance.repository.filePath;
+        const filePath = this.compoundFoundation.repository.filePath;
         this.logger.warn(`File not found in docs repo: ${filePath}`);
         return null;
       }
@@ -274,7 +276,7 @@ export class GithubService {
    * Checks if a branch exists in the repository using HEAD request
    */
   async branchExists(branchName: string): Promise<boolean> {
-    const { owner, repo } = this.compoundFinance.repository;
+    const { owner, repo } = this.compoundFoundation.repository;
 
     try {
       const response = await this.docsApi.head(
@@ -309,7 +311,7 @@ export class GithubService {
     }
 
     try {
-      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
+      const { owner, repo, defaultBranch } = this.compoundFoundation.repository;
 
       const refResponse = await this.docsApi.get(
         `/repos/${owner}/${repo}/git/ref/heads/${defaultBranch}`,
@@ -337,7 +339,7 @@ export class GithubService {
     filePath: string,
     branchName: string,
   ): Promise<string | null> {
-    const { owner, repo, defaultBranch } = this.compoundFinance.repository;
+    const { owner, repo, defaultBranch } = this.compoundFoundation.repository;
 
     const targetBranchResponse = await this.docsApi.get(
       `/repos/${owner}/${repo}/contents/${filePath}?ref=${branchName}`,
@@ -374,7 +376,7 @@ export class GithubService {
     commitMessage: string,
   ): Promise<void> {
     try {
-      const { owner, repo } = this.compoundFinance.repository;
+      const { owner, repo } = this.compoundFoundation.repository;
 
       const currentSha = await this.getFileSha(filePath, branchName);
 
@@ -416,7 +418,7 @@ export class GithubService {
     body: string,
   ): Promise<{ prNumber: number; prUrl: string } | null> {
     try {
-      const { owner, repo, defaultBranch } = this.compoundFinance.repository;
+      const { owner, repo, defaultBranch } = this.compoundFoundation.repository;
 
       const existingPRs = await this.docsApi.get(
         `/repos/${owner}/${repo}/pulls?head=${owner}:${branchName}&state=open`,
@@ -476,7 +478,7 @@ export class GithubService {
       return null;
     }
 
-    const { filePath, autoUpdateBranch } = this.compoundFinance.repository;
+    const { filePath, autoUpdateBranch } = this.compoundFoundation.repository;
 
     this.logger.log(
       `Processing compound-3.md updates (file: ${filePath}, branch: ${autoUpdateBranch})...`,

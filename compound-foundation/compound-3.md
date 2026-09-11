@@ -1553,17 +1553,17 @@ deployments:
 
 ## Introduction
 
-[Compound III](https://github.com/compound-finance/comet){:target="_blank"} is an EVM compatible protocol that enables supplying of crypto assets as collateral in order to borrow the *base asset*. Accounts can also earn interest by supplying the base asset to the protocol.
+[Compound III](https://github.com/Compound-Foundation/comet){:target="_blank"} is an EVM compatible protocol that enables supplying of crypto assets as collateral in order to borrow the *base asset*. Accounts can also earn interest by supplying the base asset to the protocol.
 
 The initial deployment of Compound III is on Ethereum and the base asset is USDC.
 
-Please join the **#development** room in the Compound community [Discord](https://compound.finance/discord){:target="_blank"} server as well as the forums at [comp.xyz](https://www.comp.xyz){:target="_blank"}; Compound Labs and members of the community look forward to helping you build an application on top of Compound III. Your questions help us improve, so please don't hesitate to ask if you can't find what you are looking for here.
+Please join the **#development** room in the Compound community [Discord](https://compound.xyz/discord){:target="_blank"} server as well as the forums at [comp.xyz](https://www.comp.xyz){:target="_blank"}; Compound Labs and members of the community look forward to helping you build an application on top of Compound III. Your questions help us improve, so please don't hesitate to ask if you can't find what you are looking for here.
 
-For documentation of the Compound v2 Protocol, see [docs.compound.finance/v2](/v2/).
+For documentation of the Compound v2 Protocol, see [docs.compound.xyz/v2](/v2/).
 
 ### Networks
 
-The network deployment artifacts with contract addresses are available in the [Comet](https://github.com/compound-finance/comet){:target="_blank"} repository `deployments/` folder.
+The network deployment artifacts with contract addresses are available in the [Comet](https://github.com/Compound-Foundation/comet){:target="_blank"} repository `deployments/` folder.
 
 The v3 proxy is the only address to be used to interact with a Compound III instance. It is the first address listed in each of the tabs below. To generate the proper [Comet Interface ABI](/public/files/comet-interface-abi-98f438b.json){:target="_blank"} (`CometInterface.sol`), compile the Comet project using `yarn compile`.
 

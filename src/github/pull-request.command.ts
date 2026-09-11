@@ -3,7 +3,7 @@ import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { GithubService } from './github.service';
-import { CompoundFinanceConfig } from 'config/compound-finance.config';
+import { CompoundFoundationConfig } from 'config/compound-foundation.config';
 
 @Command({ name: 'github:pull-request', description: 'Create pull request' })
 export class PullRequestCommand extends CommandRunner {
@@ -16,13 +16,15 @@ export class PullRequestCommand extends CommandRunner {
     super();
   }
 
-  private get compoundFinance() {
-    return this.config.getOrThrow<CompoundFinanceConfig>('compoundFinance');
+  private get compoundFoundation() {
+    return this.config.getOrThrow<CompoundFoundationConfig>(
+      'compoundFoundation',
+    );
   }
 
   async run() {
     try {
-      const markdown = this.compoundFinance.markdown;
+      const markdown = this.compoundFoundation.markdown;
       const localFilePath = join(
         process.cwd(),
         markdown.directory,
