@@ -599,7 +599,7 @@
   |  #  | Name                        | Address                                    | Note                               |
   | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
   |  1  | Comet                       | 0x207158a267CBD2598BB3d611D8CBdEE2709F2F8C | Main market contract               |
-  |  2  | Comet Implementation        | 0x168C31799e80A2b965E28eC3eeC20a6D9ee3AB6e | Implementation contract            |
+  |  2  | Comet Implementation        | 0x3E0bA1B3A97BA7F97002A20C243d7c1Cec34c4E5 | Implementation contract            |
   |  3  | Comet Extension             | 0x0eB77E9afA9655118B14BfB6E72180E7D3B21EE2 | Extension delegate contract        |
   |  4  | Configurator                | 0xd61c0169e931381fb3cC4B40316805333808c1Fa | Market configurator                |
   |  5  | Configurator Implementation | 0xD6f954090a1614b29AeaD322819100bb236960C4 | Configurator implementation        |
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-09-15 16:05:10.785 UTC
+*Last updated:* 2026-09-16 15:56:48.574 UTC
