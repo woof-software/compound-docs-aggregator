@@ -1234,7 +1234,7 @@ deployments:
     blockscan_origin: 'https://uniscan.xyz/'
     contracts:
       cWETHv3: '0x6C987dDE50dB1dcDd32Cd4175778C2a291978E2a'
-      cWETHv3 Implementation: '0xA8feE4A2B19C29fA96f297062BD19Ec9cC572Fa6'
+      cWETHv3 Implementation: '0x7fa6D4e4F21Eda0F91C8Db86A108DDb3bAff8703'
       cWETHv3 Ext: '0xF3BBe5807feA997d540939Cbf138c134b11e3CF1'
       Configurator: '0x8df378453Ff9dEFFa513367CDF9b3B53726303e9'
       Configurator Implementation: '0x5404872d8f2e24b230EC9B9eC64E3855F637FB93'
@@ -1307,13 +1307,13 @@ deployments:
         address: '0xc3eACf0612346366Db554C991D7858716db09f58'
         Borrow CF: '0.0%'
         Borrow CF Raw: '0'
-        Liquidation CF: '93.0%'
-        Liquidation CF Raw: '930000000000000000'
-        Liquidation Penalty: '4.00%'
-        Liquidation Penalty Raw: '960000000000000000'
+        Liquidation CF: '0.0%'
+        Liquidation CF Raw: '0'
+        Liquidation Penalty: '100.00%'
+        Liquidation Penalty Raw: '0'
         Supply Cap: '0'
         Supply Cap Raw: '0'
-        Price Feed: '0x0090A563C4832E4E519F5f054483519b1A83c8C3'
+        Price Feed: '0x3fb418B74Ec30bC3e940221F58A04e16afC6378B'
   Polygon Mainnet - USDC Base:
     tab_text: Polygon USDC
     blockscan_origin: 'https://polygonscan.com/'
@@ -2403,7 +2403,7 @@ deployments:
     blockscan_origin: 'https://lineascan.build/'
     contracts:
       cWETHv3: '0x60F2058379716A64a7A5d29219397e79bC552194'
-      cWETHv3 Implementation: '0x3Bbc6ef751b773454cDCD1e492c99e691697FD81'
+      cWETHv3 Implementation: '0xbA3C88EDDc2F0fB57FCd541cb5C6432c4880b8e6'
       cWETHv3 Ext: '0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F'
       Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
       Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
@@ -2471,7 +2471,7 @@ deployments:
         Liquidation Penalty Raw: '960000000000000000'
         Supply Cap: '0'
         Supply Cap Raw: '0'
-        Price Feed: '0x8D50B433C0Dcf3636c29695122464Df5deb37eDc'
+        Price Feed: '0x9feAc5a70435ef209F4013D46945AC1d4cba9397'
   Scroll - USDC Base:
     tab_text: Scroll USDC
     blockscan_origin: 'https://scrollscan.com/'
@@ -2630,7 +2630,7 @@ The network deployment artifacts with contract addresses are available in the [C
 The v3 proxy is the only address to be used to interact with a Compound III instance. It is the first address listed in each of the tabs below. To generate the proper [Comet Interface ABI](/public/files/comet-interface-abi-98f438b.json){:target="_blank"} (`CometInterface.sol`), compile the Comet project using `yarn compile`.
 
 <br />
-> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-09-16 15:56:48.594 UTC**.
+> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-09-25 16:20:07.259 UTC**.
 
 <div id="networks-widget-container"></div>
 

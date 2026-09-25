@@ -544,7 +544,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x60F2058379716A64a7A5d29219397e79bC552194 | Main market contract        |
-  |  2  | Comet Implementation        | 0x3Bbc6ef751b773454cDCD1e492c99e691697FD81 | Implementation contract     |
+  |  2  | Comet Implementation        | 0xbA3C88EDDc2F0fB57FCd541cb5C6432c4880b8e6 | Implementation contract     |
   |  3  | Comet Extension             | 0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -583,7 +583,7 @@
   |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B | 45.0% | 93.0% |  3.00% |        1.82x |
   |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 40.0% | 85.0% | 10.00% |        1.67x |
   |  4  | Wrapped eETH                    | weETH  | 0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6 |       18 | 0xfd5282968119c348C1E47fBCaDD13069d9857Bf2 | 45.0% | 93.0% |  4.00% |        1.82x |
-  |  5  | rsETHWrapper                    | wrsETH | 0xD2671165570f41BBB3B0097893300b6EB6101E6C |       18 | 0x8D50B433C0Dcf3636c29695122464Df5deb37eDc |  0.0% | 93.0% |  4.00% |        1.00x |
+  |  5  | rsETHWrapper                    | wrsETH | 0xD2671165570f41BBB3B0097893300b6EB6101E6C |       18 | 0x9feAc5a70435ef209F4013D46945AC1d4cba9397 |  0.0% | 93.0% |  4.00% |        1.00x |
 
 </details>
 
@@ -1520,7 +1520,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x6C987dDE50dB1dcDd32Cd4175778C2a291978E2a | Main market contract        |
-  |  2  | Comet Implementation        | 0xA8feE4A2B19C29fA96f297062BD19Ec9cC572Fa6 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x7fa6D4e4F21Eda0F91C8Db86A108DDb3bAff8703 | Implementation contract     |
   |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract |
   |  4  | Configurator                | 0x8df378453Ff9dEFFa513367CDF9b3B53726303e9 | Market configurator         |
   |  5  | Configurator Implementation | 0x5404872d8f2e24b230EC9B9eC64E3855F637FB93 | Configurator implementation |
@@ -1553,17 +1553,17 @@
 
 **💰 Collaterals**
 
-  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Wrapped liquid staked Ether 2.0 | wstETH | 0xc02fE7317D4eb8753a02c35fe019786854A92001 |       18 | 0x73D3e8b769bC687AeEc487AAeFCAd31F4d9F84A7 | 45.0% | 93.0% |  3.00% |        1.82x |
-  |  2  | Wrapped eETH                    | weETH  | 0x7DCC39B4d1C53CB31e1aBc0e358b43987FEF80f7 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 45.0% | 93.0% |  4.00% |        1.82x |
-  |  3  | Renzo Restaked ETH              | ezETH  | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x8671d5e3a10639a573bACffEF448CA076b2d5cD7 | 88.0% | 91.0% |  6.00% |        8.33x |
-  |  4  | Uniswap                         | UNI    | 0x8f187aA05619a017077f5308904739877ce9eA21 |       18 | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | 70.0% | 75.0% | 20.00% |        3.33x |
-  |  5  | Wrapped BTC                     | WBTC   | 0x927B51f251480a681271180DA4de28D44EC4AfB8 |        8 | 0xFa454dE61b317b6535A0C462267208E8FdB89f45 | 40.0% | 85.0% | 10.00% |        1.67x |
-  |  6  | KelpDao Restaked ETH            | rsETH  | 0xc3eACf0612346366Db554C991D7858716db09f58 |       18 | 0x0090A563C4832E4E519F5f054483519b1A83c8C3 |  0.0% | 93.0% |  4.00% |        1.00x |
+  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |      LP | Max Leverage |
+  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | ------: | -----------: |
+  |  1  | Wrapped liquid staked Ether 2.0 | wstETH | 0xc02fE7317D4eb8753a02c35fe019786854A92001 |       18 | 0x73D3e8b769bC687AeEc487AAeFCAd31F4d9F84A7 | 45.0% | 93.0% |   3.00% |        1.82x |
+  |  2  | Wrapped eETH                    | weETH  | 0x7DCC39B4d1C53CB31e1aBc0e358b43987FEF80f7 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 45.0% | 93.0% |   4.00% |        1.82x |
+  |  3  | Renzo Restaked ETH              | ezETH  | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x8671d5e3a10639a573bACffEF448CA076b2d5cD7 | 88.0% | 91.0% |   6.00% |        8.33x |
+  |  4  | Uniswap                         | UNI    | 0x8f187aA05619a017077f5308904739877ce9eA21 |       18 | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | 70.0% | 75.0% |  20.00% |        3.33x |
+  |  5  | Wrapped BTC                     | WBTC   | 0x927B51f251480a681271180DA4de28D44EC4AfB8 |        8 | 0xFa454dE61b317b6535A0C462267208E8FdB89f45 | 40.0% | 85.0% |  10.00% |        1.67x |
+  |  6  | KelpDao Restaked ETH            | rsETH  | 0xc3eACf0612346366Db554C991D7858716db09f58 |       18 | 0x3fb418B74Ec30bC3e940221F58A04e16afC6378B |  0.0% |  0.0% | 100.00% |        1.00x |
 
 </details>
 
 ---
 
-*Last updated:* 2026-09-24 16:19:20.399 UTC
+*Last updated:* 2026-09-25 16:20:07.245 UTC
