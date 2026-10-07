@@ -2351,7 +2351,7 @@ deployments:
     blockscan_origin: 'https://lineascan.build/'
     contracts:
       cUSDCv3: '0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991'
-      cUSDCv3 Implementation: '0xA27483387D1Fe437E786cC0563A8AD527145526c'
+      cUSDCv3 Implementation: '0x3aA1E360C07361AfBdD8082b80eEa096d1086A47'
       cUSDCv3 Ext: '0xBC7B80c97b560e83A229a6417Ed4fC2d75Fc1209'
       Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
       Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
@@ -2367,8 +2367,8 @@ deployments:
         Price Feed: '0xAADAa473C1bDF7317ec07c915680Af29DeBfdCb5'
       WETH:
         address: '0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f'
-        Borrow CF: '42.0%'
-        Borrow CF Raw: '420000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '90.0%'
         Liquidation CF Raw: '900000000000000000'
         Liquidation Penalty: '5.00%'
@@ -2378,8 +2378,8 @@ deployments:
         Price Feed: '0x3c6Cd9Cc7c7a4c2Cf5a82734CD249D7D593354dA'
       wstETH:
         address: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
-        Borrow CF: '41.0%'
-        Borrow CF Raw: '410000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '87.0%'
         Liquidation CF Raw: '870000000000000000'
         Liquidation Penalty: '5.00%'
@@ -2389,8 +2389,8 @@ deployments:
         Price Feed: '0x0746928E47f858944D189996829Ca711f64461a7'
       WBTC:
         address: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
-        Borrow CF: '40.0%'
-        Borrow CF Raw: '400000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '85.0%'
         Liquidation CF Raw: '850000000000000000'
         Liquidation Penalty: '10.00%'
@@ -2403,7 +2403,7 @@ deployments:
     blockscan_origin: 'https://lineascan.build/'
     contracts:
       cWETHv3: '0x60F2058379716A64a7A5d29219397e79bC552194'
-      cWETHv3 Implementation: '0xbA3C88EDDc2F0fB57FCd541cb5C6432c4880b8e6'
+      cWETHv3 Implementation: '0x3510d3b38A2EF3F7A12cB69bA6F3dc9C6a1971a3'
       cWETHv3 Ext: '0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F'
       Configurator: '0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3'
       Configurator Implementation: '0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C'
@@ -2419,8 +2419,8 @@ deployments:
         Price Feed: '0xc4A9fFF2152fe11FBB40F059100ce1271a330C51'
       ezETH:
         address: '0x2416092f143378750bb29b79eD961ab195CcEea5'
-        Borrow CF: '90.0%'
-        Borrow CF Raw: '900000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '93.0%'
         Liquidation CF Raw: '930000000000000000'
         Liquidation Penalty: '6.00%'
@@ -2430,8 +2430,8 @@ deployments:
         Price Feed: '0x13933885C9A392Ce73f396707EC61f30a8b05e37'
       wstETH:
         address: '0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F'
-        Borrow CF: '45.0%'
-        Borrow CF Raw: '450000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '93.0%'
         Liquidation CF Raw: '930000000000000000'
         Liquidation Penalty: '3.00%'
@@ -2441,8 +2441,8 @@ deployments:
         Price Feed: '0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B'
       WBTC:
         address: '0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4'
-        Borrow CF: '40.0%'
-        Borrow CF Raw: '400000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '85.0%'
         Liquidation CF Raw: '850000000000000000'
         Liquidation Penalty: '10.00%'
@@ -2452,8 +2452,8 @@ deployments:
         Price Feed: '0xA2699232B341881B1Ed85d91592b7c259E029aCf'
       weETH:
         address: '0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6'
-        Borrow CF: '45.0%'
-        Borrow CF Raw: '450000000000000000'
+        Borrow CF: '0.0%'
+        Borrow CF Raw: '0'
         Liquidation CF: '93.0%'
         Liquidation CF Raw: '930000000000000000'
         Liquidation Penalty: '4.00%'
@@ -2630,7 +2630,7 @@ The network deployment artifacts with contract addresses are available in the [C
 The v3 proxy is the only address to be used to interact with a Compound III instance. It is the first address listed in each of the tabs below. To generate the proper [Comet Interface ABI](/public/files/comet-interface-abi-98f438b.json){:target="_blank"} (`CometInterface.sol`), compile the Comet project using `yarn compile`.
 
 <br />
-> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-09-25 16:20:07.259 UTC**.
+> **Note:** The deployment data shown below is sourced from the [compound-docs-aggregator](https://github.com/woof-software/compound-docs-aggregator){:target="_blank"} repository. Data collected on: **2026-10-07 18:17:53.747 UTC**.
 
 <div id="networks-widget-container"></div>
 

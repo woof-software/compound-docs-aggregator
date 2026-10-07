@@ -495,7 +495,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x8D38A3d6B3c3B7d96D6536DA7Eef94A9d7dbC991 | Main market contract        |
-  |  2  | Comet Implementation        | 0xA27483387D1Fe437E786cC0563A8AD527145526c | Implementation contract     |
+  |  2  | Comet Implementation        | 0x3aA1E360C07361AfBdD8082b80eEa096d1086A47 | Implementation contract     |
   |  3  | Comet Extension             | 0xBC7B80c97b560e83A229a6417Ed4fC2d75Fc1209 | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -528,11 +528,11 @@
 
 **💰 Collaterals**
 
-  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Wrapped Ether                   | WETH   | 0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f |       18 | 0x3c6Cd9Cc7c7a4c2Cf5a82734CD249D7D593354dA | 42.0% | 90.0% |  5.00% |        1.72x |
-  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0x0746928E47f858944D189996829Ca711f64461a7 | 41.0% | 87.0% |  5.00% |        1.69x |
-  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0x7A99092816C8BD5ec8ba229e3a6E6Da1E628E1F9 | 40.0% | 85.0% | 10.00% |        1.67x |
+  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |    LF |     LP | Max Leverage |
+  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ----: | -----: | -----------: |
+  |  1  | Wrapped Ether                   | WETH   | 0xe5D7C2a44FfDDf6b295A15c148167daaAf5Cf34f |       18 | 0x3c6Cd9Cc7c7a4c2Cf5a82734CD249D7D593354dA | 0.0% | 90.0% |  5.00% |        1.00x |
+  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0x0746928E47f858944D189996829Ca711f64461a7 | 0.0% | 87.0% |  5.00% |        1.00x |
+  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0x7A99092816C8BD5ec8ba229e3a6E6Da1E628E1F9 | 0.0% | 85.0% | 10.00% |        1.00x |
 
 </details>
 
@@ -544,7 +544,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x60F2058379716A64a7A5d29219397e79bC552194 | Main market contract        |
-  |  2  | Comet Implementation        | 0xbA3C88EDDc2F0fB57FCd541cb5C6432c4880b8e6 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x3510d3b38A2EF3F7A12cB69bA6F3dc9C6a1971a3 | Implementation contract     |
   |  3  | Comet Extension             | 0x78eE842Bf092CaAa68dE542A8b1d1BF337EAD33F | Extension delegate contract |
   |  4  | Configurator                | 0x970FfD8E335B8fa4cd5c869c7caC3a90671d5Dc3 | Market configurator         |
   |  5  | Configurator Implementation | 0xdB7EdFa090061D9367CbEAF6bE16ECbDE596676C | Configurator implementation |
@@ -577,13 +577,13 @@
 
 **💰 Collaterals**
 
-  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Renzo Restaked ETH              | ezETH  | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x13933885C9A392Ce73f396707EC61f30a8b05e37 | 90.0% | 93.0% |  6.00% |       10.00x |
-  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B | 45.0% | 93.0% |  3.00% |        1.82x |
-  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 40.0% | 85.0% | 10.00% |        1.67x |
-  |  4  | Wrapped eETH                    | weETH  | 0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6 |       18 | 0xfd5282968119c348C1E47fBCaDD13069d9857Bf2 | 45.0% | 93.0% |  4.00% |        1.82x |
-  |  5  | rsETHWrapper                    | wrsETH | 0xD2671165570f41BBB3B0097893300b6EB6101E6C |       18 | 0x9feAc5a70435ef209F4013D46945AC1d4cba9397 |  0.0% | 93.0% |  4.00% |        1.00x |
+  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |    LF |     LP | Max Leverage |
+  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ----: | -----: | -----------: |
+  |  1  | Renzo Restaked ETH              | ezETH  | 0x2416092f143378750bb29b79eD961ab195CcEea5 |       18 | 0x13933885C9A392Ce73f396707EC61f30a8b05e37 | 0.0% | 93.0% |  6.00% |        1.00x |
+  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xB5beDd42000b71FddE22D3eE8a79Bd49A568fC8F |       18 | 0xF1cEe2A82Cc42246c8C38253f118AbB6cAAd715B | 0.0% | 93.0% |  3.00% |        1.00x |
+  |  3  | Wrapped BTC                     | WBTC   | 0x3aAB2285ddcDdaD8edf438C1bAB47e1a9D05a9b4 |        8 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 0.0% | 85.0% | 10.00% |        1.00x |
+  |  4  | Wrapped eETH                    | weETH  | 0x1Bf74C010E6320bab11e2e5A532b5AC15e0b8aA6 |       18 | 0xfd5282968119c348C1E47fBCaDD13069d9857Bf2 | 0.0% | 93.0% |  4.00% |        1.00x |
+  |  5  | rsETHWrapper                    | wrsETH | 0xD2671165570f41BBB3B0097893300b6EB6101E6C |       18 | 0x9feAc5a70435ef209F4013D46945AC1d4cba9397 | 0.0% | 93.0% |  4.00% |        1.00x |
 
 </details>
 
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-10-06 17:46:05.475 UTC
+*Last updated:* 2026-10-07 18:17:53.728 UTC
