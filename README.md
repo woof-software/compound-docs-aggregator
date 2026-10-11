@@ -1055,7 +1055,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x2e44e174f7D53F0212823acC11C01A11d58c5bCB | Main market contract        |
-  |  2  | Comet Implementation        | 0xa3D6eE70cF0b0aEC013A364759B45A85648AA61A | Implementation contract     |
+  |  2  | Comet Implementation        | 0x4917850Edb144B42e74eBb573e1F2dc6F9BfcA9B | Implementation contract     |
   |  3  | Comet Extension             | 0x0d4Bd55A755134950027cE1F43190A354e648e20 | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
@@ -1072,12 +1072,12 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1141552511 |         1141552511 | 2026-06-02 |
-  |  3  | Supply Rate Slope High |       101344495180 |       101344495180 | 2026-06-02 |
+  |  2  | Supply Rate Slope Low  |         1198630136 |         1141552511 | 2026-10-11 |
+  |  3  | Supply Rate Slope High |       106411719939 |       101344495180 | 2026-10-11 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  6  | Borrow Rate Slope Low  |          352327498 |          880834601 | 2026-07-02 |
-  |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2026-06-02 |
+  |  6  | Borrow Rate Slope Low  |          369958143 |          352327498 | 2026-10-11 |
+  |  7  | Borrow Rate Slope High |       119863013698 |       114155251141 | 2026-10-11 |
   |  8  | Borrow Rate Base       |          951293759 |          475646879 | 2026-07-02 |
 
 **🪙 Base Token**
@@ -1106,7 +1106,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x995E394b8B2437aC8Ce61Ee0bC610D617962B214 | Main market contract        |
-  |  2  | Comet Implementation        | 0x8c27De31D9a371A25Fc1C1A5A6Ff2B947AFc967F | Implementation contract     |
+  |  2  | Comet Implementation        | 0x76f7260C40221b2D6af2d27E40664304e0B991ef | Implementation contract     |
   |  3  | Comet Extension             | 0x5F5406b32ca3Da65e40978190C88B9809A95c6Ba | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
@@ -1123,12 +1123,12 @@
   |  #  | Parameter              |      Current Value |     Previous Value | Date Set   |
   | :-: | :--------------------- | -----------------: | -----------------: | :--------- |
   |  1  | Supply Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  2  | Supply Rate Slope Low  |         1141552511 |         1141552511 | 2026-06-02 |
-  |  3  | Supply Rate Slope High |       101344495180 |       101344495180 | 2026-06-02 |
+  |  2  | Supply Rate Slope Low  |         1084474885 |         1141552511 | 2026-10-11 |
+  |  3  | Supply Rate Slope High |        96277270421 |       101344495180 | 2026-10-11 |
   |  4  | Supply Rate Base       |                  0 |                  0 | 2026-06-02 |
   |  5  | Borrow Kink            | 900000000000000000 | 900000000000000000 | 2026-06-02 |
-  |  6  | Borrow Rate Slope Low  |          352327498 |          880834601 | 2026-07-02 |
-  |  7  | Borrow Rate Slope High |       114155251141 |       114155251141 | 2026-06-02 |
+  |  6  | Borrow Rate Slope Low  |          334696854 |          352327498 | 2026-10-11 |
+  |  7  | Borrow Rate Slope High |       108447488584 |       114155251141 | 2026-10-11 |
   |  8  | Borrow Rate Base       |          951293759 |          475646879 | 2026-07-02 |
 
 **🪙 Base Token**
@@ -1157,7 +1157,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xE36A30D249f7761327fd973001A32010b521b6Fd | Main market contract        |
-  |  2  | Comet Implementation        | 0x79976eAEBFcF43435e9f35dF9F28149dE75Dbf9a | Implementation contract     |
+  |  2  | Comet Implementation        | 0x187bda8993Fbdfe742FDF885CdE6452fc80a6F41 | Implementation contract     |
   |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract |
   |  4  | Configurator                | 0x84E93EC6170ED630f5ebD89A1AAE72d4F63f2713 | Market configurator         |
   |  5  | Configurator Implementation | 0x371DB45c7ee248dAFf4Dc1FFB67A20faa0ecFE02 | Configurator implementation |
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-10-10 16:47:46.472 UTC
+*Last updated:* 2026-10-11 17:12:27.803 UTC
