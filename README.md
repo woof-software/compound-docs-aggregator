@@ -1002,7 +1002,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x606174f62cd968d8e684c645080fa694c1D7786E | Main market contract        |
-  |  2  | Comet Implementation        | 0x6e29E1542006317a7e11835F4bB4547779b356e0 | Implementation contract     |
+  |  2  | Comet Implementation        | 0x62e5B235128E15E4a7270B9be920bA6Ec847eA84 | Implementation contract     |
   |  3  | Comet Extension             | 0x63fB5e296B9e7423B9281Df31bcdB0282BbeeE25 | Extension delegate contract |
   |  4  | Configurator                | 0xb77Cd4cD000957283D8BAf53cD782ECf029cF7DB | Market configurator         |
   |  5  | Configurator Implementation | 0x3c851CbE2740747f5cE4e8894842A313e5A3aee3 | Configurator implementation |
@@ -1035,11 +1035,11 @@
 
 **💰 Collaterals**
 
-  |  #  | Name         | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :----------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | mETH         | mETH   | 0xcDA86A272531e8640cD7F1a92c01839911B90bb0 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 40.0% | 85.0% | 10.00% |        1.67x |
-  |  2  | Ether        | WETH   | 0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111 |       18 | 0xAdD81aAF528784531E888317AFcD429b00C9f1b3 | 41.0% | 87.0% |  7.00% |        1.69x |
-  |  3  | Fire Bitcoin | FBTC   | 0xC96dE26018A54D51c097160568752c4E3BD6C364 |        8 | 0x41E345A046A73Ef15316191b41f3ABEA4cEF1168 | 39.0% | 83.0% | 12.00% |        1.64x |
+  |  #  | Name         | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |    LF |     LP | Max Leverage |
+  | :-: | :----------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ----: | -----: | -----------: |
+  |  1  | mETH         | mETH   | 0xcDA86A272531e8640cD7F1a92c01839911B90bb0 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 0.0% | 85.0% | 10.00% |        1.00x |
+  |  2  | Ether        | WETH   | 0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111 |       18 | 0xAdD81aAF528784531E888317AFcD429b00C9f1b3 | 0.0% | 87.0% |  7.00% |        1.00x |
+  |  3  | Fire Bitcoin | FBTC   | 0xC96dE26018A54D51c097160568752c4E3BD6C364 |        8 | 0x41E345A046A73Ef15316191b41f3ABEA4cEF1168 | 0.0% | 83.0% | 12.00% |        1.00x |
 
 </details>
 
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-10-13 18:45:41.961 UTC
+*Last updated:* 2026-10-14 16:20:22.087 UTC
