@@ -649,7 +649,7 @@
   |  #  | Name                        | Address                                    | Note                               |
   | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
   |  1  | Comet                       | 0xc3d688B66703497DAA19211EEdff47f25384cdc3 | Main market contract               |
-  |  2  | Comet Implementation        | 0x63e749153BaF1838f63cA22c275370BD2B1cEB15 | Implementation contract            |
+  |  2  | Comet Implementation        | 0x0B07565A8ef48170e15918b251EbD95109B23255 | Implementation contract            |
   |  3  | Comet Extension             | 0xA70a0227028aD005F4Fc9376a82cd1462e3AAedC | Extension delegate contract        |
   |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
   |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
@@ -692,7 +692,7 @@
   |  5  | ChainLink Token                 | LINK   | 0x514910771AF9Ca656af840dff83E8264EcF986CA |       18 | 0x83B34662f65532e611A87EBed38063Dec889D5A7 | 73.0% | 79.0% | 17.00% |        3.70x |
   |  6  | Wrapped liquid staked Ether 2.0 | wstETH | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0 |       18 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 82.0% | 86.0% |  9.00% |        5.56x |
   |  7  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x0A4F4F9E84Fc4F674F0D209f94d41FaFE5aF887D | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  8  | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0xAA9527bf3183A96fe6e55831c96dE5cd988d3484 | 80.0% | 85.0% | 10.00% |        5.00x |
+  |  8  | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0xAA9527bf3183A96fe6e55831c96dE5cd988d3484 |  0.0% | 85.0% | 10.00% |        1.00x |
   |  9  | Wrapped eETH                    | weETH  | 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee |       18 | 0x4F12633d511dC3049DE1ea923b7047fBeD0070D2 | 75.0% | 80.0% | 10.00% |        4.00x |
   |  10 | deUSD                           | deUSD  | 0x15700B564Ca08D9439C58cA5053166E8317aa138 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  8.00% |        1.00x |
   |  11 | Staked deUSD                    | sdeUSD | 0x5C5b196aBE0d54485975D1Ec29617D42D9198326 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  8.00% |        1.00x |
@@ -766,7 +766,7 @@
   |  #  | Name                        | Address                                    | Note                               |
   | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
   |  1  | Comet                       | 0x3Afdc9BCA9213A35503b077a6072F3D0d5AB0840 | Main market contract               |
-  |  2  | Comet Implementation        | 0xAbc1195C5d34DDeBc36885a980A3009BB6f6Db9E | Implementation contract            |
+  |  2  | Comet Implementation        | 0xd8E843ABa728b375Acc45E47d08F1879bF7B80B9 | Implementation contract            |
   |  3  | Comet Extension             | 0xe3458a0BdBd5A413d3731595C5Eb7C4CD6a14DD1 | Extension delegate contract        |
   |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
   |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
@@ -809,7 +809,7 @@
   |  5  | ChainLink Token                 | LINK   | 0x514910771AF9Ca656af840dff83E8264EcF986CA |       18 | 0x83B34662f65532e611A87EBed38063Dec889D5A7 | 73.0% | 79.0% | 17.00% |        3.70x |
   |  6  | Wrapped liquid staked Ether 2.0 | wstETH | 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0 |       18 | 0xA2699232B341881B1Ed85d91592b7c259E029aCf | 82.0% | 86.0% |  9.00% |        5.56x |
   |  7  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x2D09142Eae60Fd8BD454a276E95AeBdFFD05722d | 80.0% | 85.0% |  5.00% |        5.00x |
-  |  8  | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0x7b03a016dBC36dB8e05C480192faDcdB0a06bC37 | 80.0% | 85.0% | 10.00% |        5.00x |
+  |  8  | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0x7b03a016dBC36dB8e05C480192faDcdB0a06bC37 |  0.0% | 85.0% | 10.00% |        1.00x |
   |  9  | Wrapped Mountain Protocol USD   | wUSDM  | 0x57F5E098CaD7A3D1Eed53991D4d66C45C9AF7812 |       18 | 0x7BaDaB7109afBbF48eCd8d6498CaAcd2630b45B9 |  0.0% | 0.01% |  0.00% |        1.00x |
   |  10 | Staked FRAX                     | sFRAX  | 0xA663B02CF0a4b149d2aD41910CB81e23e1c41c32 |       18 | 0x8C74B2811D2F1aD65517ADB5C65773c1E520ed2f | 88.0% | 90.0% |  5.00% |        8.33x |
   |  11 | mETH                            | mETH   | 0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa |       18 | 0x60F2058379716A64a7A5d29219397e79bC552194 | 80.0% | 85.0% |  5.00% |        5.00x |
@@ -880,7 +880,7 @@
   |  #  | Name                        | Address                                    | Note                               |
   | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
   |  1  | Comet                       | 0xA17581A9E3356d9A858b789D68B4d866e593aE94 | Main market contract               |
-  |  2  | Comet Implementation        | 0xb647A44d6893e5328F3E307FAdA767197daF4f51 | Implementation contract            |
+  |  2  | Comet Implementation        | 0x2a0c96f742DBe81BAb9B13628f7F070fF1a5C8f9 | Implementation contract            |
   |  3  | Comet Extension             | 0x16F3532e6AF45A2C51B6C77b1267cEF34A9cf3B3 | Extension delegate contract        |
   |  4  | Configurator                | 0x316f9708bB98af7dA9c68C1C3b5e79039cD336E3 | Market configurator                |
   |  5  | Configurator Implementation | 0xcFC1fA6b7ca982176529899D99af6473aD80DF4F | Configurator implementation        |
@@ -926,7 +926,7 @@
   |  8  | Renzo Restaked ETH              | ezETH  | 0xbf5495Efe5DB9ce00f80364C8B423567e58d2110 |       18 | 0xF5600F17F7d3D87d0e0Fdafe01Dbe513919C6bf8 | 90.0% | 93.0% |  4.00% |       10.00x |
   |  9  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x57A71A9C632b2e6D8b0eB9A157888A3Fc87400D1 | 80.0% | 85.0% |  5.00% |        5.00x |
   |  10 | rswETH                          | rswETH | 0xFAe103DC9cf190eD75350761e95403b7b8aFa6c0 |       18 | 0x0cA9231A11c242206139A6DD8Bf532F885516F96 | 80.0% | 85.0% | 10.00% |        5.00x |
-  |  11 | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0x1933F7e5f8B0423fbAb28cE9c8C39C2cC414027B | 76.0% | 81.0% | 10.00% |        4.17x |
+  |  11 | tBTC v2                         | tBTC   | 0x18084fbA666a33d37592fA2633fD49a74DD93a88 |       18 | 0x1933F7e5f8B0423fbAb28cE9c8C39C2cC414027B |  0.0% | 81.0% | 10.00% |        1.00x |
   |  12 | ETHx                            | ETHx   | 0xA35b1B31Ce002FBF2058D22F30f95D405200A15b |       18 | 0x9f4001c75295049Dc5D566acfB27054D1fa1af35 | 85.0% | 90.0% |  5.00% |        6.67x |
   |  13 | Treehouse ETH                   | tETH   | 0xD11c452fc99cF405034ee446803b6F6c1F6d5ED8 |       18 | 0x7783a5c7656d75ed1144379c25142B7e43Da5F5E | 90.0% | 93.0% |  4.00% |       10.00x |
   |  14 | pufETH                          | pufETH | 0xD9A442856C234a39a81a089C06451EBAa4306a72 |       18 | 0x5546198BE8479Dcd69044e90F50783BA1A25A8F5 | 88.0% | 91.0% |  5.00% |        8.33x |
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-11-07 17:17:18.400 UTC
+*Last updated:* 2026-11-08 17:29:32.488 UTC
