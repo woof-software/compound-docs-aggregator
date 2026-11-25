@@ -599,7 +599,7 @@
   |  #  | Name                        | Address                                    | Note                               |
   | :-: | :-------------------------- | :----------------------------------------- | :--------------------------------- |
   |  1  | Comet                       | 0x207158a267CBD2598BB3d611D8CBdEE2709F2F8C | Main market contract               |
-  |  2  | Comet Implementation        | 0x9cbb90AF4cD1861EDD459024e805cF1008bA0741 | Implementation contract            |
+  |  2  | Comet Implementation        | 0x1D6f91b4452f74765a2e0D3ad3791C9E270bC40d | Implementation contract            |
   |  3  | Comet Extension             | 0x0eB77E9afA9655118B14BfB6E72180E7D3B21EE2 | Extension delegate contract        |
   |  4  | Configurator                | 0xd61c0169e931381fb3cC4B40316805333808c1Fa | Market configurator                |
   |  5  | Configurator Implementation | 0xD6f954090a1614b29AeaD322819100bb236960C4 | Configurator implementation        |
@@ -1421,7 +1421,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0xB2f97c1Bd3bf02f5e74d13f02E3e26F93D77CE44 | Main market contract        |
-  |  2  | Comet Implementation        | 0x033A4d650C99261A25eF0f8Ac89dE9E55E1950Bf | Implementation contract     |
+  |  2  | Comet Implementation        | 0x4CbB1ff10D8Ec07939052A9104F025DCA87e111c | Implementation contract     |
   |  3  | Comet Extension             | 0x987Fddf251FC26Cbf29Ea76666058EddAa14230D | Extension delegate contract |
   |  4  | Configurator                | 0xECAB0bEEa3e5DEa0c35d3E69468EAC20098032D7 | Market configurator         |
   |  5  | Configurator Implementation | 0x77831F8997De34ead958DA207e43e4be70771C79 | Configurator implementation |
@@ -1453,10 +1453,10 @@
 
 **💰 Collaterals**
 
-  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |    CF |    LF |     LP | Max Leverage |
-  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ----: | ----: | -----: | -----------: |
-  |  1  | Wrapped Ether                   | WETH   | 0x5300000000000000000000000000000000000004 |       18 | 0x6bF14CB0A831078629D993FDeBcB182b21A8774C | 40.0% | 85.0% | 20.00% |        1.67x |
-  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xf610A9dfB7C89644979b4A0f27063E9e7d7Cda32 |       18 | 0x709cef91Dd5d162d7047b678334d1Be41fe92843 | 32.0% | 80.0% | 30.00% |        1.47x |
+  |  #  | Name                            | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |   LF |     LP | Max Leverage |
+  | :-: | :------------------------------ | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ---: | -----: | -----------: |
+  |  1  | Wrapped Ether                   | WETH   | 0x5300000000000000000000000000000000000004 |       18 | 0x6bF14CB0A831078629D993FDeBcB182b21A8774C | 0.0% | 0.5% | 20.00% |        1.00x |
+  |  2  | Wrapped liquid staked Ether 2.0 | wstETH | 0xf610A9dfB7C89644979b4A0f27063E9e7d7Cda32 |       18 | 0x709cef91Dd5d162d7047b678334d1Be41fe92843 | 0.0% | 0.5% | 30.00% |        1.00x |
 
 </details>
 
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-11-24 21:50:26.423 UTC
+*Last updated:* 2026-11-25 20:57:23.889 UTC
