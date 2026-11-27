@@ -235,7 +235,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x784efeB622244d2348d4F2522f8860B96fbEcE89 | Main market contract              |
-  |  2  | Comet Implementation        | 0x32c42397bC4B9E37061Fb1C7A8B6B55074Fe1ea0 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x15ED8aAE1d74debaD680C3E32bC4994C55e9FfB4 | Implementation contract           |
   |  3  | Comet Extension             | 0x7E5873DD6a92802b280D8d59DEc2aa6Ce0EEB13A | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -274,7 +274,7 @@
   |  1  | Wrapped Ether                   | WETH   | 0x4200000000000000000000000000000000000006 |       18 | 0xe6eb5B9b85cFF2C84Df3De6e7855bC9E76f034d5 | 60.0% | 65.0% | 25.00% |        2.50x |
   |  2  | USD Coin                        | USDC   | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 |        6 | 0x3e6D1ccA8Eee6d02f1f578B613374EB53E6823B4 | 65.0% | 70.0% | 20.00% |        2.86x |
   |  3  | Wrapped liquid staked Ether 2.0 | wstETH | 0xc1CBa3fCea344f92D9239c08C0568f6F2F0ee452 |       18 | 0x1738FCAe8D5A6aEf39985dF31Fe60e5Dc5e1a7b3 | 60.0% | 65.0% | 25.00% |        2.50x |
-  |  4  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x8df378453Ff9dEFFa513367CDF9b3B53726303e9 | 60.0% | 65.0% | 25.00% |        2.50x |
+  |  4  | Coinbase Wrapped BTC            | cbBTC  | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0x8C74B2811D2F1aD65517ADB5C65773c1E520ed2f | 60.0% | 65.0% | 25.00% |        2.50x |
 
 </details>
 
@@ -436,7 +436,7 @@
   |  #  | Name                        | Address                                    | Note                              |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------------- |
   |  1  | Comet                       | 0x46e6b214b524310239732D51387075E0e70970bf | Main market contract              |
-  |  2  | Comet Implementation        | 0x0d517F7759FD3F083E8B807936e9700B4E1374C2 | Implementation contract           |
+  |  2  | Comet Implementation        | 0x0a45684A7a8700b605Ab7C64DF7611FD6E6EA1d9 | Implementation contract           |
   |  3  | Comet Extension             | 0xF3BBe5807feA997d540939Cbf138c134b11e3CF1 | Extension delegate contract       |
   |  4  | Configurator                | 0x45939657d1CA34A8FA39A924B71D28Fe8431e581 | Market configurator               |
   |  5  | Configurator Implementation | 0x83E0F742cAcBE66349E3701B171eE2487a26e738 | Configurator implementation       |
@@ -478,7 +478,7 @@
   |  4  | USD Coin                        | USDC        | 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 |        6 | 0x3dc83e4c67d99b935e07771F36060DEAefFFF45D | 80.0% | 85.0% | 5.00% |        5.00x |
   |  5  | Wrapped eETH                    | weETH       | 0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A |       18 | 0x5D173813B4505701e79E654b36A95E6c1FAD4448 | 90.0% | 93.0% | 4.00% |       10.00x |
   |  6  | rsETHWrapper                    | wrsETH      | 0xEDfa23602D0EC14714057867A78d01e94176BEA0 |       18 | 0xB88e4078AAc88F10C0Ca71086ddCF512Ec54498a |  0.0% | 93.0% | 4.00% |        1.00x |
-  |  7  | Coinbase Wrapped BTC            | cbBTC       | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0xc4A9fFF2152fe11FBB40F059100ce1271a330C51 | 80.0% | 85.0% | 5.00% |        5.00x |
+  |  7  | Coinbase Wrapped BTC            | cbBTC       | 0xcbB7C0000aB88B473b1f5aFd9ef808440eed33Bf |        8 | 0xc8E4c3F58d5FC4409522503927Ecea057EbbA1fc | 80.0% | 85.0% | 5.00% |        5.00x |
   |  8  | Wrapped Super OETH              | wsuperOETHb | 0x7FcD174E80f264448ebeE8c88a7C4476AAF58Ea6 |       18 | 0xAA9527bf3183A96fe6e55831c96dE5cd988d3484 | 88.0% | 90.0% | 5.00% |        8.33x |
 
 </details>
@@ -1002,7 +1002,7 @@
   |  #  | Name                        | Address                                    | Note                        |
   | :-: | :-------------------------- | :----------------------------------------- | :-------------------------- |
   |  1  | Comet                       | 0x606174f62cd968d8e684c645080fa694c1D7786E | Main market contract        |
-  |  2  | Comet Implementation        | 0x62e5B235128E15E4a7270B9be920bA6Ec847eA84 | Implementation contract     |
+  |  2  | Comet Implementation        | 0xea39D18f620dFdD9E5129618A0cC7E417Fa12E1E | Implementation contract     |
   |  3  | Comet Extension             | 0x63fB5e296B9e7423B9281Df31bcdB0282BbeeE25 | Extension delegate contract |
   |  4  | Configurator                | 0xb77Cd4cD000957283D8BAf53cD782ECf029cF7DB | Market configurator         |
   |  5  | Configurator Implementation | 0x3c851CbE2740747f5cE4e8894842A313e5A3aee3 | Configurator implementation |
@@ -1035,11 +1035,11 @@
 
 **💰 Collaterals**
 
-  |  #  | Name         | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |    LF |     LP | Max Leverage |
-  | :-: | :----------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ----: | -----: | -----------: |
-  |  1  | mETH         | mETH   | 0xcDA86A272531e8640cD7F1a92c01839911B90bb0 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 0.0% | 85.0% | 10.00% |        1.00x |
-  |  2  | Ether        | WETH   | 0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111 |       18 | 0xAdD81aAF528784531E888317AFcD429b00C9f1b3 | 0.0% | 87.0% |  7.00% |        1.00x |
-  |  3  | Fire Bitcoin | FBTC   | 0xC96dE26018A54D51c097160568752c4E3BD6C364 |        8 | 0x41E345A046A73Ef15316191b41f3ABEA4cEF1168 | 0.0% | 83.0% | 12.00% |        1.00x |
+  |  #  | Name         | Symbol | Address                                    | Decimals | Price Feed                                 |   CF |   LF |     LP | Max Leverage |
+  | :-: | :----------- | :----- | :----------------------------------------- | -------: | :----------------------------------------- | ---: | ---: | -----: | -----------: |
+  |  1  | mETH         | mETH   | 0xcDA86A272531e8640cD7F1a92c01839911B90bb0 |       18 | 0x731564585278f228FB8F93a0BF62729E24367662 | 0.0% | 0.5% | 10.00% |        1.00x |
+  |  2  | Ether        | WETH   | 0xdEAddEaDdeadDEadDEADDEAddEADDEAddead1111 |       18 | 0xAdD81aAF528784531E888317AFcD429b00C9f1b3 | 0.0% | 0.5% |  7.00% |        1.00x |
+  |  3  | Fire Bitcoin | FBTC   | 0xC96dE26018A54D51c097160568752c4E3BD6C364 |        8 | 0x41E345A046A73Ef15316191b41f3ABEA4cEF1168 | 0.0% | 0.5% | 12.00% |        1.00x |
 
 </details>
 
@@ -1566,4 +1566,4 @@
 
 ---
 
-*Last updated:* 2026-11-26 20:49:30.992 UTC
+*Last updated:* 2026-11-27 20:34:20.011 UTC
